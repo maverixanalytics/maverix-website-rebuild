@@ -8,6 +8,7 @@
 <link rel="icon" type="image/png" href="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d6f/680906a5e5bd468c21e28dfc_maverix-logo-midnight.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap" rel="stylesheet">
 <style>
 /* Futura — licensed TTFs bundled in the design system; Jost (Google) is the
    documented fallback when the project-relative files are unavailable. */
@@ -23,7 +24,7 @@
 --success:#2E8F6B;--warning:#C68A1B;--danger:#C0352B;
 --font-sans:"Poppins",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
 --font-display:"Poppins",ui-sans-serif,system-ui,sans-serif;
---font-tagline:"Futura","Futura PT","Jost","Poppins",sans-serif;
+--font-tagline:"Clash Display","Futura","Futura PT","Jost","Poppins",sans-serif;
 /* ---- site-layout tokens (matched to live maverixmedical.com) ---- */
 --header-dark:#0D1418;--page-bg:#F1F2F6;--frame-line:#DADDE2;--heading:#2E3A50;
 /* ---- legacy names retained as aliases so no layout rule changes ---- */
@@ -76,11 +77,11 @@ header.site{position:sticky;top:0;z-index:60;background:var(--header-dark);}
 .hero .shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,16,20,.72),rgba(10,16,20,.25));}
 .hero .inner{position:relative;padding:8.5rem 0 7.5rem;}
 .hero .kicker{color:var(--mvx-sky);margin-bottom:1.2rem;font-weight:700;}
-.hero h1{font-family:var(--font-tagline);font-size:clamp(2.6rem,6vw,4.6rem);font-weight:700;line-height:1.02;max-width:860px;text-transform:uppercase;letter-spacing:.01em;}
+.hero h1{font-family:var(--font-tagline);font-size:clamp(2.6rem,6vw,4.6rem);font-weight:600;line-height:1.02;max-width:860px;text-transform:uppercase;letter-spacing:.01em;}
 .hero .tag{margin-top:1.8rem;font-size:clamp(1.15rem,2.2vw,1.5rem);font-style:italic;color:#E8ECEF;line-height:1.9;}
 .hero-thin{position:relative;background:linear-gradient(105deg,rgba(21,28,34,.96) 0%,rgba(59,69,77,.82) 34%,rgba(140,150,158,.55) 68%,rgba(233,235,239,.4) 100%),url("images/hero-bg.jpg") center/cover no-repeat,#3B454D;color:#fff;overflow:hidden;}
 .hero-thin .inner{position:relative;padding:11rem 0 2.6rem;}
-.hero-thin h1{font-family:var(--font-display);font-weight:200;font-size:clamp(4rem,10vw,8.2rem);line-height:.95;letter-spacing:.01em;}
+.hero-thin h1{font-family:var(--font-tagline);font-weight:200;font-size:clamp(4rem,10vw,8.2rem);line-height:.95;letter-spacing:.01em;}
 /* framed sections — center column with vertical rules, like the live site */
 section.band{padding:0;}
 section.band>.container{border-left:1px solid var(--frame-line);border-right:1px solid var(--frame-line);padding:6rem 72px;}
@@ -91,7 +92,7 @@ section.band>.container{border-left:1px solid var(--frame-line);border-right:1px
 .band.dark .bgimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.32;}
 .band.dark>.container{position:relative;border:none;background:transparent;padding:0 24px;}
 .band.dark .kicker{color:var(--mvx-cloud);margin-bottom:1.4rem;}
-.band h2{font-family:var(--font-tagline);font-size:clamp(1.8rem,3.6vw,2.7rem);font-weight:700;line-height:1.14;color:var(--heading);}
+.band h2{font-family:var(--font-tagline);font-size:clamp(1.8rem,3.6vw,2.7rem);font-weight:600;line-height:1.14;color:var(--heading);}
 .band.dark h2{color:#fff;}
 h2.section-title{color:var(--heading);margin-bottom:1rem;}
 .lede{font-size:1.05rem;color:var(--muted);max-width:760px;}
@@ -463,10 +464,40 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
  section.band>.container{padding:3.4rem 22px;}
  footer.site .container{padding:3rem 22px 1.8rem;}
 }
+
+/* v8: logo images, LinkedIn glyphs, transparent brand logos, alignment */
+.nav .logo-img{height:20px;width:auto;}
+.fbrand .flogo{height:24px;width:auto;display:inline-block;}
+.fbrand .li{display:inline-flex;margin-top:1.1rem;width:34px;height:34px;border-radius:50%;background:var(--header-dark);align-items:center;justify-content:center;color:#fff;}
+.fbrand .li svg{width:16px;height:16px;}
+.li-badge{display:inline-flex;width:26px;height:26px;border-radius:4px;background:#0A66C2;color:#fff;align-items:center;justify-content:center;}
+.li-badge svg{width:15px;height:15px;}
+/* transparent brand logos (blend white JPG boxes into light sections) */
+.brandbar img,.sechead img,.pd-side img,.card .logoimg{background:transparent;padding:0;border-radius:0;mix-blend-mode:multiply;}
+/* alignment: section heads and team grid */
+.sechead{align-items:center;}
+.teamgrid{align-items:start;}
+.member img{aspect-ratio:1/1;object-fit:cover;object-position:center top;background:#E7ECEF;}
+.member .mi{min-height:118px;}
+.advgrid{align-items:start;}
+/* dropdown alignment: clamp width, keep on screen, align text */
+.dropdown.mega{max-width:min(760px,92vw);}
+.dropdown{text-align:left;}
+.nav-links{gap:3.6rem;}
+@media(max-width:560px){.nav .logo-img{height:17px;}}
+
+/* v9: Clash Display headings + breathing room on narrow windows */
+@media(max-width:1080px){
+ section.band>.container,footer.site .container{margin-left:28px;margin-right:28px;}
+ .hero .inner,.hero-thin .inner,.pd-hero .container,.contact-dark .container{padding-left:28px;padding-right:28px;}
+}
+@media(max-width:560px){
+ section.band>.container,footer.site .container{margin-left:14px;margin-right:14px;}
+}
 </style>
 </head><body>
 <header class="site"><div class="nav">
-<a class="logo" href="../index.html"><span class="wordmark">maverix</span></a>
+<a class="logo" href="../index.html"><img class="logo-img" src="../images/maverix-logo-white.png" alt="Maverix Medical"></a>
 <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 <nav class="nav-links">
 <div><a class="top" href="../products.html">products <span class="plus">+</span><span class="arrow">&#8594;</span></a>
@@ -485,7 +516,6 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
  <div class="dropdown">
   <a href="../team.html#leadership">Leadership</a>
   <a href="../team.html#advisors">Advisory Board</a>
-  <a href="../team.html#partners">Partners</a>
  </div></div>
 <div><a class="top" href="../news.html">news <span class="plus">+</span><span class="arrow">&#8594;</span></a></div>
 <div class="mobile-extra"><a href="../contact-us.html">Contact</a><a href="../careers.html">Careers</a></div>
@@ -536,15 +566,14 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
  <a href="../products.html#maverix-biopsy-tools">Serpex</a></div>
 <div class="fcol"><div class="fh">Team</div>
  <a href="../team.html#leadership">Leadership</a>
- <a href="../team.html#advisors">Advisory Board</a>
- <a href="../team.html#partners">Partners</a></div>
+ <a href="../team.html#advisors">Advisory Board</a></div>
 <div class="fcol"><div class="fh">Company</div>
  <a href="../contact-us.html">Contact</a>
  <a href="../careers.html">Careers</a>
  <a href="../news.html">News</a></div>
 <div class="fbrand">
- <span class="wordmark">maverix</span><br>
- <a class="li" href="https://www.linkedin.com/company/maverix-medical/" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d6f/6882a1cb52451055a3424bea_Vector.png" alt="LinkedIn"></a>
+ <img class="flogo" src="../images/maverix-logo-gray.png" alt="Maverix">
+ <a class="li" href="https://www.linkedin.com/company/maverix-medical/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
 </div></div>
 <div class="fcontact"><div class="fh">Contact us</div>
  <a href="mailto:contact@maverixmedical.com">contact@maverixmedical.com</a></div>
