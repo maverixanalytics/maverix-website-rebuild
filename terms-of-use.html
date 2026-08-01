@@ -8,6 +8,7 @@
 <link rel="icon" type="image/png" href="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d6f/680906a5e5bd468c21e28dfc_maverix-logo-midnight.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap" rel="stylesheet">
 <style>
 /* Futura — licensed TTFs bundled in the design system; Jost (Google) is the
    documented fallback when the project-relative files are unavailable. */
@@ -23,7 +24,7 @@
 --success:#2E8F6B;--warning:#C68A1B;--danger:#C0352B;
 --font-sans:"Poppins",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
 --font-display:"Poppins",ui-sans-serif,system-ui,sans-serif;
---font-tagline:"Futura","Futura PT","Jost","Poppins",sans-serif;
+--font-tagline:"Clash Display","Futura","Futura PT","Jost","Poppins",sans-serif;
 /* ---- site-layout tokens (matched to live maverixmedical.com) ---- */
 --header-dark:#0D1418;--page-bg:#F1F2F6;--frame-line:#DADDE2;--heading:#2E3A50;
 /* ---- legacy names retained as aliases so no layout rule changes ---- */
@@ -76,11 +77,11 @@ header.site{position:sticky;top:0;z-index:60;background:var(--header-dark);}
 .hero .shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,16,20,.72),rgba(10,16,20,.25));}
 .hero .inner{position:relative;padding:8.5rem 0 7.5rem;}
 .hero .kicker{color:var(--mvx-sky);margin-bottom:1.2rem;font-weight:700;}
-.hero h1{font-family:var(--font-tagline);font-size:clamp(2.6rem,6vw,4.6rem);font-weight:700;line-height:1.02;max-width:860px;text-transform:uppercase;letter-spacing:.01em;}
+.hero h1{font-family:var(--font-tagline);font-size:clamp(2.6rem,6vw,4.6rem);font-weight:600;line-height:1.02;max-width:860px;text-transform:uppercase;letter-spacing:.01em;}
 .hero .tag{margin-top:1.8rem;font-size:clamp(1.15rem,2.2vw,1.5rem);font-style:italic;color:#E8ECEF;line-height:1.9;}
 .hero-thin{position:relative;background:linear-gradient(105deg,rgba(21,28,34,.96) 0%,rgba(59,69,77,.82) 34%,rgba(140,150,158,.55) 68%,rgba(233,235,239,.4) 100%),url("images/hero-bg.jpg") center/cover no-repeat,#3B454D;color:#fff;overflow:hidden;}
 .hero-thin .inner{position:relative;padding:11rem 0 2.6rem;}
-.hero-thin h1{font-family:var(--font-display);font-weight:200;font-size:clamp(4rem,10vw,8.2rem);line-height:.95;letter-spacing:.01em;}
+.hero-thin h1{font-family:var(--font-tagline);font-weight:200;font-size:clamp(4rem,10vw,8.2rem);line-height:.95;letter-spacing:.01em;}
 /* framed sections — center column with vertical rules, like the live site */
 section.band{padding:0;}
 section.band>.container{border-left:1px solid var(--frame-line);border-right:1px solid var(--frame-line);padding:6rem 72px;}
@@ -91,7 +92,7 @@ section.band>.container{border-left:1px solid var(--frame-line);border-right:1px
 .band.dark .bgimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.32;}
 .band.dark>.container{position:relative;border:none;background:transparent;padding:0 24px;}
 .band.dark .kicker{color:var(--mvx-cloud);margin-bottom:1.4rem;}
-.band h2{font-family:var(--font-tagline);font-size:clamp(1.8rem,3.6vw,2.7rem);font-weight:700;line-height:1.14;color:var(--heading);}
+.band h2{font-family:var(--font-tagline);font-size:clamp(1.8rem,3.6vw,2.7rem);font-weight:600;line-height:1.14;color:var(--heading);}
 .band.dark h2{color:#fff;}
 h2.section-title{color:var(--heading);margin-bottom:1rem;}
 .lede{font-size:1.05rem;color:var(--muted);max-width:760px;}
@@ -484,6 +485,15 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
 .dropdown{text-align:left;}
 .nav-links{gap:3.6rem;}
 @media(max-width:560px){.nav .logo-img{height:17px;}}
+
+/* v9: Clash Display headings + breathing room on narrow windows */
+@media(max-width:1080px){
+ section.band>.container,footer.site .container{margin-left:28px;margin-right:28px;}
+ .hero .inner,.hero-thin .inner,.pd-hero .container,.contact-dark .container{padding-left:28px;padding-right:28px;}
+}
+@media(max-width:560px){
+ section.band>.container,footer.site .container{margin-left:14px;margin-right:14px;}
+}
 </style>
 </head><body>
 <header class="site"><div class="nav">
@@ -508,7 +518,12 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
   <a href="team.html#advisors">Advisory Board</a>
  </div></div>
 <div><a class="top" href="news.html">news <span class="plus">+</span><span class="arrow">&#8594;</span></a></div>
+<div class="mobile-extra"><a href="contact-us.html">Contact</a><a href="careers.html">Careers</a></div>
 </nav>
+<div class="nav-right">
+ <a class="contact" href="contact-us.html">Contact</a>
+ <a class="careers-cell" href="careers.html">Careers</a>
+</div>
 </div></header>
 
 <section class="band light"><div class="container legal" style="max-width:860px;">
