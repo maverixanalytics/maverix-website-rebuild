@@ -26,13 +26,13 @@
 --font-display:"Poppins",ui-sans-serif,system-ui,sans-serif;
 --font-tagline:"Clash Display","Futura","Futura PT","Jost","Poppins",sans-serif;
 /* ---- site-layout tokens (matched to live maverixmedical.com) ---- */
---header-dark:#0D1418;--page-bg:#F1F2F6;--frame-line:#DADDE2;--heading:#2E3A50;
+--header-dark:#0D1418;--page-bg:#F2F2F6;--frame-line:#DADDE2;--heading:#213340;
 /* ---- legacy names retained as aliases so no layout rule changes ---- */
 --midnight:var(--mvx-deep);--darkblue:var(--mvx-teal);--teal:var(--mvx-teal);--blue:var(--mvx-blue);--cyan:var(--mvx-sky);
 --lightblue:var(--mvx-cloud);--offwhite:var(--mvx-mist);--dark-offwhite:var(--border);--ink:var(--mvx-ink);--muted:var(--mvx-slate);--white:var(--mvx-white);}
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{font-family:var(--font-sans);color:var(--ink);background:var(--page-bg);line-height:1.55;-webkit-font-smoothing:antialiased;}
+body{font-family:var(--font-sans);color:#333;background:var(--page-bg);font-size:14px;font-weight:300;line-height:1.55;-webkit-font-smoothing:antialiased;}
 img{max-width:100%;display:block;}
 a{color:var(--teal);text-decoration:none;}
 .container{max-width:1000px;margin:0 auto;padding:0 24px;}
@@ -76,8 +76,8 @@ header.site{position:sticky;top:0;z-index:60;background:var(--header-dark);}
 .hero video,.hero .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55;}
 .hero .shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,16,20,.72),rgba(10,16,20,.25));}
 .hero .inner{position:relative;padding:8.5rem 0 7.5rem;}
-.hero .kicker{color:var(--mvx-sky);margin-bottom:1.2rem;font-weight:700;}
-.hero h1{font-family:var(--font-tagline);font-size:clamp(2.6rem,6vw,4.6rem);font-weight:600;line-height:1.02;max-width:860px;text-transform:uppercase;letter-spacing:.01em;}
+.hero .kicker{color:var(--mvx-sky);font-size:1.35rem;font-weight:600;letter-spacing:.28em;margin-bottom:1.2rem;}
+.hero h1{font-family:var(--font-tagline);font-size:clamp(3rem,7.2vw,6.125rem);font-weight:600;line-height:1;max-width:900px;text-transform:uppercase;letter-spacing:0;}
 .hero .tag{margin-top:1.8rem;font-size:clamp(1.15rem,2.2vw,1.5rem);font-style:italic;color:#E8ECEF;line-height:1.9;}
 .hero-thin{position:relative;background:linear-gradient(105deg,rgba(21,28,34,.96) 0%,rgba(59,69,77,.82) 34%,rgba(140,150,158,.55) 68%,rgba(233,235,239,.4) 100%),url("images/hero-bg.jpg") center/cover no-repeat,#3B454D;color:#fff;overflow:hidden;}
 .hero-thin .inner{position:relative;padding:11rem 0 2.6rem;}
@@ -91,8 +91,8 @@ section.band>.container{border-left:1px solid var(--frame-line);border-right:1px
 .band.dark{position:relative;background:var(--header-dark);color:#fff;overflow:hidden;padding:5.5rem 0;}
 .band.dark .bgimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.32;}
 .band.dark>.container{position:relative;border:none;background:transparent;padding:0 24px;}
-.band.dark .kicker{color:var(--mvx-cloud);margin-bottom:1.4rem;}
-.band h2{font-family:var(--font-tagline);font-size:clamp(1.8rem,3.6vw,2.7rem);font-weight:600;line-height:1.14;color:var(--heading);}
+.band.dark .kicker{color:#fff;font-size:1.5rem;font-weight:600;letter-spacing:.2em;margin-bottom:1.6rem;}
+.band h2{font-family:var(--font-tagline);font-size:clamp(2rem,4vw,3.125rem);font-weight:600;line-height:1.12;color:var(--heading);}
 .band.dark h2{color:#fff;}
 h2.section-title{color:var(--heading);margin-bottom:1rem;}
 .lede{font-size:1.05rem;color:var(--muted);max-width:760px;}
@@ -494,6 +494,15 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
 @media(max-width:560px){
  section.band>.container,footer.site .container{margin-left:14px;margin-right:14px;}
 }
+
+/* v10: type scale measured from live site */
+.band.dark h2{font-size:clamp(1.5rem,2.4vw,1.875rem);font-weight:600;letter-spacing:.5px;max-width:590px;line-height:1.35;font-family:var(--font-tagline);}
+.band.dark .lede{font-size:1.25rem;font-weight:400;color:#fff;line-height:1.6;}
+.lede{font-size:1.1rem;}
+.nav-links a.top{font-size:1.125rem;font-weight:300;}
+.statgrid .lab,.bigstat .lab{color:#213340;}
+.challenge .headline p{color:#213340;}
+.hero .tag{font-weight:300;}
 </style>
 </head><body>
 <header class="site"><div class="nav">
