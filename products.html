@@ -451,13 +451,13 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
 .pcard .ph .abbr{color:var(--mvx-cloud);}
 
 /* v7 mobile fixes */
-.mobile-extra{display:none;}
+.nav-links>div.mobile-extra{display:none;}
 @media(max-width:920px){
  .nav-right a.contact,.nav-right a.careers-cell{padding:0 12px;font-size:.8rem;letter-spacing:.08em;}
 }
 @media(max-width:560px){
  .nav-right{display:none;}
- .mobile-extra{display:block;width:100%;border-top:1px solid rgba(255,255,255,.16);margin-top:.6rem;padding-top:.6rem;}
+ .nav-links>div.mobile-extra{display:block;width:100%;border-top:1px solid rgba(255,255,255,.16);margin-top:.6rem;padding-top:.6rem;}
  .mobile-extra a{display:block;color:#fff;font-family:var(--font-tagline);text-transform:uppercase;letter-spacing:.12em;font-size:.9rem;padding:.5rem 0;}
  .spec{display:block;overflow-x:auto;}
  .hero-thin h1{font-size:3.2rem;}
@@ -553,6 +553,33 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
  .dropdown{position:static;}
  .dropdown-in,.dropdown-in.slim{display:block;padding:0;}
 }
+
+/* v12: diagnostics expand cards, dropdown spacing, reveal typography */
+.photo-cards.expand{display:flex;gap:1.8rem;}
+.photo-cards.expand .photo-card{flex:1;min-width:0;min-height:410px;transition:flex .55s cubic-bezier(.25,.8,.25,1),box-shadow .3s ease;}
+.photo-cards.expand .photo-card:hover,.photo-cards.expand .photo-card:focus-within{flex:2.1;}
+.photo-cards.expand .reveal{opacity:0;background:linear-gradient(180deg,rgba(17,29,36,0) 0%,rgba(17,29,36,.94) 52%);justify-content:flex-end;padding-bottom:2rem;transition:opacity .4s ease .12s;}
+.photo-cards.expand .photo-card:hover .reveal,.photo-cards.expand .photo-card:focus-within .reveal{opacity:1;}
+.photo-card .reveal .pt2{font-family:var(--font-tagline);font-weight:600;}
+.photo-card .reveal p.lead{color:var(--mvx-sky);font-style:italic;font-size:1.02rem;line-height:1.5;}
+.photo-card .reveal p.sub{color:#C9D2D8;font-style:italic;font-size:.85rem;line-height:1.55;}
+@media(max-width:920px){
+ .photo-cards.expand{flex-direction:column;}
+ .photo-cards.expand .photo-card:hover,.photo-cards.expand .photo-card:focus-within{flex:1;}
+ .photo-cards.expand .reveal{opacity:1;background:linear-gradient(180deg,rgba(17,29,36,0) 30%,rgba(17,29,36,.94) 70%);}
+ .photo-cards.expand .photo-card .pt{opacity:0;}
+}
+/* dropdown mega: align to page container, even spacing, no dividers */
+.dropdown-in{max-width:1000px;padding:2.2rem 24px 2.4rem;gap:3rem;align-items:start;}
+.dropdown .mcol{padding:0;border-right:none;}
+.dropdown .mcol h4{font-family:var(--font-tagline);font-size:1.15rem;color:var(--teal);margin-bottom:.7rem;}
+.dropdown .mcol p{font-size:.88rem;line-height:1.6;margin-bottom:1.2rem;}
+.dropdown-in.slim{padding:1.5rem 24px;gap:3.4rem;}
+.dropdown-in.slim a{padding:.3rem 0;}
+@media(max-width:560px){
+ .dropdown-in{padding:0 0 .4rem .8rem;gap:0;}
+ .dropdown .mcol{padding:.4rem 0;}
+}
 </style>
 </head><body>
 <header class="site"><div class="nav">
@@ -631,13 +658,13 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
  <div class="seclabel">About</div>
  <p class="biglead">Early cancer detection lowers healthcare costs and saves lives &hellip; but most lung nodules discovered in radiology studies lack clear indications of risk, leaving uncertainty about next steps.</p>
  <p class="bodytext">We are developing a diagnostic test that aims to better clarify which patients are most likely to benefit from either tissue sampling or continued monitoring.</p>
- <div class="photo-cards">
+ <div class="photo-cards expand">
   <div class="photo-card has-reveal" tabindex="0"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28e9c_Doctor%20Detection%20Image.jpg" alt="" loading="lazy"><div class="pt">Early detection and resection is crucial&hellip;</div>
-   <div class="reveal"><div class="pt2">Early detection and resection is crucial&hellip;</div><p>More than half of stage I patients are cured by a single surgery.</p></div></div>
+   <div class="reveal"><div class="pt2">Early detection and resection is crucial&hellip;</div><p class="lead">More than half of stage I patients are cured by a single surgery.</p><p class="sub">Lung nodules are detected in 1/4 of CT scans with few ultimately identified as cancer.</p></div></div>
   <div class="photo-card has-reveal" tabindex="0"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28e6f_holding-hands.jpg" alt="" loading="lazy"><div class="pt">because time is the enemy&hellip;</div>
-   <div class="reveal"><div class="pt2">because time is the enemy&hellip;</div><p>Lung nodules are detected in 1/4 of CT scans with few ultimately identified as cancer&mdash;and patients often wait months to see a pulmonologist.</p></div></div>
+   <div class="reveal"><div class="pt2">because time is the enemy&hellip;</div><p class="lead">Patients often wait months to see a pulmonologist.</p><p class="sub">Current practice is to diagnose over time, so doctors must wait for the next CT scan to see if a nodule grows.</p></div></div>
   <div class="photo-card has-reveal" tabindex="0"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28e77_jenny-hill-mQVWb7kUoOE-unsplash.jpg" alt="" loading="lazy"><div class="pt">&hellip;and a diagnostic could change everything.</div>
-   <div class="reveal"><div class="pt2">&hellip;and a diagnostic could change everything.</div><p>Our goal: identify patients most likely to benefit from tissue sampling versus continued monitoring&mdash;accelerating time to diagnosis when it matters most.</p></div></div>
+   <div class="reveal"><div class="pt2">&hellip;and a diagnostic could change everything.</div><p class="lead">A diagnostic tool that identifies high-risk patients could move them to the front of the line for a biopsy.</p><p class="sub">Their treatment regime could start earlier, which can improve outcomes.</p></div></div>
  </div>
 </div></section>
 
