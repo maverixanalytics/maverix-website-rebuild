@@ -503,6 +503,56 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
 .statgrid .lab,.bigstat .lab{color:#213340;}
 .challenge .headline p{color:#213340;}
 .hero .tag{font-weight:300;}
+
+/* v11: hover reveals, journey expand, full-width menus, bio popup, rounded product imagery, b-roll heroes */
+/* diagnostics photo-card hover text */
+.photo-card .reveal{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;justify-content:flex-end;gap:.5rem;padding:1.6rem;background:linear-gradient(180deg,rgba(17,29,36,.05) 0%,rgba(17,29,36,.92) 62%);opacity:0;transition:opacity .35s ease;}
+.photo-card .reveal .pt2{color:#fff;font-family:var(--font-tagline);font-weight:600;font-size:1.3rem;line-height:1.25;}
+.photo-card .reveal p{color:#E6EDF1;font-size:.95rem;line-height:1.55;}
+.photo-card:hover .reveal,.photo-card:focus-within .reveal{opacity:1;}
+.photo-card.has-reveal:hover > .pt{opacity:0;}
+.photo-card > .pt{transition:opacity .3s ease;}
+/* journey expand-on-hover */
+.pathways{display:flex;gap:1.8rem;}
+.pathcard{flex:1;min-width:0;transition:flex .55s cubic-bezier(.25,.8,.25,1);}
+.pathcard:hover,.pathcard:focus-within{flex:2.1;}
+.pathcard .reveal{opacity:0;background:linear-gradient(180deg,rgba(17,29,36,0) 0%,rgba(17,29,36,.94) 52%);justify-content:flex-end;padding-bottom:2rem;transition:opacity .4s ease .12s;}
+.pathcard .reveal h3{font-family:var(--font-tagline);}
+.pathcard .reveal p{font-size:.9rem;}
+.pathcard:hover .reveal,.pathcard:focus-within .reveal{opacity:1;}
+.pathcard .pc{transition:opacity .3s ease;}
+.pathcard:hover .pc,.pathcard:focus-within .pc{opacity:0;}
+/* full-width menu panels like the original */
+.dropdown{position:fixed;left:0;right:0;top:62px;transform:translateY(10px);width:100%;min-width:0;max-width:none;border-top:1px solid var(--frame-line);box-shadow:0 26px 44px rgba(13,20,24,.28);padding:0;}
+.dropdown.mega{display:block;min-width:0;max-width:none;}
+.nav-links>div:hover .dropdown,.nav-links>div:focus-within .dropdown{transform:translateY(0);}
+.dropdown-in{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);}
+.dropdown-in.slim{display:flex;justify-content:center;gap:3.4rem;padding:1.3rem 24px;}
+.dropdown-in.slim a{padding:.4rem 0;font-size:1rem;}
+/* bio popup — split card matched to the design comp */
+.modal .box{padding:0;overflow:hidden;border-radius:18px;max-width:940px;display:grid;grid-template-columns:1fr 1.15fr;background:#F4F5F7;}
+.modal .mphoto{min-height:460px;height:100%;}
+.modal .mphoto img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(100%);display:block;}
+.modal .mbody{padding:3rem 3rem 2.6rem 2.6rem;overflow:auto;max-height:86vh;}
+.modal .mbody h2{font-family:var(--font-tagline);font-size:2.1rem;font-weight:600;color:#213340;border-bottom:1px solid #9AA3A9;padding-bottom:.7rem;margin-bottom:.7rem;line-height:1.1;}
+.modal .mbody .ti{color:#39434B;font-size:1.1rem;font-weight:400;margin-bottom:1.8rem;}
+.modal .bio p{color:#39434B;}
+.modal .bio p:first-child{font-weight:600;color:#213340;}
+.modal .close{background:var(--mvx-sky);color:#0D1418;width:40px;height:40px;border-radius:50%;font-size:1.25rem;top:16px;right:16px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(13,20,24,.25);transition:transform .2s ease;}
+.modal .close:hover{transform:scale(1.08);}
+/* rounded product imagery */
+.pd-img,.serpex-two .prod img,.altrow .img{border-radius:18px;overflow:hidden;}
+.pd-img img{border-radius:18px;}
+@media(max-width:920px){
+ .pathways{flex-direction:column;}
+ .pathcard:hover,.pathcard:focus-within{flex:1;}
+ .pathcard .reveal{opacity:1;background:linear-gradient(180deg,rgba(17,29,36,0) 30%,rgba(17,29,36,.94) 70%);}
+ .pathcard .pc{opacity:0;}
+ .modal .box{grid-template-columns:1fr;}
+ .modal .mphoto{min-height:280px;max-height:320px;}
+ .dropdown{position:static;}
+ .dropdown-in,.dropdown-in.slim{display:block;padding:0;}
+}
 </style>
 </head><body>
 <header class="site"><div class="nav">
@@ -510,7 +560,7 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
 <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 <nav class="nav-links">
 <div><a class="top" href="products.html">products <span class="plus">+</span><span class="arrow">&#8594;</span></a>
- <div class="dropdown mega">
+ <div class="dropdown mega"><div class="dropdown-in">
   <div class="mcol"><h4>Thoracent</h4>
    <p>Minimally invasive devices for managing pleural effusions, restoring airway patency, and improving quality of life, along with an expanded suite of GI tools.</p>
    <a class="btn" href="products.html#thoracent"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span>Learn more about Thoracent</a></div>
@@ -520,12 +570,12 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
   <div class="mcol"><h4>Serpex Steerable Portfolio</h4>
    <p>A suite of steerable endobronchial instruments to target difficult-to-reach and off-airway nodules.</p>
    <a class="btn" href="products.html#maverix-biopsy-tools"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span>Learn more about Serpex</a></div>
- </div></div>
+ </div></div></div>
 <div><a class="top" href="team.html">team <span class="plus">+</span><span class="arrow">&#8594;</span></a>
- <div class="dropdown">
+ <div class="dropdown"><div class="dropdown-in slim">
   <a href="team.html#leadership">Leadership</a>
   <a href="team.html#advisors">Advisory Board</a>
- </div></div>
+ </div></div></div>
 <div><a class="top" href="news.html">news <span class="plus">+</span><span class="arrow">&#8594;</span></a></div>
 <div class="mobile-extra"><a href="contact-us.html">Contact</a><a href="careers.html">Careers</a></div>
 </nav>
@@ -535,7 +585,7 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
 </div>
 </div></header>
 
-<div class="hero-thin"><div class="container inner">
+<div class="hero-thin"><img class="hero-img" src="images/hero-products.jpg" alt=""><div class="ov"></div><div class="container inner">
  <h1>products</h1>
 </div></div>
 
@@ -580,11 +630,14 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
    <a href="mailto:customercare@maverixmedical.com">customercare@maverixmedical.com</a></div></div>
  <div class="seclabel">About</div>
  <p class="biglead">Early cancer detection lowers healthcare costs and saves lives &hellip; but most lung nodules discovered in radiology studies lack clear indications of risk, leaving uncertainty about next steps.</p>
- <p class="bodytext">We are developing a diagnostic test that aims to better clarify which patients are most likely to benefit from either tissue sampling or continued monitoring. More than half of stage I patients are cured by a single surgery, yet lung nodules are detected in 1/4 of CT scans with few ultimately identified as cancer&mdash;and patients often wait months to see a pulmonologist.</p>
+ <p class="bodytext">We are developing a diagnostic test that aims to better clarify which patients are most likely to benefit from either tissue sampling or continued monitoring.</p>
  <div class="photo-cards">
-  <div class="photo-card"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28e9c_Doctor%20Detection%20Image.jpg" alt="" loading="lazy"><div class="pt">Early detection and resection is crucial&hellip;</div></div>
-  <div class="photo-card"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28e6f_holding-hands.jpg" alt="" loading="lazy"><div class="pt">because time is the enemy&hellip;</div></div>
-  <div class="photo-card"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28e77_jenny-hill-mQVWb7kUoOE-unsplash.jpg" alt="" loading="lazy"><div class="pt">&hellip;and a diagnostic could change everything.</div></div>
+  <div class="photo-card has-reveal" tabindex="0"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28e9c_Doctor%20Detection%20Image.jpg" alt="" loading="lazy"><div class="pt">Early detection and resection is crucial&hellip;</div>
+   <div class="reveal"><div class="pt2">Early detection and resection is crucial&hellip;</div><p>More than half of stage I patients are cured by a single surgery.</p></div></div>
+  <div class="photo-card has-reveal" tabindex="0"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28e6f_holding-hands.jpg" alt="" loading="lazy"><div class="pt">because time is the enemy&hellip;</div>
+   <div class="reveal"><div class="pt2">because time is the enemy&hellip;</div><p>Lung nodules are detected in 1/4 of CT scans with few ultimately identified as cancer&mdash;and patients often wait months to see a pulmonologist.</p></div></div>
+  <div class="photo-card has-reveal" tabindex="0"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28e77_jenny-hill-mQVWb7kUoOE-unsplash.jpg" alt="" loading="lazy"><div class="pt">&hellip;and a diagnostic could change everything.</div>
+   <div class="reveal"><div class="pt2">&hellip;and a diagnostic could change everything.</div><p>Our goal: identify patients most likely to benefit from tissue sampling versus continued monitoring&mdash;accelerating time to diagnosis when it matters most.</p></div></div>
  </div>
 </div></section>
 

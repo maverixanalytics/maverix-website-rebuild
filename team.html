@@ -503,6 +503,56 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
 .statgrid .lab,.bigstat .lab{color:#213340;}
 .challenge .headline p{color:#213340;}
 .hero .tag{font-weight:300;}
+
+/* v11: hover reveals, journey expand, full-width menus, bio popup, rounded product imagery, b-roll heroes */
+/* diagnostics photo-card hover text */
+.photo-card .reveal{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;justify-content:flex-end;gap:.5rem;padding:1.6rem;background:linear-gradient(180deg,rgba(17,29,36,.05) 0%,rgba(17,29,36,.92) 62%);opacity:0;transition:opacity .35s ease;}
+.photo-card .reveal .pt2{color:#fff;font-family:var(--font-tagline);font-weight:600;font-size:1.3rem;line-height:1.25;}
+.photo-card .reveal p{color:#E6EDF1;font-size:.95rem;line-height:1.55;}
+.photo-card:hover .reveal,.photo-card:focus-within .reveal{opacity:1;}
+.photo-card.has-reveal:hover > .pt{opacity:0;}
+.photo-card > .pt{transition:opacity .3s ease;}
+/* journey expand-on-hover */
+.pathways{display:flex;gap:1.8rem;}
+.pathcard{flex:1;min-width:0;transition:flex .55s cubic-bezier(.25,.8,.25,1);}
+.pathcard:hover,.pathcard:focus-within{flex:2.1;}
+.pathcard .reveal{opacity:0;background:linear-gradient(180deg,rgba(17,29,36,0) 0%,rgba(17,29,36,.94) 52%);justify-content:flex-end;padding-bottom:2rem;transition:opacity .4s ease .12s;}
+.pathcard .reveal h3{font-family:var(--font-tagline);}
+.pathcard .reveal p{font-size:.9rem;}
+.pathcard:hover .reveal,.pathcard:focus-within .reveal{opacity:1;}
+.pathcard .pc{transition:opacity .3s ease;}
+.pathcard:hover .pc,.pathcard:focus-within .pc{opacity:0;}
+/* full-width menu panels like the original */
+.dropdown{position:fixed;left:0;right:0;top:62px;transform:translateY(10px);width:100%;min-width:0;max-width:none;border-top:1px solid var(--frame-line);box-shadow:0 26px 44px rgba(13,20,24,.28);padding:0;}
+.dropdown.mega{display:block;min-width:0;max-width:none;}
+.nav-links>div:hover .dropdown,.nav-links>div:focus-within .dropdown{transform:translateY(0);}
+.dropdown-in{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);}
+.dropdown-in.slim{display:flex;justify-content:center;gap:3.4rem;padding:1.3rem 24px;}
+.dropdown-in.slim a{padding:.4rem 0;font-size:1rem;}
+/* bio popup — split card matched to the design comp */
+.modal .box{padding:0;overflow:hidden;border-radius:18px;max-width:940px;display:grid;grid-template-columns:1fr 1.15fr;background:#F4F5F7;}
+.modal .mphoto{min-height:460px;height:100%;}
+.modal .mphoto img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(100%);display:block;}
+.modal .mbody{padding:3rem 3rem 2.6rem 2.6rem;overflow:auto;max-height:86vh;}
+.modal .mbody h2{font-family:var(--font-tagline);font-size:2.1rem;font-weight:600;color:#213340;border-bottom:1px solid #9AA3A9;padding-bottom:.7rem;margin-bottom:.7rem;line-height:1.1;}
+.modal .mbody .ti{color:#39434B;font-size:1.1rem;font-weight:400;margin-bottom:1.8rem;}
+.modal .bio p{color:#39434B;}
+.modal .bio p:first-child{font-weight:600;color:#213340;}
+.modal .close{background:var(--mvx-sky);color:#0D1418;width:40px;height:40px;border-radius:50%;font-size:1.25rem;top:16px;right:16px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(13,20,24,.25);transition:transform .2s ease;}
+.modal .close:hover{transform:scale(1.08);}
+/* rounded product imagery */
+.pd-img,.serpex-two .prod img,.altrow .img{border-radius:18px;overflow:hidden;}
+.pd-img img{border-radius:18px;}
+@media(max-width:920px){
+ .pathways{flex-direction:column;}
+ .pathcard:hover,.pathcard:focus-within{flex:1;}
+ .pathcard .reveal{opacity:1;background:linear-gradient(180deg,rgba(17,29,36,0) 30%,rgba(17,29,36,.94) 70%);}
+ .pathcard .pc{opacity:0;}
+ .modal .box{grid-template-columns:1fr;}
+ .modal .mphoto{min-height:280px;max-height:320px;}
+ .dropdown{position:static;}
+ .dropdown-in,.dropdown-in.slim{display:block;padding:0;}
+}
 </style>
 </head><body>
 <header class="site"><div class="nav">
@@ -510,7 +560,7 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
 <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 <nav class="nav-links">
 <div><a class="top" href="products.html">products <span class="plus">+</span><span class="arrow">&#8594;</span></a>
- <div class="dropdown mega">
+ <div class="dropdown mega"><div class="dropdown-in">
   <div class="mcol"><h4>Thoracent</h4>
    <p>Minimally invasive devices for managing pleural effusions, restoring airway patency, and improving quality of life, along with an expanded suite of GI tools.</p>
    <a class="btn" href="products.html#thoracent"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span>Learn more about Thoracent</a></div>
@@ -520,12 +570,12 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
   <div class="mcol"><h4>Serpex Steerable Portfolio</h4>
    <p>A suite of steerable endobronchial instruments to target difficult-to-reach and off-airway nodules.</p>
    <a class="btn" href="products.html#maverix-biopsy-tools"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span>Learn more about Serpex</a></div>
- </div></div>
+ </div></div></div>
 <div><a class="top" href="team.html">team <span class="plus">+</span><span class="arrow">&#8594;</span></a>
- <div class="dropdown">
+ <div class="dropdown"><div class="dropdown-in slim">
   <a href="team.html#leadership">Leadership</a>
   <a href="team.html#advisors">Advisory Board</a>
- </div></div>
+ </div></div></div>
 <div><a class="top" href="news.html">news <span class="plus">+</span><span class="arrow">&#8594;</span></a></div>
 <div class="mobile-extra"><a href="contact-us.html">Contact</a><a href="careers.html">Careers</a></div>
 </nav>
@@ -590,92 +640,92 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
 
 <div class="modal" id="bio-aftab"><div class="ov"></div><div class="box">
 <button class="close" aria-label="Close">&times;</button>
-<div class="mhead"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28ea1_Aftab%20Resized%202.png" alt="Aftab Kherani, M.D.">
-<div><h2>Aftab Kherani, M.D.</h2><div class="ti">Managing Partner, Ajax Health</div></div></div>
+<div class="mphoto"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28ea1_Aftab%20Resized%202.png" alt="Aftab Kherani, M.D."></div>
+<div class="mbody"><h2>Aftab Kherani, M.D.</h2><div class="ti">Managing Partner, Ajax Health</div>
 <div class="bio"><p>Aftab Kherani, M.D. is a Managing Partner at Ajax Health, Chairman of Summus Global, and a member of the Duke University School of Medicine Board of Visitors. He was previously a Partner at Aisling Capital, a life science investment fund, and his board experience includes Arcus Biosciences, Loxo Oncology, Spirox, Syros Pharmaceuticals, and TransEnterix.</p><p>Earlier in his career, Dr. Kherani was an Engagement Manager at McKinsey & Company in the pharmaceutical, medtech, and private equity practices. He served as Chief Resident in Surgery at Duke University Medical Center, completed a post-doctoral research fellowship at Columbia University investigating cardiac treatments, and was an organ procurement fellow on the New York Presbyterian Hospital cardiothoracic transplantation team.</p><p>Dr. Kherani earned his M.D. from Duke University, where he was a Howard Hughes Medical Institute Research Fellow, and received a B.S. in Biology and an A.B. in Economics from Duke University, graduating magna cum laude and Phi Beta Kappa.</p></div>
 <a class="lk" href="https://www.linkedin.com/in/aftab-kherani-3403915/" target="_blank" rel="noopener"><span class="li-badge"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></span>LinkedIn</a>
 </div></div>
 <div class="modal" id="bio-basile"><div class="ov"></div><div class="box">
 <button class="close" aria-label="Close">&times;</button>
-<div class="mhead"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28eab_Basile%20Resized.png" alt="Basile Montagnese">
-<div><h2>Basile Montagnese</h2><div class="ti">Director of Business Development</div></div></div>
+<div class="mphoto"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28eab_Basile%20Resized.png" alt="Basile Montagnese"></div>
+<div class="mbody"><h2>Basile Montagnese</h2><div class="ti">Director of Business Development</div>
 <div class="bio"><p>Basile Montagnese is Director of Business Development at Maverix and an Associate at Ajax Health, where he has contributed to platforms including Cordis/Cordis-X, Cortex, and FlowMod.</p><p>Basile joined Ajax from Dartmouth College's biomedical engineering program, where he earned his B.A. and B.E., graduating first in the engineering school, summa cum laude, with peer-reviewed publications and a patent.</p></div>
 <a class="lk" href="https://www.linkedin.com/in/basile-montagnese-64303a156/" target="_blank" rel="noopener"><span class="li-badge"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></span>LinkedIn</a>
 </div></div>
 <div class="modal" id="bio-brian"><div class="ov"></div><div class="box">
 <button class="close" aria-label="Close">&times;</button>
-<div class="mhead"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28ea8_Brian%202020%20resized.png" alt="Brian Lynch">
-<div><h2>Brian Lynch</h2><div class="ti">Chief Revenue Officer; President, Medical Device Division</div></div></div>
+<div class="mphoto"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28ea8_Brian%202020%20resized.png" alt="Brian Lynch"></div>
+<div class="mbody"><h2>Brian Lynch</h2><div class="ti">Chief Revenue Officer; President, Medical Device Division</div>
 <div class="bio"><p>Brian Lynch founded Thoracent in 2017 and served as its CEO through the company's integration with Maverix. He played a key role in launching and scaling the EndoChoice commercialization team, helping grow the company from $0 to a NYSE-listed company (NYSE: GI) with more than $85M in annual sales over six years.</p><p>Brian's thirty-year medtech career includes sales roles at ev3, Boston Scientific, and Pfizer. He earned a B.A. in Marketing from Siena College, where he was a member of the football team.</p></div>
 <a class="lk" href="https://www.linkedin.com/in/brian-lynch-15557a8/" target="_blank" rel="noopener"><span class="li-badge"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></span>LinkedIn</a>
 </div></div>
 <div class="modal" id="bio-carla"><div class="ov"></div><div class="box">
 <button class="close" aria-label="Close">&times;</button>
-<div class="mhead"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28ea4_Carla%20Resized.png" alt="Carla Jung">
-<div><h2>Carla Jung</h2><div class="ti">Chief Executive Officer</div></div></div>
+<div class="mphoto"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28ea4_Carla%20Resized.png" alt="Carla Jung"></div>
+<div class="mbody"><h2>Carla Jung</h2><div class="ti">Chief Executive Officer</div>
 <div class="bio"><p>Carla Jung is Chief Executive Officer of Maverix and an Entrepreneur in Residence at Ajax Health. She joined Maverix as Chief Commercial Officer in 2025, bringing 27 years of medtech experience.</p><p>Carla spent her last thirteen years at Medtronic building and transforming large sales organizations, launching more than 10 products across cardiovascular, electrophysiology, structural heart, and interventional cardiology. Before Medtronic, she spent eleven years at Boston Scientific as a commercial leader and director of the EP Fellows Program Division, and began her career in Women's Health at Eli Lilly.</p><p>Her honors include the 2021 Wallin Award for leadership and performance and the GIDE Award for Inclusive Leadership. Carla holds an M.B.A. from Columbia University and a B.A. from Villanova University.</p></div>
 <a class="lk" href="https://www.linkedin.com/in/carla-jung/" target="_blank" rel="noopener"><span class="li-badge"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></span>LinkedIn</a>
 </div></div>
 <div class="modal" id="bio-beylik"><div class="ov"></div><div class="box">
 <button class="close" aria-label="Close">&times;</button>
-<div class="mhead"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28ea3_David%20Beylik%20Resized.png" alt="David Beylik">
-<div><h2>David Beylik</h2><div class="ti">Executive Chair</div></div></div>
+<div class="mphoto"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28ea3_David%20Beylik%20Resized.png" alt="David Beylik"></div>
+<div class="mbody"><h2>David Beylik</h2><div class="ti">Executive Chair</div>
 <div class="bio"><p>David Beylik is Executive Chair at Maverix and a Partner at Ajax Health. He was previously an associate at Latham & Watkins LLP, advising emerging companies and venture capital and private equity firms on governance, equity financing, and M&A.</p><p>David served as a judicial law clerk to Chief Justice John Roberts of the U.S. Supreme Court, Judge Brett Kavanaugh of the U.S. Court of Appeals, and Judge Dabney Friedrich of the U.S. District Court, and as a judicial extern to Judge Mark Wallace of the U.S. Bankruptcy Court. He also led business development for The Drop Box documentary, which raised more than $10M for children with disabilities.</p><p>David earned his J.D. from Harvard Law School, graduating summa cum laude and first in his class as an editor of the Harvard Law Review, and his B.S. from the University of Southern California, summa cum laude.</p></div>
 <a class="lk" href="https://www.linkedin.com/in/david-beylik-47762a1b2/" target="_blank" rel="noopener"><span class="li-badge"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></span>LinkedIn</a>
 </div></div>
 <div class="modal" id="bio-mallery"><div class="ov"></div><div class="box">
 <button class="close" aria-label="Close">&times;</button>
-<div class="mhead"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28ea6_David%20Mallery%20Resized.png" alt="David Mallery">
-<div><h2>David Mallery</h2><div class="ti">CEO, Diagnostics</div></div></div>
+<div class="mphoto"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28ea6_David%20Mallery%20Resized.png" alt="David Mallery"></div>
+<div class="mbody"><h2>David Mallery</h2><div class="ti">CEO, Diagnostics</div>
 <div class="bio"><p>David Mallery is CEO of Diagnostics at Maverix. He co-founded and served as Chairman and President of the International Genomics Consortium (IGC), leading the organization as the Biospecimen Core Resource and Tissue Source Site network for the Cancer Genome Atlas program.</p><p>David co-founded and served as President of Cirrus Bio (acquired by Maverix), and co-founded Paradigm Diagnostics, Viomics, and the Molecular Profiling Institute (acquired and expanded by Exact Sciences and Caris Life Sciences). He helped develop and commercialize the first comprehensive evidence-based personalized molecular and genomic assay in U.S. oncology, and discovered and commercialized blood-based early cancer screening targets.</p><p>David holds a B.A. in Human Biology and Studio Art from Stanford University and a J.D. and M.B.A. from the University of Colorado at Boulder. He is a member of the Council on Foreign Relations, YPO, and the Colorado Bar Association.</p></div>
 <a class="lk" href="https://www.linkedin.com/in/dmallery/" target="_blank" rel="noopener"><span class="li-badge"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></span>LinkedIn</a>
 </div></div>
 <div class="modal" id="bio-doug"><div class="ov"></div><div class="box">
 <button class="close" aria-label="Close">&times;</button>
-<div class="mhead"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28ea0_Doug%20Resized.png" alt="Doug Koo">
-<div><h2>Doug Koo</h2><div class="ti">Chief Financial Officer</div></div></div>
+<div class="mphoto"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28ea0_Doug%20Resized.png" alt="Doug Koo"></div>
+<div class="mbody"><h2>Doug Koo</h2><div class="ti">Chief Financial Officer</div>
 <div class="bio"><p>Doug Koo is CFO of Maverix and a Managing Partner at Ajax Health, with more than 25 years of management consulting and venture-backed company executive experience.</p><p>Doug was CFO of Cortex (an Ajax company acquired by Boston Scientific), EPIX Therapeutics (acquired by Medtronic in 2019), Spirox (acquired by Entellus in 2017), and CV Ingenuity (acquired by Covidien in 2013). He previously served as CFO and CEO at high-tech and healthcare services companies, and began his career as a management consultant at Gemini Consulting.</p><p>Doug holds an M.B.A. from Stanford University and a B.A. from UC San Diego.</p></div>
 <a class="lk" href="https://www.linkedin.com/in/doug-koo-5636bb3/" target="_blank" rel="noopener"><span class="li-badge"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></span>LinkedIn</a>
 </div></div>
 <div class="modal" id="bio-jeremy"><div class="ov"></div><div class="box">
 <button class="close" aria-label="Close">&times;</button>
-<div class="mhead"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28ea2_jeremy-resized.png" alt="Jeremy Durack, M.D.">
-<div><h2>Jeremy Durack, M.D.</h2><div class="ti">Chief Medical Officer</div></div></div>
+<div class="mphoto"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28ea2_jeremy-resized.png" alt="Jeremy Durack, M.D."></div>
+<div class="mbody"><h2>Jeremy Durack, M.D.</h2><div class="ti">Chief Medical Officer</div>
 <div class="bio"><p>Jeremy Durack, M.D. is Chief Medical Officer at Maverix and a Partner and SVP Medical at Ajax Health. He is a practicing interventional radiologist and former Vice-Chair of Radiology at Memorial Sloan Kettering Cancer Center. He is past chair of the Society of Interventional Radiology Foundation and a Fellow of the American College of Radiology and the Society of Interventional Radiology.</p><p>His clinical expertise spans image-guided endovascular, trauma, biliary, GI, GU, and oncologic interventions, with specialization in thoracic, genitourinary, and venous procedures. He has led multicenter and international clinical trials and registries and chaired societal and institutional IT/informatics, quality, and research committees.</p><p>Dr. Durack earned a B.S. with distinction from Duke University in psychology and neuroscience, an M.D. from Stanford University School of Medicine, and completed a masters program in Biological and Medical Informatics at UCSF, where he also completed his radiology residency and Interventional Radiology fellowship. He is board-certified in radiology and medical informatics, and his awards include an NSF graduate fellowship, NIBIB T32, Prostate Cancer Foundation, RSNA Roentgen, and Fulbright Specialist research awards.</p></div>
 <a class="lk" href="https://www.linkedin.com/in/jeremy-c-durack-md-fsir-facr-49a480225/" target="_blank" rel="noopener"><span class="li-badge"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></span>LinkedIn</a>
 </div></div>
 <div class="modal" id="bio-jocelyn"><div class="ov"></div><div class="box">
 <button class="close" aria-label="Close">&times;</button>
-<div class="mhead"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28ea5_Jocelyn%20Resized.png" alt="Jocelyn Jackson">
-<div><h2>Jocelyn Jackson</h2><div class="ti">VP, Finance</div></div></div>
+<div class="mphoto"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28ea5_Jocelyn%20Resized.png" alt="Jocelyn Jackson"></div>
+<div class="mbody"><h2>Jocelyn Jackson</h2><div class="ti">VP, Finance</div>
 <div class="bio"><p>Jocelyn Jackson is VP of Finance at Maverix and a Partner and SVP Finance at Ajax Health. She was VP Finance at Cortex (an Ajax company acquired by Boston Scientific).</p><p>Jocelyn served as CFO of Symic Bio, a biopharmaceutical company developing matrix biology therapeutics, where she managed finance, accounting, and investor communication from inception to lead asset partnering, and as CFO of TauTona Group, an early-stage life science venture. As Controller of CV Ingenuity, a drug-coated balloon platform company acquired by Covidien, she was involved in asset sales to Allergan, LifeCell, and Novadaq. She started her career at Deloitte & Touche, LLP in the tax and audit departments.</p><p>Jocelyn holds a B.A. from the University of San Diego.</p></div>
 <a class="lk" href="https://www.linkedin.com/in/jocelynjackson/" target="_blank" rel="noopener"><span class="li-badge"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></span>LinkedIn</a>
 </div></div>
 <div class="modal" id="bio-neil"><div class="ov"></div><div class="box">
 <button class="close" aria-label="Close">&times;</button>
-<div class="mhead"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28eaa_Neil%20Resized.png" alt="Neil Zimmerman">
-<div><h2>Neil Zimmerman</h2><div class="ti">VP, Research & Development</div></div></div>
+<div class="mphoto"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28eaa_Neil%20Resized.png" alt="Neil Zimmerman"></div>
+<div class="mbody"><h2>Neil Zimmerman</h2><div class="ti">VP, Research & Development</div>
 <div class="bio"><p>Neil Zimmerman is VP of Research & Development at Maverix and VP Engineering at Ajax Health, with 15 years of medtech R&D and therapy development experience across startups and major strategics.</p><p>Neil was VP of R&D at Half Moon Medical, incubated at The Foundry, and Principal R&D Engineer at Twelve (acquired by Medtronic), where he drove next-generation device design. He began his career at Edwards Lifesciences, developing multiple new therapies from concept to clinic in the Advanced Technology division.</p><p>Neil holds an M.S. in Mechanical Engineering from Stanford University and a B.S. in Biological Engineering from MIT, where he earned Tau Beta Pi honors and captained the soccer team.</p></div>
 <a class="lk" href="https://www.linkedin.com/in/nzimm/" target="_blank" rel="noopener"><span class="li-badge"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></span>LinkedIn</a>
 </div></div>
 <div class="modal" id="bio-rebecca"><div class="ov"></div><div class="box">
 <button class="close" aria-label="Close">&times;</button>
-<div class="mhead"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28ea9_Rebecca%20Bergin%20Resized.png" alt="Rebecca Bergin">
-<div><h2>Rebecca Bergin</h2><div class="ti">CFO, Thoracent</div></div></div>
+<div class="mphoto"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28ea9_Rebecca%20Bergin%20Resized.png" alt="Rebecca Bergin"></div>
+<div class="mbody"><h2>Rebecca Bergin</h2><div class="ti">CFO, Thoracent</div>
 <div class="bio"><p>Rebecca Bergin is CFO of Thoracent, a Maverix company. She founded a management consulting firm assisting small businesses with corporate and financial management, and served as a Senior Asset Manager at Colony Capital and as a Vice President at regional banks analyzing financial performance and cash flow projections.</p><p>Rebecca served as Economic Development Commissioner for the City of Lakeville, MN, and has published research on entrepreneurship in academic journals.</p><p>She holds a B.A. in Economics from North Dakota State University, a certificate from the Graduate School of Banking at Colorado, and an M.B.A. with an emphasis in Entrepreneurship from Loyola Marymount University.</p></div>
 <a class="lk" href="https://www.linkedin.com/in/rebecca-bergin-93712812/" target="_blank" rel="noopener"><span class="li-badge"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></span>LinkedIn</a>
 </div></div>
 <div class="modal" id="bio-scott"><div class="ov"></div><div class="box">
 <button class="close" aria-label="Close">&times;</button>
-<div class="mhead"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28ea7_Scott%20Updated.png" alt="Scott Morris, Ph.D.">
-<div><h2>Scott Morris, Ph.D.</h2><div class="ti">Chief Science Officer, Diagnostics</div></div></div>
+<div class="mphoto"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28ea7_Scott%20Updated.png" alt="Scott Morris, Ph.D."></div>
+<div class="mbody"><h2>Scott Morris, Ph.D.</h2><div class="ti">Chief Science Officer, Diagnostics</div>
 <div class="bio"><p>Scott Morris, Ph.D. is Chief Science Officer, Diagnostics at Maverix. He co-founded Cirrus Bio and served as Chief Scientific Officer of the International Genomics Consortium (IGC), leading the biospecimen core laboratory for the Cancer Genome Atlas project.</p><p>Scott co-founded and served as Chief Scientific Officer of Paradigm, where he built the flagship PCDx diagnostic, and co-founded Viomics, where he developed an AI naïve-bias algorithm for biomarker discovery and discovered a new biomarker class; both companies were acquired by Exact Sciences. At Exact Sciences, he led next-generation sequencing bioinformatics and multi-omics R&D as VP, and conducted primary scientific diligence for over $3B in acquisitions including Thrive and Base Genomics.</p><p>Scott holds a B.S. in molecular biology and biotechnology, a P.S.M. in computational biology, a Ph.D. in industrial engineering, and an Executive M.B.A. from Arizona State University.</p></div>
 <a class="lk" href="https://www.linkedin.com/in/scott-morris-70795a50/" target="_blank" rel="noopener"><span class="li-badge"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></span>LinkedIn</a>
 </div></div>
 <div class="modal" id="bio-will"><div class="ov"></div><div class="box">
 <button class="close" aria-label="Close">&times;</button>
-<div class="mhead"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28e76_Will%20Resized.png" alt="Will Kynes, Ph.D.">
-<div><h2>Will Kynes, Ph.D.</h2><div class="ti">Director of Marketing & Communications</div></div></div>
+<div class="mphoto"><img src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28e76_Will%20Resized.png" alt="Will Kynes, Ph.D."></div>
+<div class="mbody"><h2>Will Kynes, Ph.D.</h2><div class="ti">Director of Marketing & Communications</div>
 <div class="bio"><p>Will Kynes, Ph.D. is Director of Marketing and Communications at Maverix and Chief of Staff at Ajax Health. He was Director of Marketing and Communications at Cortex, an Ajax company acquired by Boston Scientific.</p><p>Before joining Ajax, Will was a tenured professor with appointments at the University of Cambridge, University of Oxford, Whitworth University, and Samford University. An award-winning author and teacher, he has published seven books, two with Oxford University Press, and thirty articles and book chapters.</p><p>Will holds a Ph.D. from the University of Cambridge, an M.Litt. with distinction from the University of St Andrews, and a B.A. with distinction from the University of Virginia.</p></div>
 <a class="lk" href="https://www.linkedin.com/in/will-kynes/" target="_blank" rel="noopener"><span class="li-badge"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></span>LinkedIn</a>
 </div></div>
