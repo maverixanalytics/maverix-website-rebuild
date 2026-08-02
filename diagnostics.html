@@ -1,10 +1,10 @@
-<!-- @dsCard group="Pages" name="Diagnostics – Maverix Medical" subtitle="Maverix Diagnostics — screening" -->
+<!-- @dsCard group="Pages" name="Risk Assessment – Maverix Medical" subtitle="Maverix Diagnostics — screening" -->
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Diagnostics – Maverix Medical</title>
+<title>Risk Assessment – Maverix Medical</title>
 <meta name="description" content="Developing a diagnostic test that aims to better clarify which patients are most likely to benefit from either tissue sampling or continued monitoring.">
-<meta property="og:title" content="Diagnostics – Maverix Medical"><meta property="og:description" content="Developing a diagnostic test that aims to better clarify which patients are most likely to benefit from either tissue sampling or continued monitoring."><meta property="og:type" content="website"><meta property="og:image" content="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d6f/68200f3bc1da1468522f745b_Product%20Page.png">
+<meta property="og:title" content="Risk Assessment – Maverix Medical"><meta property="og:description" content="Developing a diagnostic test that aims to better clarify which patients are most likely to benefit from either tissue sampling or continued monitoring."><meta property="og:type" content="website"><meta property="og:image" content="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d6f/68200f3bc1da1468522f745b_Product%20Page.png">
 <link rel="icon" type="image/png" href="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d6f/680906a5e5bd468c21e28dfc_maverix-logo-midnight.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -590,7 +590,7 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
  /* in-menu dropdowns: flat, dark, compact (re-assert over later desktop rules) */
  .dropdown,.dropdown.mega{position:static;opacity:1;visibility:visible;transform:none;border:none;box-shadow:none;background:transparent;padding:0 0 .5rem .8rem;min-width:0;max-width:none;display:block;}
  .dropdown-in,.dropdown-in.slim{display:block;max-width:none;padding:0;gap:0;}
- .dropdown .mcol{padding:.35rem 0;border:none;}
+ .dropdown .mcol{padding:.35rem 0;border:none;display:block;min-height:0;}
  .dropdown .mcol p{display:none;}
  .dropdown .mcol h4{color:var(--mvx-sky);font-size:1rem;margin-bottom:.25rem;}
  .dropdown a{color:#C9D2D8;padding:.3rem 0;}
@@ -667,12 +667,27 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
 .newsdd .rm{display:inline-block;padding:.55rem 1.3rem;}
 .newsdd .cell.all a{display:inline-flex;padding:0;}
 
+/* v15: dropdown bottom-aligned links + original type scale */
+.dropdown .mcol{display:flex;flex-direction:column;align-items:flex-start;min-height:300px;}
+.dropdown .mcol .btn{margin-top:auto;}
+.dropdown .mcol h4{font-size:1.9rem;letter-spacing:-.01em;}
+.dropdown .mcol p{font-size:1.05rem;line-height:1.65;color:#39434B;margin-bottom:2rem;}
+.dropdown .mcol .btn{font-size:1.02rem;}
+.dropdown .mcol .btn .circ{width:42px;height:42px;flex:0 0 42px;}
+.dropdown .mcol .btn .circ svg{width:17px;height:17px;}
+.newsdd .mra{font-size:1.2rem;}
+.newsdd .src,.newsdd .date{font-size:.85rem;}
+.newsdd h4{font-size:2.2rem;}
+.newsdd h5{font-size:1.35rem;}
+.newsdd .rm{font-size:1rem;padding:.65rem 1.5rem;}
+.newsdd .cell.all a{font-size:1.02rem;}
+
 /* mobile re-assert (must stay last) */
 @media(max-width:920px){
  .dropdown,.dropdown.mega{position:static;opacity:1;visibility:visible;transform:none;border:none;box-shadow:none;background:transparent;padding:0 0 .5rem .8rem;min-width:0;max-width:none;display:block;}
  .dropdown.newsmega{display:none;}
  .dropdown-in,.dropdown-in.newsdd{display:block;max-width:none;padding:0;gap:0;}
- .dropdown .mcol{padding:.35rem 0;border:none;}
+ .dropdown .mcol{padding:.35rem 0;border:none;display:block;min-height:0;}
  .dropdown .mcol p{display:none;}
  .dropdown .mcol h4{color:var(--mvx-sky);font-size:1rem;margin-bottom:.25rem;}
  .dropdown .mcol:hover h4{color:var(--mvx-sky);}
@@ -695,9 +710,9 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
   <div class="mcol"><h4>Diagnostics</h4>
    <p>Developing molecular diagnostic tools that aim to triage lung cancer in patients to identify those in need of immediate care.</p>
    <a class="btn" href="diagnostics.html"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span>Learn more about Diagnostics</a></div>
-  <div class="mcol"><h4>Serpex Steerable Portfolio</h4>
+  <div class="mcol"><h4>Biopsy Tools</h4>
    <p>A suite of steerable endobronchial instruments to target difficult-to-reach and off-airway nodules.</p>
-   <a class="btn" href="serpex.html"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span>Learn more about Serpex</a></div>
+   <a class="btn" href="serpex.html"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span>Learn more about Biopsy Tools</a></div>
  </div></div></div>
 <div><a class="top" href="team.html">team <span class="plus">+</span><span class="arrow">&#8594;</span></a>
  <div class="dropdown mega"><div class="dropdown-in">
@@ -738,8 +753,8 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
 </div>
 </div></header>
 
-<div class="hero-thin"><img class="hero-img" src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28ddc_products-hero.jpeg" alt=""><div class="ov"></div><div class="container inner">
- <h1>diagnostics</h1>
+<div class="hero-thin"><img class="hero-img" src="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d6f/680906a5e5bd468c21e28df7_Lung%20cancer%20x%20ray.png" alt=""><div class="ov"></div><div class="container inner">
+ <h1>risk assessment</h1>
 </div></div>
 
 <section class="band light prod-section" id="maverix-diagnostics"><div class="container">
