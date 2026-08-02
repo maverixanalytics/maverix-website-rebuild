@@ -626,6 +626,61 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
  h2.section-title{font-size:2rem;}
  .modal .mbody h2{font-size:1.4rem;}
 }
+
+/* v14: original-style mega dropdowns */
+.dropdown{position:fixed;left:0;right:0;top:62px;background:#fff;border-top:1px solid var(--frame-line);box-shadow:0 30px 50px rgba(13,20,24,.2);padding:0;min-width:0;max-width:none;}
+.dropdown.mega{display:block;}
+.dropdown-in{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:0;padding:0 24px;align-items:stretch;}
+.dropdown .mcol{padding:2.4rem 2.2rem 2.6rem;border-right:1px solid var(--frame-line);}
+.dropdown .mcol:first-child{border-left:1px solid var(--frame-line);}
+.dropdown .mcol h4{font-family:var(--font-tagline);font-weight:600;font-size:1.75rem;color:var(--heading);margin-bottom:.8rem;transition:color .2s ease;}
+.dropdown .mcol:hover h4{color:var(--mvx-blue);}
+.dropdown .mcol p{display:block;font-size:.95rem;line-height:1.6;color:#39434B;margin-bottom:1.7rem;}
+.dropdown .mcol .btn{font-style:italic;font-weight:400;font-size:.95rem;color:var(--ink);}
+.dropdown .mcol .btn .circ{width:34px;height:34px;flex:0 0 34px;background:var(--header-dark);}
+.dropdown .mcol .btn .circ svg{stroke:#fff;width:15px;height:15px;}
+.dropdown .mcol:hover .btn .circ{background:var(--mvx-blue);}
+/* news dropdown */
+.dropdown-in.newsdd{grid-template-columns:1.35fr 1fr;}
+.newsdd .ncol{padding:2rem 2.2rem 2.4rem;border-right:1px solid var(--frame-line);}
+.newsdd .ncol:first-child{border-left:1px solid var(--frame-line);}
+.newsdd .mra{font-style:italic;font-size:1.1rem;color:#39434B;border-bottom:1px solid var(--frame-line);padding-bottom:.9rem;margin-bottom:1.3rem;}
+.newsdd .src{color:var(--mvx-blue);letter-spacing:.14em;text-transform:uppercase;font-size:.78rem;font-weight:500;}
+.newsdd .date{color:#6A737B;letter-spacing:.14em;text-transform:uppercase;font-size:.78rem;margin-bottom:.9rem;}
+.newsdd h4{font-family:var(--font-tagline);font-weight:600;font-size:1.85rem;line-height:1.15;margin-bottom:1.3rem;}
+.newsdd h4 a{color:var(--mvx-blue);}
+.newsdd h4 a:hover{color:var(--mvx-teal);}
+.newsdd h5{font-family:var(--font-tagline);font-weight:600;font-size:1.2rem;line-height:1.3;margin-bottom:1rem;}
+.newsdd h5 a{color:var(--mvx-blue);}
+.newsdd h5 a:hover{color:var(--mvx-teal);}
+.newsdd .rm{display:inline-block;border:1px solid var(--heading);padding:.55rem 1.3rem;font-style:italic;font-size:.9rem;color:var(--ink);transition:background .2s ease;}
+.newsdd .rm:hover{background:var(--mvx-mist);}
+.newsdd .cell{padding-bottom:1.5rem;}
+.newsdd .cell.all{border-top:1px solid var(--frame-line);border-bottom:none;padding:1.5rem 0 0;margin-top:.2rem;}
+.newsdd .cell.all a{font-style:italic;display:inline-flex;align-items:center;gap:.8rem;color:var(--ink);}
+.newsdd .cell.all .circ{width:44px;height:44px;flex:0 0 44px;border-radius:50%;background:var(--header-dark);display:inline-flex;align-items:center;justify-content:center;}
+.newsdd .cell.all .circ svg{stroke:#fff;width:17px;height:17px;}
+.newsdd .cell.all a:hover .circ{background:var(--mvx-blue);}
+/* dropdown link fixes */
+.dropdown .mcol .btn{display:inline-flex;align-items:center;gap:.7rem;padding:0;}
+.newsdd a{display:inline;padding:0;}
+.newsdd .rm{display:inline-block;padding:.55rem 1.3rem;}
+.newsdd .cell.all a{display:inline-flex;padding:0;}
+
+/* mobile re-assert (must stay last) */
+@media(max-width:920px){
+ .dropdown,.dropdown.mega{position:static;opacity:1;visibility:visible;transform:none;border:none;box-shadow:none;background:transparent;padding:0 0 .5rem .8rem;min-width:0;max-width:none;display:block;}
+ .dropdown.newsmega{display:none;}
+ .dropdown-in,.dropdown-in.newsdd{display:block;max-width:none;padding:0;gap:0;}
+ .dropdown .mcol{padding:.35rem 0;border:none;}
+ .dropdown .mcol p{display:none;}
+ .dropdown .mcol h4{color:var(--mvx-sky);font-size:1rem;margin-bottom:.25rem;}
+ .dropdown .mcol:hover h4{color:var(--mvx-sky);}
+ .dropdown a{color:#C9D2D8;padding:.3rem 0;}
+ .dropdown .mcol .btn{color:#fff;font-size:.82rem;font-style:normal;}
+ .dropdown .mcol .btn .circ{width:22px;height:22px;flex:0 0 22px;background:var(--cyan);}
+ .dropdown .mcol .btn .circ svg{stroke:currentColor;}
+}
 </style>
 </head><body>
 <header class="site"><div class="nav">
@@ -645,11 +700,36 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
    <a class="btn" href="serpex.html"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span>Learn more about Serpex</a></div>
  </div></div></div>
 <div><a class="top" href="team.html">team <span class="plus">+</span><span class="arrow">&#8594;</span></a>
- <div class="dropdown"><div class="dropdown-in slim">
-  <a href="team.html#leadership">Leadership</a>
-  <a href="team.html#advisors">Advisory Board</a>
+ <div class="dropdown mega"><div class="dropdown-in">
+  <div class="mcol"><h4>Leadership</h4>
+   <p>Maverix leadership combines decades of clinical, technical, and operating experience.</p>
+   <a class="btn" href="team.html#leadership"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span>Learn more about our leadership</a></div>
+  <div class="mcol"><h4>Advisors</h4>
+   <p>The Maverix Medical Advisory Board is comprised of leading pulmonary physicians.</p>
+   <a class="btn" href="team.html#advisors"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span>Meet our advisors</a></div>
+  <div class="mcol"><h4>Partners</h4>
+   <p>Maverix collaborates with firms that are transforming medtech innovation.</p>
+   <a class="btn" href="team.html"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span>See our partners</a></div>
  </div></div></div>
-<div><a class="top" href="news.html">news <span class="plus">+</span><span class="arrow">&#8594;</span></a></div>
+<div><a class="top" href="news.html">news <span class="plus">+</span><span class="arrow">&#8594;</span></a>
+ <div class="dropdown mega newsmega"><div class="dropdown-in newsdd">
+  <div class="ncol feat">
+   <div class="mra">Most Recent Article</div>
+   <div class="src">PR Newswire</div>
+   <div class="date">July 23, 2026</div>
+   <h4><a href="https://www.prnewswire.com/news-releases/maverix-names-carla-jung-chief-executive-officer-to-lead-next-phase-of-growth-302833257.html" target="_blank" rel="noopener">Maverix Names Carla Jung Chief Executive Officer to Lead Next Phase of Growth</a></h4>
+   <a class="rm" href="https://www.prnewswire.com/news-releases/maverix-names-carla-jung-chief-executive-officer-to-lead-next-phase-of-growth-302833257.html" target="_blank" rel="noopener">Read More</a>
+  </div>
+  <div class="ncol side">
+   <div class="cell">
+    <div class="src">MassDevice</div>
+    <div class="date">July 23, 2026</div>
+    <h5><a href="https://www.massdevice.com/maverix-medical-medtronic-exec-jung-ceo/" target="_blank" rel="noopener">Lung cancer treatment developer Maverix Medical picks former Medtronic exec as CEO</a></h5>
+    <a class="rm" href="https://www.massdevice.com/maverix-medical-medtronic-exec-jung-ceo/" target="_blank" rel="noopener">Read More</a>
+   </div>
+   <div class="cell all"><a href="news.html"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span>Read all news</a></div>
+  </div>
+ </div></div></div>
 <div class="mobile-extra"><a href="contact-us.html">Contact</a><a href="careers.html">Careers</a></div>
 </nav>
 <div class="nav-right">
@@ -682,7 +762,7 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
 <div class="pi"><h3>EBUS Needles</h3><a class="btn" href="products/ebus-needles.html"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span>Learn more</a></div></div>
 <div class="pcard"><div class="ph"><img src="images/forceps.jpg" alt="Biopsy Forceps" loading="lazy"></div>
 <div class="pi"><h3>Biopsy Forceps</h3><a class="btn" href="products/biopsy-forceps.html"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span>Learn more</a></div></div>
-<div class="pcard"><div class="ph"><span class="abbr">HS</span></div>
+<div class="pcard"><div class="ph"><img src="images/guidewire.jpg" alt="Hydro-Slide Pulmonary Guidewire" loading="lazy"></div>
 <div class="pi"><h3>Hydro-Slide Pulmonary Guidewire</h3><a class="btn" href="products/hydro-slide-pulmonary-guidewire.html"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span>Learn more</a></div></div>
 <div class="pcard"><div class="ph"><img src="images/hilzo-tts.jpg" alt="Hilzo™ TTS Esophageal Stent" loading="lazy"></div>
 <div class="pi"><h3>Hilzo™ TTS Esophageal Stent</h3><a class="btn" href="products/hilzo-tts-esophageal-stent.html"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span>Learn more</a></div></div>
