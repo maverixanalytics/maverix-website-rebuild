@@ -696,6 +696,36 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
  .dropdown .mcol .btn .circ{width:22px;height:22px;flex:0 0 22px;background:var(--cyan);}
  .dropdown .mcol .btn .circ svg{stroke:currentColor;}
 }
+
+/* v16: homepage refinements */
+.hero .kicker{font-size:2rem;}
+.band.dark .bgimg{opacity:.55;}
+.band.dark.goal .bgimg{object-position:center 22%;}
+.band.dark .fullrule{height:1px;background:rgba(255,255,255,.65);margin:1.5rem calc(50% - 50vw) 2.4rem;}
+.band.dark .stackcol h2{max-width:640px;}
+.band.dark .stackcol .lede{max-width:620px;margin-top:1.5rem;}
+.bigstat{display:grid;grid-template-columns:minmax(96px,auto) 1fr;gap:0 1.5rem;align-items:center;margin-top:2rem;}
+.bigstat .num{color:#4FC4E8;}
+.bigstat .lab{font-style:italic;border-left:1px solid #B9C0C6;padding:.7rem 0 .7rem 1.5rem;font-size:1rem;max-width:240px;}
+.statgrid .num{color:#4FC4E8;white-space:nowrap;}
+.statgrid .cell:hover .num{color:var(--mvx-blue);}
+.jpanel{background:#fff;border:1px solid var(--frame-line);padding:3.2rem 2.6rem 14rem;margin-top:3.4rem;}
+.jpanel .journey:first-child{margin-top:0;}
+.jpanel .journey{margin-top:3rem;}
+.pathways{margin-top:-11.5rem;position:relative;z-index:2;padding:0 2.6rem;}
+/* footer: linkedin square in Contact us */
+.fcontact .frow{display:flex;align-items:center;gap:1.2rem;margin-top:.2rem;}
+.fcontact .frow a.mail{color:var(--mvx-blue);}
+.fcontact .frow a.mail:hover{color:var(--mvx-teal);}
+.li-sq{display:inline-flex;width:38px;height:38px;border-radius:7px;background:var(--mvx-blue);color:#fff;align-items:center;justify-content:center;flex:0 0 38px;transition:background .2s ease;}
+.li-sq:hover{background:var(--mvx-teal);}
+.li-sq svg{width:20px;height:20px;}
+@media(max-width:920px){
+ .jpanel{padding:2rem 1.4rem 2.4rem;}
+ .pathways{margin-top:2rem;padding:0;}
+ .band.dark .fullrule{margin:1rem 0 1.6rem;}
+ .hero .kicker{font-size:1.4rem;}
+}
 </style>
 </head><body>
 <header class="site"><div class="nav">
@@ -800,10 +830,10 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
  <a href="../news.html">News</a></div>
 <div class="fbrand">
  <img class="flogo" src="../images/maverix-logo-gray.png" alt="Maverix">
- <a class="li" href="https://www.linkedin.com/company/maverix-medical/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
 </div></div>
 <div class="fcontact"><div class="fh">Contact us</div>
- <a href="mailto:contact@maverixmedical.com">contact@maverixmedical.com</a></div>
+ <div class="frow"><a class="mail" href="mailto:contact@maverixmedical.com">contact@maverixmedical.com</a>
+ <a class="li-sq" href="https://www.linkedin.com/company/maverix-medical/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a></div></div>
 <div class="fbottom">
  <div><a href="../privacy-policy.html">Privacy Policy</a><a href="../terms-of-use.html">Terms of Use</a></div>
  <div>Copyright &copy; Maverix</div>
