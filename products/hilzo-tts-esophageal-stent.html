@@ -4,11 +4,11 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hilzo™ TTS Esophageal Stent – Thoracent by Maverix</title>
 <meta name="description" content="The Hilzo™ TTS (Through-the-Scope) Esophageal Stent system consists of a delivery system preloaded with a self-expanding esophageal metal stent. The s">
-<meta property="og:title" content="Hilzo™ TTS Esophageal Stent – Thoracent by Maverix"><meta property="og:description" content="The Hilzo™ TTS (Through-the-Scope) Esophageal Stent system consists of a delivery system preloaded with a self-expanding esophageal metal stent. The s"><meta property="og:type" content="website">
+<link rel="canonical" href="https://maverixanalytics.github.io/maverix-website-rebuild/products/hilzo-tts-esophageal-stent.html">
+<meta property="og:title" content="Hilzo™ TTS Esophageal Stent – Thoracent by Maverix"><meta property="og:description" content="The Hilzo™ TTS (Through-the-Scope) Esophageal Stent system consists of a delivery system preloaded with a self-expanding esophageal metal stent. The s"><meta property="og:type" content="website"><meta property="og:url" content="https://maverixanalytics.github.io/maverix-website-rebuild/products/hilzo-tts-esophageal-stent.html"><meta property="og:site_name" content="Maverix Medical"><meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="../assets/maverix-logo-midnight.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap" rel="stylesheet">
 <style>
 /* Futura — licensed TTFs bundled in the design system; Jost (Google) is the
    documented fallback when the project-relative files are unavailable. */
@@ -806,6 +806,15 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
 /* v23: news hero position, smaller grid Read More, team hero via photo 059 */
 .newshero .hero-img{object-position:center 65%;}
 .newsgrid .readmore{padding:.4rem 1.1rem;font-size:.85rem;}
+
+/* v25: form honeypot + 404 page */
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+.form-msg{border-left:4px solid currentColor;}
+button[type=submit][disabled]{opacity:.6;cursor:progress;}
+.nf .nfcode{font-family:var(--font-tagline);font-weight:600;font-size:clamp(5rem,14vw,10rem);line-height:.9;color:var(--mvx-cloud);letter-spacing:-.02em;margin-bottom:.6rem;}
+.nf .section-title{margin-bottom:1rem;}
+.nf .lede{max-width:640px;}
+.nf .famrow{background:#fff;}
 </style>
 </head><body>
 <header class="site"><div class="nav">
@@ -952,9 +961,35 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
  try{if(window.localStorage&&localStorage.getItem(CK)){var cb=document.getElementById('cookiebar');if(cb)cb.classList.add('hidden');}}catch(e){}
  document.querySelectorAll('[data-cookie]').forEach(function(b){
   b.addEventListener('click',function(){var c=document.getElementById('cookiebar');if(c)c.classList.add('hidden');try{localStorage.setItem(CK,'1');}catch(e){}});});
- document.querySelectorAll('form[data-fake]').forEach(function(f){
-  f.addEventListener('submit',function(e){e.preventDefault();
-   f.style.display='none';var ok=f.parentElement.querySelector('.form-msg.ok');if(ok)ok.style.display='block';});});
+ document.querySelectorAll('form[data-mvxform]').forEach(function(f){
+  var box=f.parentElement,
+      ok=box.querySelector('.form-msg.ok'),
+      err=box.querySelector('.form-msg.err'),
+      btn=f.querySelector('button[type=submit]'),
+      label=btn?btn.textContent:'';
+  function show(el,msg){[ok,err].forEach(function(n){if(n)n.style.display='none';});
+   if(el){if(msg)el.textContent=msg;el.style.display='block';}}
+  function reset(){if(btn){btn.disabled=false;btn.textContent=label;}}
+  f.addEventListener('submit',function(e){
+   e.preventDefault();
+   if(!f.reportValidity())return;
+   if((f.querySelector('input[name=_gotcha]')||{}).value){f.style.display='none';show(ok);return;}
+   var data=new FormData(f),endpoint=f.getAttribute('data-endpoint');
+   if(btn){btn.disabled=true;btn.textContent='Sending\u2026';}
+   if(!endpoint){
+    var to=f.getAttribute('data-mailto')||'',lines=[];
+    data.forEach(function(v,k){if(k.charAt(0)!=='_'&&k!=='form-name'&&String(v).trim())lines.push(k+': '+v);});
+    var subj=data.get('Subject')||('Website enquiry from '+(data.get('First Name')||data.get('Name')||'a visitor'));
+    window.location.href='mailto:'+to+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(lines.join('\n'));
+    setTimeout(function(){reset();show(ok,'Thanks \u2014 your email app should be opening with this message ready to send.');},600);
+    return;
+   }
+   fetch(endpoint,{method:'POST',body:data,headers:{'Accept':'application/json'}})
+    .then(function(r){
+     if(r.ok){f.style.display='none';show(ok);}
+     else{reset();show(err);}})
+    .catch(function(){reset();show(err,'Network error \u2014 please try again, or email '+(f.getAttribute('data-mailto')||'us')+'.');});
+  });});
  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window){
   var nio=new IntersectionObserver(function(es){es.forEach(function(e){
    if(!e.isIntersecting)return;nio.unobserve(e.target);
