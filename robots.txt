@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://maverixanalytics.github.io/maverix-website-rebuild/sitemap.xml
