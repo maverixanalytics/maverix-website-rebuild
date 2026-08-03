@@ -1,10 +1,10 @@
-<!-- @dsCard group="Pages" name="Biopsy Tools – Maverix Medical" subtitle="Serpex Steerable Portfolio — biopsy & diagnosis" -->
+<!-- @dsCard group="Pages" name="Diagnosis – Maverix Medical" subtitle="Serpex Steerable Portfolio — biopsy & diagnosis" -->
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Biopsy Tools – Maverix Medical</title>
+<title>Diagnosis – Maverix Medical</title>
 <meta name="description" content="A suite of steerable endobronchial instruments to target difficult-to-reach and off-airway nodules.">
-<meta property="og:title" content="Biopsy Tools – Maverix Medical"><meta property="og:description" content="A suite of steerable endobronchial instruments to target difficult-to-reach and off-airway nodules."><meta property="og:type" content="website"><meta property="og:image" content="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d6f/68200f3bc1da1468522f745b_Product%20Page.png">
+<meta property="og:title" content="Diagnosis – Maverix Medical"><meta property="og:description" content="A suite of steerable endobronchial instruments to target difficult-to-reach and off-airway nodules."><meta property="og:type" content="website"><meta property="og:image" content="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d6f/68200f3bc1da1468522f745b_Product%20Page.png">
 <link rel="icon" type="image/png" href="https://cdn.prod.website-files.com/680906a5e5bd468c21e28d6f/680906a5e5bd468c21e28dfc_maverix-logo-midnight.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -782,6 +782,30 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
 .newsdd h4 a:hover,.newsdd h5 a:hover{color:var(--mvx-teal);}
 .newsdd .rm{border-color:#39434B;background:transparent;}
 .newsdd .cell.all{border-color:#C7CCD2;}
+
+/* v22: products overview — dropdown-style family boxes + Distributed by */
+.famrow{display:grid;grid-template-columns:repeat(3,1fr);background:#fff;margin-top:1.5rem;}
+.famrow .fam{padding:2.6rem 2.2rem 2.8rem;border-right:1px solid var(--frame-line);display:flex;flex-direction:column;align-items:flex-start;min-height:300px;}
+.famrow .fam:first-child{border-left:1px solid var(--frame-line);}
+.famrow h4{font-family:var(--font-tagline);font-weight:600;font-size:1.9rem;letter-spacing:-.01em;margin-bottom:.8rem;}
+.famrow p{font-size:1.02rem;line-height:1.65;color:#39434B;margin-bottom:2rem;}
+.famrow .btn{margin-top:auto;font-style:italic;font-weight:400;font-size:1.02rem;}
+.famrow .btn .circ{width:42px;height:42px;flex:0 0 42px;}
+.famrow .btn .circ svg{stroke:#fff;width:17px;height:17px;}
+.famrow .fam.c1 h4{color:#213340;}.famrow .fam.c1 .btn .circ{background:#213340;}
+.famrow .fam.c2 h4{color:#276F8B;}.famrow .fam.c2 .btn .circ{background:#276F8B;}
+.famrow .fam.c3 h4{color:#2BA9D4;}.famrow .fam.c3 .btn .circ{background:#2BA9D4;}
+.distby{margin-top:3.6rem;}
+.distby img{height:58px;width:auto;mix-blend-mode:multiply;margin-top:1.2rem;}
+@media(max-width:920px){
+ .famrow{grid-template-columns:1fr;}
+ .famrow .fam{border:none;border-bottom:1px solid var(--frame-line);min-height:0;}
+ .famrow .fam:first-child{border-left:none;}
+}
+
+/* v23: news hero position, smaller grid Read More, team hero via photo 059 */
+.newshero .hero-img{object-position:center 65%;}
+.newsgrid .readmore{padding:.4rem 1.1rem;font-size:.85rem;}
 </style>
 </head><body>
 <header class="site"><div class="nav">
@@ -837,7 +861,7 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
 </div></header>
 
 <div class="hero-thin"><img class="hero-img" src="images/diagnosis.jpg" alt=""><div class="ov"></div><div class="container inner">
- <h1>biopsy tools</h1>
+ <h1>diagnosis</h1>
 </div></div>
 
 <section class="band light prod-section" id="maverix-biopsy-tools"><div class="container">
