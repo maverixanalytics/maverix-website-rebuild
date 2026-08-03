@@ -726,6 +726,36 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
  .band.dark .fullrule{margin:1rem 0 1.6rem;}
  .hero .kicker{font-size:1.4rem;}
 }
+
+/* v17: goal band tuning */
+.band.dark.goal{padding:7.5rem 0;}
+.band.dark.goal .bgimg{opacity:.75;object-position:center 32%;}
+
+/* v18: mission overlay clarity, aligned stat divider lines, full-width journey panel */
+.band.dark .bgimg{opacity:.7;}
+.band.dark.goal .bgimg{opacity:.75;}
+.bigstat{grid-template-columns:132px 1fr;}
+.jpanel{margin-left:-72px;margin-right:-72px;}
+@media(max-width:1080px){.jpanel{margin-left:-40px;margin-right:-40px;}}
+@media(max-width:560px){.jpanel{margin-left:-20px;margin-right:-20px;}}
+
+/* v19: products dropdown — three blues, header font matches homepage h1, circles match headers */
+.dropdown .mcol h4{font-family:var(--font-tagline);font-weight:600;}
+.dropdown .mcol.c1 h4,.dropdown .mcol.c1:hover h4{color:#213340;}
+.dropdown .mcol.c2 h4,.dropdown .mcol.c2:hover h4{color:#276F8B;}
+.dropdown .mcol.c3 h4,.dropdown .mcol.c3:hover h4{color:#2BA9D4;}
+.dropdown .mcol.c1 .btn .circ,.dropdown .mcol.c1:hover .btn .circ{background:#213340;}
+.dropdown .mcol.c2 .btn .circ,.dropdown .mcol.c2:hover .btn .circ{background:#276F8B;}
+.dropdown .mcol.c3 .btn .circ,.dropdown .mcol.c3:hover .btn .circ{background:#2BA9D4;}
+.dropdown.mega{position:fixed;}
+.dropdown.mega:not(.newsmega)::after{content:"";position:absolute;right:0;top:52%;width:calc((100% - 1160px)/2 + 24px);height:1px;background:var(--frame-line);}
+@media(max-width:1200px){.dropdown.mega:not(.newsmega)::after{display:none;}}
+@media(max-width:920px){
+ .dropdown .mcol.c1 h4,.dropdown .mcol.c2 h4,.dropdown .mcol.c3 h4{color:var(--mvx-sky);}
+ .dropdown .mcol.c1 .btn .circ,.dropdown .mcol.c2 .btn .circ,.dropdown .mcol.c3 .btn .circ{background:var(--cyan);}
+ .dropdown.mega::after{display:none;}
+ .dropdown,.dropdown.mega{position:static;}
+}
 </style>
 </head><body>
 <header class="site"><div class="nav">
@@ -734,15 +764,15 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
 <nav class="nav-links">
 <div><a class="top" href="../products.html">products <span class="plus">+</span><span class="arrow">&#8594;</span></a>
  <div class="dropdown mega"><div class="dropdown-in">
-  <div class="mcol"><h4>Thoracent</h4>
-   <p>Minimally invasive devices for managing pleural effusions, restoring airway patency, and improving quality of life, along with an expanded suite of GI tools.</p>
-   <a class="btn" href="../thoracent.html"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span>Learn more about Thoracent</a></div>
-  <div class="mcol"><h4>Diagnostics</h4>
+  <div class="mcol c1"><h4>Risk Assessment</h4>
    <p>Developing molecular diagnostic tools that aim to triage lung cancer in patients to identify those in need of immediate care.</p>
    <a class="btn" href="../diagnostics.html"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span>Learn more about Diagnostics</a></div>
-  <div class="mcol"><h4>Biopsy Tools</h4>
+  <div class="mcol c2"><h4>Diagnosis</h4>
    <p>A suite of steerable endobronchial instruments to target difficult-to-reach and off-airway nodules.</p>
    <a class="btn" href="../serpex.html"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span>Learn more about Biopsy Tools</a></div>
+  <div class="mcol c3"><h4>Intervention</h4>
+   <p>Minimally invasive devices for managing pleural effusions, restoring airway patency, and improving quality of life, along with an expanded suite of GI tools.</p>
+   <a class="btn" href="../thoracent.html"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span>Learn more about Thoracent</a></div>
  </div></div></div>
 <div><a class="top" href="../team.html">team <span class="plus">+</span><span class="arrow">&#8594;</span></a>
  <div class="dropdown mega"><div class="dropdown-in">
