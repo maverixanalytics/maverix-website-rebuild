@@ -820,6 +820,100 @@ button[type=submit][disabled]{opacity:.6;cursor:progress;}
 .nf .section-title{margin-bottom:1rem;}
 .nf .lede{max-width:640px;}
 .nf .famrow{background:#fff;}
+
+/* ============ v27: mobile menu, journey bar, tap-cards, modal, scrims ============ */
+
+/* darker scrims so overlaid text stays legible (desktop + mobile) */
+.hero .shade{background:linear-gradient(90deg,rgba(9,15,19,.84) 0%,rgba(9,15,19,.62) 45%,rgba(9,15,19,.40) 100%);}
+.hero-thin .ov{background:linear-gradient(90deg,rgba(11,17,22,.86) 0%,rgba(11,17,22,.60) 48%,rgba(11,17,22,.34) 100%);}
+.band.dark::after{content:"";position:absolute;inset:0;pointer-events:none;
+ background:linear-gradient(90deg,rgba(8,13,17,.80) 0%,rgba(8,13,17,.58) 50%,rgba(8,13,17,.34) 100%);}
+.band.dark>.container{position:relative;z-index:2;}
+.band.dark .bgimg{z-index:0;}
+
+/* news source logos: MassDevice now matches the rest */
+.newsgrid .srclogo,.featured .srclogo{mix-blend-mode:multiply;}
+
+/* ---------------- mobile / tablet nav ---------------- */
+@media(max-width:920px){
+ /* stray divider beside the logo */
+ .nav .logo{border-right:none;}
+ /* menu becomes a scrollable panel so nothing is stranded below the fold */
+ .nav-links{position:fixed;top:62px;left:0;right:0;
+  max-height:calc(100vh - 62px);max-height:calc(100dvh - 62px);
+  overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:2rem;}
+ /* sub-menus collapsed until tapped */
+ .nav-links>div>.dropdown{display:none;}
+ .nav-links>div.sub-open>.dropdown{display:block;}
+ .nav-links>div>a.top .plus{transition:transform .2s ease;display:inline-block;}
+ .nav-links>div.sub-open>a.top{color:var(--mvx-sky);}
+ .nav-links>div.sub-open>a.top .plus{transform:rotate(45deg);}
+ .nav-links a.top{width:100%;}
+ .nav-links>div.mobile-extra{display:block;width:100%;border-top:1px solid rgba(255,255,255,.16);
+  margin-top:.8rem;padding-top:.8rem;}
+ .nav-links>div.mobile-extra a{display:block;color:#fff;font-family:var(--font-tagline);
+  text-transform:uppercase;letter-spacing:.12em;font-size:.95rem;padding:.7rem 0;}
+}
+
+/* ---------------- patient-journey bars stay on one line ---------------- */
+@media(max-width:920px){
+ .jbar{flex-wrap:nowrap;gap:5px;align-items:stretch;}
+ .jseg{min-width:0;white-space:normal;font-size:.66rem;padding:.55rem .35rem;line-height:1.2;
+  display:flex;align-items:center;justify-content:center;hyphens:auto;}
+ .jseg.cap{flex:0 0 5px;padding:0;}
+ .journey .jtitle{font-size:.72rem;letter-spacing:.16em;}
+ .journey .jnote,.jarrow{font-size:.78rem;}
+ .journey .jnote::before,.journey .jnote::after,.jarrow::before{max-width:36px;}
+}
+@media(max-width:560px){
+ .jseg{font-size:.55rem;padding:.5rem .2rem;letter-spacing:-.01em;}
+ .journey .jtitle{font-size:.62rem;letter-spacing:.1em;}
+ .journey .jnote,.jarrow{font-size:.7rem;}
+}
+
+/* ---------------- tap-to-expand cards on mobile ---------------- */
+@media(max-width:920px){
+ .pathcard,.photo-cards.expand .photo-card{cursor:pointer;}
+ /* collapsed: image + title only */
+ .pathcard .reveal,.photo-cards.expand .photo-card .reveal{opacity:0;pointer-events:none;}
+ .pathcard .pc,.photo-cards.expand .photo-card .pt{opacity:1;}
+ /* affordance */
+ .pathcard::before,.photo-cards.expand .photo-card::before{content:"+";position:absolute;top:14px;right:14px;
+  z-index:4;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.92);color:#12333D;
+  font-family:var(--font-tagline);font-weight:600;font-size:1.35rem;line-height:34px;text-align:center;
+  transition:transform .25s ease;}
+ .pathcard.open::before,.photo-cards.expand .photo-card.open::before{transform:rotate(45deg);}
+ /* expanded: reveal flows inline so the card grows and the text is fully readable */
+ .pathcard.open,.photo-cards.expand .photo-card.open{min-height:0;}
+ .pathcard.open .reveal,.photo-cards.expand .photo-card.open .reveal{
+  position:relative;opacity:1;pointer-events:auto;background:rgba(13,21,27,.94);
+  padding:1.5rem 1.4rem 1.8rem;}
+ .pathcard.open .pc,.photo-cards.expand .photo-card.open .pt{display:none;}
+ .pathcard.open .reveal p,.photo-cards.expand .photo-card.open .reveal p{font-size:.92rem;line-height:1.6;}
+ .photo-cards.expand .photo-card.open .reveal p.sub{font-size:.86rem;}
+}
+
+/* ---------------- bio modal on mobile ---------------- */
+.modal .close-b{display:none;}
+@media(max-width:760px){
+ .modal .mphoto img{object-fit:contain;object-position:center;background:#E9ECEF;}
+ .modal .mphoto{max-height:38vh;background:#E9ECEF;}
+ /* × stays put while the bio scrolls */
+ .modal .close{position:fixed;top:12px;right:12px;width:54px;height:54px;font-size:1.7rem;
+  background:var(--mvx-sky);color:#0D1418;box-shadow:0 6px 20px rgba(8,13,17,.45);z-index:6;}
+ /* plus an unmissable labelled button at the end of the bio */
+ .modal .close-b{display:block;position:static;width:100%;height:auto;border-radius:6px;
+  margin-top:1.8rem;padding:.95rem 1rem;font-family:var(--font-tagline);font-weight:600;
+  font-size:1rem;letter-spacing:.06em;text-transform:uppercase;background:var(--header-dark);
+  color:#fff;box-shadow:none;}
+}
+/* desktop: show a bit more of each headshot */
+.modal .mphoto img{object-position:center 18%;}
+
+/* v27b: let narrow journey labels wrap rather than spill */
+@media(max-width:920px){
+ .jseg{overflow-wrap:anywhere;word-break:break-word;overflow:hidden;}
+}
 </style>
 </head><body>
 <header class="site"><div class="nav">
@@ -953,8 +1047,36 @@ button[type=submit][disabled]{opacity:.6;cursor:progress;}
 </div>
 <script>
 (function(){
+ var MOB='(max-width:920px)';
  var hb=document.querySelector('.hamburger');
- if(hb){hb.addEventListener('click',function(){document.querySelector('.nav-links').classList.toggle('open');});}
+ if(hb){hb.addEventListener('click',function(){
+  var nl=document.querySelector('.nav-links');
+  nl.classList.toggle('open');
+  hb.setAttribute('aria-expanded', nl.classList.contains('open')?'true':'false');
+  if(!nl.classList.contains('open'))
+   nl.querySelectorAll('.sub-open').forEach(function(o){o.classList.remove('sub-open');});
+ });}
+ // mobile nav: tap a section to expand its sub-links (keeps the menu short)
+ document.querySelectorAll('.nav-links > div').forEach(function(d){
+  var top=d.querySelector('a.top'), dd=d.querySelector('.dropdown');
+  if(!top||!dd||dd.classList.contains('newsmega'))return;
+  top.addEventListener('click',function(e){
+   if(!window.matchMedia(MOB).matches)return;
+   e.preventDefault();
+   var open=d.classList.contains('sub-open');
+   d.parentElement.querySelectorAll('.sub-open').forEach(function(o){o.classList.remove('sub-open');});
+   if(!open)d.classList.add('sub-open');
+  });});
+ // mobile: tap a journey / diagnostics card to expand its text
+ document.querySelectorAll('.pathcard,.photo-cards.expand .photo-card').forEach(function(c){
+  c.addEventListener('click',function(e){
+   if(!window.matchMedia(MOB).matches)return;
+   if(e.target.closest('a'))return;
+   c.classList.toggle('open');
+  });
+  c.addEventListener('keydown',function(e){
+   if((e.key==='Enter'||e.key===' ')&&window.matchMedia(MOB).matches){e.preventDefault();c.classList.toggle('open');}
+  });});
  var lastFocus=null;
  document.querySelectorAll('[data-modal-open]').forEach(function(b){
   b.addEventListener('click',function(){var m=document.getElementById(b.getAttribute('data-modal-open'));if(m){lastFocus=b;m.classList.add('open');document.body.style.overflow='hidden';var cl=m.querySelector('.close');if(cl)cl.focus();}});});
