@@ -1,0 +1,71 @@
+name: Fetch CDN assets
+on:
+ workflow_dispatch:
+permissions:
+ contents: write
+jobs:
+ fetch:
+  runs-on: ubuntu-latest
+  steps:
+  - uses: actions/checkout@v4
+  - name: Download assets
+    run: |
+      mkdir -p assets/fonts
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d6f/680906a5e5bd468c21e28d76_ClashDisplay-Semibold.otf" -o "assets/fonts/clashdisplay-semibold.otf"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d6f/680906a5e5bd468c21e28d77_ClashDisplay-Light.otf" -o "assets/fonts/clashdisplay-light.otf"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d6f/680906a5e5bd468c21e28d98_our-mission.jpg" -o "assets/our-mission.jpg"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d6f/680906a5e5bd468c21e28d9b_our-goal.jpg" -o "assets/our-goal.jpg"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d6f/680906a5e5bd468c21e28dcf_ClashDisplay-Extralight.otf" -o "assets/fonts/clashdisplay-extralight.otf"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d6f/680906a5e5bd468c21e28de5_Maverix-Medical-b-roll-edit1-transcode.mp4" -o "assets/maverix-medical-b-roll-edit1-transcode.mp4"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d6f/680906a5e5bd468c21e28de7_250128-Maverix-Medical-042.jpg" -o "assets/250128-maverix-medical-042.jpg"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d6f/680906a5e5bd468c21e28ded_contact-hero.jpeg" -o "assets/contact-hero.jpeg"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d6f/680906a5e5bd468c21e28df7_Lung%20cancer%20x%20ray.png" -o "assets/lung-cancer-x-ray.png"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d6f/680906a5e5bd468c21e28df8_cafe.jpg" -o "assets/cafe.jpg"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d6f/680906a5e5bd468c21e28dfc_maverix-logo-midnight.png" -o "assets/maverix-logo-midnight.png"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d6f/680906a5e5bd468c21e28e05_Treatment%20Image%204.png" -o "assets/treatment-image-4.png"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d6f/681fd5836ffe7910ab9f490b_Home%20Page.png" -o "assets/home-page.png"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d6f/68200f3bc1da1468522f745b_Product%20Page.png" -o "assets/product-page.png"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d6f/68200f3d7f7f1456698a903c_News%20Page.png" -o "assets/news-page.png"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d6f/69f4f41e5a86966e6f3b2869_Sheath%20Fluoro.png" -o "assets/sheath-fluoro.png"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d6f/69f4f41fb39aa59b9a5ff6ef_Sheath%20Compatibility.png" -o "assets/sheath-compatibility.png"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d6f/69f4f4211adadb063fecfd36_Sheath%20Simplified%20Workflow.png" -o "assets/sheath-simplified-workflow.png"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28ddc_thoracent-by-maverix-logo.png" -o "assets/thoracent-by-maverix-logo.png"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28e6f_holding-hands.jpg" -o "assets/holding-hands.jpg"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28e72_Hilzo-Stents-logo.png" -o "assets/hilzo-stents-logo.png"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28e76_Will%20Resized.png" -o "assets/will-resized.png"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28e77_jenny-hill-mQVWb7kUoOE-unsplash.jpg" -o "assets/jenny-hill-mqvwb7kuooe-unsplash.jpg"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28e86_bonastent-logo.png" -o "assets/bonastent-logo.png"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28e8a_Netis%20Retrieval%20Net.jpg" -o "assets/netis-retrieval-net.jpg"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28e8b_Netis%20Retrieval%20Net-alt.jpg" -o "assets/netis-retrieval-net-alt.jpg"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28e8d_Business-Wire-logo.png" -o "assets/business-wire-logo.png"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28e8e_mdpi-jor-logo.png" -o "assets/mdpi-jor-logo.png"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28e8f_pr-newswire-logo.png" -o "assets/pr-newswire-logo.png"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28e90_Fierce-Biotech-logo.png" -o "assets/fierce-biotech-logo.png"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28e91_wsj-logo.png" -o "assets/wsj-logo.png"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28e92_chest-journal.png" -o "assets/chest-journal.png"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28e9a_Visualization%20CT.png" -o "assets/visualization-ct.png"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28e9c_Doctor%20Detection%20Image.jpg" -o "assets/doctor-detection-image.jpg"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28e9e_maverix-diagnostics-logo-color.png" -o "assets/maverix-diagnostics-logo-color.png"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28ea0_Doug%20Resized.png" -o "assets/doug-resized.png"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28ea1_Aftab%20Resized%202.png" -o "assets/aftab-resized-2.png"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28ea2_jeremy-resized.png" -o "assets/jeremy-resized.png"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28ea3_David%20Beylik%20Resized.png" -o "assets/david-beylik-resized.png"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28ea4_Carla%20Resized.png" -o "assets/carla-resized.png"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28ea5_Jocelyn%20Resized.png" -o "assets/jocelyn-resized.png"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28ea6_David%20Mallery%20Resized.png" -o "assets/david-mallery-resized.png"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28ea7_Scott%20Updated.png" -o "assets/scott-updated.png"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28ea8_Brian%202020%20resized.png" -o "assets/brian-2020-resized.png"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28ea9_Rebecca%20Bergin%20Resized.png" -o "assets/rebecca-bergin-resized.png"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28eaa_Neil%20Resized.png" -o "assets/neil-resized.png"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/680906a5e5bd468c21e28eab_Basile%20Resized.png" -o "assets/basile-resized.png"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/68f260760b6dc18ee82b7088_Serpex_Logo_Tagline.jpg" -o "assets/serpex_logo_tagline.jpg"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/68f2608f894b87e1736b98a1_CSNcomposite.jpg" -o "assets/csncomposite.jpg"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/68f260a31401a26e47f5e228_RSScomposite.jpg" -o "assets/rsscomposite.jpg"
+      curl -fsSL "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a/6a62161d932e325ca0e4de97_massdevice_logo_PMS179.gif" -o "assets/massdevice_logo_pms179.gif"
+  - name: Commit
+    run: |
+      git config user.name "github-actions[bot]"
+      git config user.email "github-actions[bot]@users.noreply.github.com"
+      git add assets
+      git commit -m "Self-host CDN assets" || echo "no changes"
+      git push
