@@ -914,6 +914,21 @@ button[type=submit][disabled]{opacity:.6;cursor:progress;}
 @media(max-width:920px){
  .jseg{overflow-wrap:anywhere;word-break:break-word;overflow:hidden;}
 }
+
+/* ============ v28 ============ */
+/* challenge stats: keep two columns on phones so the block stays compact */
+@media(max-width:560px){
+ .statgrid{grid-template-columns:1fr 1fr;}
+ .statgrid .cell{padding:1.1rem .9rem 1.5rem;}
+ .statgrid .num{font-size:1.5rem;}
+ .statgrid .lab{font-size:.78rem;line-height:1.45;}
+}
+/* bio photo panel: gray matched to the studio backdrop so the letterbox is invisible */
+.modal .mphoto{background:#A3A3A3;}
+@media(max-width:760px){
+ .modal .mphoto{background:#A3A3A3;}
+ .modal .close-b{display:none;}
+}
 </style>
 </head><body>
 <header class="site"><div class="nav">
@@ -991,12 +1006,12 @@ button[type=submit][disabled]{opacity:.6;cursor:progress;}
 <footer class="site"><div class="container">
 <div class="fgrid">
 <div class="fcol"><div class="fh">Products</div>
- <a href="thoracent.html">Thoracent</a>
- <a href="diagnostics.html">Diagnostics</a>
- <a href="serpex.html">Serpex</a></div>
+ <a href="diagnostics.html">Risk Assessment</a>
+ <a href="serpex.html">Diagnosis</a>
+ <a href="thoracent.html">Intervention</a></div>
 <div class="fcol"><div class="fh">Team</div>
  <a href="team.html#leadership">Leadership</a>
- <a href="team.html#advisors">Advisory Board</a></div>
+ <a href="team.html#advisors">Advisors</a></div>
 <div class="fcol"><div class="fh">Company</div>
  <a href="contact-us.html">Contact</a>
  <a href="careers.html">Careers</a>
