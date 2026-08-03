@@ -726,6 +726,18 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
  .band.dark .fullrule{margin:1rem 0 1.6rem;}
  .hero .kicker{font-size:1.4rem;}
 }
+
+/* v17: goal band tuning */
+.band.dark.goal{padding:7.5rem 0;}
+.band.dark.goal .bgimg{opacity:.75;object-position:center 32%;}
+
+/* v18: mission overlay clarity, aligned stat divider lines, full-width journey panel */
+.band.dark .bgimg{opacity:.7;}
+.band.dark.goal .bgimg{opacity:.75;}
+.bigstat{grid-template-columns:132px 1fr;}
+.jpanel{margin-left:-72px;margin-right:-72px;}
+@media(max-width:1080px){.jpanel{margin-left:-40px;margin-right:-40px;}}
+@media(max-width:560px){.jpanel{margin-left:-20px;margin-right:-20px;}}
 </style>
 </head><body>
 <header class="site"><div class="nav">
