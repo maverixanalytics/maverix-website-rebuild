@@ -12,6 +12,9 @@
 <style>
 /* Futura — licensed TTFs bundled in the design system; Jost (Google) is the
    documented fallback when the project-relative files are unavailable. */
+@font-face{font-family:"Clashdisplay";font-style:normal;font-weight:600;font-display:swap;src:url("https://cdn.prod.website-files.com/680906a5e5bd468c21e28d6f/680906a5e5bd468c21e28d76_ClashDisplay-Semibold.otf") format("opentype");}
+@font-face{font-family:"Clashdisplay";font-style:normal;font-weight:300;font-display:swap;src:url("https://cdn.prod.website-files.com/680906a5e5bd468c21e28d6f/680906a5e5bd468c21e28d77_ClashDisplay-Light.otf") format("opentype");}
+@font-face{font-family:"Clashdisplay";font-style:normal;font-weight:200;font-display:swap;src:url("https://cdn.prod.website-files.com/680906a5e5bd468c21e28d6f/680906a5e5bd468c21e28dcf_ClashDisplay-Extralight.otf") format("opentype");}
 @font-face{font-family:"Futura";font-style:normal;font-weight:400;font-display:swap;src:url("../../fonts/Futura-Medium.ttf") format("truetype");}
 @font-face{font-family:"Futura";font-style:normal;font-weight:500;font-display:swap;src:url("../../fonts/Futura-Medium.ttf") format("truetype");}
 @font-face{font-family:"Futura";font-style:normal;font-weight:700;font-display:swap;src:url("../../fonts/Futura-Bold.ttf") format("truetype");}
@@ -24,7 +27,7 @@
 --success:#2E8F6B;--warning:#C68A1B;--danger:#C0352B;
 --font-sans:"Poppins",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
 --font-display:"Poppins",ui-sans-serif,system-ui,sans-serif;
---font-tagline:"Clash Display","Futura","Futura PT","Jost","Poppins",sans-serif;
+--font-tagline:"Clashdisplay","Clash Display","Futura","Futura PT","Jost","Poppins",sans-serif;
 /* ---- site-layout tokens (matched to live maverixmedical.com) ---- */
 --header-dark:#0D1418;--page-bg:#F2F2F6;--frame-line:#DADDE2;--heading:#213340;
 /* ---- legacy names retained as aliases so no layout rule changes ---- */
@@ -756,6 +759,15 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
  .dropdown.mega::after{display:none;}
  .dropdown,.dropdown.mega{position:static;}
 }
+
+/* v20: vertical right rule on mega dropdowns, two-column team dropdown */
+.dropdown.mega:not(.newsmega)::after{content:none;}
+.dropdown .mcol:last-child{border-right:1px solid var(--frame-line);}
+.dropdown-in.cols2{grid-template-columns:repeat(2,1fr);max-width:790px;}
+@media(max-width:920px){
+ .dropdown-in.cols2{display:block;max-width:none;}
+ .dropdown .mcol:last-child{border:none;}
+}
 </style>
 </head><body>
 <header class="site"><div class="nav">
@@ -775,16 +787,13 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
    <a class="btn" href="thoracent.html"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span>Learn more about Thoracent</a></div>
  </div></div></div>
 <div><a class="top" href="team.html">team <span class="plus">+</span><span class="arrow">&#8594;</span></a>
- <div class="dropdown mega"><div class="dropdown-in">
-  <div class="mcol"><h4>Leadership</h4>
+ <div class="dropdown mega"><div class="dropdown-in cols2">
+  <div class="mcol c1"><h4>Leadership</h4>
    <p>Maverix leadership combines decades of clinical, technical, and operating experience.</p>
    <a class="btn" href="team.html#leadership"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span>Learn more about our leadership</a></div>
-  <div class="mcol"><h4>Advisors</h4>
+  <div class="mcol c2"><h4>Advisors</h4>
    <p>The Maverix Medical Advisory Board is comprised of leading pulmonary physicians.</p>
    <a class="btn" href="team.html#advisors"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span>Meet our advisors</a></div>
-  <div class="mcol"><h4>Partners</h4>
-   <p>Maverix collaborates with firms that are transforming medtech innovation.</p>
-   <a class="btn" href="team.html"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span>See our partners</a></div>
  </div></div></div>
 <div><a class="top" href="news.html">news <span class="plus">+</span><span class="arrow">&#8594;</span></a>
  <div class="dropdown mega newsmega"><div class="dropdown-in newsdd">
