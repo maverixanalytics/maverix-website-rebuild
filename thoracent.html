@@ -929,6 +929,48 @@ button[type=submit][disabled]{opacity:.6;cursor:progress;}
  .modal .mphoto{background:#A3A3A3;}
  .modal .close-b{display:none;}
 }
+
+/* ============ v29: Maverix brand lockup + inline "Distributed by" ============ */
+.sechead{justify-content:flex-start;gap:3.2rem;}
+.brandlock{display:flex;flex-direction:column;align-items:center;gap:.5rem;}
+.brandlock .bl-mark{height:52px;width:auto;object-fit:contain;background:transparent;padding:0;}
+.brandlock .bl-tag{font-family:var(--font-sans);font-weight:300;font-size:1.4rem;
+ color:#213340;line-height:1.05;white-space:nowrap;}
+.distby.inline{margin-top:0;display:flex;flex-direction:column;align-items:flex-start;gap:.65rem;}
+.distby.inline .seclabel{margin:0;gap:0;font-size:.78rem;letter-spacing:.28em;color:var(--mvx-slate);}
+.distby.inline .seclabel::after{content:none;}
+.distby.inline img{height:46px;width:auto;margin-top:0;object-fit:contain;background:transparent;padding:0;}
+.sechead .contact-block{margin-left:auto;}
+@media(max-width:920px){
+ .sechead{gap:2rem;}
+ .brandlock .bl-mark{height:42px;}
+ .brandlock .bl-tag{font-size:1.15rem;}
+ .distby.inline img{height:38px;}
+ .sechead .contact-block{margin-left:0;}
+}
+@media(max-width:560px){
+ .brandlock{align-items:flex-start;}
+ .brandlock .bl-tag{white-space:normal;}
+}
+
+/* ============ v30: news dropdown conformed to the original ============ */
+.dropdown-in.newsdd{grid-template-columns:1.25fr 1fr;max-width:1010px;}
+.newsdd .ncol{padding:1.6rem 2rem 1.9rem;}
+.newsdd .mra{font-size:1.05rem;max-width:470px;padding-bottom:.7rem;margin-bottom:1rem;}
+.newsdd .src{font-size:.8rem;letter-spacing:.14em;}
+.newsdd .date{font-size:.8rem;letter-spacing:.14em;margin-bottom:.7rem;}
+.newsdd h4{font-size:2rem;line-height:1.14;max-width:480px;margin-bottom:1.1rem;}
+.newsdd h5{font-size:1.3rem;line-height:1.2;max-width:355px;margin-bottom:.9rem;}
+.newsdd .rm{font-size:.92rem;padding:.5rem 1.15rem;}
+.newsdd .cell{padding-bottom:1.2rem;}
+.newsdd .cell.all{padding-top:1.2rem;margin-top:0;}
+.newsdd .cell.all a{font-size:1rem;gap:.7rem;}
+.newsdd .cell.all .circ{width:40px;height:40px;flex:0 0 40px;}
+.newsdd .cell.all .circ svg{width:15px;height:15px;}
+
+/* v30b: headline anchors must inherit their heading's type, not the generic dropdown link style */
+.newsdd h4 a,.newsdd h5 a{font-size:inherit;font-weight:inherit;font-family:inherit;
+ line-height:inherit;letter-spacing:inherit;}
 </style>
 </head><body>
 <header class="site"><div class="nav">
@@ -988,7 +1030,11 @@ button[type=submit][disabled]{opacity:.6;cursor:progress;}
 </div></div>
 
 <section class="band light prod-section" id="thoracent"><div class="container">
- <div class="sechead"><img src="assets/thoracent-by-maverix-logo.png" alt="Thoracent by Maverix">
+ <div class="sechead">
+  <div class="brandlock"><img class="bl-mark" src="assets/maverix-logo-midnight.png" alt="Maverix">
+   <div class="bl-tag">Stents and Accessories</div></div>
+  <div class="distby inline"><div class="seclabel">Distributed by</div>
+   <img src="assets/thoracent-by-maverix-logo.png" alt="Thoracent, a Maverix company"></div>
   <div class="contact-block"><div class="cb-label">Sales inquiries</div><div class="cb-title">Customer Care</div>
    <a href="mailto:customercare@thoracent.com">customercare@thoracent.com</a>
    <div class="cb-phone">(888) 978-0232</div></div></div>
