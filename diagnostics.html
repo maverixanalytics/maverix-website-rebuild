@@ -1188,6 +1188,10 @@ a.reglink{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;colo
 .nw-cardimg{aspect-ratio:16/10;border-radius:8px;overflow:hidden;margin-bottom:1.1rem;
  background:#fff;border:1px solid var(--frame-line);}
 .nw-cardimg img{width:100%;height:100%;object-fit:contain;display:block;background:#fff;}
+/* v41: card headings reserve two lines so the three photos align across the row */
+.nw-card{display:flex;flex-direction:column;}
+.nw-card h3{min-height:2.6em;}
+@media(max-width:1000px){.nw-card h3{min-height:0;}}
 </style>
 </head><body>
 <header class="site"><div class="nav">
