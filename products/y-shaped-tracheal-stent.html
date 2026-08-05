@@ -1,4 +1,4 @@
-<!-- @dsCard group="Product Pages" name="Y-Shaped Tracheal Stent – Thoracent by Maverix" subtitle="Thoracent product detail" -->
+<!-- @dsCard group="Product Pages" name="Y-Shaped Tracheal Stent – Thoracent by Maverix" subtitle="Product detail" -->
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -820,6 +820,182 @@ button[type=submit][disabled]{opacity:.6;cursor:progress;}
 .nf .section-title{margin-bottom:1rem;}
 .nf .lede{max-width:640px;}
 .nf .famrow{background:#fff;}
+
+/* ============ v27: mobile menu, journey bar, tap-cards, modal, scrims ============ */
+
+/* darker scrims so overlaid text stays legible (desktop + mobile) */
+.hero .shade{background:linear-gradient(90deg,rgba(9,15,19,.84) 0%,rgba(9,15,19,.62) 45%,rgba(9,15,19,.40) 100%);}
+.hero-thin .ov{background:linear-gradient(90deg,rgba(11,17,22,.86) 0%,rgba(11,17,22,.60) 48%,rgba(11,17,22,.34) 100%);}
+.band.dark::after{content:"";position:absolute;inset:0;pointer-events:none;
+ background:linear-gradient(90deg,rgba(8,13,17,.80) 0%,rgba(8,13,17,.58) 50%,rgba(8,13,17,.34) 100%);}
+.band.dark>.container{position:relative;z-index:2;}
+.band.dark .bgimg{z-index:0;}
+
+/* news source logos: MassDevice now matches the rest */
+.newsgrid .srclogo,.featured .srclogo{mix-blend-mode:multiply;}
+
+/* ---------------- mobile / tablet nav ---------------- */
+@media(max-width:920px){
+ /* stray divider beside the logo */
+ .nav .logo{border-right:none;}
+ /* menu becomes a scrollable panel so nothing is stranded below the fold */
+ .nav-links{position:fixed;top:62px;left:0;right:0;
+  max-height:calc(100vh - 62px);max-height:calc(100dvh - 62px);
+  overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:2rem;}
+ /* sub-menus collapsed until tapped */
+ .nav-links>div>.dropdown{display:none;}
+ .nav-links>div.sub-open>.dropdown{display:block;}
+ .nav-links>div>a.top .plus{transition:transform .2s ease;display:inline-block;}
+ .nav-links>div.sub-open>a.top{color:var(--mvx-sky);}
+ .nav-links>div.sub-open>a.top .plus{transform:rotate(45deg);}
+ .nav-links a.top{width:100%;}
+ .nav-links>div.mobile-extra{display:block;width:100%;border-top:1px solid rgba(255,255,255,.16);
+  margin-top:.8rem;padding-top:.8rem;}
+ .nav-links>div.mobile-extra a{display:block;color:#fff;font-family:var(--font-tagline);
+  text-transform:uppercase;letter-spacing:.12em;font-size:.95rem;padding:.7rem 0;}
+}
+
+/* ---------------- patient-journey bars stay on one line ---------------- */
+@media(max-width:920px){
+ .jbar{flex-wrap:nowrap;gap:5px;align-items:stretch;}
+ .jseg{min-width:0;white-space:normal;font-size:.66rem;padding:.55rem .35rem;line-height:1.2;
+  display:flex;align-items:center;justify-content:center;hyphens:auto;}
+ .jseg.cap{flex:0 0 5px;padding:0;}
+ .journey .jtitle{font-size:.72rem;letter-spacing:.16em;}
+ .journey .jnote,.jarrow{font-size:.78rem;}
+ .journey .jnote::before,.journey .jnote::after,.jarrow::before{max-width:36px;}
+}
+@media(max-width:560px){
+ .jseg{font-size:.55rem;padding:.5rem .2rem;letter-spacing:-.01em;}
+ .journey .jtitle{font-size:.62rem;letter-spacing:.1em;}
+ .journey .jnote,.jarrow{font-size:.7rem;}
+}
+
+/* ---------------- tap-to-expand cards on mobile ---------------- */
+@media(max-width:920px){
+ .pathcard,.photo-cards.expand .photo-card{cursor:pointer;}
+ /* collapsed: image + title only */
+ .pathcard .reveal,.photo-cards.expand .photo-card .reveal{opacity:0;pointer-events:none;}
+ .pathcard .pc,.photo-cards.expand .photo-card .pt{opacity:1;}
+ /* affordance */
+ .pathcard::before,.photo-cards.expand .photo-card::before{content:"+";position:absolute;top:14px;right:14px;
+  z-index:4;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.92);color:#12333D;
+  font-family:var(--font-tagline);font-weight:600;font-size:1.35rem;line-height:34px;text-align:center;
+  transition:transform .25s ease;}
+ .pathcard.open::before,.photo-cards.expand .photo-card.open::before{transform:rotate(45deg);}
+ /* expanded: reveal flows inline so the card grows and the text is fully readable */
+ .pathcard.open,.photo-cards.expand .photo-card.open{min-height:0;}
+ .pathcard.open .reveal,.photo-cards.expand .photo-card.open .reveal{
+  position:relative;opacity:1;pointer-events:auto;background:rgba(13,21,27,.94);
+  padding:1.5rem 1.4rem 1.8rem;}
+ .pathcard.open .pc,.photo-cards.expand .photo-card.open .pt{display:none;}
+ .pathcard.open .reveal p,.photo-cards.expand .photo-card.open .reveal p{font-size:.92rem;line-height:1.6;}
+ .photo-cards.expand .photo-card.open .reveal p.sub{font-size:.86rem;}
+}
+
+/* ---------------- bio modal on mobile ---------------- */
+.modal .close-b{display:none;}
+@media(max-width:760px){
+ .modal .mphoto img{object-fit:contain;object-position:center;background:#E9ECEF;}
+ .modal .mphoto{max-height:38vh;background:#E9ECEF;}
+ /* × stays put while the bio scrolls */
+ .modal .close{position:fixed;top:12px;right:12px;width:54px;height:54px;font-size:1.7rem;
+  background:var(--mvx-sky);color:#0D1418;box-shadow:0 6px 20px rgba(8,13,17,.45);z-index:6;}
+ /* plus an unmissable labelled button at the end of the bio */
+ .modal .close-b{display:block;position:static;width:100%;height:auto;border-radius:6px;
+  margin-top:1.8rem;padding:.95rem 1rem;font-family:var(--font-tagline);font-weight:600;
+  font-size:1rem;letter-spacing:.06em;text-transform:uppercase;background:var(--header-dark);
+  color:#fff;box-shadow:none;}
+}
+/* desktop: show a bit more of each headshot */
+.modal .mphoto img{object-position:center 18%;}
+
+/* v27b: let narrow journey labels wrap rather than spill */
+@media(max-width:920px){
+ .jseg{overflow-wrap:anywhere;word-break:break-word;overflow:hidden;}
+}
+
+/* ============ v28 ============ */
+/* challenge stats: keep two columns on phones so the block stays compact */
+@media(max-width:560px){
+ .statgrid{grid-template-columns:1fr 1fr;}
+ .statgrid .cell{padding:1.1rem .9rem 1.5rem;}
+ .statgrid .num{font-size:1.5rem;}
+ .statgrid .lab{font-size:.78rem;line-height:1.45;}
+}
+/* bio photo panel: gray matched to the studio backdrop so the letterbox is invisible */
+.modal .mphoto{background:#A3A3A3;}
+@media(max-width:760px){
+ .modal .mphoto{background:#A3A3A3;}
+ .modal .close-b{display:none;}
+}
+
+/* ============ v29: Maverix brand lockup + inline "Distributed by" ============ */
+.sechead{justify-content:flex-start;gap:3.2rem;}
+.brandlock{display:flex;flex-direction:column;align-items:center;gap:.5rem;}
+.brandlock .bl-mark{height:52px;width:auto;object-fit:contain;background:transparent;padding:0;}
+.brandlock .bl-tag{font-family:var(--font-sans);font-weight:300;font-size:1.4rem;
+ color:#213340;line-height:1.05;white-space:nowrap;}
+.distby.inline{margin-top:0;display:flex;flex-direction:column;align-items:flex-start;gap:.65rem;}
+.distby.inline .seclabel{margin:0;gap:0;font-size:.78rem;letter-spacing:.28em;color:var(--mvx-slate);}
+.distby.inline .seclabel::after{content:none;}
+.distby.inline img{height:46px;width:auto;margin-top:0;object-fit:contain;background:transparent;padding:0;}
+.sechead .contact-block{margin-left:auto;}
+@media(max-width:920px){
+ .sechead{gap:2rem;}
+ .brandlock .bl-mark{height:42px;}
+ .brandlock .bl-tag{font-size:1.15rem;}
+ .distby.inline img{height:38px;}
+ .sechead .contact-block{margin-left:0;}
+}
+@media(max-width:560px){
+ .brandlock{align-items:flex-start;}
+ .brandlock .bl-tag{white-space:normal;}
+}
+
+/* ============ v30: news dropdown conformed to the original ============ */
+.dropdown-in.newsdd{grid-template-columns:1.25fr 1fr;max-width:1010px;}
+.newsdd .ncol{padding:1.6rem 2rem 1.9rem;}
+.newsdd .mra{font-size:1.05rem;max-width:470px;padding-bottom:.7rem;margin-bottom:1rem;}
+.newsdd .src{font-size:.8rem;letter-spacing:.14em;}
+.newsdd .date{font-size:.8rem;letter-spacing:.14em;margin-bottom:.7rem;}
+.newsdd h4{font-size:2rem;line-height:1.14;max-width:480px;margin-bottom:1.1rem;}
+.newsdd h5{font-size:1.3rem;line-height:1.2;max-width:355px;margin-bottom:.9rem;}
+.newsdd .rm{font-size:.92rem;padding:.5rem 1.15rem;}
+.newsdd .cell{padding-bottom:1.2rem;}
+.newsdd .cell.all{padding-top:1.2rem;margin-top:0;}
+.newsdd .cell.all a{font-size:1rem;gap:.7rem;}
+.newsdd .cell.all .circ{width:40px;height:40px;flex:0 0 40px;}
+.newsdd .cell.all .circ svg{width:15px;height:15px;}
+
+/* v30b: headline anchors must inherit their heading's type, not the generic dropdown link style */
+.newsdd h4 a,.newsdd h5 a{font-size:inherit;font-weight:inherit;font-family:inherit;
+ line-height:inherit;letter-spacing:inherit;}
+
+/* ---------- v31: static product groups, Rx note, pd-side "Distributed by" ---------- */
+.pgroup{margin-top:2.4rem;}
+.pgroup:first-of-type{margin-top:1.6rem;}
+.pgroup .pglabel{font-family:var(--font-tagline);font-weight:600;font-size:.9rem;
+ letter-spacing:.26em;text-transform:uppercase;color:var(--mvx-teal);
+ padding-bottom:.7rem;margin-bottom:1.3rem;border-bottom:1px solid var(--frame-line);}
+.pgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.3rem;align-items:stretch;}
+.pgrid .pcard{scroll-snap-align:none;}
+.seclabel + .pgrid{margin-top:1.5rem;}
+p.rxnote{margin-top:2.6rem;font-size:.86rem;line-height:1.6;color:#5B6670;
+ max-width:920px;border-top:1px solid var(--frame-line);padding-top:1.2rem;}
+p.mfg-note{margin-top:1.6rem;font-size:.85rem;font-style:italic;color:#5B6670;}
+.pd-side .pd-brand{display:flex;flex-direction:column;align-items:flex-start;gap:.55rem;}
+.pd-side .pd-brand .seclabel{margin:0;gap:0;font-size:.72rem;letter-spacing:.26em;color:var(--mvx-slate);}
+.pd-side .pd-brand .seclabel::after{content:none;}
+.pd-side .pd-brand img{max-width:210px;width:100%;height:auto;}
+a.reglink{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;color:var(--mvx-teal);}
+/* zoomed-out hero: taller frame reveals more of a portrait source image */
+.hero-thin.zoomout .inner{padding-top:16.5rem;padding-bottom:3rem;}
+@media(max-width:900px){.pgrid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(max-width:640px){
+ .pgrid{grid-template-columns:1fr;}
+ .hero-thin.zoomout .inner{padding-top:10rem;}
+}
 </style>
 </head><body>
 <header class="site"><div class="nav">
@@ -830,13 +1006,13 @@ button[type=submit][disabled]{opacity:.6;cursor:progress;}
  <div class="dropdown mega"><div class="dropdown-in">
   <div class="mcol c1"><h4>Risk Assessment</h4>
    <p>Developing molecular diagnostic tools that aim to triage lung cancer in patients to identify those in need of immediate care.</p>
-   <a class="btn" href="../diagnostics.html"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span>Learn more about Diagnostics</a></div>
+   <a class="btn" href="../diagnostics.html"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span>Explore Maverix Diagnostics</a></div>
   <div class="mcol c2"><h4>Diagnosis</h4>
-   <p>A suite of steerable endobronchial instruments to target difficult-to-reach and off-airway nodules.</p>
-   <a class="btn" href="../serpex.html"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span>Learn more about Biopsy Tools</a></div>
+   <p>Endobronchial tissue-sampling instruments &mdash; biopsy forceps, EBUS needles, and cryobiopsy &mdash; designed to help physicians obtain the tissue needed for an accurate diagnosis.</p>
+   <a class="btn" href="../serpex.html"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span>Explore Biopsy Tools</a></div>
   <div class="mcol c3"><h4>Intervention</h4>
    <p>Minimally invasive devices for managing pleural effusions, restoring airway patency, and improving quality of life, along with an expanded suite of GI tools.</p>
-   <a class="btn" href="../thoracent.html"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span>Learn more about Thoracent</a></div>
+   <a class="btn" href="../thoracent.html"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span>Explore the interventional portfolio</a></div>
  </div></div></div>
 <div><a class="top" href="../team.html">team <span class="plus">+</span><span class="arrow">&#8594;</span></a>
  <div class="dropdown mega"><div class="dropdown-in cols2">
@@ -875,7 +1051,7 @@ button[type=submit][disabled]{opacity:.6;cursor:progress;}
 </div></header>
 
 <div class="pd-hero"><div class="container">
- <a class="crumb" href="../thoracent.html">&#8592; All Thoracent products</a>
+ <a class="crumb" href="../thoracent.html">&#8592; All Intervention products</a>
  <h1>Y-Shaped Tracheal Stent</h1>
 </div></div>
 <div class="tabbar"><div class="container tabbar-in">
@@ -892,11 +1068,12 @@ button[type=submit][disabled]{opacity:.6;cursor:progress;}
     <p class="bodytext">The Micro-Tech Y-Stent addresses strictures and aids in the treatment of malignant neoplasm in the tracheobronchial carina. Constructed from nitinol wire in a tubular mesh configuration, the stent provides flexibility and self-expansion.</p><p class="bodytext">A partial silicone coating prevents tissue ingrowth, and retrieval sutures enable repositioning during placement. Radiopaque markers enhance visibility under fluoroscopy at the proximal, bifurcation, and distal landmarks, while branch flanges minimize migration post-placement.</p>
     <ul class="benefits"><li>Covered self-expanding nitinol design &mdash; maximizes airway space and reduces tissue ingrowth</li><li>Low-profile 8 mm delivery system &mdash; enables direct visualization and ventilation during positioning</li><li>Multiple size options &mdash; accommodates diverse patient anatomies</li><li>Repositioning sutures &mdash; facilitate post-deployment adjustment</li></ul>
     
+    
    </div>
    
   </div>
   <div class="pd-side">
-   <img src="../assets/thoracent-by-maverix-logo.png" alt="">
+   <div class="pd-brand"><div class="seclabel">Distributed by</div><img src="../assets/thoracent-by-maverix-logo.png" alt=""></div>
    <div class="contact-block"><div class="cb-label">Sales inquiries</div><div class="cb-title">Customer Care</div><a href="mailto:customercare@thoracent.com">customercare@thoracent.com</a><div class="cb-phone">(888) 978-0232</div></div>
   </div>
  </div>
@@ -904,12 +1081,12 @@ button[type=submit][disabled]{opacity:.6;cursor:progress;}
 <footer class="site"><div class="container">
 <div class="fgrid">
 <div class="fcol"><div class="fh">Products</div>
- <a href="../thoracent.html">Thoracent</a>
- <a href="../diagnostics.html">Diagnostics</a>
- <a href="../serpex.html">Serpex</a></div>
+ <a href="../diagnostics.html">Risk Assessment</a>
+ <a href="../serpex.html">Diagnosis</a>
+ <a href="../thoracent.html">Intervention</a></div>
 <div class="fcol"><div class="fh">Team</div>
  <a href="../team.html#leadership">Leadership</a>
- <a href="../team.html#advisors">Advisory Board</a></div>
+ <a href="../team.html#advisors">Advisors</a></div>
 <div class="fcol"><div class="fh">Company</div>
  <a href="../contact-us.html">Contact</a>
  <a href="../careers.html">Careers</a>
@@ -921,7 +1098,7 @@ button[type=submit][disabled]{opacity:.6;cursor:progress;}
  <div class="frow"><a class="mail" href="mailto:contact@maverixmedical.com">contact@maverixmedical.com</a>
  <a class="li-sq" href="https://www.linkedin.com/company/maverix-medical/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a></div></div>
 <div class="fbottom">
- <div><a href="../privacy-policy.html">Privacy Policy</a><a href="../terms-of-use.html">Terms of Use</a></div>
+ <div><a href="../regulatory-information.html">Regulatory Information</a><a href="../privacy-policy.html">Privacy Policy</a><a href="../terms-of-use.html">Terms of Use</a></div>
  <div>Copyright &copy; Maverix</div>
 </div></div></footer>
 <div class="cookiebar" id="cookiebar">
@@ -931,8 +1108,36 @@ button[type=submit][disabled]{opacity:.6;cursor:progress;}
 </div>
 <script>
 (function(){
+ var MOB='(max-width:920px)';
  var hb=document.querySelector('.hamburger');
- if(hb){hb.addEventListener('click',function(){document.querySelector('.nav-links').classList.toggle('open');});}
+ if(hb){hb.addEventListener('click',function(){
+  var nl=document.querySelector('.nav-links');
+  nl.classList.toggle('open');
+  hb.setAttribute('aria-expanded', nl.classList.contains('open')?'true':'false');
+  if(!nl.classList.contains('open'))
+   nl.querySelectorAll('.sub-open').forEach(function(o){o.classList.remove('sub-open');});
+ });}
+ // mobile nav: tap a section to expand its sub-links (keeps the menu short)
+ document.querySelectorAll('.nav-links > div').forEach(function(d){
+  var top=d.querySelector('a.top'), dd=d.querySelector('.dropdown');
+  if(!top||!dd||dd.classList.contains('newsmega'))return;
+  top.addEventListener('click',function(e){
+   if(!window.matchMedia(MOB).matches)return;
+   e.preventDefault();
+   var open=d.classList.contains('sub-open');
+   d.parentElement.querySelectorAll('.sub-open').forEach(function(o){o.classList.remove('sub-open');});
+   if(!open)d.classList.add('sub-open');
+  });});
+ // mobile: tap a journey / diagnostics card to expand its text
+ document.querySelectorAll('.pathcard,.photo-cards.expand .photo-card').forEach(function(c){
+  c.addEventListener('click',function(e){
+   if(!window.matchMedia(MOB).matches)return;
+   if(e.target.closest('a'))return;
+   c.classList.toggle('open');
+  });
+  c.addEventListener('keydown',function(e){
+   if((e.key==='Enter'||e.key===' ')&&window.matchMedia(MOB).matches){e.preventDefault();c.classList.toggle('open');}
+  });});
  var lastFocus=null;
  document.querySelectorAll('[data-modal-open]').forEach(function(b){
   b.addEventListener('click',function(){var m=document.getElementById(b.getAttribute('data-modal-open'));if(m){lastFocus=b;m.classList.add('open');document.body.style.overflow='hidden';var cl=m.querySelector('.close');if(cl)cl.focus();}});});
