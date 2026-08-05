@@ -1,11 +1,11 @@
-<!-- @dsCard group="Product Pages" name="Narwhal Cryo System – Maverix Medical" subtitle="Product detail" -->
+<!-- @dsCard group="Product Pages" name="Narwhal Cryo System – Thoracent by Maverix" subtitle="Product detail" -->
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Narwhal Cryo System – Maverix Medical</title>
+<title>Narwhal Cryo System – Thoracent by Maverix</title>
 <meta name="description" content="Cryobiopsy probes use extreme cold to freeze tissue to the probe tip, retrieving the sample as the probe is withdrawn with freezing still engaged. The">
 <link rel="canonical" href="https://maverixanalytics.github.io/maverix-website-rebuild/products/narwhal-cryo-system.html">
-<meta property="og:title" content="Narwhal Cryo System – Maverix Medical"><meta property="og:description" content="Cryobiopsy probes use extreme cold to freeze tissue to the probe tip, retrieving the sample as the probe is withdrawn with freezing still engaged. The"><meta property="og:type" content="website"><meta property="og:url" content="https://maverixanalytics.github.io/maverix-website-rebuild/products/narwhal-cryo-system.html"><meta property="og:site_name" content="Maverix Medical"><meta name="twitter:card" content="summary_large_image">
+<meta property="og:title" content="Narwhal Cryo System – Thoracent by Maverix"><meta property="og:description" content="Cryobiopsy probes use extreme cold to freeze tissue to the probe tip, retrieving the sample as the probe is withdrawn with freezing still engaged. The"><meta property="og:type" content="website"><meta property="og:url" content="https://maverixanalytics.github.io/maverix-website-rebuild/products/narwhal-cryo-system.html"><meta property="og:site_name" content="Maverix Medical"><meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="../assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png">
@@ -996,6 +996,16 @@ a.reglink{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;colo
  .pgrid{grid-template-columns:1fr;}
  .hero-thin.zoomout .inner{padding-top:10rem;}
 }
+
+/* ---------- v32: whole product card is one click target ---------- */
+.pcard{position:relative;}
+.pcard .pi .btn::after{content:"";position:absolute;inset:0;z-index:1;}
+.pcard .pi .btn{position:static;}
+.pcard:focus-within{outline:2px solid var(--mvx-blue);outline-offset:3px;}
+.pcard,.pcard .ph,.pcard .ph img{cursor:pointer;}
+/* uniform white product photography */
+.pcard .ph{background:#fff;}
+.pcard .ph img{object-fit:contain;background:#fff;}
 </style>
 </head><body>
 <header class="site"><div class="nav">
@@ -1073,7 +1083,7 @@ a.reglink{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;colo
    
   </div>
   <div class="pd-side">
-   <div class="pd-brand"><img src="../assets/maverix-logo-midnight.png" alt=""></div>
+   <div class="pd-brand"><div class="seclabel">Distributed by</div><img src="../assets/thoracent-by-maverix-logo.png" alt=""></div>
    <div class="contact-block"><div class="cb-label">Sales inquiries</div><div class="cb-title">Customer Care</div><a href="mailto:customercare@thoracent.com">customercare@thoracent.com</a><div class="cb-phone">(888) 978-0232</div></div>
   </div>
  </div>

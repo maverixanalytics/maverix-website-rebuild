@@ -996,6 +996,16 @@ a.reglink{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;colo
  .pgrid{grid-template-columns:1fr;}
  .hero-thin.zoomout .inner{padding-top:10rem;}
 }
+
+/* ---------- v32: whole product card is one click target ---------- */
+.pcard{position:relative;}
+.pcard .pi .btn::after{content:"";position:absolute;inset:0;z-index:1;}
+.pcard .pi .btn{position:static;}
+.pcard:focus-within{outline:2px solid var(--mvx-blue);outline-offset:3px;}
+.pcard,.pcard .ph,.pcard .ph img{cursor:pointer;}
+/* uniform white product photography */
+.pcard .ph{background:#fff;}
+.pcard .ph img{object-fit:contain;background:#fff;}
 </style>
 </head><body>
 <header class="site"><div class="nav">
