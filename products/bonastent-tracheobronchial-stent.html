@@ -1037,6 +1037,35 @@ a.reglink{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;colo
 .btn.joblink:hover .bl::after{transform:scaleX(1);}
 @media(max-width:820px){.jobs-split{gap:2.6rem;}}
 @media(prefers-reduced-motion:reduce){.btn.joblink .bl::after{transition:none;}}
+
+/* ---------- v35: one lockup treatment across all three product families ---------- */
+.sechead .famlogo{height:74px;width:auto;object-fit:contain;background:transparent;padding:0;
+ align-self:flex-start;}
+@media(max-width:920px){.sechead .famlogo{height:58px;}}
+@media(max-width:560px){.sechead .famlogo{height:48px;}}
+
+/* ---------- v36: Book a Virtual Demo CTA ---------- */
+.demorow{margin-top:2.4rem;}
+.demobtn{display:inline-flex;align-items:center;gap:.75rem;padding:.7rem 1.5rem .7rem .7rem;
+ background:var(--mvx-teal);color:#fff;border-radius:999px;font-weight:600;font-size:.98rem;
+ letter-spacing:.01em;transition:background .25s ease,transform .25s ease,box-shadow .25s ease;}
+.demobtn .circ{width:34px;height:34px;flex:0 0 34px;border-radius:50%;background:#fff;
+ display:inline-flex;align-items:center;justify-content:center;transition:transform .25s ease;}
+.demobtn .circ svg{width:15px;height:15px;stroke:var(--mvx-teal);}
+.demobtn .bl{position:relative;display:inline-block;}
+.demobtn:hover{background:var(--mvx-deep);color:#fff;transform:translateY(-2px);
+ box-shadow:0 10px 24px rgba(26,74,93,.22);}
+.demobtn:hover .circ{transform:translateX(3px);}
+.demorow.side{margin-top:1.4rem;}
+.demorow.side .demobtn{font-size:.9rem;padding:.6rem 1.15rem .6rem .6rem;gap:.6rem;}
+.demorow.side .demobtn .circ{width:30px;height:30px;flex:0 0 30px;}
+@media(max-width:560px){.demobtn{font-size:.9rem;}}
+@media(prefers-reduced-motion:reduce){.demobtn,.demobtn .circ{transition:none;}}
+/* v36a: the demo CTA must not inherit .contact-block link styling */
+.contact-block a.demobtn{font-style:normal;text-decoration:none;color:#fff;
+ display:inline-flex;font-size:.9rem;}
+.contact-block a.demobtn:hover{color:#fff;}
+.contact-block a.demobtn .bl{color:#fff;}
 </style>
 </head><body>
 <header class="site"><div class="nav">
@@ -1115,7 +1144,7 @@ a.reglink{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;colo
   </div>
   <div class="pd-side">
    <div class="pd-brand"><div class="seclabel">Distributed by</div><img src="../assets/bonastent-logo.png" alt=""></div>
-   <div class="contact-block"><div class="cb-label">Sales inquiries</div><div class="cb-title">Customer Care</div><a href="mailto:customercare@thoracent.com">customercare@thoracent.com</a><div class="cb-phone">(888) 978-0232</div></div>
+   <div class="contact-block"><div class="cb-label">Sales inquiries</div><div class="cb-title">Customer Care</div><a href="mailto:customercare@thoracent.com">customercare@thoracent.com</a><div class="cb-phone">(888) 978-0232</div><div class="demorow side"><a class="demobtn " href="https://calendly.com/d/d2hv-6ry-mwk/virtual-demo" target="_blank" rel="noopener"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span><span class="bl">Book a Virtual Demo</span></a></div></div>
   </div>
  </div>
 </div></section>
