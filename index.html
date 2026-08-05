@@ -1192,6 +1192,26 @@ a.reglink{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;colo
 .nw-card{display:flex;flex-direction:column;}
 .nw-card h3{min-height:2.6em;}
 @media(max-width:1000px){.nw-card h3{min-height:0;}}
+
+/* ---------- v42: journey cards advertise themselves — CTA always on top ---------- */
+.pathcard .pcta{position:absolute;left:0;right:0;bottom:0;z-index:4;
+ padding:0 1.5rem 1.4rem;display:flex;justify-content:center;pointer-events:auto;}
+.pathcard .pcta .btn{color:#fff;font-style:italic;font-weight:400;font-size:.8rem;
+ line-height:1.3;text-align:left;gap:.5rem;align-items:center;}
+.pathcard .pcta .btn .circ{width:30px;height:30px;flex:0 0 30px;background:rgba(255,255,255,.16);
+ border:1px solid rgba(255,255,255,.55);backdrop-filter:blur(2px);}
+.pathcard .pcta .btn .circ svg{stroke:#fff;width:13px;height:13px;}
+.pathcard .pcta .btn .bl{position:relative;}
+.pathcard .pcta .btn .bl::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:1px;
+ background:rgba(255,255,255,.55);transform:scaleX(0);transform-origin:left center;
+ transition:transform .38s cubic-bezier(.22,.61,.36,1);}
+.pathcard:hover .pcta .btn .bl::after,.pathcard:focus-within .pcta .btn .bl::after{transform:scaleX(1);}
+.pathcard:hover .pcta .btn .circ,.pathcard:focus-within .pcta .btn .circ{background:var(--mvx-blue);
+ border-color:var(--mvx-blue);}
+/* clear the CTA so nothing sits on top of it */
+.pathcard .pc{padding-bottom:5.4rem;}
+.pathcard .reveal{padding-bottom:5.4rem;}
+@media(prefers-reduced-motion:reduce){.pathcard .pcta .btn .bl::after{transition:none;}}
 </style>
 </head><body>
 <header class="site"><div class="nav">
@@ -1314,17 +1334,17 @@ a.reglink{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;colo
    <div class="pc"><div class="k">Maverix</div><div class="t">Risk Assessment</div></div>
    <div class="reveal"><h3>More Effective Screening</h3>
     <p>Lung cancer is a heterogeneous disease that can be challenging to diagnose. We are developing a blood-based diagnostic tool with the aim to enable early and accurate diagnosis and stratification of patients to treat those who are at high cancer risk, complementing low-dose computed tomography (CT).</p>
-    <a class="btn on-dark" href="diagnostics.html"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span><span class="bl">Explore Maverix Diagnostics</span></a></div></div>
+    </div><div class="pcta"><a class="btn on-dark" href="diagnostics.html"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span><span class="bl">Explore Maverix Diagnostics</span></a></div></div>
   <div class="pathcard" tabindex="0"><img src="images/diagnosis.jpg" alt="Diagnosis">
    <div class="pc"><div class="k">Maverix</div><div class="t">Diagnosis</div></div>
    <div class="reveal"><h3>A Tool for Every Target</h3>
     <p>Expanded CT screening is putting more patients into the diagnostic pathway, and a single bronchoscopy may need to sample more than one kind of target. Maverix builds an instrument for each &mdash; forceps at the airway wall, ultrasound-guided needles beyond it, and a console-free cryoprobe for cryoadhesion biopsy.</p>
-    <a class="btn on-dark" href="serpex.html"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span><span class="bl">Explore Biopsy Tools</span></a></div></div>
+    </div><div class="pcta"><a class="btn on-dark" href="serpex.html"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span><span class="bl">Explore Biopsy Tools</span></a></div></div>
   <div class="pathcard" tabindex="0"><img src="images/intervention.jpg" alt="Intervention">
    <div class="pc"><div class="k">Maverix</div><div class="t">Intervention</div></div>
    <div class="reveal"><h3>Superior Treatment &amp; Palliative Care</h3>
     <p>Lung cancer and its treatment can significantly impact physical function, impeding a patient's ability to perform daily activities. By effectively managing the range of symptoms, our minimally invasive palliative care devices enhance well-being and overall quality of care for the millions of patients diagnosed after Stage I.</p>
-    <a class="btn on-dark" href="thoracent.html"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span><span class="bl">Explore the interventional portfolio</span></a></div></div>
+    </div><div class="pcta"><a class="btn on-dark" href="thoracent.html"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span><span class="bl">Explore the interventional portfolio</span></a></div></div>
  </div>
 </div></section>
 <footer class="site"><div class="container">

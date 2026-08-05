@@ -1192,6 +1192,26 @@ a.reglink{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;colo
 .nw-card{display:flex;flex-direction:column;}
 .nw-card h3{min-height:2.6em;}
 @media(max-width:1000px){.nw-card h3{min-height:0;}}
+
+/* ---------- v42: journey cards advertise themselves — CTA always on top ---------- */
+.pathcard .pcta{position:absolute;left:0;right:0;bottom:0;z-index:4;
+ padding:0 1.5rem 1.4rem;display:flex;justify-content:center;pointer-events:auto;}
+.pathcard .pcta .btn{color:#fff;font-style:italic;font-weight:400;font-size:.8rem;
+ line-height:1.3;text-align:left;gap:.5rem;align-items:center;}
+.pathcard .pcta .btn .circ{width:30px;height:30px;flex:0 0 30px;background:rgba(255,255,255,.16);
+ border:1px solid rgba(255,255,255,.55);backdrop-filter:blur(2px);}
+.pathcard .pcta .btn .circ svg{stroke:#fff;width:13px;height:13px;}
+.pathcard .pcta .btn .bl{position:relative;}
+.pathcard .pcta .btn .bl::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:1px;
+ background:rgba(255,255,255,.55);transform:scaleX(0);transform-origin:left center;
+ transition:transform .38s cubic-bezier(.22,.61,.36,1);}
+.pathcard:hover .pcta .btn .bl::after,.pathcard:focus-within .pcta .btn .bl::after{transform:scaleX(1);}
+.pathcard:hover .pcta .btn .circ,.pathcard:focus-within .pcta .btn .circ{background:var(--mvx-blue);
+ border-color:var(--mvx-blue);}
+/* clear the CTA so nothing sits on top of it */
+.pathcard .pc{padding-bottom:5.4rem;}
+.pathcard .reveal{padding-bottom:5.4rem;}
+@media(prefers-reduced-motion:reduce){.pathcard .pcta .btn .bl::after{transition:none;}}
 </style>
 </head><body>
 <header class="site"><div class="nav">
