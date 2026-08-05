@@ -1037,6 +1037,12 @@ a.reglink{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;colo
 .btn.joblink:hover .bl::after{transform:scaleX(1);}
 @media(max-width:820px){.jobs-split{gap:2.6rem;}}
 @media(prefers-reduced-motion:reduce){.btn.joblink .bl::after{transition:none;}}
+
+/* ---------- v35: one lockup treatment across all three product families ---------- */
+.sechead .famlogo{height:74px;width:auto;object-fit:contain;background:transparent;padding:0;
+ align-self:flex-start;}
+@media(max-width:920px){.sechead .famlogo{height:58px;}}
+@media(max-width:560px){.sechead .famlogo{height:48px;}}
 </style>
 </head><body>
 <header class="site"><div class="nav">
@@ -1097,8 +1103,7 @@ a.reglink{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;colo
 
 <section class="band light prod-section" id="thoracent"><div class="container">
  <div class="sechead">
-  <div class="brandlock"><img class="bl-mark" src="assets/maverix-logo-midnight.png" alt="Maverix">
-   <div class="bl-tag">Stents and Accessories</div></div>
+  <img class="famlogo" src="assets/maverix-interventional-portfolio-logo-color.png" alt="Maverix Interventional Portfolio">
   <div class="distby inline"><div class="seclabel">Distributed by</div>
    <img src="assets/thoracent-by-maverix-logo.png" alt="Thoracent, a Maverix company"></div>
   <div class="contact-block"><div class="cb-label">Sales inquiries</div><div class="cb-title">Customer Care</div>
