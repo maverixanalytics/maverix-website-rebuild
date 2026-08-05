@@ -1182,6 +1182,12 @@ a.reglink{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;colo
 /* room for the sampling-length labels under the split figure */
 .nw-fig.sp{margin-bottom:1.9rem;}
 .nw-stat p{margin-top:.6rem;}
+/* v40b: real Narwhal photography replaces the placeholders */
+.nw-shot{overflow:hidden;}
+.nw-shot img{width:100%;height:100%;object-fit:cover;display:block;border-radius:14px;}
+.nw-cardimg{aspect-ratio:16/10;border-radius:8px;overflow:hidden;margin-bottom:1.1rem;
+ background:#fff;border:1px solid var(--frame-line);}
+.nw-cardimg img{width:100%;height:100%;object-fit:contain;display:block;background:#fff;}
 </style>
 </head><body>
 <header class="site"><div class="nav">
@@ -1251,6 +1257,7 @@ a.reglink{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;colo
  <p class="biglead">An accurate diagnosis starts with adequate tissue.</p>
  <p class="bodytext">Maverix offers a suite of endobronchial instruments for interventional pulmonologists &mdash; from forceps for histological sampling of the airway wall, to ultrasound-guided needles for submucosal and extramural targets, to a cryoprobe that takes tissue biopsies by cryoadhesion and removes foreign bodies, mucus plugs, clots, and necrotic tissue.</p>
 
+ <div class="seclabel">Featured</div>
  <section class="nwfeature">
   <div class="nw-top">
    <div class="nw-copy">
@@ -1262,7 +1269,7 @@ a.reglink{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;colo
     <a class="btn nw-cta" href="products/narwhal-cryo-system.html">
      <span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span><span class="bl">Explore the Narwhal Cryo System</span></a>
    </div>
-   <div class="nw-shot imgph" data-ph="Narwhal cryoprobe tip"></div>
+   <div class="nw-shot"><img src="images/narwhal/hero.jpg" alt="Narwhal cryoprobe tip" loading="lazy"></div>
   </div>
 
   <div class="nw-body">
@@ -1270,20 +1277,20 @@ a.reglink{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;colo
    <div class="nw-cards">
     <div class="nw-card">
      <h3>No capital equipment.</h3>
-     <div class="imgph sm" data-ph="Probe + N&#8322;O cartridge"></div>
+     <div class="nw-cardimg"><img src="images/narwhal/no-console.jpg" alt="Narwhal probe with its single-use N&#8322;O cartridge" loading="lazy"></div>
      <div class="nw-why">Why it matters</div>
      <p>Handheld and self-contained. Each probe is powered by a single-use N&#8322;O cartridge,
       freeing cryobiopsy from a fixed console &mdash; simplifying setup and use.</p>
     </div>
     <div class="nw-card">
      <h3>Pointed tip.</h3>
-     <div class="imgph sm" data-ph="Pointed radiopaque tip"></div>
+     <div class="nw-cardimg"><img src="images/narwhal/pointed-tip.jpg" alt="Pointed, radiopaque cryoprobe tip" loading="lazy"></div>
      <div class="nw-why">Why it matters</div>
      <p>A pointed, radiopaque cryoprobe tip facilitates direct access for efficient biopsy sampling.</p>
     </div>
     <div class="nw-card">
      <h3>All-in-one adjustable tip length.</h3>
-     <div class="imgph sm" data-ph="Adjustment dial, 3&nbsp;mm / 6&nbsp;mm"></div>
+     <div class="nw-cardimg"><img src="images/narwhal/tip-length.jpg" alt="Integrated tip-length adjustment dial, 3 mm or 6 mm" loading="lazy"></div>
      <div class="nw-why">Why it matters</div>
      <p>Selectable tip length puts the physician in control. An integrated adjustment dial offers
       short (~3&nbsp;mm) or long (~6&nbsp;mm) options, allowing sample size matching to the target.</p>
