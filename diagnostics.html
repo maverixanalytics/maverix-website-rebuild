@@ -1103,6 +1103,85 @@ a.reglink{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;colo
  .hero-thin.zoomout .hero-img{left:0;width:100%;
   -webkit-mask-image:none;mask-image:none;}
 }
+
+/* ---------- v40: Narwhal Cryo System featured section (Diagnosis page) ---------- */
+.nwfeature{margin:3.2rem 0 3.6rem;border:1px solid var(--frame-line);background:#fff;overflow:hidden;}
+/* teal masthead, echoing the brochure cover */
+.nw-top{display:grid;grid-template-columns:1.15fr .85fr;gap:3rem;align-items:center;
+ padding:3.2rem 3rem;color:#fff;
+ background:linear-gradient(115deg,#0F3D50 0%,#1A4A5D 30%,#276F8B 68%,#3494BA 100%);}
+.nw-badge{display:inline-flex;align-items:center;gap:.5rem;border:1px solid rgba(255,255,255,.45);
+ border-radius:999px;padding:.35rem 1rem;font-family:var(--font-tagline);font-weight:600;
+ font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:#fff;margin-bottom:1.6rem;}
+.nw-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:#F26A3D;}
+.nw-kicker{font-family:var(--font-tagline);font-weight:600;font-size:.8rem;letter-spacing:.26em;
+ text-transform:uppercase;color:var(--mvx-sky);margin-bottom:1rem;
+ display:flex;align-items:center;gap:.9rem;}
+.nw-kicker::before{content:"";width:26px;height:1px;background:var(--mvx-sky);flex:0 0 26px;}
+.nw-title{font-family:var(--font-tagline);font-weight:700;font-size:clamp(2.4rem,4vw,3.5rem);
+ line-height:1.04;letter-spacing:-.015em;color:#fff;margin:0 0 1.2rem;}
+.nw-dot{color:#F26A3D;}
+.nw-lede{font-size:1.05rem;line-height:1.65;color:rgba(255,255,255,.9);max-width:34rem;margin-bottom:1.9rem;}
+.nw-cta{color:#fff;font-weight:600;}
+.nw-cta .circ{background:#fff;}
+.nw-cta .circ svg{stroke:var(--mvx-deep);}
+.nw-cta .bl::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1.5px;background:#fff;
+ transform:scaleX(0);transform-origin:left center;transition:transform .38s cubic-bezier(.22,.61,.36,1);}
+.nw-cta:hover{color:#fff;}
+.nw-cta:hover .bl::after{transform:scaleX(1);}
+.nw-shot{aspect-ratio:4/5;border-radius:14px;}
+/* image placeholders — swap for real art when it lands */
+.imgph{position:relative;background:repeating-linear-gradient(45deg,#E8ECEF 0 12px,#DFE4E8 12px 24px);
+ border:1px dashed #9FA9B2;display:flex;align-items:center;justify-content:center;}
+.imgph::after{content:attr(data-ph) " — image placeholder";font-family:var(--font-sans);font-size:.76rem;
+ letter-spacing:.06em;color:#5B6670;text-align:center;padding:.6rem 1rem;line-height:1.4;}
+.imgph.sm{aspect-ratio:16/10;border-radius:8px;margin-bottom:1.1rem;}
+.nw-body{padding:2.8rem 3rem 3rem;}
+.nw-seclabel{font-family:var(--font-tagline);font-weight:600;font-size:.78rem;letter-spacing:.26em;
+ text-transform:uppercase;color:var(--mvx-teal);padding-bottom:.7rem;margin-bottom:1.6rem;
+ border-bottom:1px solid var(--frame-line);}
+.nw-seclabel.ev{color:#C2632F;margin-top:3rem;}
+.nw-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;}
+.nw-card{border:1px solid var(--frame-line);border-radius:10px;padding:1.5rem;background:#FCFDFD;}
+.nw-card h3{font-family:var(--font-tagline);font-weight:700;font-size:1.08rem;color:var(--heading);
+ margin:0 0 1rem;line-height:1.3;}
+.nw-why{font-family:var(--font-tagline);font-weight:600;font-size:.68rem;letter-spacing:.2em;
+ text-transform:uppercase;color:#C2632F;padding-bottom:.5rem;margin-bottom:.7rem;
+ border-bottom:1px solid var(--frame-line);}
+.nw-card p{font-size:.9rem;line-height:1.6;color:#39434B;margin:0;}
+.nw-evtitle{font-family:var(--font-tagline);font-weight:700;font-size:1.9rem;color:var(--heading);
+ margin:0 0 1rem;line-height:1.2;}
+.nw-evlede{font-size:1rem;line-height:1.68;color:#39434B;max-width:56rem;margin-bottom:1.8rem;}
+.nw-n{display:block;margin-top:.5rem;font-size:.9rem;color:#5B6670;}
+.nw-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-bottom:1.4rem;}
+.nw-stat{border-radius:10px;padding:1.6rem 1.4rem;text-align:center;
+ background:linear-gradient(160deg,#EAF4F8 0%,#DCEBF2 100%);border:1px solid #CBDEE7;}
+.nw-fig{font-family:var(--font-tagline);font-weight:300;font-size:3rem;line-height:1;
+ color:var(--mvx-teal);margin-bottom:.8rem;}
+.nw-fig.sp{display:flex;align-items:center;justify-content:center;gap:1.1rem;font-size:2.2rem;}
+.nw-fig.sp span{display:inline-flex;align-items:baseline;gap:.2rem;position:relative;}
+.nw-fig.sp em{font-style:normal;font-size:.9rem;color:var(--mvx-slate);}
+.nw-fig.sp small{position:absolute;left:0;top:100%;margin-top:.3rem;font-size:.68rem;
+ letter-spacing:.1em;color:#C2632F;white-space:nowrap;}
+.nw-fig.sp i{width:1px;height:38px;background:#B4C9D4;display:inline-block;}
+.nw-stat p{font-size:.86rem;line-height:1.5;color:#39434B;margin:.9rem 0 0;}
+.nw-foot,.nw-rx{font-size:.72rem;line-height:1.55;color:#6B747C;margin:0 0 .9rem;}
+.nw-rx{padding-top:.9rem;border-top:1px solid var(--frame-line);margin-bottom:0;}
+.nw-rx strong{color:var(--heading);}
+@media(max-width:1000px){
+ .nw-top{grid-template-columns:1fr;gap:2rem;padding:2.4rem 1.8rem;}
+ .nw-shot{aspect-ratio:16/9;}
+ .nw-body{padding:2rem 1.8rem 2.4rem;}
+ .nw-cards,.nw-stats{grid-template-columns:1fr;}
+ .nw-evtitle{font-size:1.5rem;}
+}
+@media(prefers-reduced-motion:reduce){.nw-cta .bl::after{transition:none;}}
+/* v40a: masthead type must win over the generic band heading colour */
+.nwfeature .nw-top .nw-title,.nwfeature .nw-top h2{color:#fff;}
+.nwfeature .nw-top .nw-title .nw-dot{color:#F26A3D;}
+/* room for the sampling-length labels under the split figure */
+.nw-fig.sp{margin-bottom:1.9rem;}
+.nw-stat p{margin-top:.6rem;}
 </style>
 </head><body>
 <header class="site"><div class="nav">
@@ -1168,7 +1247,6 @@ a.reglink{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;colo
  <div class="seclabel">About</div>
  <p class="biglead">Early cancer detection lowers healthcare costs and saves lives &hellip; but most lung nodules discovered in radiology studies lack clear indications of risk, leaving uncertainty about next steps.</p>
  <p class="bodytext">We are developing a diagnostic test that aims to better clarify which patients are most likely to benefit from either tissue sampling or continued monitoring.</p>
- <div class="demorow above"><a class="demobtn " href="https://calendly.com/d/d2hv-6ry-mwk/virtual-demo" target="_blank" rel="noopener"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span><span class="bl">Book a Virtual Demo</span></a></div>
  <div class="photo-cards expand">
   <div class="photo-card has-reveal" tabindex="0"><img src="assets/doctor-detection-image.jpg" alt="" loading="lazy"><div class="pt">Early detection and resection is crucial&hellip;</div>
    <div class="reveal"><div class="pt2">Early detection and resection is crucial&hellip;</div><p class="lead">More than half of stage I patients are cured by a single surgery.</p><p class="sub">Lung nodules are detected in 1/4 of CT scans with few ultimately identified as cancer.</p></div></div>
