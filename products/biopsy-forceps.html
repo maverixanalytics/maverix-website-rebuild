@@ -1066,6 +1066,29 @@ a.reglink{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;colo
  display:inline-flex;font-size:.9rem;}
 .contact-block a.demobtn:hover{color:#fff;}
 .contact-block a.demobtn .bl{color:#fff;}
+
+/* ---------- v37: brighter homepage imagery, top-aligned lockups, CTA above header ---------- */
+/* hero video + still: more of the footage shows through, scrim eased on the right */
+.hero video,.hero .hero-img{opacity:.74;}
+.hero .shade{background:linear-gradient(90deg,rgba(9,15,19,.72) 0%,rgba(9,15,19,.44) 45%,rgba(9,15,19,.20) 100%);}
+/* dark bands (Our Mission, Our Goal, About You, Join Us) */
+.band.dark .bgimg{opacity:.88;}
+.band.dark.goal .bgimg{opacity:.92;}
+.band.dark::after{background:linear-gradient(90deg,rgba(8,13,17,.66) 0%,rgba(8,13,17,.42) 50%,rgba(8,13,17,.20) 100%);}
+/* section head: lockup and "Distributed by" hang from the same top line */
+.sechead{align-items:flex-start;}
+.sechead .famlogo,.sechead .distby.inline,.sechead .contact-block{margin-top:0;}
+.demorow.above{margin-top:0;margin-bottom:2.6rem;}
+
+/* ---------- v38: heroes pulled back a further 50%, gray fill either side ---------- */
+.hero-thin.zoomout{background:#AEB4BA;}
+.hero-thin.zoomout .hero-img{left:16.65%;right:auto;width:66.7%;}
+@media(max-width:900px){
+ .hero-thin.zoomout .hero-img{left:8%;width:84%;}
+}
+@media(max-width:600px){
+ .hero-thin.zoomout .hero-img{left:0;width:100%;}
+}
 </style>
 </head><body>
 <header class="site"><div class="nav">
