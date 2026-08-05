@@ -1066,6 +1066,29 @@ a.reglink{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;colo
  display:inline-flex;font-size:.9rem;}
 .contact-block a.demobtn:hover{color:#fff;}
 .contact-block a.demobtn .bl{color:#fff;}
+
+/* ---------- v37: brighter homepage imagery, top-aligned lockups, CTA above header ---------- */
+/* hero video + still: more of the footage shows through, scrim eased on the right */
+.hero video,.hero .hero-img{opacity:.74;}
+.hero .shade{background:linear-gradient(90deg,rgba(9,15,19,.72) 0%,rgba(9,15,19,.44) 45%,rgba(9,15,19,.20) 100%);}
+/* dark bands (Our Mission, Our Goal, About You, Join Us) */
+.band.dark .bgimg{opacity:.88;}
+.band.dark.goal .bgimg{opacity:.92;}
+.band.dark::after{background:linear-gradient(90deg,rgba(8,13,17,.66) 0%,rgba(8,13,17,.42) 50%,rgba(8,13,17,.20) 100%);}
+/* section head: lockup and "Distributed by" hang from the same top line */
+.sechead{align-items:flex-start;}
+.sechead .famlogo,.sechead .distby.inline,.sechead .contact-block{margin-top:0;}
+.demorow.above{margin-top:0;margin-bottom:2.6rem;}
+
+/* ---------- v38: heroes pulled back a further 50%, gray fill either side ---------- */
+.hero-thin.zoomout{background:#AEB4BA;}
+.hero-thin.zoomout .hero-img{left:16.65%;right:auto;width:66.7%;}
+@media(max-width:900px){
+ .hero-thin.zoomout .hero-img{left:8%;width:84%;}
+}
+@media(max-width:600px){
+ .hero-thin.zoomout .hero-img{left:0;width:100%;}
+}
 </style>
 </head><body>
 <header class="site"><div class="nav">
@@ -1120,7 +1143,7 @@ a.reglink{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;colo
 </div>
 </div></header>
 
-<div class="hero-thin"><img class="hero-img" src="assets/lung-cancer-x-ray.png" alt=""><div class="ov"></div><div class="container inner">
+<div class="hero-thin zoomout"><img class="hero-img" src="assets/lung-cancer-x-ray.png" alt=""><div class="ov"></div><div class="container inner">
  <h1>risk assessment</h1>
 </div></div>
 
@@ -1131,6 +1154,7 @@ a.reglink{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;colo
  <div class="seclabel">About</div>
  <p class="biglead">Early cancer detection lowers healthcare costs and saves lives &hellip; but most lung nodules discovered in radiology studies lack clear indications of risk, leaving uncertainty about next steps.</p>
  <p class="bodytext">We are developing a diagnostic test that aims to better clarify which patients are most likely to benefit from either tissue sampling or continued monitoring.</p>
+ <div class="demorow above"><a class="demobtn " href="https://calendly.com/d/d2hv-6ry-mwk/virtual-demo" target="_blank" rel="noopener"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span><span class="bl">Book a Virtual Demo</span></a></div>
  <div class="photo-cards expand">
   <div class="photo-card has-reveal" tabindex="0"><img src="assets/doctor-detection-image.jpg" alt="" loading="lazy"><div class="pt">Early detection and resection is crucial&hellip;</div>
    <div class="reveal"><div class="pt2">Early detection and resection is crucial&hellip;</div><p class="lead">More than half of stage I patients are cured by a single surgery.</p><p class="sub">Lung nodules are detected in 1/4 of CT scans with few ultimately identified as cancer.</p></div></div>
@@ -1139,7 +1163,6 @@ a.reglink{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;colo
   <div class="photo-card has-reveal" tabindex="0"><img src="assets/jenny-hill-mqvwb7kuooe-unsplash.jpg" alt="" loading="lazy"><div class="pt">&hellip;and a diagnostic could change everything.</div>
    <div class="reveal"><div class="pt2">&hellip;and a diagnostic could change everything.</div><p class="lead">A diagnostic tool that identifies high-risk patients could move them to the front of the line for a biopsy.</p><p class="sub">Their treatment regime could start earlier, which can improve outcomes.</p></div></div>
  </div>
- <div class="demorow"><a class="demobtn " href="https://calendly.com/d/d2hv-6ry-mwk/virtual-demo" target="_blank" rel="noopener"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span><span class="bl">Book a Virtual Demo</span></a></div>
 </div></section>
 <footer class="site"><div class="container">
 <div class="fgrid">

@@ -1066,6 +1066,29 @@ a.reglink{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;colo
  display:inline-flex;font-size:.9rem;}
 .contact-block a.demobtn:hover{color:#fff;}
 .contact-block a.demobtn .bl{color:#fff;}
+
+/* ---------- v37: brighter homepage imagery, top-aligned lockups, CTA above header ---------- */
+/* hero video + still: more of the footage shows through, scrim eased on the right */
+.hero video,.hero .hero-img{opacity:.74;}
+.hero .shade{background:linear-gradient(90deg,rgba(9,15,19,.72) 0%,rgba(9,15,19,.44) 45%,rgba(9,15,19,.20) 100%);}
+/* dark bands (Our Mission, Our Goal, About You, Join Us) */
+.band.dark .bgimg{opacity:.88;}
+.band.dark.goal .bgimg{opacity:.92;}
+.band.dark::after{background:linear-gradient(90deg,rgba(8,13,17,.66) 0%,rgba(8,13,17,.42) 50%,rgba(8,13,17,.20) 100%);}
+/* section head: lockup and "Distributed by" hang from the same top line */
+.sechead{align-items:flex-start;}
+.sechead .famlogo,.sechead .distby.inline,.sechead .contact-block{margin-top:0;}
+.demorow.above{margin-top:0;margin-bottom:2.6rem;}
+
+/* ---------- v38: heroes pulled back a further 50%, gray fill either side ---------- */
+.hero-thin.zoomout{background:#AEB4BA;}
+.hero-thin.zoomout .hero-img{left:16.65%;right:auto;width:66.7%;}
+@media(max-width:900px){
+ .hero-thin.zoomout .hero-img{left:8%;width:84%;}
+}
+@media(max-width:600px){
+ .hero-thin.zoomout .hero-img{left:0;width:100%;}
+}
 </style>
 </head><body>
 <header class="site"><div class="nav">
@@ -1135,6 +1158,7 @@ a.reglink{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;colo
  <div class="seclabel">About</div>
  <p class="biglead">When a malignant tumor narrows the airway or esophagus, every breath and every swallow becomes a struggle. The Thoracent stent portfolio gives interventional pulmonologists and gastroenterologists minimally invasive tools to reopen the lumen and relieve obstructive symptoms.</p>
  <p class="bodytext">Malignant central airway obstruction and dysphagia from esophageal tumors are among the most distressing complications of thoracic cancers, and stenting offers mechanical relief as part of a multidisciplinary palliative care plan. Built on established self-expanding Nitinol platforms, each stent is engineered for controlled endoscopic deployment, conformability to patient anatomy, and radial support where it&rsquo;s needed most &mdash; with sizes and delivery options spanning straight tracheobronchial segments, the carina, and the esophagus, so physicians can match the device to the patient. Every device is supplied sterile, for single use.</p>
+ <div class="demorow above"><a class="demobtn " href="https://calendly.com/d/d2hv-6ry-mwk/virtual-demo" target="_blank" rel="noopener"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span><span class="bl">Book a Virtual Demo</span></a></div>
  <div class="seclabel">Products</div>
  <div class="pgroup"><div class="pglabel">Airway</div><div class="pgrid"><div class="pcard"><div class="ph"><img src="images/bonastent-tb.jpg" alt="Bonastent&reg; Tracheobronchial Stent" loading="lazy"></div><div class="pi"><h3>Bonastent&reg; Tracheobronchial Stent</h3><a class="btn" href="products/bonastent-tracheobronchial-stent.html"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span><span class="bl">Learn more</span></a></div></div>
 <div class="pcard"><div class="ph"><img src="images/ystent.png" alt="Y-Shaped Tracheal Stent" loading="lazy"></div><div class="pi"><h3>Y-Shaped Tracheal Stent</h3><a class="btn" href="products/y-shaped-tracheal-stent.html"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span><span class="bl">Learn more</span></a></div></div>
@@ -1147,7 +1171,6 @@ a.reglink{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;colo
 <div class="pcard"><div class="ph"><img src="assets/netis-retrieval-net.jpg" alt="Netis Retrieval Net" loading="lazy"></div><div class="pi"><h3>Netis Retrieval Net</h3><a class="btn" href="products/netis-retrieval-net.html"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span><span class="bl">Learn more</span></a></div></div>
 </div></div>
 
-  <div class="demorow"><a class="demobtn " href="https://calendly.com/d/d2hv-6ry-mwk/virtual-demo" target="_blank" rel="noopener"><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span><span class="bl">Book a Virtual Demo</span></a></div>
  <p class="rxnote">All devices are prescription-only, for use by trained physicians. See each product&rsquo;s Instructions for Use for complete indications, contraindications, warnings, and precautions.</p>
 </div></section>
 <footer class="site"><div class="container">
