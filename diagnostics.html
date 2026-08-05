@@ -2,6 +2,14 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',functionality_storage:'denied',personalization_storage:'denied',security_storage:'granted',wait_for_update:500});
+gtag('set','ads_data_redaction',true);gtag('set','url_passthrough',true);
+</script>
+<script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/b0481c682f112a57de13418a/script.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QFMYMJ9YWX"></script>
+<script>gtag('js',new Date());gtag('config','G-QFMYMJ9YWX',{anonymize_ip:true});</script>
 <title>Risk Assessment – Maverix Medical</title>
 <meta name="description" content="Developing a diagnostic test that aims to better clarify which patients are most likely to benefit from either tissue sampling or continued monitoring.">
 <link rel="canonical" href="https://maverixanalytics.github.io/maverix-website-rebuild/diagnostics.html">
@@ -107,14 +115,9 @@
  <div class="frow"><a class="mail" href="mailto:contact@maverixmedical.com">contact@maverixmedical.com</a>
  <a class="li-sq" href="https://www.linkedin.com/company/maverix-medical/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a></div></div>
 <div class="fbottom">
- <div><a href="regulatory-information.html">Regulatory Information</a><a href="privacy-policy.html">Privacy Policy</a><a href="terms-of-use.html">Terms of Use</a></div>
+ <div><a href="regulatory-information.html">Regulatory Information</a><a href="privacy-policy.html">Privacy Policy</a><a href="terms-of-use.html">Terms of Use</a><a href="#" class="cky-banner-element">Cookie Settings</a></div>
  <div>Copyright &copy; Maverix</div>
 </div></div></footer>
-<div class="cookiebar" id="cookiebar">
- <div class="cb-text"><b>We value your privacy</b>
- <p>We use cookies to enhance your browsing experience, serve personalised ads or content, and analyse our traffic. By clicking "Accept All", you consent to our use of cookies.</p></div>
- <button data-cookie>Customise</button><button class="mid" data-cookie>Reject All</button><button class="mid" data-cookie>Accept All</button>
-</div>
 <script>
 (function(){
  var MOB='(max-width:920px)';
@@ -176,10 +179,6 @@
    document.querySelectorAll('.tabbar [data-tab]').forEach(function(x){x.classList.remove('on');});
    document.querySelectorAll('.tabpane').forEach(function(p){p.classList.remove('on');});
    b.classList.add('on');var p=document.getElementById(b.getAttribute('data-tab'));if(p)p.classList.add('on');});});
- var CK='mvx-cookie-choice';
- try{if(window.localStorage&&localStorage.getItem(CK)){var cb=document.getElementById('cookiebar');if(cb)cb.classList.add('hidden');}}catch(e){}
- document.querySelectorAll('[data-cookie]').forEach(function(b){
-  b.addEventListener('click',function(){var c=document.getElementById('cookiebar');if(c)c.classList.add('hidden');try{localStorage.setItem(CK,'1');}catch(e){}});});
  document.querySelectorAll('form[data-mvxform]').forEach(function(f){
   var box=f.parentElement,
       ok=box.querySelector('.form-msg.ok'),

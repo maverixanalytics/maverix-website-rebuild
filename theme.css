@@ -219,13 +219,6 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
 .fbottom a{color:var(--muted);margin-right:1.4rem;}
 .fbottom a:hover{color:var(--teal);}
 /* cookie banner */
-.cookiebar{position:fixed;left:0;right:0;bottom:0;z-index:90;background:#101820;color:#fff;padding:1.1rem 2rem;display:flex;align-items:center;gap:2rem;flex-wrap:wrap;}
-.cookiebar .cb-text{flex:1;min-width:280px;}
-.cookiebar .cb-text b{display:block;font-size:1.05rem;margin-bottom:.25rem;}
-.cookiebar .cb-text p{font-size:.85rem;color:#C9D2D8;}
-.cookiebar button{font:inherit;font-weight:600;font-size:.9rem;padding:.65rem 1.3rem;cursor:pointer;border:1px solid #7A97C9;background:transparent;color:#fff;}
-.cookiebar button.mid{background:#7A97C9;border-color:#7A97C9;color:#0D1418;}
-.cookiebar.hidden{display:none;}
 @media(max-width:920px){
  .nav-links{display:none;position:absolute;top:62px;left:0;right:0;background:var(--header-dark);flex-direction:column;align-items:flex-start;padding:1rem 24px 1.6rem;gap:.2rem;box-shadow:0 18px 30px rgba(13,20,24,.3);}
  .nav-links.open{display:flex;}
@@ -349,8 +342,6 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
 .jbar:hover .jseg{filter:brightness(1.06);}
 .modal .box{animation:mdl .28s ease;}
 @keyframes mdl{from{opacity:0;transform:translateY(14px) scale(.98);}to{opacity:1;transform:none;}}
-.cookiebar{animation:cbup .5s ease .6s backwards;}
-@keyframes cbup{from{transform:translateY(100%);}to{transform:none;}}
 .hero .inner>*,.hero-thin h1{animation:heroin .8s ease backwards;}
 .hero .inner>*:nth-child(2){animation-delay:.12s;}
 .hero .inner>*:nth-child(3){animation-delay:.24s;}
@@ -361,7 +352,7 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
 }
 @media (prefers-reduced-motion: reduce){
  .pathcard img,.photo-card img,.pcard .ph img,.member img{transition:none;}
- .hero .inner>*,.hero-thin h1,.modal .box,.cookiebar{animation:none;}
+ .hero .inner>*,.hero-thin h1,.modal .box{animation:none;}
 }
 
 /* v6: live-matched dark carousel tiles */
@@ -530,11 +521,6 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
  .modal .mbody h2{font-size:1.55rem;padding-right:2.4rem;}
  .modal .mbody .ti{margin-bottom:1.1rem;}
  /* compact cookie bar */
- .cookiebar{padding:.85rem 1rem .95rem;gap:.55rem;}
- .cookiebar .cb-text{flex:1 1 100%;min-width:0;}
- .cookiebar .cb-text b{font-size:.92rem;margin-bottom:.1rem;}
- .cookiebar .cb-text p{font-size:.74rem;line-height:1.35;}
- .cookiebar button{flex:1;font-size:.8rem;padding:.5rem .6rem;}
 }
 @media(max-width:560px){
  section.band>.container{padding:3.2rem 20px;}
@@ -1108,3 +1094,10 @@ a.reglink{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;colo
 .pathcard .pc{padding-bottom:5.4rem;}
 .pathcard .reveal{padding-bottom:5.4rem;}
 @media(prefers-reduced-motion:reduce){.pathcard .pcta .btn .bl::after{transition:none;}}
+
+/* --- v43: consent -------------------------------------------------------- */
+/* Footer legal row now carries a 4th link (CookieYes revisit). Keep each label
+   intact so the row wraps between links rather than inside "Privacy Policy". */
+.fbottom a{white-space:nowrap;}
+.fbottom>div:first-child{display:flex;flex-wrap:wrap;gap:0 1.4rem;}
+.fbottom>div:first-child a{margin-right:0;}
