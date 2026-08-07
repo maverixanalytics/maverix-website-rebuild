@@ -92,7 +92,7 @@ gtag('set','ads_data_redaction',true);gtag('set','url_passthrough',true);
     <div class="pd-img" style="margin-bottom:1.8rem;"><img src="../images/hilzo-ues.jpg" alt="Hilzo™ UES Esophageal Stent" loading="lazy"></div>
     <h2 class="pd-title">Features</h2>
     <p class="bodytext">A fully covered upper-esophageal stent designed as a minimally invasive device for managing esophageal conditions, with flares engineered for placement flexibility near the upper esophageal sphincter.</p>
-    <ul class="benefits"><li>Proximal flare (0.5 cm) &mdash; placement flexibility near the upper esophageal sphincter</li><li>Distal flare (1.5 cm) &mdash; prevents migration</li><li>Silicone-covered flares &mdash; reduce tissue in-growth</li><li>PTFE body covering</li><li>Dual retrieval strings (proximal and distal)</li><li>Large radiopaque markers &mdash; fluoroscopic visibility</li><li>14 Fr over-the-wire delivery system</li><li>Latex-free</li></ul>
+    <ul class="benefits"><li>Proximal flare 0.5 cm in length for added room in placements close to the UES</li><li>Distal flare 1.5 cm to prevent migration</li><li>Silicone-covered flares designed to reduce tissue in-growth</li><li>Body covered with PTFE</li><li>Dual retrieval string (proximal and distal ends)</li><li>Large distal and proximal radiopaque markers to allow fluoroscopic visibility</li><li>14 Fr over-the-wire delivery system</li></ul>
     
     
    </div>
@@ -234,7 +234,7 @@ gtag('set','ads_data_redaction',true);gtag('set','url_passthrough',true);
     var w=t.scrollWidth/t.children.length;
     if(t.scrollLeft+t.clientWidth>=t.scrollWidth-8){t.scrollTo({left:0,behavior:'smooth'});}
     else{t.scrollBy({left:w,behavior:'smooth'});}},4000);});
-  var sel=['.card','.pathcard','.photo-card','.pcard','.member','.advcard','.partner','.newsgrid .ncell','.featured','.statgrid .cell','.why-cell','.benefit-cell','.newsitem','.sechead','.biglead','.journey','.serpex-two .prod','.banner-blue','.challenge .headline','.spec'];
+  var sel=['.card','.pathcard','.photo-card','.pcard','.member','.advcard','.newsgrid .ncell','.featured','.statgrid .cell','.why-cell','.benefit-cell','.newsitem','.sechead','.biglead','.journey','.serpex-two .prod','.banner-blue','.challenge .headline','.spec'];
   var els=document.querySelectorAll(sel.join(','));
   var io=new IntersectionObserver(function(entries){
    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});

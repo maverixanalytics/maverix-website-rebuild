@@ -92,7 +92,7 @@ gtag('set','ads_data_redaction',true);gtag('set','url_passthrough',true);
     <div class="pd-img" style="margin-bottom:1.8rem;"><img src="../images/forceps.jpg" alt="Biopsy Forceps" loading="lazy"></div>
     <h2 class="pd-title">Features</h2>
     <p class="bodytext">Biopsy forceps are surgical instruments used to obtain tissue samples for microscopic examination during procedures including endoscopy, colposcopy, and other medical interventions.</p>
-    <ul class="benefits"><li>Single use, sterile</li><li>Fenestrated oval cups</li><li>Teflon-coated polyethylene sheath &mdash; easy passability</li><li>3-ring handle &mdash; tactile feedback</li><li>Compatible with Ion, Monarch, and Galaxy robotic navigation systems</li></ul>
+    <ul class="benefits"><li>Single use</li><li>Sterile</li><li>Fenestrated oval cups</li><li>Teflon-coated polyethylene sheath for easy passability</li><li>3-ring handle for tactile feedback</li><li>Compatible with Ion, Monarch, and Galaxy robotic navigation systems</li></ul>
     
     
    </div>
@@ -234,7 +234,7 @@ gtag('set','ads_data_redaction',true);gtag('set','url_passthrough',true);
     var w=t.scrollWidth/t.children.length;
     if(t.scrollLeft+t.clientWidth>=t.scrollWidth-8){t.scrollTo({left:0,behavior:'smooth'});}
     else{t.scrollBy({left:w,behavior:'smooth'});}},4000);});
-  var sel=['.card','.pathcard','.photo-card','.pcard','.member','.advcard','.partner','.newsgrid .ncell','.featured','.statgrid .cell','.why-cell','.benefit-cell','.newsitem','.sechead','.biglead','.journey','.serpex-two .prod','.banner-blue','.challenge .headline','.spec'];
+  var sel=['.card','.pathcard','.photo-card','.pcard','.member','.advcard','.newsgrid .ncell','.featured','.statgrid .cell','.why-cell','.benefit-cell','.newsitem','.sechead','.biglead','.journey','.serpex-two .prod','.banner-blue','.challenge .headline','.spec'];
   var els=document.querySelectorAll(sel.join(','));
   var io=new IntersectionObserver(function(entries){
    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
