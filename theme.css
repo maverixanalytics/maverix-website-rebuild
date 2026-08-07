@@ -240,7 +240,7 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
  .fbrand{text-align:left;}
 }
 @media(max-width:560px){
- .cards3,.pathways,.statgrid,.partners,.newsgrid,.teamgrid,.advgrid,.benefit-grid.g4,.benefit-grid.g5{grid-template-columns:1fr;}
+ .cards3,.pathways,.statgrid,.newsgrid,.teamgrid,.advgrid,.benefit-grid.g4,.benefit-grid.g5{grid-template-columns:1fr;}
  .jbar{flex-wrap:wrap;}
 }
 
@@ -316,7 +316,7 @@ footer.site .container{border-left:1px solid var(--frame-line);border-right:1px 
 .readmore{transition:background .2s ease,color .2s ease,letter-spacing .2s ease;}
 .pathcard img,.photo-card img,.pcard .ph img,.member img,.altrow .img img{transition:transform .6s cubic-bezier(.22,.61,.36,1);}
 .pathcard:hover img,.photo-card:hover img,.pcard:hover .ph img,.member:hover img,.altrow .img:hover img{transform:scale(1.06);}
-.pathcard,.photo-card,.pcard,.partner{transition:box-shadow .3s ease,transform .3s ease;}
+.pathcard,.photo-card,.pcard{transition:box-shadow .3s ease,transform .3s ease;}
 .pathcard:hover,.photo-card:hover{box-shadow:0 20px 44px rgba(13,20,24,.28);}
 .pcard:hover{box-shadow:0 14px 32px rgba(26,74,93,.16);transform:translateY(-3px);}
 .member .nm{position:relative;display:inline-block;transition:color .2s ease;}
