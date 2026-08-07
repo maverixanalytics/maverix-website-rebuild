@@ -1101,3 +1101,12 @@ a.reglink{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;colo
 .fbottom a{white-space:nowrap;}
 .fbottom>div:first-child{display:flex;flex-wrap:wrap;gap:0 1.4rem;}
 .fbottom>div:first-child a{margin-right:0;}
+
+/* --- v44: linked stat citations -------------------------------------------
+   Footnote markers on the homepage statistics link to their sources (matching
+   the original site). They must not inherit ordinary link styling, which would
+   put a blue underline mid-sentence on the dark band. */
+sup.cite{font-size:.62em;line-height:0;vertical-align:super;margin-left:.12em;}
+sup.cite a{color:inherit;text-decoration:none;opacity:.72;border-bottom:1px dotted currentColor;}
+sup.cite a:hover,sup.cite a:focus-visible{opacity:1;}
+sup.cite .csep{opacity:.72;}
