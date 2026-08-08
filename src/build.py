@@ -588,6 +588,11 @@ def build_products():
  <p class="biglead">An accurate diagnosis starts with adequate tissue.</p>
  <p class="bodytext">Maverix offers a suite of endobronchial instruments for interventional pulmonologists &mdash; from forceps for histological sampling of the airway wall, to ultrasound-guided needles for submucosal and extramural targets, to a cryoprobe that takes tissue biopsies by cryoadhesion and removes foreign bodies, mucus plugs, clots, and necrotic tissue.</p>
 
+ <div class="demorow above">{demo_btn()}</div>
+ <div class="seclabel">Products</div>
+ <div class="pgrid">{pcards(DIAGNOSIS_TOOLS)}</div>
+ <p class="rxnote">All devices are prescription-only, for use by trained physicians. See each product&rsquo;s Instructions for Use for complete indications, contraindications, warnings, and precautions.</p>
+
  <div class="seclabel">Featured</div>
  <section class="nwfeature">
   <div class="nw-top">
@@ -657,11 +662,6 @@ def build_products():
     the Instructions for Use for complete indications, contraindications, warnings, and precautions.</p>
   </div>
  </section>
-
- <div class="demorow above">{demo_btn()}</div>
- <div class="seclabel">Products</div>
- <div class="pgrid">{pcards(DIAGNOSIS_TOOLS)}</div>
- <p class="rxnote">All devices are prescription-only, for use by trained physicians. See each product&rsquo;s Instructions for Use for complete indications, contraindications, warnings, and precautions.</p>
 </div></section>"""
 
     overview_body = f"""
