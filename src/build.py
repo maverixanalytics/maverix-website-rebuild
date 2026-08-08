@@ -654,11 +654,6 @@ def build_products():
     the pre-determined acceptance criteria, and was statistically the same as the comparison device. As
     with any cryosurgical procedure, bleeding and pneumothorax are potential risks &mdash; refer to the
     Instructions for Use. Preclinical results may not be representative of clinical performance.</p>
-   <p class="nw-rx"><strong>Rx only.</strong> The Maverix Narwhal Cryo System (MCB) Probe is intended for
-    palliative devitalization (destruction) of tissue during interventional procedures by the application
-    of extreme cold and cryo-adhesion for applications such as the removal of foreign bodies, mucus plugs,
-    blood clots, necrotic tissue, tissue tumors (palliative recanalization) and tissue biopsies. Refer to
-    the Instructions for Use for complete indications, contraindications, warnings, and precautions.</p>
   </div>
  </section>
  <p class="rxnote">All devices are prescription-only, for use by trained physicians. See each product&rsquo;s Instructions for Use for complete indications, contraindications, warnings, and precautions.</p>
