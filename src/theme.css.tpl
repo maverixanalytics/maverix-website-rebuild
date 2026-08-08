@@ -1119,3 +1119,12 @@ sup.cite .csep{opacity:.72;}
    growing to fill the gap. */
 .jseg.fade.truncated{background:linear-gradient(90deg,#C9E8F2,#D5EDF6);}
 .jseg.tail{background:none;padding:0;pointer-events:none;}
+
+/* --- v46: journey end-marker flush against Life Expectancy -----------------
+   The bar's inter-segment gap is now a custom property so the red end-marker can
+   cancel exactly one gap's worth of space and butt up against the Life Expectancy
+   block. Declared here (after the responsive block above) so the mobile value
+   feeds the same calc rather than drifting from a second hard-coded number. */
+.jbar{--journey-gap:8px;gap:var(--journey-gap);}
+.jseg.end-marker{margin-left:calc(var(--journey-gap) * -1);}
+@media(max-width:920px){.jbar{--journey-gap:5px;}}

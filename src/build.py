@@ -562,7 +562,7 @@ def build_products():
   {contact_block(MVX_EMAIL, phone=False, demo=False)}</div>
  <div class="seclabel">About</div>
  <p class="biglead">Early cancer detection lowers healthcare costs and saves lives &hellip; but most lung nodules discovered in radiology studies lack clear indications of risk, leaving uncertainty about next steps.</p>
- <p class="bodytext">We are developing a diagnostic test that aims to better clarify which patients are most likely to benefit from either tissue sampling or continued monitoring.</p>
+ <p class="bodytext">We are developing a diagnostic test that aims to better clarify which patients are most likely to benefit from either tissue sampling or continued monitoring. This helps focus physician efforts on patients that require more active intervention.</p>
  <div class="photo-cards expand">
   <div class="photo-card has-reveal" tabindex="0"><img src="{IMG['detection']}" alt="" loading="lazy"><div class="photo-title">Early detection and resection is crucial&hellip;</div>
    <div class="reveal"><div class="photo-title-reveal">Early detection and resection is crucial&hellip;</div><p class="lead">More than half of stage I patients are cured by a single surgery.</p><p class="photo-subtitle">Lung nodules are detected in 1/4 of CT scans with few ultimately identified as cancer.</p></div></div>
