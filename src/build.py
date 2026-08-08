@@ -944,10 +944,18 @@ LEADERS = [
 ADVISORS = ["George Cheng, M.D.","Michael Pritchett, M.D.","Kyle Hogarth, M.D.","Momen Wahidi, M.D.",
  "Javier Longoria, M.D.","Eric Seeley, M.D.","Ali Saeed, M.D.","Mike Machuzak, M.D.","Abid Khokar, M.D.","Krish Bhadra, M.D."]
 
+
+# Leadership entries kept in the source but held back from the published page.
+# The full record above (bio, photo, LinkedIn) stays intact — to publish someone
+# again, remove their key from this set and rebuild. Nothing else to restore.
+DRAFT_LEADERS = {"basile"}   # Basile Montagnese — draft, not published
+
 def build_team():
     grid = ""
     modals = ""
     for key, name, title, bio, li in LEADERS:
+        if key in DRAFT_LEADERS:      # held back — see DRAFT_LEADERS above
+            continue
         grid += f"""<button class="member" data-modal-open="bio-{key}">
 <img src="{HS[key]}" alt="{html.escape(name)}" loading="lazy">
 <div class="member-info"><div class="member-name">{name}</div><div class="member-role">{title}</div></div></button>
