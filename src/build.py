@@ -591,7 +591,6 @@ def build_products():
  <div class="demorow above">{demo_btn()}</div>
  <div class="seclabel">Products</div>
  <div class="pgrid">{pcards(DIAGNOSIS_TOOLS)}</div>
- <p class="rxnote">All devices are prescription-only, for use by trained physicians. See each product&rsquo;s Instructions for Use for complete indications, contraindications, warnings, and precautions.</p>
 
  <div class="seclabel">Featured</div>
  <section class="nwfeature">
@@ -662,6 +661,7 @@ def build_products():
     the Instructions for Use for complete indications, contraindications, warnings, and precautions.</p>
   </div>
  </section>
+ <p class="rxnote">All devices are prescription-only, for use by trained physicians. See each product&rsquo;s Instructions for Use for complete indications, contraindications, warnings, and precautions.</p>
 </div></section>"""
 
     overview_body = f"""
