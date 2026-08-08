@@ -1047,9 +1047,7 @@ a.reglink{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;colo
  letter-spacing:.1em;color:#C2632F;white-space:nowrap;}
 .nw-fig.split-figure i{width:1px;height:38px;background:#B4C9D4;display:inline-block;}
 .nw-stat p{font-size:.86rem;line-height:1.5;color:#39434B;margin:.9rem 0 0;}
-.nw-foot,.nw-rx{font-size:.72rem;line-height:1.55;color:#6B747C;margin:0 0 .9rem;}
-.nw-rx{padding-top:.9rem;border-top:1px solid var(--frame-line);margin-bottom:0;}
-.nw-rx strong{color:var(--heading);}
+.nw-foot{font-size:.72rem;line-height:1.55;color:#6B747C;margin:0 0 .9rem;}
 @media(max-width:1000px){
  .nw-top{grid-template-columns:1fr;gap:2rem;padding:2.4rem 1.8rem;}
  .nw-shot{aspect-ratio:16/9;}
