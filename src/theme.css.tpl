@@ -1126,3 +1126,16 @@ sup.cite .csep{opacity:.72;}
 .jbar{--journey-gap:8px;gap:var(--journey-gap);}
 .jseg.end-marker{margin-left:calc(var(--journey-gap) * -1);}
 @media(max-width:920px){.jbar{--journey-gap:5px;}}
+
+/* --- v47: journey rules span their own bar ---------------------------------
+   On the original diagram each rule is exactly as wide as the bar it annotates:
+   the one above matches the inset traditional bar, the one below runs the full
+   width of the Maverix bar and ends in an arrowhead. The 150/170px caps that
+   used to size these made them text-width-driven instead. */
+.journey .jnote{width:81.5%;margin-left:auto;margin-right:auto;}
+.journey .jnote::before,.journey .jnote::after{max-width:none;}
+.jarrow::before{max-width:none;}
+/* right-hand run of the lower rule: 1px line finishing in the arrowhead */
+.jarrow::after{content:"";flex:1;height:9px;font-size:0;
+ background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9'%3E%3Cpath d='M0 0l9 4.5L0 9z' fill='%233A3A3B'/%3E%3C/svg%3E") right 50%/9px 9px no-repeat,
+            linear-gradient(var(--mvx-graphite),var(--mvx-graphite)) left 50%/100% 1px no-repeat;}
