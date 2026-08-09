@@ -455,7 +455,7 @@ def build_home():
  <div class="journey">
   <div class="jtitle">Traditional lung cancer patient journey</div>
   <div class="jnote">Starts later, has longer therapy cycles and shorter life expectancy</div>
-  <div class="jbar"><span class="jseg dark" style="flex:1.3">Risk Assessment</span><span class="jseg steel" style="flex:.9">Diagnosis</span><span class="jseg light" style="flex:2.2">Intervention</span><span class="jseg fade truncated" style="flex:1.24">Life Expectancy</span><span class="jseg end-marker"></span><span class="jseg tail" style="flex:.36"></span></div>
+  <div class="jbar"><span class="jseg tail" style="flex:.72"></span><span class="jseg dark" style="flex:1.3">Risk Assessment</span><span class="jseg steel" style="flex:.9">Diagnosis</span><span class="jseg light" style="flex:2.2">Intervention</span><span class="jseg fade truncated" style="flex:1.24">Life Expectancy</span><span class="jseg end-marker"></span><span class="jseg tail" style="flex:.72"></span></div>
  </div>
  <div class="journey">
   <div class="jbar"><span class="jseg dark" style="flex:1.3">Risk Assessment</span><span class="jseg steel" style="flex:.8">Diagnosis</span><span class="jseg light" style="flex:1.5">Intervention</span><span class="jseg fade" style="flex:4.2">Life Expectancy</span></div>
@@ -596,7 +596,7 @@ def build_products():
  <section class="nwfeature">
   <div class="nw-top">
    <div class="nw-copy">
-    <div class="nw-badge">Cryo Biopsy &middot; New</div>
+    <div class="nw-badge">Cryobiopsy &middot; New</div>
     <div class="nw-kicker">Maverix Narwhal Cryo System</div>
     <h2 class="nw-title">The Future<br>of Cryobiopsy<span class="nw-dot">.</span></h2>
     <p class="nw-lede">A single-use, console-free cryobiopsy probe &mdash; handheld and self-contained,
