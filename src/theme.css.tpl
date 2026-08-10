@@ -1139,3 +1139,15 @@ sup.cite .csep{opacity:.72;}
 .jarrow::after{content:"";flex:1;height:9px;font-size:0;
  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9'%3E%3Cpath d='M0 0l9 4.5L0 9z' fill='%233A3A3B'/%3E%3C/svg%3E") right 50%/9px 9px no-repeat,
             linear-gradient(var(--mvx-graphite),var(--mvx-graphite)) left 50%/100% 1px no-repeat;}
+
+/* --- v48: journey-card CTA never overlaps the body copy ---------------------
+   The CTA is pinned to the bottom of the card, so whatever holds the text has to
+   reserve room for it. That clearance was written as a literal 5.4rem in two
+   places, and the mobile open-state padding shorthand (added earlier, higher
+   specificity) silently overrode it — the CTA then sat on the last line of text.
+   One variable now defines the clearance and every state that needs it uses it. */
+.pathcard{--pcta-clearance:5.4rem;}
+.pathcard .pathcard-caption,.pathcard .reveal{padding-bottom:var(--pcta-clearance);}
+@media(max-width:920px){
+ .pathcard.open .reveal{padding-bottom:var(--pcta-clearance);}
+}
