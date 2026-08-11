@@ -865,7 +865,7 @@ def build_product_pages():
          "Hand-sewn to the snare rather than glued",
          "Firm monofilament snare",
          "Large net area allows for more flexibility to remove larger foreign bodies"],
-        [IMG["netis1"], IMG["netis2"], "../images/netis-net.png"],
+        [IMG["netis1"]],
         [],
         specs_html="""<h3 class="spec-head">Specifications</h3>
 <table class="spec cols">
