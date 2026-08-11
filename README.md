@@ -155,7 +155,6 @@ Everything else is self-hosted — no Webflow CDN, no jQuery.
 | **Google Fonts** | Poppins, Jost | No cookies. |
 | **SociableKit** | LinkedIn job listings | Careers page only. |
 | **YouTube** (`youtube-nocookie.com`) | product demo videos | 5 product pages, 7 videos. |
-| **Calendly** | "Book a Virtual Demo" | Outbound link, not an embed. |
 
 The consent block in `page()` is order-sensitive: Consent Mode defaults must be
 registered **before** the GA4 tag loads, or GA4 sets `_ga` on first paint.
