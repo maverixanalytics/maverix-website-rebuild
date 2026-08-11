@@ -932,29 +932,6 @@ a.reglink{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;colo
 @media(max-width:920px){.sechead .famlogo{height:58px;}}
 @media(max-width:560px){.sechead .famlogo{height:48px;}}
 
-/* ---------- v36: Book a Virtual Demo CTA ---------- */
-.demorow{margin-top:2.4rem;}
-.demobtn{display:inline-flex;align-items:center;gap:.75rem;padding:.7rem 1.5rem .7rem .7rem;
- background:var(--mvx-teal);color:#fff;border-radius:999px;font-weight:600;font-size:.98rem;
- letter-spacing:.01em;transition:background .25s ease,transform .25s ease,box-shadow .25s ease;}
-.demobtn .circ{width:34px;height:34px;flex:0 0 34px;border-radius:50%;background:#fff;
- display:inline-flex;align-items:center;justify-content:center;transition:transform .25s ease;}
-.demobtn .circ svg{width:15px;height:15px;stroke:var(--mvx-teal);}
-.demobtn .btn-label{position:relative;display:inline-block;}
-.demobtn:hover{background:var(--mvx-deep);color:#fff;transform:translateY(-2px);
- box-shadow:0 10px 24px rgba(26,74,93,.22);}
-.demobtn:hover .circ{transform:translateX(3px);}
-.demorow.side{margin-top:1.4rem;}
-.demorow.side .demobtn{font-size:.9rem;padding:.6rem 1.15rem .6rem .6rem;gap:.6rem;}
-.demorow.side .demobtn .circ{width:30px;height:30px;flex:0 0 30px;}
-@media(max-width:560px){.demobtn{font-size:.9rem;}}
-@media(prefers-reduced-motion:reduce){.demobtn,.demobtn .circ{transition:none;}}
-/* v36a: the demo CTA must not inherit .contact-block link styling */
-.contact-block a.demobtn{font-style:normal;text-decoration:none;color:#fff;
- display:inline-flex;font-size:.9rem;}
-.contact-block a.demobtn:hover{color:#fff;}
-.contact-block a.demobtn .btn-label{color:#fff;}
-
 /* ---------- v37: brighter homepage imagery, top-aligned lockups, CTA above header ---------- */
 /* hero video + still: more of the footage shows through, scrim eased on the right */
 .hero video,.hero .hero-img{opacity:.74;}
@@ -966,7 +943,6 @@ a.reglink{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;colo
 /* section head: lockup and "Distributed by" hang from the same top line */
 .sechead{align-items:flex-start;}
 .sechead .famlogo,.sechead .distby.inline,.sechead .contact-block{margin-top:0;}
-.demorow.above{margin-top:0;margin-bottom:2.6rem;}
 
 /* ---------- v38: heroes pulled back a further 50%, gray fill either side ---------- */
 .hero-thin.zoomout{background:#AEB4BA;}

@@ -26,7 +26,6 @@ EIFU_URL = "https://thoracent.com/ifu/"  # <- confirm/replace with the real eIFU
 
 # Careers — LinkedIn job feeds. SociableKit embed IDs come from the live maverixmedical.com
 # careers page; the LinkedIn URLs are the always-visible fallback if the widget is blocked.
-CALENDLY_URL  = "https://calendly.com/d/d2hv-6ry-mwk/virtual-demo"
 # Consent + analytics, carried over from the live Webflow site.
 # CookieYes renders the banner and drives Google Consent Mode; GA4 stays denied
 # until the visitor opts in. NOTE: the rebuild's domain must be added to the
@@ -211,19 +210,13 @@ JS = """
 
 ARROW_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="#1A4A5D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg>'
 
-def contact_block(email=None, phone=True, demo=True):
+def contact_block(email=None, phone=True):
     """Sales-inquiry block used on the family pages and every product detail page."""
     email = email or THOR_EMAIL
     ph  = f'<div class="cb-phone">{THOR_PHONE}</div>' if phone else ''
-    cta = f'<div class="demorow side">{demo_btn()}</div>' if demo else ''
     return ('<div class="contact-block"><div class="cb-label">Sales inquiries</div>'
             f'<div class="cb-title">Customer Care</div><a href="mailto:{email}">{email}</a>'
-            f'{ph}{cta}</div>')
-
-def demo_btn(cls=""):
-    return (f'<a class="demobtn {cls}" href="{CALENDLY_URL}" target="_blank" rel="noopener">'
-            f'<span class="circ">{ARROW_SVG}</span>'
-            f'<span class="btn-label">Book a Virtual Demo</span></a>')
+            f'{ph}</div>')
 
 def btn(href, label, dark=False):
     cls = "btn on-dark" if dark else "btn"
@@ -542,11 +535,10 @@ def build_products():
   <img class="famlogo" src="{IMG['interv_logo']}" alt="Maverix Interventional Portfolio">
   <div class="distby inline"><div class="seclabel">Distributed by</div>
    <img src="assets/thoracent-by-maverix-logo.png" alt="Thoracent, a Maverix company"></div>
-  {contact_block(demo=False)}</div>
+  {contact_block()}</div>
  <div class="seclabel">About</div>
  <p class="biglead">When a malignant tumor narrows the airway or esophagus, every breath and every swallow becomes a struggle. The Thoracent stent portfolio gives interventional pulmonologists and gastroenterologists minimally invasive tools to reopen the lumen and relieve obstructive symptoms.</p>
  <p class="bodytext">Malignant central airway obstruction and dysphagia from esophageal tumors are among the most distressing complications of thoracic cancers, and stenting offers mechanical relief as part of a multidisciplinary palliative care plan. Built on established self-expanding Nitinol platforms, each stent is engineered for controlled endoscopic deployment, conformability to patient anatomy, and radial support where it&rsquo;s needed most &mdash; with sizes and delivery options spanning straight tracheobronchial segments, the carina, and the esophagus, so physicians can match the device to the patient. Every device is supplied sterile, for single use.</p>
- <div class="demorow above">{demo_btn()}</div>
  <div class="seclabel">Products</div>
  {pgroups(INTERVENTION_GROUPS)}
  <p class="rxnote">All devices are prescription-only, for use by trained physicians. See each product&rsquo;s Instructions for Use for complete indications, contraindications, warnings, and precautions.</p>
@@ -559,7 +551,7 @@ def build_products():
 
 <section class="band light prod-section" id="maverix-diagnostics"><div class="container">
  <div class="sechead"><img class="famlogo" src="{IMG['diag_logo']}" alt="Maverix Diagnostics">
-  {contact_block(MVX_EMAIL, phone=False, demo=False)}</div>
+  {contact_block(MVX_EMAIL, phone=False)}</div>
  <div class="seclabel">About</div>
  <p class="biglead">Early cancer detection lowers healthcare costs and saves lives &hellip; but most lung nodules discovered in radiology studies lack clear indications of risk, leaving uncertainty about next steps.</p>
  <p class="bodytext">We are developing a diagnostic test that aims to better clarify which patients are most likely to benefit from either tissue sampling or continued monitoring. This helps focus physician efforts on patients that require more active intervention.</p>
@@ -583,12 +575,11 @@ def build_products():
   <img class="famlogo" src="{IMG['biopsy_logo']}" alt="Maverix Biopsy Tools">
   <div class="distby inline"><div class="seclabel">Distributed by</div>
    <img src="assets/thoracent-by-maverix-logo.png" alt="Thoracent, a Maverix company"></div>
-  {contact_block(phone=False, demo=False)}</div>
+  {contact_block(phone=False)}</div>
  <div class="seclabel">About</div>
  <p class="biglead">An accurate diagnosis starts with adequate tissue.</p>
  <p class="bodytext">Maverix offers a suite of endobronchial instruments for interventional pulmonologists &mdash; from forceps for histological sampling of the airway wall, to ultrasound-guided needles for submucosal and extramural targets, to a cryoprobe that takes tissue biopsies by cryoadhesion and removes foreign bodies, mucus plugs, clots, and necrotic tissue.</p>
 
- <div class="demorow above">{demo_btn()}</div>
  <div class="seclabel">Products</div>
  <div class="pgrid">{pcards(DIAGNOSIS_TOOLS)}</div>
 
@@ -678,7 +669,6 @@ def build_products():
  </div>
  <div class="distby"><div class="seclabel">Distributed by</div>
   <img src="assets/thoracent-by-maverix-logo.png" alt="Thoracent, a Maverix company"></div>
- <div class="demorow">{demo_btn()}</div>
 </div></section>"""
 
     page("products.html", "Products – Maverix Medical",
@@ -1270,8 +1260,6 @@ No cookies are set.</li>
 postings.</li>
 <li><b>YouTube</b> &mdash; product videos are embedded using YouTube&rsquo;s privacy-enhanced mode
 (<code>youtube-nocookie.com</code>), which does not set tracking cookies unless you play the video.</li>
-<li><b>Calendly</b> &mdash; the &ldquo;Book a Virtual Demo&rdquo; buttons link out to Calendly, where
-scheduling information you enter is collected by Calendly under its own privacy policy.</li>
 </ul>
 <p>Each of these companies has its own privacy policies and practices. Although we choose our
 business partners carefully, we can make no representations concerning privacy and security on sites
