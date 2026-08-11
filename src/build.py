@@ -761,7 +761,7 @@ def build_product_pages():
          "Ultra-thin delivery catheter (some sizes) &mdash; allows deployment through the working channel of a flexible therapeutic bronchoscope",
          "Recapturable &mdash; can be re-captured up to 70% deployed"],
         ["../images/bonastent-tb.jpg"],
-        [("Size Chart", "https://thoracent.com/wp-content/uploads/2018/11/TB-Stent-size-chart.jpg"),
+        [("Size Chart", "../assets/bonastent-tracheobronchial-size-chart.pdf"),
          ("MR Conditional Statement", "https://thoracent.com/wp-content/uploads/2018/11/IFU-Information-for-MR-Safety.pdf")],
         videos=[("In-Service Video", "5ULYrDMMrfI"),
                 ("TTS Demonstration", "Wb-wJ6yhg0U"),
@@ -776,6 +776,17 @@ def build_product_pages():
          "Laser-etched V pattern on needle surface &mdash; provides visibility under ultrasound"],
         ["../images/ebus.jpg"],
         [], parent="serpex",
+        specs_html="""<h3 class="spec-head">Specifications</h3>
+<table class="spec cols">
+<thead><tr><th>SKU</th><th>Description</th><th>Size</th><th>Needle Length</th><th>Sheath Diameter</th><th>Min. Channel Size</th></tr></thead>
+<tbody>
+<tr><td>BU49211</td><td>Areus EBUS FNA Nitinol Needle</td><td>19 GA</td><td>4 cm</td><td>1.8 mm</td><td>2.0 mm</td></tr>
+<tr><td>BU49221</td><td>Areus EBUS FNA Nitinol Needle</td><td>22 GA</td><td>4 cm</td><td>1.8 mm</td><td>2.0 mm</td></tr>
+<tr><td>BU49231</td><td>Areus EBUS FNA Nitinol Needle</td><td>25 GA</td><td>4 cm</td><td>1.8 mm</td><td>2.0 mm</td></tr>
+<tr><td>BU49241</td><td>Trident EBUS FNB Nitinol Needle</td><td>19 GA</td><td>4 cm</td><td>1.8 mm</td><td>2.0 mm</td></tr>
+<tr><td>BU49251</td><td>Trident EBUS FNB Nitinol Needle</td><td>22 GA</td><td>4 cm</td><td>1.8 mm</td><td>2.0 mm</td></tr>
+<tr><td>BU49261</td><td>Trident EBUS FNB Nitinol Needle</td><td>25 GA</td><td>4 cm</td><td>1.8 mm</td><td>2.0 mm</td></tr>
+</tbody></table>""",
         videos=[("Demonstration Video", "Wv3mFCvMWiw")])
 
     pd_page("biopsy-forceps", "Biopsy Forceps", THOR_LOGO,
@@ -787,7 +798,13 @@ def build_product_pages():
          "3-ring handle for tactile feedback",
          "Compatible with Ion, Monarch, and Galaxy robotic navigation systems"],
         ["../images/forceps.jpg"],
-        [], parent="serpex")
+        [], parent="serpex",
+        specs_html="""<h3 class="spec-head">Specifications</h3>
+<table class="spec cols">
+<thead><tr><th>SKU</th><th>Description</th><th>Sheath Diameter</th><th>Length</th><th>UOM</th></tr></thead>
+<tbody>
+<tr><td>MED-114-FOR</td><td>Biopsy Forceps</td><td>1.8 mm</td><td>160 cm</td><td>Box 10</td></tr>
+</tbody></table>""")
 
     pd_page("hydro-slide-pulmonary-guidewire", "Hydro-Slide Pulmonary Guidewire", THOR_LOGO,
         ["A single-use .035″ pulmonary guidewire designed to establish and maintain a path through the airway, with a nitinol core and hydrophilic distal tip, available in 180 cm and 260 cm lengths."],
@@ -850,6 +867,13 @@ def build_product_pages():
          "Large net area allows for more flexibility to remove larger foreign bodies"],
         [IMG["netis1"], IMG["netis2"], "../images/netis-net.png"],
         [],
+        specs_html="""<h3 class="spec-head">Specifications</h3>
+<table class="spec cols">
+<thead><tr><th>SKU</th><th>Description</th><th>Size</th><th>Sheath Diameter</th><th>Length</th><th>UOM</th></tr></thead>
+<tbody>
+<tr><td>MED-194-NET</td><td>Micro Retrieval Net</td><td>25 x 45 mm</td><td>1.8 mm</td><td>160 cm</td><td>Box 10</td></tr>
+<tr><td>MED-200-NET</td><td>Bronch Retrieval Net</td><td>10 x 25 mm</td><td>1.8 mm</td><td>120 cm</td><td>Box 10</td></tr>
+</tbody></table>""",
         videos=[("Deployment", "Cx7Ap8kGSyA")])
 
     pd_page("narwhal-cryo-system", "Narwhal Cryo System", THOR_LOGO,
