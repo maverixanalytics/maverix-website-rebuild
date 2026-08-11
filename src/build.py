@@ -563,6 +563,7 @@ def build_products():
   <div class="photo-card has-reveal" tabindex="0"><img src="{IMG['jenny']}" alt="" loading="lazy"><div class="photo-title">&hellip;and a diagnostic could change everything.</div>
    <div class="reveal"><div class="photo-title-reveal">&hellip;and a diagnostic could change everything.</div><p class="lead">A diagnostic tool that identifies high-risk patients could move them to the front of the line for a biopsy.</p><p class="photo-subtitle">Their treatment regime could start earlier, which can improve outcomes.</p></div></div>
  </div>
+ <p class="rxnote">Currently under development, product not cleared or available in the US.</p>
 </div></section>"""
 
     serpex_body = f"""
@@ -828,7 +829,7 @@ def build_product_pages():
          "Dual retrieval string (proximal and distal ends)",
          "Large distal and proximal radiopaque markers to allow fluoroscopic visibility",
          "10.5 Fr TTS delivery system"],
-        ["../images/hilzo-tts.jpg", "../images/hilzo-wide.jpg"],
+        ["../images/hilzo-tts.jpg"],
         [("Size Chart", "https://thoracent.com/wp-content/uploads/2024/05/Hilzo-TTS-Size-Chart.pdf"),
          ("MR Conditional Statement &amp; IFU", "https://thoracent.com/wp-content/uploads/2024/05/Hilzo-Esoph-IFU-and-MR-Conditional-stmt.pdf")])
 
