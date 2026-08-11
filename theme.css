@@ -1147,3 +1147,13 @@ sup.cite .csep{opacity:.72;}
    (Also fixes the pre-existing 21px sideways scroll on the Hydro-Slide page.) */
 .pd-wrap{min-width:0;}
 .pd-panel{min-width:0;}
+
+/* --- v50: no stray divider in the mobile menu -------------------------------
+   The desktop dropdown draws a light rule down the left edge of the first
+   column. The mobile block resets .dropdown .mcol{border:none}, but
+   .dropdown .mcol:first-child is one selector more specific, so the left
+   border survived — a short vertical line floating beside "Risk Assessment"
+   in the open menu. Reset it at the same specificity the desktop rule uses. */
+@media(max-width:920px){
+ .dropdown .mcol:first-child{border-left:none;}
+}
