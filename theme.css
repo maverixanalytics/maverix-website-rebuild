@@ -1127,3 +1127,23 @@ sup.cite .csep{opacity:.72;}
 @media(max-width:920px){
  .pathcard.open .reveal{padding-bottom:var(--pcta-clearance);}
 }
+
+/* --- v49: multi-column specification tables --------------------------------
+   The original .spec table is a two-column key/value layout, so it pins the
+   first cell to 24% and bolds it. The SKU tables added to Biopsy Forceps,
+   EBUS Needles and Netis are ordinary column-labelled grids, where that rule
+   makes the SKU column absurdly wide. .spec.cols keeps the dark header and the
+   row rules but lets every column size to its content. */
+.spec.cols th,.spec.cols td{width:1%;padding-left:.8rem;padding-right:.8rem;}
+.spec.cols td{white-space:nowrap;}
+.spec.cols tr td:first-child{width:1%;}
+.spec.cols th:nth-child(2),.spec.cols tr td:nth-child(2){white-space:normal;width:auto;}
+.spec-head{font-family:var(--font-tagline);color:var(--mvx-blue);font-size:1.5rem;
+ margin-top:2.4rem;}
+/* A grid item defaults to min-width:auto, so a wide table inside .pd-panel
+   stretches the whole grid column instead of scrolling inside its own box —
+   that pushed the entire page sideways on phones and tablets. min-width:0 lets
+   the panel shrink to its track so .spec's overflow-x:auto does its job.
+   (Also fixes the pre-existing 21px sideways scroll on the Hydro-Slide page.) */
+.pd-wrap{min-width:0;}
+.pd-panel{min-width:0;}
