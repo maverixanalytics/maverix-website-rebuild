@@ -772,7 +772,7 @@ def build_product_pages():
          ("MR Conditional Statement / IFU", "https://thoracent.com/wp-content/uploads/2022/11/1-0023806-0-Tracheal-Stent-System-Y-shaped-IFU.pdf")],
         videos=[("Demonstration Video", "BlNMh7UvbsY")])
 
-    pd_page("bonastent-tracheobronchial-stent", "Bonastent Tracheobronchial Stent", IMG["bonastent_logo"],
+    pd_page("bonastent-tracheobronchial-stent", "Bonastent Tracheobronchial Stent", THOR_LOGO,
         ["The Bonastent Tracheobronchial Stent features a revolutionary, patented “hook and cross” nitinol stent design with a silicone cover purposely placed across the entire interior of the stent to reduce both in-growth and migration.",
          "An ultra-thin coaxial deployment system allows some sizes to be delivered through the working channel of a flexible therapeutic bronchoscope, and the stent can be re-captured up to 70% deployed."],
         ["Woven nitinol design &mdash; facilitates conformability",
@@ -783,6 +783,7 @@ def build_product_pages():
         ["../images/bonastent-tb.jpg"],
         [("Size Chart", "../assets/bonastent-tracheobronchial-size-chart.pdf"),
          ("MR Conditional Statement", "https://thoracent.com/wp-content/uploads/2018/11/IFU-Information-for-MR-Safety.pdf")],
+        mfg_logo=IMG["bonastent_logo"],
         videos=[("In-Service Video", "5ULYrDMMrfI"),
                 ("TTS Demonstration", "Wb-wJ6yhg0U"),
                 ("Silicone Cover", "aAlaLDMlzzg")])
@@ -865,7 +866,7 @@ def build_product_pages():
          ("MR Conditional Statement &amp; IFU", "https://thoracent.com/wp-content/uploads/2024/05/Hilzo-Esoph-IFU-and-MR-Conditional-stmt.pdf")],
         mfg_logo=IMG["hilzo_logo"])
 
-    pd_page("bonastent-esophogeal-stent", "Bonastent Esophageal Stent", IMG["bonastent_logo"],
+    pd_page("bonastent-esophogeal-stent", "Bonastent Esophageal Stent", THOR_LOGO,
         ["Bonastent&reg; Esophageal Stents are among the most technologically advanced non-vascular, self-expandable metallic stents available today. Designed with a revolutionary, patented, nitinol hook-and-cross wire structure that allows the stent to adapt and conform to the human anatomy, resulting in reduced migration and tumor in-growth. The stents are provided pre-loaded on an ergonomically designed delivery device for ease of both implementation and placement."],
         ["Low rate of shortening for accurate positioning",
          "Silicone covering placed on the inside of stent to reduce both in-growth and migration",
@@ -876,6 +877,7 @@ def build_product_pages():
         ["../images/bonastent-esoph.jpg"],
         [("Size Chart", "https://thoracent.com/wp-content/uploads/2018/11/Bonastent-Esophageal-Chart.jpg"),
          ("MR Conditional Statement", "https://thoracent.com/wp-content/uploads/2018/11/IFU-Information-for-MR-Safety.pdf")],
+        mfg_logo=IMG["bonastent_logo"],
         videos=[("In-Service Video", "ulmYfVy8j64")])
 
     pd_page("netis-retrieval-net", "Netis Retrieval Net", THOR_LOGO,
