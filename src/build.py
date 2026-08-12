@@ -685,9 +685,23 @@ def build_products():
          "Endobronchial tissue-sampling instruments designed to help physicians obtain the tissue needed for an accurate diagnosis.",
          serpex_body, subtitle="Maverix Biopsy Tools — forceps, EBUS needles, cryobiopsy")
 
+def spec_block(rows_html, cols=True, head="Specifications"):
+    """Specification table, wrapped so it can scroll horizontally on narrow screens.
+
+    The wrapper (not the table) owns the overflow, which lets the CSS paint
+    self-hiding edge shadows on it — see the v51 block in theme.css.tpl. The
+    hint line below is the explicit version of the same cue for phones.
+    """
+    cls = "spec cols" if cols else "spec"
+    return (f'<h3 class="spec-head">{head}</h3>'
+            f'<div class="spec-scroll"><table class="{cls}">{rows_html}</table></div>'
+            f'<p class="spec-hint">Swipe the table to see all columns &rarr;</p>')
+
+
 # ------------------------------------------------------------------ PRODUCT DETAIL PAGES
 def pd_page(slug, name, brand_logo, desc_paras, features, images, resources, specs_html="",
-            contact_thoracent=True, videos=None, parent="thoracent", dist_by=True, note=""):
+            contact_thoracent=True, videos=None, parent="thoracent", dist_by=True, note="",
+            mfg_logo=None):
     feats = "".join(f"<li>{f}</li>" for f in features)
     paras = "".join(f'<p class="bodytext">{p}</p>' for p in desc_paras)
     imgs = "".join(f'<div class="pd-img" style="margin-bottom:1.8rem;"><img src="{u}" alt="{html.escape(name)}" loading="lazy"></div>' for u in images)
@@ -705,6 +719,10 @@ def pd_page(slug, name, brand_logo, desc_paras, features, images, resources, spe
                  f'<img src="{brand_logo}" alt=""></div>' if dist_by
                  else f'<div class="pd-brand"><img src="{brand_logo}" alt=""></div>')
     note_html = f'<p class="mfg-note">{note}</p>' if note else ""
+    # Optional second lockup in the right rail, below the phone number, for
+    # products sold under a manufacturer's own brand (the Hilzo stents).
+    mfg_block = (f'<div class="pd-brand pd-mfg"><div class="seclabel">Manufactured by</div>'
+                 f'<img src="{mfg_logo}" alt=""></div>' if mfg_logo else "")
     body = f"""
 <div class="pd-hero"><div class="container">
  <a class="crumb" href="{crumb_href}">&#8592; {crumb_txt}</a>
@@ -731,6 +749,7 @@ def pd_page(slug, name, brand_logo, desc_paras, features, images, resources, spe
   <div class="pd-side">
    {side_logo}
    {contact}
+   {mfg_block}
   </div>
  </div>
 </div></section>"""
@@ -777,8 +796,7 @@ def build_product_pages():
          "Laser-etched V pattern on needle surface &mdash; provides visibility under ultrasound"],
         ["../images/ebus.jpg"],
         [], parent="serpex",
-        specs_html="""<h3 class="spec-head">Specifications</h3>
-<table class="spec cols">
+        specs_html=spec_block("""
 <thead><tr><th>SKU</th><th>Description</th><th>Size</th><th>Needle Length</th><th>Sheath Diameter</th><th>Min. Channel Size</th></tr></thead>
 <tbody>
 <tr><td>BU49211</td><td>Areus EBUS FNA Nitinol Needle</td><td>19 GA</td><td>4 cm</td><td>1.8 mm</td><td>2.0 mm</td></tr>
@@ -787,7 +805,7 @@ def build_product_pages():
 <tr><td>BU49241</td><td>Trident EBUS FNB Nitinol Needle</td><td>19 GA</td><td>4 cm</td><td>1.8 mm</td><td>2.0 mm</td></tr>
 <tr><td>BU49251</td><td>Trident EBUS FNB Nitinol Needle</td><td>22 GA</td><td>4 cm</td><td>1.8 mm</td><td>2.0 mm</td></tr>
 <tr><td>BU49261</td><td>Trident EBUS FNB Nitinol Needle</td><td>25 GA</td><td>4 cm</td><td>1.8 mm</td><td>2.0 mm</td></tr>
-</tbody></table>""",
+</tbody>"""),
         videos=[("Demonstration Video", "Wv3mFCvMWiw")])
 
     pd_page("biopsy-forceps", "Biopsy Forceps", THOR_LOGO,
@@ -800,12 +818,11 @@ def build_product_pages():
          "Compatible with Ion, Monarch, and Galaxy robotic navigation systems"],
         ["../images/forceps.jpg"],
         [], parent="serpex",
-        specs_html="""<h3 class="spec-head">Specifications</h3>
-<table class="spec cols">
+        specs_html=spec_block("""
 <thead><tr><th>SKU</th><th>Description</th><th>Sheath Diameter</th><th>Length</th><th>UOM</th></tr></thead>
 <tbody>
 <tr><td>MED-114-FOR</td><td>Biopsy Forceps</td><td>1.8 mm</td><td>160 cm</td><td>Box 10</td></tr>
-</tbody></table>""")
+</tbody>"""))
 
     pd_page("hydro-slide-pulmonary-guidewire", "Hydro-Slide Pulmonary Guidewire", THOR_LOGO,
         ["A single-use .035″ pulmonary guidewire designed to establish and maintain a path through the airway, with a nitinol core and hydrophilic distal tip, available in 180 cm and 260 cm lengths."],
@@ -814,14 +831,14 @@ def build_product_pages():
          "Radiopaque tip visible under fluoroscopy to support wire placement."],
         ["../images/guidewire.jpg"],
         [],
-        specs_html="""<table class="spec">
+        specs_html="""<div class="spec-scroll"><table class="spec">
 <tr><th colspan="2">Specifications</th></tr>
 <tr><td>Gauge</td><td>.035&Prime;</td></tr>
 <tr><td>Available lengths</td><td>180 cm and 260 cm</td></tr>
 <tr><td>Construction</td><td>Nitinol core with hydrophilic distal tip</td></tr>
-</table>""")
+</table></div>""")
 
-    pd_page("hilzo-tts-esophageal-stent", "Hilzo™ TTS Esophageal Stent", IMG["hilzo_logo"],
+    pd_page("hilzo-tts-esophageal-stent", "Hilzo™ TTS Esophageal Stent", THOR_LOGO,
         ["The Hilzo™ TTS (Through-the-Scope) Esophageal Stent system consists of a delivery system preloaded with a self-expanding esophageal metal stent. The stent is made of nitinol wire knitted in a tubular mesh configuration, making it flexible and self-expandable."],
         ["Silicone-covered dumbbell-shaped ends designed to reduce tissue in-growth on fully covered versions",
          "Uncovered dumbbell-shaped ends designed to reduce migration on partially covered versions",
@@ -831,9 +848,10 @@ def build_product_pages():
          "10.5 Fr TTS delivery system"],
         ["../images/hilzo-tts.jpg"],
         [("Size Chart", "https://thoracent.com/wp-content/uploads/2024/05/Hilzo-TTS-Size-Chart.pdf"),
-         ("MR Conditional Statement &amp; IFU", "https://thoracent.com/wp-content/uploads/2024/05/Hilzo-Esoph-IFU-and-MR-Conditional-stmt.pdf")])
+         ("MR Conditional Statement &amp; IFU", "https://thoracent.com/wp-content/uploads/2024/05/Hilzo-Esoph-IFU-and-MR-Conditional-stmt.pdf")],
+        mfg_logo=IMG["hilzo_logo"])
 
-    pd_page("hilzo-ues-esophageal-stent", "Hilzo™ UES Esophageal Stent", IMG["hilzo_logo"],
+    pd_page("hilzo-ues-esophageal-stent", "Hilzo™ UES Esophageal Stent", THOR_LOGO,
         ["The Hilzo&trade; UES (Upper-Esophageal Sphincter) Esophageal Stent system consists of a delivery system preloaded with a self-expanding esophageal metal stent. The stent is made of nitinol wire knitted in a tubular mesh configuration, making it flexible and self-expandable. Designed specifically for placements close to the UES with a 0.5 cm proximal flare."],
         ["Proximal flare 0.5 cm in length for added room in placements close to the UES",
          "Distal flare 1.5 cm to prevent migration",
@@ -844,7 +862,8 @@ def build_product_pages():
          "14 Fr over-the-wire delivery system"],
         ["../images/hilzo-ues.jpg"],
         [("Size Chart", "https://thoracent.com/wp-content/uploads/2024/05/Hilzo-UES-Size-Chart.pdf"),
-         ("MR Conditional Statement &amp; IFU", "https://thoracent.com/wp-content/uploads/2024/05/Hilzo-Esoph-IFU-and-MR-Conditional-stmt.pdf")])
+         ("MR Conditional Statement &amp; IFU", "https://thoracent.com/wp-content/uploads/2024/05/Hilzo-Esoph-IFU-and-MR-Conditional-stmt.pdf")],
+        mfg_logo=IMG["hilzo_logo"])
 
     pd_page("bonastent-esophogeal-stent", "Bonastent Esophageal Stent", IMG["bonastent_logo"],
         ["Bonastent&reg; Esophageal Stents are among the most technologically advanced non-vascular, self-expandable metallic stents available today. Designed with a revolutionary, patented, nitinol hook-and-cross wire structure that allows the stent to adapt and conform to the human anatomy, resulting in reduced migration and tumor in-growth. The stents are provided pre-loaded on an ergonomically designed delivery device for ease of both implementation and placement."],
@@ -868,13 +887,12 @@ def build_product_pages():
          "Large net area allows for more flexibility to remove larger foreign bodies"],
         [IMG["netis1"]],
         [],
-        specs_html="""<h3 class="spec-head">Specifications</h3>
-<table class="spec cols">
+        specs_html=spec_block("""
 <thead><tr><th>SKU</th><th>Description</th><th>Size</th><th>Sheath Diameter</th><th>Length</th><th>UOM</th></tr></thead>
 <tbody>
 <tr><td>MED-194-NET</td><td>Micro Retrieval Net</td><td>25 x 45 mm</td><td>1.8 mm</td><td>160 cm</td><td>Box 10</td></tr>
 <tr><td>MED-200-NET</td><td>Bronch Retrieval Net</td><td>10 x 25 mm</td><td>1.8 mm</td><td>120 cm</td><td>Box 10</td></tr>
-</tbody></table>""",
+</tbody>"""),
         videos=[("Deployment", "Cx7Ap8kGSyA")])
 
     pd_page("narwhal-cryo-system", "Narwhal Cryo System", THOR_LOGO,

@@ -1157,3 +1157,35 @@ sup.cite .csep{opacity:.72;}
 @media(max-width:920px){
  .dropdown .mcol:first-child{border-left:none;}
 }
+
+/* --- v51: manufacturer lockup + scrollable spec tables ----------------------
+   1. .pd-mfg is a second brand lockup in the product right rail, under the
+      contact block, for products sold under a manufacturer's own mark.
+   2. Spec tables now sit in a .spec-scroll wrapper rather than scrolling the
+      <table> itself. The wrapper owns the overflow, which lets it carry the
+      classic four-layer scroll shadow: two white "cover" layers pinned to the
+      content (background-attachment:local) sit on top of two shadow layers
+      pinned to the box (scroll). At the far left the white layer hides the left
+      shadow; scroll right and it slides away, revealing it. So the cue appears
+      only when there is more to see, and vanishes at the end — no JS. */
+.pd-side .pd-brand.pd-mfg{margin-top:2rem;padding-top:1.6rem;
+ border-top:1px solid var(--frame-line);}
+.spec-scroll{margin-top:1.2rem;}
+.spec-scroll .spec{margin-top:0;}
+p.spec-hint{display:none;}
+@media(max-width:920px){
+ .spec-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;background-color:#fff;
+  background-image:
+   linear-gradient(to right,#fff 40%,rgba(255,255,255,0)),
+   linear-gradient(to left,#fff 40%,rgba(255,255,255,0)),
+   linear-gradient(to right,rgba(13,20,24,.34),rgba(13,20,24,0)),
+   linear-gradient(to left,rgba(13,20,24,.34),rgba(13,20,24,0));
+  background-position:left center,right center,left center,right center;
+  background-repeat:no-repeat;
+  background-size:44px 100%,44px 100%,26px 100%,26px 100%;
+  background-attachment:local,local,scroll,scroll;}
+ /* the wrapper scrolls, so the table itself must not */
+ .spec-scroll .spec{display:table;overflow:visible;background-color:transparent;}
+ p.spec-hint{display:block;margin-top:.7rem;font-size:.8rem;color:var(--mvx-slate);
+  font-style:italic;}
+}
