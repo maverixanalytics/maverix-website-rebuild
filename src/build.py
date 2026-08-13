@@ -451,7 +451,7 @@ def build_home():
 <div class="container inner">
  <div class="kicker allcaps">Revolutionizing</div>
  <h1>Lung Cancer<br>Care</h1>
- <div class="hero-tagline">Advancing detection.<br>Improving care.<br>Saving lives.</div>
+ <div class="hero-tagline">Advancing detection. Improving care.</div>
 </div></div>
 
 <section class="band dark"><img class="bgimg" src="{IMG['mission']}" alt="">
