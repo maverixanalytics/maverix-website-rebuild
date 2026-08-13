@@ -184,7 +184,10 @@ JS = """
    // Netlify collects submissions by POSTing the form back to its own page as
    // urlencoded data, so there is no endpoint URL to configure. Anywhere else that
    // POST is rejected (GitHub Pages answers 405), and we hand off to the mail client.
-   if(!endpoint&&f.hasAttribute('data-netlify')){
+   // Keyed off netlify-form, not data-netlify: Netlify strips data-netlify from the
+   // deployed HTML once it has registered the form, so it is absent exactly where we
+   // need it.
+   if(!endpoint&&f.hasAttribute('netlify-form')){
     fetch('/',{method:'POST',redirect:'error',
      headers:{'Content-Type':'application/x-www-form-urlencoded'},
      body:new URLSearchParams(data).toString()})
@@ -1261,7 +1264,7 @@ def build_careers():
  <h2 style="margin:.6rem 0 1rem;">Are you ready to make a difference?</h2>
  <p class="lede">Join a company that is at the forefront of lung cancer diagnosis and treatment.</p>
  <div style="margin-top:2rem;max-width:560px;">
-  <form class="form" data-mvxform name="careers" method="POST" data-netlify="true" netlify-honeypot="_gotcha"
+  <form class="form" data-mvxform netlify-form name="careers" method="POST" data-netlify="true" netlify-honeypot="_gotcha"
         action="{FORM_ENDPOINT}" data-endpoint="{FORM_ENDPOINT}" data-mailto="{CONTACT_EMAIL}">
    <input type="hidden" name="form-name" value="careers">
    <p class="honeypot"><label>Do not fill this in <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></p>
@@ -1287,7 +1290,7 @@ def build_contact():
 <section class="contact-dark"><div class="container" style="border:none;background:transparent;">
  <h2>Let's change the future<br>of lung cancer healthcare</h2>
  <p style="margin-top:1.2rem;max-width:620px;color:#E4EAEE;">Whether you're interested in investment, partnerships, sales inquiries, or a career at Maverix, feel free to reach out.</p>
- <form class="cform" data-mvxform name="contact" method="POST" data-netlify="true" netlify-honeypot="_gotcha"
+ <form class="cform" data-mvxform netlify-form name="contact" method="POST" data-netlify="true" netlify-honeypot="_gotcha"
        action="{FORM_ENDPOINT}" data-endpoint="{FORM_ENDPOINT}" data-mailto="{CONTACT_EMAIL}">
   <input type="hidden" name="form-name" value="contact">
   <p class="honeypot"><label>Do not fill this in <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></p>
