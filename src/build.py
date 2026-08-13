@@ -343,6 +343,11 @@ CITES = {
     4: "https://www.cancer.org/cancer/types/lung-cancer/about/key-statistics.html",
     # 5  World Health Organization, Lung cancer fact sheet
     5: "https://www.who.int/news-room/fact-sheets/detail/lung-cancer",
+    # 6  IARC Global Cancer Observatory (GLOBOCAN), world fact sheet.
+    #    Carries the 19% figure directly (lung = 19.1% of all cancer deaths);
+    #    the WHO fact sheet (5) does not state a percentage, so the share-of-
+    #    deaths stat is cited here and only the 2.5M incidence stat to WHO.
+    6: "https://gco.iarc.who.int/media/globocan/factsheets/populations/900-world-fact-sheet.pdf",
 }
 
 def cite(*nums):
@@ -426,7 +431,7 @@ def build_home():
  <div class="challenge">
   <div class="headline">
    <p>Lung cancer is the <b>deadliest cancer in the U.S.</b>&mdash;more than colon, breast, and prostate cancer combined{cite(4)}</p>
-   <div class="bigstat"><div class="stat-number">19%</div><div class="stat-label">of all cancer deaths worldwide{cite(5)}</div></div>
+   <div class="bigstat"><div class="stat-number">19%</div><div class="stat-label">of all cancer deaths worldwide{cite(6)}</div></div>
    <div class="bigstat"><div class="stat-number">2.5M</div><div class="stat-label">new patients diagnosed globally every year{cite(5)}</div></div>
   </div>
   <div class="statgrid">
