@@ -1189,3 +1189,22 @@ p.spec-hint{display:none;}
  p.spec-hint{display:block;margin-top:.7rem;font-size:.8rem;color:var(--mvx-slate);
   font-style:italic;}
 }
+
+/* --- v52: Risk Assessment reference markers and list ------------------------
+   Distinct from sup.cite (the homepage Challenge graphic), which links straight
+   out to a source. These markers link DOWN the page to a numbered list, so they
+   are a separate class and a separate numbering scheme on purpose -- the two
+   must never be merged. Colours follow the site's own note styling rather than
+   introducing new greys. scroll-margin-top clears the sticky header, otherwise
+   jumping to a reference parks it underneath the nav bar. */
+sup.ref{font-size:.62em;line-height:0;vertical-align:super;}
+sup.ref a{text-decoration:none;color:inherit;opacity:.65;}
+sup.ref a:hover,sup.ref a:focus-visible{opacity:1;text-decoration:underline;}
+.references{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--frame-line);}
+.references h2{font-family:var(--font-sans);font-size:.95rem;letter-spacing:.04em;
+ text-transform:uppercase;color:#5B6670;margin-bottom:.75rem;}
+.references ol{font-size:.78rem;line-height:1.55;color:#5B6670;padding-left:1.25rem;}
+.references li{margin-bottom:.5rem;scroll-margin-top:90px;}
+.references a{color:var(--mvx-teal);text-decoration:none;overflow-wrap:anywhere;}
+.references a:hover{text-decoration:underline;}
+@media(max-width:560px){.references ol{padding-left:1.1rem;}}
