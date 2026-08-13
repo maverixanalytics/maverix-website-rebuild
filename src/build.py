@@ -6,9 +6,17 @@ OUT = os.environ.get("MVX_OUT") or os.path.join(os.path.dirname(os.path.abspath(
 CDN2 = "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a"  # cms assets
 
 # ---- site configuration -------------------------------------------------
-# Canonical/production origin. Change to "https://www.maverixmedical.com"
-# at domain cutover — sitemap, canonicals and OG tags all follow this.
-BASE_URL = "https://maverixanalytics.github.io/maverix-website-rebuild"
+# Canonical/production origin — sitemap, canonicals and OG tags all follow this.
+# On Netlify the origin comes from the build environment, so nothing here needs
+# editing at domain cutover:
+#   DEPLOY_PRIME_URL — the deploy's own URL, so previews and branch deploys
+#                      self-canonicalise instead of pointing at production.
+#   URL             — the site's primary origin, used for production builds.
+# Anywhere else (a local build, or the GitHub Pages deploy) neither is set and
+# the literal below applies.
+BASE_URL = (os.environ.get("DEPLOY_PRIME_URL")
+            or os.environ.get("URL")
+            or "https://maverixanalytics.github.io/maverix-website-rebuild").rstrip("/")
 
 # Form submission endpoint.
 #   Formspree : "https://formspree.io/f/XXXXXXXX"   (works on any host)
@@ -177,7 +185,7 @@ JS = """
    // urlencoded data, so there is no endpoint URL to configure. Anywhere else that
    // POST is rejected (GitHub Pages answers 405), and we hand off to the mail client.
    if(!endpoint&&f.hasAttribute('data-netlify')){
-    fetch(window.location.pathname,{method:'POST',
+    fetch('/',{method:'POST',redirect:'error',
      headers:{'Content-Type':'application/x-www-form-urlencoded'},
      body:new URLSearchParams(data).toString()})
      .then(function(r){
