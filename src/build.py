@@ -717,6 +717,21 @@ def spec_block(rows_html, cols=True, head="Specifications"):
             f'<p class="spec-hint">Swipe the table to see all columns &rarr;</p>')
 
 
+# 510(k) clearance numbers, keyed by product page slug. Rendered by pd_page()
+# as a note at the foot of the page, in the same style as the manufacturer
+# note. A product absent from this map simply shows no number -- to add one
+# later, add the slug here and rebuild; nothing else needs to change.
+K510 = {
+    "bonastent-tracheobronchial-stent": "K140472",
+    "bonastent-esophogeal-stent":       "K092144",
+    "hilzo-tts-esophageal-stent":       "K223266",
+    "hilzo-ues-esophageal-stent":       "K223266",
+    "y-shaped-tracheal-stent":          "K212403",
+    "ebus-needles":                     "K213060",
+    "narwhal-cryo-system":              "K261068",
+}
+
+
 # ------------------------------------------------------------------ PRODUCT DETAIL PAGES
 def pd_page(slug, name, brand_logo, desc_paras, features, images, resources, specs_html="",
             contact_thoracent=True, videos=None, parent="thoracent", dist_by=True, note="",
@@ -737,7 +752,10 @@ def pd_page(slug, name, brand_logo, desc_paras, features, images, resources, spe
     side_logo = (f'<div class="pd-brand"><div class="seclabel">Distributed by</div>'
                  f'<img src="{brand_logo}" alt=""></div>' if dist_by
                  else f'<div class="pd-brand"><img src="{brand_logo}" alt=""></div>')
-    note_html = f'<p class="mfg-note">{note}</p>' if note else ""
+    # Foot-of-page note: the manufacturer line (where set) and the 510(k)
+    # number (where known) share one line, in that order.
+    foot = [x for x in (note, f"510(k) {K510[slug]}." if slug in K510 else "") if x]
+    note_html = f'<p class="mfg-note">{" ".join(foot)}</p>' if foot else ""
     # Optional second lockup in the right rail, below the phone number, for
     # products sold under a manufacturer's own brand (the Hilzo stents).
     mfg_block = (f'<div class="pd-brand pd-mfg"><div class="seclabel">Manufactured by</div>'
