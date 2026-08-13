@@ -207,20 +207,35 @@ gtag('set','ads_data_redaction',true);gtag('set','url_passthrough',true);
   function show(el,msg){[ok,err].forEach(function(n){if(n)n.style.display='none';});
    if(el){if(msg)el.textContent=msg;el.style.display='block';}}
   function reset(){if(btn){btn.disabled=false;btn.textContent=label;}}
+  // Last resort when no submission backend accepts the post: hand the message to
+  // the visitor's mail client so it is never silently lost.
+  function mailto(data){
+   var to=f.getAttribute('data-mailto')||'',lines=[];
+   data.forEach(function(v,k){if(k.charAt(0)!=='_'&&k!=='form-name'&&String(v).trim())lines.push(k+': '+v);});
+   var subj=data.get('Subject')||('Website enquiry from '+(data.get('First Name')||data.get('Name')||'a visitor'));
+   window.location.href='mailto:'+to+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(lines.join('\n'));
+   setTimeout(function(){reset();show(ok,'Thanks \u2014 your email app should be opening with this message ready to send.');},600);
+  }
   f.addEventListener('submit',function(e){
    e.preventDefault();
    if(!f.reportValidity())return;
    if((f.querySelector('input[name=_gotcha]')||{}).value){f.style.display='none';show(ok);return;}
    var data=new FormData(f),endpoint=f.getAttribute('data-endpoint');
    if(btn){btn.disabled=true;btn.textContent='Sending\u2026';}
-   if(!endpoint){
-    var to=f.getAttribute('data-mailto')||'',lines=[];
-    data.forEach(function(v,k){if(k.charAt(0)!=='_'&&k!=='form-name'&&String(v).trim())lines.push(k+': '+v);});
-    var subj=data.get('Subject')||('Website enquiry from '+(data.get('First Name')||data.get('Name')||'a visitor'));
-    window.location.href='mailto:'+to+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(lines.join('\n'));
-    setTimeout(function(){reset();show(ok,'Thanks \u2014 your email app should be opening with this message ready to send.');},600);
+   // Netlify collects submissions by POSTing the form back to its own page as
+   // urlencoded data, so there is no endpoint URL to configure. Anywhere else that
+   // POST is rejected (GitHub Pages answers 405), and we hand off to the mail client.
+   if(!endpoint&&f.hasAttribute('data-netlify')){
+    fetch(window.location.pathname,{method:'POST',
+     headers:{'Content-Type':'application/x-www-form-urlencoded'},
+     body:new URLSearchParams(data).toString()})
+     .then(function(r){
+      if(r.ok){f.style.display='none';show(ok);}
+      else{mailto(data);}})
+     .catch(function(){mailto(data);});
     return;
    }
+   if(!endpoint){mailto(data);return;}
    fetch(endpoint,{method:'POST',body:data,headers:{'Accept':'application/json'}})
     .then(function(r){
      if(r.ok){f.style.display='none';show(ok);}
