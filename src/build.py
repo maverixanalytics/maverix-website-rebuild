@@ -1183,7 +1183,7 @@ def build_careers():
 
 <section class="band light"><div class="container">
  <h2 class="section-title">Join us in revolutionizing lung cancer care</h2>
- <p class="lede">At Maverix, we are dedicated to improving outcomes by transforming the way lung cancer is diagnosed and treated. We aim to propel improved outcomes across the continuum of care.</p>
+ <p class="lede">At Maverix, we are dedicated to improving care by transforming the way lung cancer is diagnosed and treated. We aim to propel improved outcomes across the continuum of care.</p>
 </div></section>
 
 <section class="band light row-line"><div class="container">
