@@ -1208,3 +1208,16 @@ sup.ref a:hover,sup.ref a:focus-visible{opacity:1;text-decoration:underline;}
 .references a{color:var(--mvx-teal);text-decoration:none;overflow-wrap:anywhere;}
 .references a:hover{text-decoration:underline;}
 @media(max-width:560px){.references ol{padding-left:1.1rem;}}
+
+/* --- v53: reference-marker sizing and contrast ------------------------------
+   Two context fixes on top of v52's base marker style.
+   1. .biglead is set in a large bold display face, so a marker sized as a
+      fraction of it (.62em) came out nearly as big as body copy. Scaled down
+      for that one context only; markers elsewhere are unchanged.
+   2. Inside the photo cards the copy sits light-on-dark over a photograph, and
+      inheriting that colour at 65% opacity made the numbers hard to pick out.
+      There they take the site's sky blue at full opacity instead. */
+.biglead sup.ref{font-size:.42em;}
+.photo-card .reveal sup.ref a{color:var(--mvx-sky);opacity:1;}
+.photo-card .reveal sup.ref a:hover,
+.photo-card .reveal sup.ref a:focus-visible{color:#fff;text-decoration:underline;}

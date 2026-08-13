@@ -606,7 +606,7 @@ def build_products():
  <div class="sechead"><img class="famlogo" src="{IMG['diag_logo']}" alt="Maverix Diagnostics">
   {contact_block(MVX_EMAIL, phone=False)}</div>
  <div class="seclabel">About</div>
- <p class="biglead">Early cancer detection lowers treatment costs{ref(1,2)} and saves lives{ref(3,4)} &hellip; but most lung nodules discovered in radiology studies lack clear indicators of malignancy{ref(5)}, leaving uncertainty about which patients need intervention.</p>
+ <p class="biglead">Early cancer detection lowers treatment costs{ref(1,2)} and saves lives{ref(3,4)} &hellip; but most lung nodules discovered in radiology studies lack clear indicators of malignancy,{ref(5)} leaving uncertainty about which patients need intervention.</p>
  <p class="bodytext">We are developing a diagnostic test that aims to better clarify which patients are most likely to benefit from either tissue sampling or continued monitoring. This helps focus physician efforts on patients that require more active intervention.</p>
  <div class="photo-cards expand">
   <div class="photo-card has-reveal" tabindex="0"><img src="{IMG['detection']}" alt="" loading="lazy"><div class="photo-title">Early detection and resection is crucial&hellip;</div>
