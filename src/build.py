@@ -331,24 +331,28 @@ gtag('set','ads_data_redaction',true);gtag('set','url_passthrough',true);
 # spec every figure in the Challenge block now carries a marker; the two
 # global stats that previously ran unmarked are cited to WHO (5).
 CITES = {
-    # 1  American Lung Association, State of Lung Cancer 2025
-    1: "https://www.lung.org/research/state-of-lung-cancer/key-findings",
-    # 2  Sabatino SA. Use of Cancer Screening Tests, United States, 2023.
-    #    Prev Chronic Dis. 2025;22:250139. Replaces the 2021-data citation;
-    #    this is the source of the >63% figure.
-    2: "https://www.cdc.gov/pcd/issues/2025/25_0139a.htm",
-    # 3  CDC, Lung Cancer Among People Who Never Smoked
-    3: "https://www.cdc.gov/lung-cancer/nonsmokers/index.html",
-    # 4  American Cancer Society, Key Statistics for Lung Cancer
-    4: "https://www.cancer.org/cancer/types/lung-cancer/about/key-statistics.html",
-    # 5  World Health Organization, Lung cancer fact sheet
-    5: "https://www.who.int/news-room/fact-sheets/detail/lung-cancer",
-    # 6  IARC Global Cancer Observatory (GLOBOCAN), world fact sheet.
-    #    Carries the 19% figure directly (lung = 19.1% of all cancer deaths);
-    #    the WHO fact sheet (5) does not state a percentage, so the share-of-
-    #    deaths stat is cited here and only the 2.5M incidence stat to WHO.
-    6: "https://gco.iarc.who.int/media/globocan/factsheets/populations/900-world-fact-sheet.pdf",
+    # Numbered by first appearance down the Challenge block, so the markers
+    # read 1, 2, 3 ... from the top. Renumbered 13 Aug 2026; the earlier
+    # scheme in the statistics spec had the U.S./global sources reversed.
+    # 1  American Cancer Society, Key Statistics for Lung Cancer -- headline
+    1: "https://www.cancer.org/cancer/types/lung-cancer/about/key-statistics.html",
+    # 2  IARC Global Cancer Observatory (GLOBOCAN), world fact sheet.
+    #    Carries the 19% figure directly (lung = 19.1% of all cancer deaths).
+    2: "https://gco.iarc.who.int/media/globocan/factsheets/populations/900-world-fact-sheet.pdf",
+    # 3  World Health Organization, Lung cancer fact sheet. Source of the 2.5M
+    #    incidence figure only -- it states no share-of-deaths percentage,
+    #    which is why that stat cites IARC (2) rather than this.
+    3: "https://www.who.int/news-room/fact-sheets/detail/lung-cancer",
+    # 4  American Lung Association, State of Lung Cancer 2025 -- the four
+    #    U.S. stats in the grid (18.2%, 28.1%, 21%, 29.7%)
+    4: "https://www.lung.org/research/state-of-lung-cancer/key-findings",
+    # 5  Sabatino SA. Use of Cancer Screening Tests, United States, 2023.
+    #    Prev Chronic Dis. 2025;22:250139. Source of the >63% figure.
+    5: "https://www.cdc.gov/pcd/issues/2025/25_0139a.htm",
+    # 6  CDC, Lung Cancer Among People Who Never Smoked
+    6: "https://www.cdc.gov/lung-cancer/nonsmokers/index.html",
 }
+
 
 def cite(*nums):
     """Linked superscript citation marker(s), e.g. cite(1) or cite(1, 2)."""
@@ -430,17 +434,17 @@ def build_home():
  <h2 class="section-title">The Challenge</h2>
  <div class="challenge">
   <div class="headline">
-   <p>Lung cancer is the <b>deadliest cancer in the U.S.</b>&mdash;more than colon, breast, and prostate cancer combined{cite(4)}</p>
-   <div class="bigstat"><div class="stat-number">19%</div><div class="stat-label">of all cancer deaths worldwide{cite(6)}</div></div>
-   <div class="bigstat"><div class="stat-number">2.5M</div><div class="stat-label">new patients diagnosed globally every year{cite(5)}</div></div>
+   <p>Lung cancer is the <b>deadliest cancer in the U.S.</b>&mdash;more than colon, breast, and prostate cancer combined{cite(1)}</p>
+   <div class="bigstat"><div class="stat-number">19%</div><div class="stat-label">of all cancer deaths worldwide{cite(2)}</div></div>
+   <div class="bigstat"><div class="stat-number">2.5M</div><div class="stat-label">new patients diagnosed globally every year{cite(3)}</div></div>
   </div>
   <div class="statgrid">
-   <div class="cell"><div class="stat-number">18.2%</div><div class="stat-label">of eligible U.S. individuals are up to date with lung cancer screening{cite(1)}</div></div>
-   <div class="cell"><div class="stat-number">28.1%</div><div class="stat-label">of U.S. cases are diagnosed at an early stage, when survival rates are higher{cite(1)}</div></div>
-   <div class="cell"><div class="stat-number">21%</div><div class="stat-label">of U.S. cases did not receive any treatment after diagnosis{cite(1)}</div></div>
-   <div class="cell"><div class="stat-number">&gt;63%</div><div class="stat-label">of eligible individuals are up to date with colorectal, breast, and cervical cancer screenings{cite(2)}</div></div>
-   <div class="cell"><div class="stat-number">29.7%</div><div class="stat-label">of U.S. patients are alive five years after diagnosis{cite(1)}</div></div>
-   <div class="cell"><div class="stat-number">10&ndash;20%</div><div class="stat-label">of lung cancers occur in people who never smoked{cite(3)}</div></div>
+   <div class="cell"><div class="stat-number">18.2%</div><div class="stat-label">of eligible U.S. individuals are up to date with lung cancer screening{cite(4)}</div></div>
+   <div class="cell"><div class="stat-number">28.1%</div><div class="stat-label">of U.S. cases are diagnosed at an early stage, when survival rates are higher{cite(4)}</div></div>
+   <div class="cell"><div class="stat-number">21%</div><div class="stat-label">of U.S. cases did not receive any treatment after diagnosis{cite(4)}</div></div>
+   <div class="cell"><div class="stat-number">&gt;63%</div><div class="stat-label">of eligible individuals are up to date with colorectal, breast, and cervical cancer screenings{cite(5)}</div></div>
+   <div class="cell"><div class="stat-number">29.7%</div><div class="stat-label">of U.S. patients are alive five years after diagnosis{cite(4)}</div></div>
+   <div class="cell"><div class="stat-number">10&ndash;20%</div><div class="stat-label">of lung cancers occur in people who never smoked{cite(6)}</div></div>
   </div>
  </div>
 </div></section>
