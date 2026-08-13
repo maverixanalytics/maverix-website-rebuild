@@ -529,7 +529,7 @@ def build_home():
  </div>
 </div></section>"""
     page("index.html", "Maverix Medical – Revolutionizing Lung Cancer Care",
-         "Advancing detection. Improving care. Saving lives. We bring cutting-edge techs to lung cancer care, empowering clinicians with accurate tools and personalized treatments.",
+         "Advancing detection. Improving care. We bring cutting-edge techs to lung cancer care, empowering clinicians with accurate tools and personalized treatments.",
          body, subtitle="Home — hero video, mission, challenge, goal, solution")
 
 # ------------------------------------------------------------------ PRODUCTS
@@ -1183,7 +1183,7 @@ def build_careers():
 
 <section class="band light"><div class="container">
  <h2 class="section-title">Join us in revolutionizing lung cancer care</h2>
- <p class="lede">At Maverix, we are dedicated to improving and saving lives by transforming the way lung cancer is diagnosed and treated. We aim to propel improved outcomes across the continuum of care.</p>
+ <p class="lede">At Maverix, we are dedicated to improving outcomes by transforming the way lung cancer is diagnosed and treated. We aim to propel improved outcomes across the continuum of care.</p>
 </div></section>
 
 <section class="band light row-line"><div class="container">
@@ -1252,7 +1252,7 @@ def build_careers():
  </div>
 </div></section>"""
     page("careers.html", "Maverix Careers",
-         "Join us in revolutionizing lung cancer care. We are dedicated to improving and saving lives.",
+         "Join us in revolutionizing lung cancer care. We are dedicated to improving outcomes.",
          body, subtitle="Culture, benefits, open roles, join-us form")
 
 # ------------------------------------------------------------------ CONTACT
