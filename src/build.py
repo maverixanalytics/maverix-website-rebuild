@@ -327,12 +327,22 @@ gtag('set','ads_data_redaction',true);gtag('set','url_passthrough',true);
 
 # Homepage statistic citations. Markers, numbering, and targets all mirror the
 # original site exactly: 1 = American Lung Association, 2 = JAMA Network Open,
-# 3 = CDC. Two stats (20% of all cancer deaths, 2.5M new patients) carry NO
-# marker on the original, so they carry none here either.
+# 3 = CDC never-smokers, 4 = ACS, 5 = WHO. Per the 13 Aug 2026 statistics
+# spec every figure in the Challenge block now carries a marker; the two
+# global stats that previously ran unmarked are cited to WHO (5).
 CITES = {
+    # 1  American Lung Association, State of Lung Cancer 2025
     1: "https://www.lung.org/research/state-of-lung-cancer/key-findings",
-    2: "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2812260",
+    # 2  Sabatino SA. Use of Cancer Screening Tests, United States, 2023.
+    #    Prev Chronic Dis. 2025;22:250139. Replaces the 2021-data citation;
+    #    this is the source of the >63% figure.
+    2: "https://www.cdc.gov/pcd/issues/2025/25_0139a.htm",
+    # 3  CDC, Lung Cancer Among People Who Never Smoked
     3: "https://www.cdc.gov/lung-cancer/nonsmokers/index.html",
+    # 4  American Cancer Society, Key Statistics for Lung Cancer
+    4: "https://www.cancer.org/cancer/types/lung-cancer/about/key-statistics.html",
+    # 5  World Health Organization, Lung cancer fact sheet
+    5: "https://www.who.int/news-room/fact-sheets/detail/lung-cancer",
 }
 
 def cite(*nums):
@@ -415,17 +425,17 @@ def build_home():
  <h2 class="section-title">The Challenge</h2>
  <div class="challenge">
   <div class="headline">
-   <p>Lung cancer is the <b>deadliest cancer worldwide</b>&mdash;more than colon, breast, and prostate cancer combined{cite(1)}</p>
-   <div class="bigstat"><div class="stat-number">20%</div><div class="stat-label">of all cancer deaths</div></div>
-   <div class="bigstat"><div class="stat-number">2.5M</div><div class="stat-label">new patients diagnosed globally every year</div></div>
+   <p>Lung cancer is the <b>deadliest cancer in the U.S.</b>&mdash;more than colon, breast, and prostate cancer combined{cite(4)}</p>
+   <div class="bigstat"><div class="stat-number">19%</div><div class="stat-label">of all cancer deaths worldwide{cite(5)}</div></div>
+   <div class="bigstat"><div class="stat-number">2.5M</div><div class="stat-label">new patients diagnosed globally every year{cite(5)}</div></div>
   </div>
   <div class="statgrid">
-   <div class="cell"><div class="stat-number">18.2%</div><div class="stat-label">of eligible individuals are up to date with lung cancer screening{cite(1)}</div></div>
-   <div class="cell"><div class="stat-number">28.1%</div><div class="stat-label">of cases are diagnosed when cancer still localized and survival rates are higher{cite(1)}</div></div>
-   <div class="cell"><div class="stat-number">21%</div><div class="stat-label">of cases did not receive any treatment after diagnosis{cite(1)}</div></div>
-   <div class="cell"><div class="stat-number">&gt;66%</div><div class="stat-label">of eligible individuals are up to date with colorectal, breast, and cervical cancer screenings{cite(1, 2)}</div></div>
-   <div class="cell"><div class="stat-number">29.7%</div><div class="stat-label">of patients currently survive longer than five years{cite(1)}</div></div>
-   <div class="cell"><div class="stat-number">10&ndash;20%</div><div class="stat-label">of lung cancers are not caused by smoking{cite(3)}</div></div>
+   <div class="cell"><div class="stat-number">18.2%</div><div class="stat-label">of eligible U.S. individuals are up to date with lung cancer screening{cite(1)}</div></div>
+   <div class="cell"><div class="stat-number">28.1%</div><div class="stat-label">of U.S. cases are diagnosed at an early stage, when survival rates are higher{cite(1)}</div></div>
+   <div class="cell"><div class="stat-number">21%</div><div class="stat-label">of U.S. cases did not receive any treatment after diagnosis{cite(1)}</div></div>
+   <div class="cell"><div class="stat-number">&gt;63%</div><div class="stat-label">of eligible individuals are up to date with colorectal, breast, and cervical cancer screenings{cite(2)}</div></div>
+   <div class="cell"><div class="stat-number">29.7%</div><div class="stat-label">of U.S. patients are alive five years after diagnosis{cite(1)}</div></div>
+   <div class="cell"><div class="stat-number">10&ndash;20%</div><div class="stat-label">of lung cancers occur in people who never smoked{cite(3)}</div></div>
   </div>
  </div>
 </div></section>
