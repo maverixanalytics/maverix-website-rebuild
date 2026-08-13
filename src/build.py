@@ -361,6 +361,40 @@ def cite(*nums):
     return '<sup class="cite">' + '<span class="csep">,</span>'.join(parts) + '</sup>'
 
 
+# References for the Risk Assessment page's About and Unique Benefits sections.
+# Deliberately SEPARATE from CITES above, which numbers the homepage Challenge
+# graphic. The two schemes are independent and must never be merged or
+# cross-numbered -- they live on different pages and use different markup
+# (sup.cite for the graphic, sup.ref plus a visible list here).
+REFS_ABOUT = """
+<li id="ref-1">Reddy SR, Broder MS, Chang E, Paydar C, Chung KC, Kansal AR. Cost of cancer management by stage at diagnosis among Medicare beneficiaries. <em>Curr Med Res Opin.</em> 2022;38(8):1285&ndash;1294. <a href="https://www.tandfonline.com/doi/full/10.1080/03007995.2022.2047536" target="_blank" rel="noopener noreferrer">doi:10.1080/03007995.2022.2047536</a></li>
+<li id="ref-2">de Nijs K, de Koning HJ, van der Aalst C, ten Haaf K. Medical costs of lung cancer by stage, histology and first-line treatment modality in the Netherlands (2012&ndash;2021). <em>Eur J Cancer.</em> 2024;208:114231. <a href="https://www.sciencedirect.com/science/article/pii/S0959804924008876" target="_blank" rel="noopener noreferrer">doi:10.1016/j.ejca.2024.114231</a></li>
+<li id="ref-3">National Lung Screening Trial Research Team; Aberle DR, Adams AM, Berg CD, et al. Reduced lung-cancer mortality with low-dose computed tomographic screening. <em>N Engl J Med.</em> 2011;365(5):395&ndash;409. <a href="https://www.nejm.org/doi/full/10.1056/NEJMoa1102873" target="_blank" rel="noopener noreferrer">doi:10.1056/NEJMoa1102873</a></li>
+<li id="ref-4">de Koning HJ, van der Aalst CM, de Jong PA, et al. Reduced lung-cancer mortality with volume CT screening in a randomized trial. <em>N Engl J Med.</em> 2020;382(6):503&ndash;513. <a href="https://www.nejm.org/doi/full/10.1056/NEJMoa1911793" target="_blank" rel="noopener noreferrer">doi:10.1056/NEJMoa1911793</a></li>
+<li id="ref-5">Vlahos I, Stefanidis K, Sheard S, Nair A, Sayer C, Moser J. Lung cancer screening: nodule identification and characterization. <em>Transl Lung Cancer Res.</em> 2018;7(3):288&ndash;303. <a href="https://tlcr.amegroups.org/article/view/21562/html" target="_blank" rel="noopener noreferrer">doi:10.21037/tlcr.2018.05.02</a></li>
+<li id="ref-6">Rajaram R, Huang Q, Li RZ, et al. Recurrence-free survival in patients with surgically resected non-small cell lung cancer: a systematic literature review and meta-analysis. <em>Chest.</em> 2024;165(5):1260&ndash;1270. <a href="https://journal.chestnet.org/article/S0012-3692(23)05836-1/fulltext" target="_blank" rel="noopener noreferrer">doi:10.1016/j.chest.2023.11.042</a></li>
+<li id="ref-7">Gould MK, Tang T, Liu IA, et al. Recent trends in the identification of incidental pulmonary nodules. <em>Am J Respir Crit Care Med.</em> 2015;192(10):1208&ndash;1214. <a href="https://pubmed.ncbi.nlm.nih.gov/26214244/" target="_blank" rel="noopener noreferrer">doi:10.1164/rccm.201505-0990OC</a></li>
+<li id="ref-8">MacMahon H, Naidich DP, Goo JM, et al. Guidelines for management of incidental pulmonary nodules detected on CT images: from the Fleischner Society 2017. <em>Radiology.</em> 2017;284(1):228&ndash;243. <a href="https://pubs.rsna.org/doi/full/10.1148/radiol.2017161659" target="_blank" rel="noopener noreferrer">doi:10.1148/radiol.2017161659</a></li>
+<li id="ref-9">Vidaver RM, Shershneva MB, Hetzel SJ, Holden TR, Campbell TC. Typical time to treatment of patients with lung cancer in a multisite, US-based study. <em>J Oncol Pract.</em> 2016;12(6):e643&ndash;e653. <a href="https://ascopubs.org/doi/10.1200/JOP.2015.009605" target="_blank" rel="noopener noreferrer">doi:10.1200/JOP.2015.009605</a></li>
+<li id="ref-10">Christensen J, Prosper AE, Wu CC, et al. ACR Lung-RADS v2022: assessment categories and management recommendations. <em>J Am Coll Radiol.</em> 2024;21(3):473&ndash;488. <a href="https://www.jacr.org/article/S1546-1440(23)00761-5/fulltext" target="_blank" rel="noopener noreferrer">doi:10.1016/j.jacr.2023.09.009</a></li>
+<li id="ref-11">Samson P, Patel A, Garrett T, et al. Effects of delayed surgical resection on short-term and long-term outcomes in clinical stage I non-small cell lung cancer. <em>Ann Thorac Surg.</em> 2015;99(6):1906&ndash;1913. <a href="https://www.annalsthoracicsurgery.org/article/S0003-4975(15)00256-X/fulltext" target="_blank" rel="noopener noreferrer">doi:10.1016/j.athoracsur.2015.02.022</a></li>
+<li id="ref-12">Khorana AA, Tullio K, Elson P, et al. Time to initial cancer treatment in the United States and association with survival over time: an observational study. <em>PLOS ONE.</em> 2019;14(3):e0213209. <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0213209" target="_blank" rel="noopener noreferrer">doi:10.1371/journal.pone.0213209</a></li>
+""".strip()
+
+
+def ref(*nums):
+    """Superscript marker linking down to the Risk Assessment references list."""
+    return ('<sup class="ref">'
+            + ','.join(f'<a href="#ref-{n}">{n}</a>' for n in nums)
+            + '</sup>')
+
+
+def refs_section():
+    return ('<section class="references" id="references-about-benefits"'
+            ' aria-label="References for About and Unique Benefits">'
+            f'<h2>References</h2><ol>{REFS_ABOUT}</ol></section>')
+
+
 def page(fname, title, desc, body, rel="", group="Pages", subtitle=""):
     # share cards are rendered straight from each page's own hero (see build_og_images)
     og_map = {f: f"{BASE_URL}/assets/og-{f.replace('.html','')}.jpg" for f in (
@@ -572,16 +606,17 @@ def build_products():
  <div class="sechead"><img class="famlogo" src="{IMG['diag_logo']}" alt="Maverix Diagnostics">
   {contact_block(MVX_EMAIL, phone=False)}</div>
  <div class="seclabel">About</div>
- <p class="biglead">Early cancer detection lowers healthcare costs and saves lives &hellip; but most lung nodules discovered in radiology studies lack clear indications of risk, leaving uncertainty about next steps.</p>
+ <p class="biglead">Early cancer detection lowers treatment costs{ref(1,2)} and saves lives{ref(3,4)} &hellip; but most lung nodules discovered in radiology studies lack clear indicators of malignancy{ref(5)}, leaving uncertainty about which patients need intervention.</p>
  <p class="bodytext">We are developing a diagnostic test that aims to better clarify which patients are most likely to benefit from either tissue sampling or continued monitoring. This helps focus physician efforts on patients that require more active intervention.</p>
  <div class="photo-cards expand">
   <div class="photo-card has-reveal" tabindex="0"><img src="{IMG['detection']}" alt="" loading="lazy"><div class="photo-title">Early detection and resection is crucial&hellip;</div>
-   <div class="reveal"><div class="photo-title-reveal">Early detection and resection is crucial&hellip;</div><p class="lead">More than half of stage I patients are cured by a single surgery.</p><p class="photo-subtitle">Lung nodules are detected in 1/4 of CT scans with few ultimately identified as cancer.</p></div></div>
+   <div class="reveal"><div class="photo-title-reveal">Early detection and resection is crucial&hellip;</div><p class="lead">More than half of stage I patients remain recurrence-free five years after surgery.{ref(6)}</p><p class="photo-subtitle">Lung nodules are detected in 1/4 of CT scans{ref(7)} with few ultimately identified as cancer.{ref(8)}</p></div></div>
   <div class="photo-card has-reveal" tabindex="0"><img src="{IMG['holding_hands']}" alt="" loading="lazy"><div class="photo-title">because time is the enemy&hellip;</div>
-   <div class="reveal"><div class="photo-title-reveal">because time is the enemy&hellip;</div><p class="lead">Patients often wait months to see a pulmonologist.</p><p class="photo-subtitle">Current practice is to diagnose over time, so doctors must wait for the next CT scan to see if a nodule grows.</p></div></div>
+   <div class="reveal"><div class="photo-title-reveal">because time is the enemy&hellip;</div><p class="lead">Nearly a third of patients wait three months or more to begin treatment.{ref(9)}</p><p class="photo-subtitle">Current practice for indeterminate nodules is to diagnose over time, so doctors must wait for the next CT scan to see if a nodule grows.{ref(8,10)}</p></div></div>
   <div class="photo-card has-reveal" tabindex="0"><img src="{IMG['jenny']}" alt="" loading="lazy"><div class="photo-title">&hellip;and a diagnostic could change everything.</div>
-   <div class="reveal"><div class="photo-title-reveal">&hellip;and a diagnostic could change everything.</div><p class="lead">A diagnostic tool that identifies high-risk patients could move them to the front of the line for a biopsy.</p><p class="photo-subtitle">Their treatment regime could start earlier, which can improve outcomes.</p></div></div>
+   <div class="reveal"><div class="photo-title-reveal">&hellip;and a diagnostic could change everything.</div><p class="lead">A diagnostic tool that identifies high-risk patients could move them to the front of the line for a biopsy.</p><p class="photo-subtitle">Their treatment regime could start earlier, which has been associated with better outcomes in early-stage lung cancer.{ref(11,12)}</p></div></div>
  </div>
+ {refs_section()}
  <p class="rxnote">Currently under development, product not cleared or available in the US.</p>
 </div></section>"""
 
