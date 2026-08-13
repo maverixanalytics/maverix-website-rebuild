@@ -68,7 +68,8 @@
                             <p>Developing molecular diagnostic tools that aim to triage lung cancer in patients to
                                 identify those in need of immediate care.</p>
                             <a class="btn" href="diagnostics.html"><span class="circ"><svg fill="none"
-                                                                                           stroke="#1A4A5D" stroke-linecap="round"
+                                                                                           stroke="#1A4A5D"
+                                                                                           stroke-linecap="round"
                                                                                            stroke-linejoin="round"
                                                                                            stroke-width="3"
                                                                                            viewBox="0 0 24 24"><path
@@ -78,7 +79,8 @@
                             <p>Endobronchial tissue-sampling instruments designed to help physicians obtain the tissue
                                 needed for an accurate diagnosis.</p>
                             <a class="btn" href="serpex.html"><span class="circ"><svg fill="none" stroke="#1A4A5D"
-                                                                                      stroke-linecap="round" stroke-linejoin="round"
+                                                                                      stroke-linecap="round"
+                                                                                      stroke-linejoin="round"
                                                                                       stroke-width="3"
                                                                                       viewBox="0 0 24 24"><path
                                     d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span><span class="btn-label">Explore Biopsy Tools</span></a>
@@ -234,12 +236,14 @@
             <ol>
                 <li id="ref-1">Reddy SR, Broder MS, Chang E, Paydar C, Chung KC, Kansal AR. Cost of cancer management by
                     stage at diagnosis among Medicare beneficiaries. <em>Curr Med Res Opin.</em> 2022;38(8):1285&ndash;1294.
-                    <a href="https://www.tandfonline.com/doi/full/10.1080/03007995.2022.2047536" rel="noopener noreferrer"
+                    <a href="https://www.tandfonline.com/doi/full/10.1080/03007995.2022.2047536"
+                       rel="noopener noreferrer"
                        target="_blank">doi:10.1080/03007995.2022.2047536</a></li>
                 <li id="ref-2">de Nijs K, de Koning HJ, van der Aalst C, ten Haaf K. Medical costs of lung cancer by
                     stage, histology and first-line treatment modality in the Netherlands (2012&ndash;2021). <em>Eur J
                         Cancer.</em> 2024;208:114231. <a
-                            href="https://www.sciencedirect.com/science/article/pii/S0959804924008876" rel="noopener noreferrer"
+                            href="https://www.sciencedirect.com/science/article/pii/S0959804924008876"
+                            rel="noopener noreferrer"
                             target="_blank">doi:10.1016/j.ejca.2024.114231</a></li>
                 <li id="ref-3">National Lung Screening Trial Research Team; Aberle DR, Adams AM, Berg CD, et al. Reduced
                     lung-cancer mortality with low-dose computed tomographic screening. <em>N Engl J Med.</em>
@@ -257,7 +261,8 @@
                 <li id="ref-6">Rajaram R, Huang Q, Li RZ, et al. Recurrence-free survival in patients with surgically
                     resected non-small cell lung cancer: a systematic literature review and meta-analysis.
                     <em>Chest.</em> 2024;165(5):1260&ndash;1270. <a
-                            href="https://journal.chestnet.org/article/S0012-3692(23)05836-1/fulltext" rel="noopener noreferrer"
+                            href="https://journal.chestnet.org/article/S0012-3692(23)05836-1/fulltext"
+                            rel="noopener noreferrer"
                             target="_blank">doi:10.1016/j.chest.2023.11.042</a></li>
                 <li id="ref-7">Gould MK, Tang T, Liu IA, et al. Recent trends in the identification of incidental
                     pulmonary nodules. <em>Am J Respir Crit Care Med.</em> 2015;192(10):1208&ndash;1214. <a
@@ -314,7 +319,8 @@
         <div class="fcontact">
             <div class="footer-heading">Contact us</div>
             <div class="frow"><a class="mail" href="mailto:contact@maverixmedical.com">contact@maverixmedical.com</a>
-                <a aria-label="LinkedIn" class="li-sq" href="https://www.linkedin.com/company/maverix-medical/" rel="noopener"
+                <a aria-label="LinkedIn" class="li-sq" href="https://www.linkedin.com/company/maverix-medical/"
+                   rel="noopener"
                    target="_blank">
                     <svg aria-hidden="true" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/>
@@ -519,7 +525,10 @@
                 // Netlify collects submissions by POSTing the form back to its own page as
                 // urlencoded data, so there is no endpoint URL to configure. Anywhere else that
                 // POST is rejected (GitHub Pages answers 405), and we hand off to the mail client.
-                if (!endpoint && f.hasAttribute('data-netlify')) {
+                // Keyed off netlify-form, not data-netlify: Netlify strips data-netlify from the
+                // deployed HTML once it has registered the form, so it is absent exactly where we
+                // need it.
+                if (!endpoint && f.hasAttribute('netlify-form')) {
                     fetch('/', {
                         method: 'POST', redirect: 'error',
                         headers: {'Content-Type': 'application/x-www-form-urlencoded'},

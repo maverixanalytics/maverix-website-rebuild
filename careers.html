@@ -68,7 +68,8 @@
                             <p>Developing molecular diagnostic tools that aim to triage lung cancer in patients to
                                 identify those in need of immediate care.</p>
                             <a class="btn" href="diagnostics.html"><span class="circ"><svg fill="none"
-                                                                                           stroke="#1A4A5D" stroke-linecap="round"
+                                                                                           stroke="#1A4A5D"
+                                                                                           stroke-linecap="round"
                                                                                            stroke-linejoin="round"
                                                                                            stroke-width="3"
                                                                                            viewBox="0 0 24 24"><path
@@ -78,7 +79,8 @@
                             <p>Endobronchial tissue-sampling instruments designed to help physicians obtain the tissue
                                 needed for an accurate diagnosis.</p>
                             <a class="btn" href="serpex.html"><span class="circ"><svg fill="none" stroke="#1A4A5D"
-                                                                                      stroke-linecap="round" stroke-linejoin="round"
+                                                                                      stroke-linecap="round"
+                                                                                      stroke-linejoin="round"
                                                                                       stroke-width="3"
                                                                                       viewBox="0 0 24 24"><path
                                     d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span><span class="btn-label">Explore Biopsy Tools</span></a>
@@ -290,16 +292,21 @@
         <h2 style="margin:.6rem 0 1rem;">Are you ready to make a difference?</h2>
         <p class="lede">Join a company that is at the forefront of lung cancer diagnosis and treatment.</p>
         <div style="margin-top:2rem;max-width:560px;">
-            <form action="" class="form" data-endpoint="" data-mailto="contact@maverixmedical.com" data-mvxform data-netlify="true"
-                  method="POST" name="careers" netlify-honeypot="_gotcha">
+            <form action="" class="form" data-endpoint="" data-mailto="contact@maverixmedical.com" data-mvxform
+                  data-netlify="true"
+                  method="POST"
+                  name="careers" netlify-form netlify-honeypot="_gotcha">
                 <input name="form-name" type="hidden" value="careers">
                 <p class="honeypot"><label>Do not fill this in <input autocomplete="off" name="_gotcha" tabindex="-1"
                                                                       type="text"></label></p>
-                <div><label for="cn">Name</label><input autocomplete="name" id="cn" name="Name" placeholder="Your name" required
+                <div><label for="cn">Name</label><input autocomplete="name" id="cn" name="Name" placeholder="Your name"
+                                                        required
                                                         type="text"></div>
-                <div><label for="ce">Email</label><input autocomplete="email" id="ce" name="Email" placeholder="you@example.com"
+                <div><label for="ce">Email</label><input autocomplete="email" id="ce" name="Email"
+                                                         placeholder="you@example.com"
                                                          required type="email"></div>
-                <div><label for="cm">Message</label><textarea id="cm" name="Message" placeholder="Tell us about yourself" required
+                <div><label for="cm">Message</label><textarea id="cm" name="Message"
+                                                              placeholder="Tell us about yourself" required
                                                               rows="5"></textarea></div>
                 <button style="background:var(--mvx-sky);color:#12333D;" type="submit">Send message</button>
             </form>
@@ -332,7 +339,8 @@
         <div class="fcontact">
             <div class="footer-heading">Contact us</div>
             <div class="frow"><a class="mail" href="mailto:contact@maverixmedical.com">contact@maverixmedical.com</a>
-                <a aria-label="LinkedIn" class="li-sq" href="https://www.linkedin.com/company/maverix-medical/" rel="noopener"
+                <a aria-label="LinkedIn" class="li-sq" href="https://www.linkedin.com/company/maverix-medical/"
+                   rel="noopener"
                    target="_blank">
                     <svg aria-hidden="true" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/>
@@ -537,7 +545,10 @@
                 // Netlify collects submissions by POSTing the form back to its own page as
                 // urlencoded data, so there is no endpoint URL to configure. Anywhere else that
                 // POST is rejected (GitHub Pages answers 405), and we hand off to the mail client.
-                if (!endpoint && f.hasAttribute('data-netlify')) {
+                // Keyed off netlify-form, not data-netlify: Netlify strips data-netlify from the
+                // deployed HTML once it has registered the form, so it is absent exactly where we
+                // need it.
+                if (!endpoint && f.hasAttribute('netlify-form')) {
                     fetch('/', {
                         method: 'POST', redirect: 'error',
                         headers: {'Content-Type': 'application/x-www-form-urlencoded'},

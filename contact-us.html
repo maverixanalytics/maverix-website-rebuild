@@ -68,7 +68,8 @@
                             <p>Developing molecular diagnostic tools that aim to triage lung cancer in patients to
                                 identify those in need of immediate care.</p>
                             <a class="btn" href="diagnostics.html"><span class="circ"><svg fill="none"
-                                                                                           stroke="#1A4A5D" stroke-linecap="round"
+                                                                                           stroke="#1A4A5D"
+                                                                                           stroke-linecap="round"
                                                                                            stroke-linejoin="round"
                                                                                            stroke-width="3"
                                                                                            viewBox="0 0 24 24"><path
@@ -78,7 +79,8 @@
                             <p>Endobronchial tissue-sampling instruments designed to help physicians obtain the tissue
                                 needed for an accurate diagnosis.</p>
                             <a class="btn" href="serpex.html"><span class="circ"><svg fill="none" stroke="#1A4A5D"
-                                                                                      stroke-linecap="round" stroke-linejoin="round"
+                                                                                      stroke-linecap="round"
+                                                                                      stroke-linejoin="round"
                                                                                       stroke-width="3"
                                                                                       viewBox="0 0 24 24"><path
                                     d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span><span class="btn-label">Explore Biopsy Tools</span></a>
@@ -181,22 +183,28 @@
         <h2>Let's change the future<br>of lung cancer healthcare</h2>
         <p style="margin-top:1.2rem;max-width:620px;color:#E4EAEE;">Whether you're interested in investment,
             partnerships, sales inquiries, or a career at Maverix, feel free to reach out.</p>
-        <form action="" class="cform" data-endpoint="" data-mailto="contact@maverixmedical.com" data-mvxform data-netlify="true"
-              method="POST" name="contact" netlify-honeypot="_gotcha">
+        <form action="" class="cform" data-endpoint="" data-mailto="contact@maverixmedical.com" data-mvxform
+              data-netlify="true"
+              method="POST"
+              name="contact" netlify-form netlify-honeypot="_gotcha">
             <input name="form-name" type="hidden" value="contact">
             <p class="honeypot"><label>Do not fill this in <input autocomplete="off" name="_gotcha" tabindex="-1"
                                                                   type="text"></label></p>
             <div class="colL">
-                <input aria-label="First Name" autocomplete="given-name" name="First Name" placeholder="First Name*" required
+                <input aria-label="First Name" autocomplete="given-name" name="First Name" placeholder="First Name*"
+                       required
                        type="text">
-                <input aria-label="Last Name" autocomplete="family-name" name="Last Name" placeholder="Last Name*" required
+                <input aria-label="Last Name" autocomplete="family-name" name="Last Name" placeholder="Last Name*"
+                       required
                        type="text">
                 <input aria-label="Phone Number" autocomplete="tel" name="Phone" placeholder="Phone Number" type="tel">
-                <input aria-label="Email Address" autocomplete="email" name="Email" placeholder="Email Address*" required
+                <input aria-label="Email Address" autocomplete="email" name="Email" placeholder="Email Address*"
+                       required
                        type="email">
                 <input aria-label="Company" autocomplete="organization" name="Company" placeholder="Company"
                        type="text">
-                <input aria-label="Position / Title" autocomplete="organization-title" name="Title" placeholder="Position / Title"
+                <input aria-label="Position / Title" autocomplete="organization-title" name="Title"
+                       placeholder="Position / Title"
                        type="text">
             </div>
             <div class="colR">
@@ -212,8 +220,9 @@
         </div>
         <div style="margin-top:2.6rem;">
             <a class="btn on-dark" href="https://www.linkedin.com/company/maverix-medical/" rel="noopener"
-               target="_blank"><span class="circ"><svg fill="none" stroke="#1A4A5D" stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-width="3" viewBox="0 0 24 24"><path
+               target="_blank"><span class="circ"><svg fill="none" stroke="#1A4A5D" stroke-linecap="round"
+                                                       stroke-linejoin="round"
+                                                       stroke-width="3" viewBox="0 0 24 24"><path
                     d="M6 5l7 7-7 7"/><path d="M12.5 5l7 7-7 7"/></svg></span>Follow us on LinkedIn</a>
             &nbsp;&nbsp;&nbsp;<a href="mailto:contact@maverixmedical.com" style="color:#B9E3EF;font-style:italic;">contact@maverixmedical.com</a>
         </div>
@@ -243,7 +252,8 @@
         <div class="fcontact">
             <div class="footer-heading">Contact us</div>
             <div class="frow"><a class="mail" href="mailto:contact@maverixmedical.com">contact@maverixmedical.com</a>
-                <a aria-label="LinkedIn" class="li-sq" href="https://www.linkedin.com/company/maverix-medical/" rel="noopener"
+                <a aria-label="LinkedIn" class="li-sq" href="https://www.linkedin.com/company/maverix-medical/"
+                   rel="noopener"
                    target="_blank">
                     <svg aria-hidden="true" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/>
@@ -448,7 +458,10 @@
                 // Netlify collects submissions by POSTing the form back to its own page as
                 // urlencoded data, so there is no endpoint URL to configure. Anywhere else that
                 // POST is rejected (GitHub Pages answers 405), and we hand off to the mail client.
-                if (!endpoint && f.hasAttribute('data-netlify')) {
+                // Keyed off netlify-form, not data-netlify: Netlify strips data-netlify from the
+                // deployed HTML once it has registered the form, so it is absent exactly where we
+                // need it.
+                if (!endpoint && f.hasAttribute('netlify-form')) {
                     fetch('/', {
                         method: 'POST', redirect: 'error',
                         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
