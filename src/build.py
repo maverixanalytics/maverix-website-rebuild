@@ -972,8 +972,8 @@ def build_product_pages():
         videos=[("Deployment", "Cx7Ap8kGSyA")])
 
     pd_page("narwhal-cryo-system", "Narwhal Cryo System", THOR_LOGO,
-        ["A single-use, console-free cryobiopsy probe designed for palliative devitalization (destruction) of tissue during interventional procedures by the application of extreme cold and cryo-adhesion, for applications such as the removal of foreign bodies, mucus plugs, blood clots, necrotic tissue, tissue tumors (palliative recanalization) and tissue biopsies. It is handheld and self-contained, with selectable sampling lengths and no cryo console to purchase or service."],
-        ["Single-use N&#8322;O cartridge &mdash; console-free operation, with no capital equipment to purchase or service",
+        ["A single-use, completely disposable, console-free cryobiopsy probe designed for palliative devitalization (destruction) of tissue during interventional procedures by the application of extreme cold and cryo-adhesion, for applications such as the removal of foreign bodies, mucus plugs, blood clots, necrotic tissue, tissue tumors (palliative recanalization) and tissue biopsies. It is handheld and self-contained, with selectable sampling lengths and no cryo console to purchase or service."],
+        ["Single-use Cryo cartridge &mdash; console-free operation, with no capital equipment to purchase or service",
          "Integrated adjustment dial, 3 mm or 6 mm tip sampling length &mdash; sampling length matched to the target",
          "Pointed, radiopaque tip &mdash; direct access and fluoroscopic visibility",
          "1.3 mm shaft, 115 cm working length &mdash; compatible with 2.0 mm or larger working channels, including robotic and endoscopic platforms",
@@ -1254,7 +1254,7 @@ def build_careers():
  </div>
 </div></section>"""
     page("careers.html", "Maverix Careers",
-         "Join us in revolutionizing lung cancer care. We are dedicated to improving outcomes.",
+         "Join us in revolutionizing lung cancer care. We are dedicated to improving care.",
          body, subtitle="Culture, benefits, open roles, join-us form")
 
 # ------------------------------------------------------------------ CONTACT
