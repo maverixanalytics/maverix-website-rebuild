@@ -6,17 +6,9 @@ OUT = os.environ.get("MVX_OUT") or os.path.join(os.path.dirname(os.path.abspath(
 CDN2 = "https://cdn.prod.website-files.com/680906a5e5bd468c21e28d8a"  # cms assets
 
 # ---- site configuration -------------------------------------------------
-# Canonical/production origin — sitemap, canonicals and OG tags all follow this.
-# On Netlify the origin comes from the build environment, so nothing here needs
-# editing at domain cutover:
-#   DEPLOY_PRIME_URL — the deploy's own URL, so previews and branch deploys
-#                      self-canonicalise instead of pointing at production.
-#   URL             — the site's primary origin, used for production builds.
-# Anywhere else (a local build, or the GitHub Pages deploy) neither is set and
-# the literal below applies.
-BASE_URL = (os.environ.get("DEPLOY_PRIME_URL")
-            or os.environ.get("URL")
-            or "https://maverixanalytics.github.io/maverix-website-rebuild").rstrip("/")
+# Canonical/production origin. Change to "https://www.maverixmedical.com"
+# at domain cutover — sitemap, canonicals and OG tags all follow this.
+BASE_URL = "https://maverixanalytics.github.io/maverix-website-rebuild"
 
 # Form submission endpoint.
 #   Formspree : "https://formspree.io/f/XXXXXXXX"   (works on any host)
@@ -59,6 +51,7 @@ IMG = {
     "jenny": f"assets/jenny-hill-mqvwb7kuooe-unsplash.jpg",
     "bonastent_logo": f"assets/bonastent-logo.png",
     "hilzo_logo": f"assets/hilzo-stents-logo.png",
+    "microtech_logo": f"assets/micro-tech-logo.png",
     "netis1": f"assets/netis-retrieval-net.jpg",
     "netis2": f"assets/netis-retrieval-net-alt.jpg",
     "logo_fierce": f"assets/fierce-biotech-logo.png",
@@ -166,38 +159,20 @@ JS = """
   function show(el,msg){[ok,err].forEach(function(n){if(n)n.style.display='none';});
    if(el){if(msg)el.textContent=msg;el.style.display='block';}}
   function reset(){if(btn){btn.disabled=false;btn.textContent=label;}}
-  // Last resort when no submission backend accepts the post: hand the message to
-  // the visitor's mail client so it is never silently lost.
-  function mailto(data){
-   var to=f.getAttribute('data-mailto')||'',lines=[];
-   data.forEach(function(v,k){if(k.charAt(0)!=='_'&&k!=='form-name'&&String(v).trim())lines.push(k+': '+v);});
-   var subj=data.get('Subject')||('Website enquiry from '+(data.get('First Name')||data.get('Name')||'a visitor'));
-   window.location.href='mailto:'+to+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(lines.join('\\n'));
-   setTimeout(function(){reset();show(ok,'Thanks \\u2014 your email app should be opening with this message ready to send.');},600);
-  }
   f.addEventListener('submit',function(e){
    e.preventDefault();
    if(!f.reportValidity())return;
    if((f.querySelector('input[name=_gotcha]')||{}).value){f.style.display='none';show(ok);return;}
    var data=new FormData(f),endpoint=f.getAttribute('data-endpoint');
    if(btn){btn.disabled=true;btn.textContent='Sending\\u2026';}
-   // Netlify collects submissions by POSTing the form back to its own page as
-   // urlencoded data, so there is no endpoint URL to configure. Anywhere else that
-   // POST is rejected (GitHub Pages answers 405), and we hand off to the mail client.
-   // Keyed off netlify-form, not data-netlify: Netlify strips data-netlify from the
-   // deployed HTML once it has registered the form, so it is absent exactly where we
-   // need it.
-   if(!endpoint&&f.hasAttribute('netlify-form')){
-    fetch('/',{method:'POST',redirect:'error',
-     headers:{'Content-Type':'application/x-www-form-urlencoded'},
-     body:new URLSearchParams(data).toString()})
-     .then(function(r){
-      if(r.ok){f.style.display='none';show(ok);}
-      else{mailto(data);}})
-     .catch(function(){mailto(data);});
+   if(!endpoint){
+    var to=f.getAttribute('data-mailto')||'',lines=[];
+    data.forEach(function(v,k){if(k.charAt(0)!=='_'&&k!=='form-name'&&String(v).trim())lines.push(k+': '+v);});
+    var subj=data.get('Subject')||('Website enquiry from '+(data.get('First Name')||data.get('Name')||'a visitor'));
+    window.location.href='mailto:'+to+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(lines.join('\\n'));
+    setTimeout(function(){reset();show(ok,'Thanks \\u2014 your email app should be opening with this message ready to send.');},600);
     return;
    }
-   if(!endpoint){mailto(data);return;}
    fetch(endpoint,{method:'POST',body:data,headers:{'Accept':'application/json'}})
     .then(function(r){
      if(r.ok){f.style.display='none';show(ok);}
@@ -668,10 +643,9 @@ def build_products():
  <section class="nwfeature">
   <div class="nw-top">
    <div class="nw-copy">
-    <div class="nw-badge">Cryobiopsy &middot; New</div>
     <div class="nw-kicker">Maverix Narwhal Cryo System</div>
     <h2 class="nw-title">The Future<br>of Cryobiopsy<span class="nw-dot">.</span></h2>
-    <p class="nw-lede">A single-use, console-free cryobiopsy probe &mdash; handheld and self-contained,
+    <p class="nw-lede">A single-use, completely disposable, console-free cryobiopsy probe &mdash; handheld and self-contained,
      with selectable sampling lengths and no cryo console to purchase or service.</p>
     <a class="btn nw-cta" href="products/narwhal-cryo-system.html">
      <span class="circ">{ARROW_SVG}</span><span class="btn-label">Explore the Narwhal Cryo System</span></a>
@@ -684,9 +658,9 @@ def build_products():
    <div class="nw-cards">
     <div class="nw-card">
      <h3>No capital equipment.</h3>
-     <div class="nw-cardimg"><img src="images/narwhal/no-console.jpg" alt="Narwhal probe with its single-use N&#8322;O cartridge" loading="lazy"></div>
+     <div class="nw-cardimg"><img src="images/narwhal/no-console.jpg" alt="Narwhal probe with its single-use Cryo cartridge" loading="lazy"></div>
      <div class="nw-why">Why it matters</div>
-     <p>Handheld and self-contained. Each probe is powered by a single-use N&#8322;O cartridge,
+     <p>Handheld and self-contained. Each probe is powered by a single-use Cryo cartridge,
       freeing cryobiopsy from a fixed console &mdash; simplifying setup and use.</p>
     </div>
     <div class="nw-card">
@@ -706,9 +680,9 @@ def build_products():
 
    <div class="nw-seclabel evidence">Backed by preclinical testing</div>
    <h3 class="nw-evtitle">Building a strong clinical foundation.</h3>
-   <p class="nw-evlede">In preclinical studies, the Maverix Narwhal cryobiopsy probe met every predefined
-    endpoint for performance and safety &mdash; capturing high-quality samples, with no clinically
-    significant bleeding or pneumothorax observed in preclinical animal testing.
+   <p class="nw-evlede">In our preclinical animal studies, the Maverix Narwhal cryobiopsy probe met every
+    predefined endpoint for performance and safety, capturing high-quality samples with no clinically
+    significant bleeding or pneumothorax observed.
     <span class="nw-n">(37 biopsy samples across 3-, 5-, and 7-second freeze times)</span></p>
    <div class="nw-stats">
     <div class="nw-stat"><div class="nw-fig">100%</div>
@@ -868,6 +842,7 @@ def build_product_pages():
         ["../images/ystent.png"],
         [("Size Chart", "https://thoracent.com/wp-content/uploads/2023/07/Y-Stent-Brochure-2022.pdf"),
          ("MR Conditional Statement / IFU", "https://thoracent.com/wp-content/uploads/2022/11/1-0023806-0-Tracheal-Stent-System-Y-shaped-IFU.pdf")],
+        mfg_logo=IMG["microtech_logo"],
         videos=[("Demonstration Video", "BlNMh7UvbsY")])
 
     pd_page("bonastent-tracheobronchial-stent", "Bonastent Tracheobronchial Stent", THOR_LOGO,
@@ -905,6 +880,7 @@ def build_product_pages():
 <tr><td>BU49251</td><td>Trident EBUS FNB Nitinol Needle</td><td>22 GA</td><td>4 cm</td><td>1.8 mm</td><td>2.0 mm</td></tr>
 <tr><td>BU49261</td><td>Trident EBUS FNB Nitinol Needle</td><td>25 GA</td><td>4 cm</td><td>1.8 mm</td><td>2.0 mm</td></tr>
 </tbody>"""),
+        mfg_logo=IMG["microtech_logo"],
         videos=[("Demonstration Video", "Wv3mFCvMWiw")])
 
     pd_page("biopsy-forceps", "Biopsy Forceps", THOR_LOGO,
@@ -1264,7 +1240,7 @@ def build_careers():
  <h2 style="margin:.6rem 0 1rem;">Are you ready to make a difference?</h2>
  <p class="lede">Join a company that is at the forefront of lung cancer diagnosis and treatment.</p>
  <div style="margin-top:2rem;max-width:560px;">
-  <form class="form" data-mvxform netlify-form name="careers" method="POST" data-netlify="true" netlify-honeypot="_gotcha"
+  <form class="form" data-mvxform name="careers" method="POST" data-netlify="true" netlify-honeypot="_gotcha"
         action="{FORM_ENDPOINT}" data-endpoint="{FORM_ENDPOINT}" data-mailto="{CONTACT_EMAIL}">
    <input type="hidden" name="form-name" value="careers">
    <p class="honeypot"><label>Do not fill this in <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></p>
@@ -1290,7 +1266,7 @@ def build_contact():
 <section class="contact-dark"><div class="container" style="border:none;background:transparent;">
  <h2>Let's change the future<br>of lung cancer healthcare</h2>
  <p style="margin-top:1.2rem;max-width:620px;color:#E4EAEE;">Whether you're interested in investment, partnerships, sales inquiries, or a career at Maverix, feel free to reach out.</p>
- <form class="cform" data-mvxform netlify-form name="contact" method="POST" data-netlify="true" netlify-honeypot="_gotcha"
+ <form class="cform" data-mvxform name="contact" method="POST" data-netlify="true" netlify-honeypot="_gotcha"
        action="{FORM_ENDPOINT}" data-endpoint="{FORM_ENDPOINT}" data-mailto="{CONTACT_EMAIL}">
   <input type="hidden" name="form-name" value="contact">
   <p class="honeypot"><label>Do not fill this in <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></p>
