@@ -1,0 +1,55 @@
+# Netlify build config — Maverix Astro site.
+#
+# Site: inspiring-salamander-23b62b (Netlify) → maverixmedical.com after Tuesday
+# cutover. Deploys automatically on push to `main`.
+#
+# REVIEW WORKFLOW (what you asked for — see also README §"Review workflow"):
+#   • Deploy Previews are ON (Netlify default) — open a PR and Netlify builds it
+#     to a unique preview URL you can review before merging. Merging to `main`
+#     publishes to production.
+#   • Branch deploys are ON — pushing any non-`main` branch also builds a
+#     preview URL at <branch>--inspiring-salamander-23b62b.netlify.app.
+#   • Both preview types get X-Robots-Tag: noindex, nofollow via the context
+#     header rules below, so they won't get crawled if someone finds the URL.
+#
+# DASHBOARD SETTINGS TO CONFIRM BEFORE TUESDAY:
+#   • Site settings → Build & deploy → Asset optimization → "Pretty URLs" OFF
+#     (would rewrite /foo.html → /foo and break the frozen URL scheme).
+#   • Site settings → Build & deploy → Deploy Previews: enabled for pull
+#     requests from same repository (leave as default; keep OFF for forks).
+#   • Domain management → Domains → set the canonical form (bare
+#     maverixmedical.com or www) and enable HTTPS on Tuesday.
+#   • CookieYes dashboard → add both maverixmedical.com and the
+#     inspiring-salamander-23b62b.netlify.app subdomain to the allowed-domains
+#     list, or the consent banner won't render.
+#
+# COMMIT MESSAGE DISCIPLINE (Free tier is 300 credits/mo, ~15/deploy):
+#   • `[skip netlify]` on any push you don't want built (docs-only changes,
+#     source-of-truth swaps that don't affect the build, etc).
+#   • Every open PR builds automatically; close/merge stale PRs promptly.
+
+# Media layout note: the repo keeps the legacy `assets/` and `images/`
+# directories (plus favicon.ico) at the ROOT — they are copied into dist/
+# after the Astro build instead of living in public/. This avoided
+# re-uploading 38 MB of media during the browser-driven migration and
+# preserves the media files' git history. The stale legacy
+# assets/site.webmanifest was deleted from the repo so it can't clobber the
+# build-generated one. For local dev, run `npm run predev` once to mirror
+# them into public/ (gitignored).
+[build]
+  command = "npm ci && npm run build && cp -r assets images favicon.ico dist/"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22.12.0"
+
+# Keep preview builds out of search results even if URLs leak.
+[[context.deploy-preview.headers]]
+  for = "/*"
+  [context.deploy-preview.headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[context.branch-deploy.headers]]
+  for = "/*"
+  [context.branch-deploy.headers.values]
+    X-Robots-Tag = "noindex, nofollow"
