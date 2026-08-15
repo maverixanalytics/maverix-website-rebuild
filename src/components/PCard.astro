@@ -1,0 +1,22 @@
+---
+import Btn from "@/components/Btn.astro";
+
+/** Product listing card — legacy pcards() item. */
+type Props = {
+  slug: string;
+  name: string;
+  image?: string;
+  abbr?: string;
+};
+const { slug, name, image, abbr } = Astro.props;
+---
+
+<div class="pcard">
+  <div class="card-photo">
+    {image ? <img src={image} alt={name} loading="lazy" /> : <span class="abbr">{abbr}</span>}
+  </div>
+  <div class="card-info">
+    <h3 set:html={name} />
+    <Btn href={`/products/${slug}.html`} label="Learn more" />
+  </div>
+</div>

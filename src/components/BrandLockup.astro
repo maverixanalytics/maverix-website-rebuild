@@ -1,0 +1,19 @@
+---
+/**
+ * Product-page right-rail brand lockup ("Distributed by" / "Manufactured by").
+ * The .pd-mfg variant carries the separating top border (v51). Rail order —
+ * Distributed by → contact → Manufactured by BELOW the phone — is template
+ * logic in [slug].astro, an explicit user requirement (plan §2.1).
+ */
+type Props = {
+  label: "Distributed by" | "Manufactured by";
+  src: string;
+  isMfg?: boolean;
+};
+const { label, src, isMfg = false } = Astro.props;
+---
+
+<div class:list={["pd-brand", { "pd-mfg": isMfg }]}>
+  <div class="seclabel">{label}</div>
+  <img {src} alt="" />
+</div>

@@ -1,0 +1,19 @@
+---
+/**
+ * YouTube embed — privacy-enhanced youtube-nocookie ONLY (a published
+ * Privacy Policy commitment, plan §5.3), lazy-loaded.
+ */
+type Props = {
+  title: string;
+  youtubeId: string;
+};
+const { title, youtubeId } = Astro.props;
+---
+
+<h3 class="video-pane-title">{title}</h3>
+<iframe
+  class="video-embed"
+  src={`https://www.youtube-nocookie.com/embed/${youtubeId}`}
+  {title}
+  allowfullscreen
+  loading="lazy"></iframe>

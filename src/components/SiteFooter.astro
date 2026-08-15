@@ -1,0 +1,64 @@
+---
+import { CONTACT_EMAIL } from "@/config/site.config";
+import "@/styles/ported/chrome-footer.css";
+
+/**
+ * Site chrome footer. The .cky-banner-element class on Cookie Settings is a
+ * CookieYes global hook — it must survive verbatim (plan §5.3).
+ */
+---
+
+<footer class="site">
+  <div class="container">
+    <div class="fgrid">
+      <div class="fcol">
+        <div class="footer-heading">Products</div>
+        <a href="/diagnostics.html">Risk Assessment</a>
+        <a href="/serpex.html">Diagnosis</a>
+        <a href="/thoracent.html">Intervention</a>
+      </div>
+      <div class="fcol">
+        <div class="footer-heading">Team</div>
+        <a href="/team.html#leadership">Leadership</a>
+        <a href="/team.html#advisors">Advisors</a>
+      </div>
+      <div class="fcol">
+        <div class="footer-heading">Company</div>
+        <a href="/contact-us.html">Contact</a>
+        <a href="/careers.html">Careers</a>
+        <a href="/news.html">News</a>
+      </div>
+      <div class="fbrand">
+        <img class="flogo" src="/images/maverix-logo-gray.png" alt="Maverix" />
+      </div>
+    </div>
+    <div class="fcontact">
+      <div class="footer-heading">Contact us</div>
+      <div class="frow">
+        <a class="mail" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+        <a
+          class="li-sq"
+          href="https://www.linkedin.com/company/maverix-medical/"
+          target="_blank"
+          rel="noopener"
+          aria-label="LinkedIn"
+        >
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"
+            ></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="fbottom">
+      <div>
+        <a href="/regulatory-information.html">Regulatory Information</a>
+        <a href="/privacy-policy.html">Privacy Policy</a>
+        <a href="/terms-of-use.html">Terms of Use</a>
+        <a href="#" class="cky-banner-element">Cookie Settings</a>
+      </div>
+      <div>Copyright &copy; Maverix</div>
+    </div>
+  </div>
+</footer>

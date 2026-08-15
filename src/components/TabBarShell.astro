@@ -1,0 +1,30 @@
+---
+import { TabBar, type TabDef, type ExternalLink } from "@/islands/TabBar";
+
+/**
+ * Astro wrapper that branches the client directive (directives are
+ * compile-time): pages with a videos tab hydrate TabBar on visibility;
+ * single-tab pages render it as pure static HTML — zero client JS.
+ */
+type Props = {
+  tabs: TabDef[];
+  links: ExternalLink[];
+  hydrate: boolean;
+};
+const { tabs, links, hydrate } = Astro.props;
+---
+
+{
+  hydrate ? (
+    <TabBar client:visible tabs={tabs} links={links}>
+      <slot name="paneFeatures" slot="paneFeatures" />
+      <slot name="paneVideos" slot="paneVideos" />
+      <slot name="side" slot="side" />
+    </TabBar>
+  ) : (
+    <TabBar tabs={tabs} links={links}>
+      <slot name="paneFeatures" slot="paneFeatures" />
+      <slot name="side" slot="side" />
+    </TabBar>
+  )
+}

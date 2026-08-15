@@ -1,0 +1,23 @@
+---
+/**
+ * Risk Assessment `sup.ref` footnote marker — legacy build.py ref().
+ * Links DOWN THE PAGE to #ref-N in RefsSection (RISK_REFS scheme, 1–12).
+ * NOT the homepage sup.cite scheme (external links, comma in .csep span) —
+ * the two schemes must never be merged. Here the joining comma is a plain
+ * text node between anchors, exactly as legacy renders it.
+ *
+ * Built as one HTML string (set:html) so the output byte-matches legacy:
+ * <sup class="ref"><a href="#ref-1">1</a>,<a href="#ref-2">2</a></sup>
+ */
+type Props = {
+  n: number[];
+};
+const { n } = Astro.props;
+
+const html =
+  '<sup class="ref">' +
+  n.map((num) => `<a href="#ref-${num}">${num}</a>`).join(",") +
+  "</sup>";
+---
+
+<Fragment set:html={html} />

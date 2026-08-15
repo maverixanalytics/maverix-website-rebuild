@@ -1,0 +1,31 @@
+---
+/**
+ * Homepage `sup.cite` citation marker — legacy build.py cite().
+ * Links OUT to the external source in HOME_CITES (scheme numbered 1–6 in
+ * reading order; renumbered 13 Aug 2026). NOT the Risk Assessment `sup.ref`
+ * scheme (in-page #ref-N, Ref.astro) — the two schemes must never be merged
+ * or cross-numbered. Here multiple markers join with a styled
+ * <span class="csep">,</span>; sup.ref joins with a bare text comma.
+ *
+ * Built as one HTML string (set:html) so the output byte-matches legacy:
+ * <sup class="cite"><a href="…" target="_blank" rel="noopener noreferrer">1</a></sup>
+ */
+import { HOME_CITES } from "@/content/citations/home";
+
+type Props = {
+  n: number[];
+};
+const { n } = Astro.props;
+
+const html =
+  '<sup class="cite">' +
+  n
+    .map(
+      (num) =>
+        `<a href="${HOME_CITES[num]}" target="_blank" rel="noopener noreferrer">${num}</a>`,
+    )
+    .join('<span class="csep">,</span>') +
+  "</sup>";
+---
+
+<Fragment set:html={html} />

@@ -1,0 +1,26 @@
+---
+import PCard from "@/components/PCard.astro";
+import type { ProductGroup } from "@/data/productGroups";
+
+/** Grouped product grid — legacy pgroups() equivalent. */
+type Props = { groups: ProductGroup[] };
+const { groups } = Astro.props;
+---
+
+{
+  groups.map((group) => (
+    <div class="pgroup">
+      <div class="pglabel">{group.label}</div>
+      <div class="pgrid">
+        {group.items.map((item) => (
+          <PCard
+            slug={item.slug}
+            name={item.name}
+            image={item.image}
+            abbr={item.abbr}
+          />
+        ))}
+      </div>
+    </div>
+  ))
+}

@@ -1,0 +1,17 @@
+---
+import { THOR_EMAIL, THOR_PHONE } from "@/config/site.config";
+
+/** Right-rail contact block — legacy contact_block() equivalent. */
+type Props = {
+  email?: string;
+  showPhone?: boolean;
+};
+const { email = THOR_EMAIL, showPhone = true } = Astro.props;
+---
+
+<div class="contact-block">
+  <div class="cb-label">Sales inquiries</div>
+  <div class="cb-title">Customer Care</div>
+  <a href={`mailto:${email}`}>{email}</a>
+  {showPhone && <div class="cb-phone">{THOR_PHONE}</div>}
+</div>

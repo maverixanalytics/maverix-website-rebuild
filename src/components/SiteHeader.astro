@@ -1,0 +1,54 @@
+---
+import { getCollection } from "astro:content";
+import { SiteNav, type NewsTeaser } from "@/islands/SiteNav";
+import { PRODUCTS_CARDS, TEAM_CARDS } from "@/lib/navData";
+import "@/styles/ported/chrome-header.css";
+import "@/styles/ported/btn.css";
+
+/**
+ * Site chrome header. The news mega-menu reads the news collection — one
+ * source of truth shared with news.html (replaces legacy header() reading
+ * FEATURED_NEWS / GRID_NEWS module globals).
+ */
+const news = await getCollection("news");
+const featuredEntry = news.find((n) => n.data.placement === "featured");
+const gridFirst = news
+  .filter((n) => n.data.placement === "grid")
+  .sort((a, b) => (a.data.gridOrder ?? 99) - (b.data.gridOrder ?? 99))[0];
+
+if (!featuredEntry || !gridFirst) {
+  throw new Error(
+    "News collection must contain one featured record and at least one grid record",
+  );
+}
+
+const toTeaser = (e: typeof featuredEntry): NewsTeaser => ({
+  source: e.data.source,
+  date: e.data.date,
+  headline: e.data.headline,
+  url: e.data.url,
+});
+---
+
+<header class="site">
+  <div class="nav">
+    <a class="logo" href="/">
+      <img
+        class="logo-img"
+        src="/images/maverix-logo-white.png"
+        alt="Maverix Medical"
+      />
+    </a>
+    <SiteNav
+      client:media="(max-width: 920px)"
+      productsCards={PRODUCTS_CARDS}
+      teamCards={TEAM_CARDS}
+      featured={toTeaser(featuredEntry)}
+      sideCell={toTeaser(gridFirst)}
+    />
+    <div class="nav-right">
+      <a class="contact" href="/contact-us.html">Contact</a>
+      <a class="careers-cell" href="/careers.html">Careers</a>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,68 @@
+---
+/**
+ * Specification table — replaces legacy spec_block() plus the Hydro-Slide
+ * raw-table variant (plan §2.1 specs.variant).
+ *
+ * The .spec-scroll wrapper carries the 4-layer CSS scroll shadow (≤920px);
+ * wrapper background, layer order, and the inner table's display:table /
+ * transparent background are one indivisible unit (ported CSS, plan §3.3).
+ * 'keyvalue' renders the header INSIDE the table (colspan row) with no
+ * .spec-head and no swipe hint — exactly like the legacy Hydro-Slide page.
+ */
+type Specs = {
+  variant: "columns" | "keyvalue";
+  head: string;
+  showHead: boolean;
+  showHint: boolean;
+  columns?: string[];
+  rows: string[][];
+};
+
+type Props = { specs: Specs };
+const { specs } = Astro.props;
+const isColumns = specs.variant === "columns";
+---
+
+{isColumns && specs.showHead && <h3 class="spec-head">{specs.head}</h3>}
+<div class="spec-scroll">
+  <table class:list={["spec", { cols: isColumns }]}>
+    {
+      isColumns ? (
+        <>
+          <thead>
+            <tr>
+              {(specs.columns ?? []).map((col) => (
+                <th>{col}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {specs.rows.map((row) => (
+              <tr>
+                {row.map((cell) => (
+                  <td>{cell}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </>
+      ) : (
+        <>
+          <tr>
+            <th colspan="2">{specs.head}</th>
+          </tr>
+          {specs.rows.map((row) => (
+            <tr>
+              {row.map((cell) => (
+                <td>{cell}</td>
+              ))}
+            </tr>
+          ))}
+        </>
+      )
+    }
+  </table>
+</div>
+{isColumns && specs.showHint && (
+  <p class="spec-hint">Swipe the table to see all columns →</p>
+)}

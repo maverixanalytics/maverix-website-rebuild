@@ -1,0 +1,20 @@
+---
+/**
+ * Risk Assessment references list — legacy build.py refs_section().
+ * Renders RISK_REFS (the sup.ref scheme, 1–12) as the visible in-page
+ * <ol> that the <Ref> markers link down to. Styling lives in
+ * category-shared.css (.references). Never merge with sup.cite.
+ */
+import { RISK_REFS } from "@/content/references/risk";
+---
+
+<section
+  class="references"
+  id="references-about-benefits"
+  aria-label="References for About and Unique Benefits"
+>
+  <h2>References</h2>
+  <ol>
+    {RISK_REFS.map((r) => <li id={`ref-${r.id}`} set:html={r.html} />)}
+  </ol>
+</section>
