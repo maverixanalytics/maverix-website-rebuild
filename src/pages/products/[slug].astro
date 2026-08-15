@@ -1,0 +1,125 @@
+---
+import { getCollection, render } from "astro:content";
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import Bodytext from "@/components/Bodytext.astro";
+import SpecTable from "@/components/SpecTable.astro";
+import ContactBlock from "@/components/ContactBlock.astro";
+import BrandLockup from "@/components/BrandLockup.astro";
+import VideoEmbed from "@/components/VideoEmbed.astro";
+import TabBarShell from "@/components/TabBarShell.astro";
+import type { TabDef } from "@/islands/TabBar";
+import { MVX_EMAIL, THOR_LOGO } from "@/config/site.config";
+import "@/styles/ported/product-detail.css";
+import "@/styles/ported/text-atoms.css";
+
+/**
+ * ONE template for all ten product pages (plan §2.1) — replaces pd_page().
+ * Adding a product = adding an .mdx file; URLs come from filenames verbatim.
+ */
+export async function getStaticPaths() {
+  const products = await getCollection("products");
+  return products.map((product) => ({
+    params: { slug: product.id },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+const { data } = product;
+const { Content } = await render(product);
+
+const suffix = data.distBy ? "Thoracent by Maverix" : "Maverix Medical";
+const title = `${data.name} – ${suffix}`;
+
+const crumb =
+  data.parent === "serpex"
+    ? { href: "/serpex.html", label: "← All Diagnosis products" }
+    : { href: "/thoracent.html", label: "← All Intervention products" };
+
+const tabs: TabDef[] = [{ id: "pane-features", label: "Features" }];
+if (data.videos?.length) {
+  tabs.push({ id: "pane-videos", label: "Demonstration Videos" });
+}
+const hasVideos = Boolean(data.videos?.length);
+
+const MFG_LOGOS = {
+  hilzo: "/assets/hilzo-stents-logo.png",
+  bonastent: "/assets/bonastent-logo.png",
+  microtech: "/assets/micro-tech-logo.png",
+} as const;
+
+/** mfg-note contract (plan §2.1): note + "510(k) K…." joined by ONE space. */
+const footParts = [
+  data.mfgNote,
+  /^K\d{6}$/.test(data.k510) ? `510(k) ${data.k510}.` : undefined,
+].filter((part): part is string => Boolean(part));
+const foot = footParts.join(" ");
+---
+
+<SiteLayout
+  path={`products/${product.id}`}
+  title={title}
+  description={data.metaDescription}
+  dsGroup="Product Pages"
+  dsSubtitle="Product detail"
+>
+  <div class="pd-hero">
+    <div class="container">
+      <a class="crumb" href={crumb.href}>{crumb.label}</a>
+      <h1>{data.name}</h1>
+    </div>
+  </div>
+
+  {/* client directives are compile-time — two explicit branches:
+      hydrate only when a second tab exists, else pure static HTML */}
+  <TabBarShell
+    tabs={tabs}
+    links={data.resources}
+    hydrate={hasVideos}
+  >
+    <Fragment slot="paneFeatures">
+      {data.images.map((src) => (
+        <div class="pd-img">
+          <img {src} alt={data.name} loading="lazy" />
+        </div>
+      ))}
+      <h2 class="pd-title">Features</h2>
+      <Content components={{ p: Bodytext }} />
+      <ul class="benefits">
+        {data.features.map((feature) => <li set:html={feature} />)}
+      </ul>
+      {data.specs && <SpecTable specs={data.specs} />}
+      {data.rxNote && <p class="rxnote">{data.rxNote}</p>}
+      {foot && <p class="mfg-note">{foot}</p>}
+    </Fragment>
+    {
+      hasVideos && (
+        <Fragment slot="paneVideos">
+          <h2 class="pd-title">Demonstration Videos</h2>
+          {(data.videos ?? []).map((video) => (
+            <VideoEmbed title={video.title} youtubeId={video.youtubeId} />
+          ))}
+        </Fragment>
+      )
+    }
+    <Fragment slot="side">
+      {data.distBy && <BrandLockup label="Distributed by" src={THOR_LOGO} />}
+      {
+        data.contactThoracent ? (
+          <ContactBlock />
+        ) : (
+          <ContactBlock email={MVX_EMAIL} showPhone={false} />
+        )
+      }
+      {
+        data.mfgLogo && (
+          <BrandLockup
+            label="Manufactured by"
+            src={MFG_LOGOS[data.mfgLogo]}
+            isMfg
+          />
+        )
+      }
+    </Fragment>
+  </TabBarShell>
+</SiteLayout>
