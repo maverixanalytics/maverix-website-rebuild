@@ -1,0 +1,54 @@
+/* chrome-footer.css — site footer, flattened from legacy theme.css.
+ *
+ * Provenance (theme.css lines):
+ *   base L207-220   footer frame, fgrid, fcol, fbrand, fbottom
+ *   v5   L335-336   .fcol a hover transition / padding-left slide
+ *   v7   L377       560px container padding      (superseded by v13 L527 — dead, dropped)
+ *   v8   L382       .flogo
+ *   v9   L403,407   1080/560 container side margins
+ *   v13  L495,527   1080/560 container padding (final values)
+ *   v16  L620-625   .fcontact .frow, a.mail, .li-sq
+ *   v43  L1075-1077 legal-row nowrap + first-div flex; the base margin-right:1.4rem on
+ *                   .fbottom a and its :first-child a{margin-right:0} cancel out for every
+ *                   link in the chrome markup (all live inside .fbottom>div:first-child,
+ *                   incl. the .cky-banner-element link) — both dropped, gap rule kept.
+ *
+ * .cky-banner-element has no dedicated declarations; it is styled purely as ".fbottom a"
+ * (keep the class on the anchor — the CookieYes script binds to it).
+ * Tokens from src/styles/tokens.css. Desktop-first; breakpoints 1080 / 920 / 560. */
+
+footer.site{background:var(--page-bg);}
+footer.site .container{border-left:1px solid var(--frame-line);border-right:1px solid var(--frame-line);border-top:1px solid var(--frame-line);padding:4.4rem 72px 2.2rem;}
+
+.fgrid{display:grid;grid-template-columns:repeat(3,1fr) auto;gap:2.4rem;}
+.fcol .footer-heading,.fcontact .footer-heading{font-family:var(--font-tagline);text-transform:uppercase;letter-spacing:.26em;font-size:.75rem;color:var(--mvx-slate);margin-bottom:.9rem;font-weight:500;}
+.fcol a{display:block;color:var(--mvx-teal);font-size:.93rem;padding:.22rem 0;transition:color .18s ease,padding-left .18s ease;}
+.fcol a:hover{color:var(--heading);padding-left:5px;}
+
+.fbrand{text-align:right;}
+.fbrand .flogo{height:24px;width:auto;display:inline-block;}
+
+.fcontact{margin-top:2.6rem;}
+.fcontact .footer-heading{margin-bottom:.4rem;}
+.fcontact .frow{display:flex;align-items:center;gap:1.2rem;margin-top:.2rem;}
+.fcontact .frow a.mail{color:var(--mvx-blue);}
+.fcontact .frow a.mail:hover{color:var(--mvx-teal);}
+.li-sq{display:inline-flex;width:38px;height:38px;border-radius:7px;background:var(--mvx-blue);color:#fff;align-items:center;justify-content:center;flex:0 0 38px;transition:background .2s ease;}
+.li-sq:hover{background:var(--mvx-teal);}
+.li-sq svg{width:20px;height:20px;}
+
+.fbottom{display:flex;justify-content:space-between;align-items:center;margin-top:3rem;padding-top:1.4rem;border-top:1px solid var(--frame-line);font-size:.85rem;color:var(--mvx-slate);flex-wrap:wrap;gap:1rem;}
+.fbottom a{color:var(--mvx-slate);white-space:nowrap;}
+.fbottom a:hover{color:var(--mvx-teal);}
+.fbottom>div:first-child{display:flex;flex-wrap:wrap;gap:0 1.4rem;}
+
+@media(max-width:1080px){
+ footer.site .container{margin-left:28px;margin-right:28px;padding:3.4rem 40px 2rem;}
+}
+@media(max-width:920px){
+ .fgrid{grid-template-columns:1fr 1fr;}
+ .fbrand{text-align:left;}
+}
+@media(max-width:560px){
+ footer.site .container{margin-left:14px;margin-right:14px;padding:2.8rem 20px 1.6rem;}
+}

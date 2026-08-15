@@ -1,0 +1,405 @@
+/*
+ * product-detail.css — flattened port of the PRODUCT DETAIL template styles.
+ *
+ * Provenance: /home/claude/maverix-legacy/theme.css (base layer + append-only
+ * override blocks v3, v4, v5, v7, v8, v9, v10, v11, v13, v31, v49, v51),
+ * flattened winner-per-property against the markup of
+ *   products/ebus-needles.html  (spec table .cols + video tab + mfg lockup)
+ *   products/hydro-slide-pulmonary-guidewire.html (raw key/value spec table).
+ * Inline style="" attributes emitted by src/build.py (pd_page, ~l.776-808) are
+ * folded in at the bottom under "was inline style= in build.py".
+ *
+ * Tokens come from ../tokens.css (--mvx-*, --border, --border-strong,
+ * --frame-line, --heading, --page-bg, --note-gray, --header-dark, --font-*).
+ * Depends on global.css for the reset, base a/img rules and .container.
+ *
+ * Deliberate flattening decisions (see also migration notes):
+ *  - .pd-title: legacy `.band h2` (specificity 0,1,1) beats `.pd-title` (0,1,0),
+ *    so the rendered heading is var(--heading) at clamp(2rem,4vw,3.125rem),
+ *    weight 600 — NOT the mvx-blue 2.2rem written in the .pd-title rule.
+ *    Flattened to the actually-rendered values.
+ *  - bare mobile `.spec{display:block;overflow-x:auto}` (v7 @560, v13 @920)
+ *    dropped as dead: every .spec sitewide is wrapped in .spec-scroll and
+ *    v51's `.spec-scroll .spec{display:table;overflow:visible}` re-asserted
+ *    table display. The v51 four-layer scroll-shadow block is kept intact.
+ *  - section.band>.container padding flattened to 0 (build.py always emits
+ *    style="padding:0" on this template); only the v9 side margins survive
+ *    in the 1080/560 queries.
+ */
+
+/* ---------- hero strip (dark, breadcrumb + product name) ---------- */
+.pd-hero {
+  background: var(--header-dark);
+  color: #fff;
+  padding: 4rem 0 3.4rem;
+}
+.pd-hero .container {
+  border: none;
+  background: transparent;
+  padding: 0 24px;
+}
+.pd-hero .crumb {
+  color: var(--mvx-sky);
+  font-size: 0.9rem;
+  margin-bottom: 1.2rem;
+  display: inline-block;
+}
+.pd-hero h1 {
+  font-family: var(--font-tagline);
+  font-size: clamp(2rem, 4.4vw, 3.2rem);
+  font-weight: 700;
+  max-width: 800px;
+  line-height: 1.12;
+}
+
+/* ---------- tab bar ---------- */
+.tabbar {
+  background: #e8eaee;
+  border-bottom: 1px solid var(--frame-line);
+}
+.tabbar-in {
+  display: flex;
+  align-items: stretch;
+  padding: 0;
+  border-left: 1px solid var(--frame-line);
+  border-right: 1px solid var(--frame-line);
+}
+.tabbar button,
+.tabbar a {
+  font-family: var(--font-sans);
+  font-style: italic;
+  font-size: 1.02rem;
+  color: var(--mvx-graphite);
+  padding: 1rem 2.4rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.tabbar button.is-active {
+  background: #fff;
+}
+.tabbar button:hover,
+.tabbar a:hover {
+  color: var(--mvx-teal);
+}
+.tabbar button:not(.is-active):hover,
+.tabbar a:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+/* external resource links (Size Chart / IFU) carried in the tab bar */
+.tabbar .ext-icon {
+  font-size: 0.75em;
+  vertical-align: super;
+}
+
+/* ---------- tab panes ---------- */
+.tabpane {
+  display: none;
+}
+.tabpane.is-active {
+  display: block;
+}
+
+/* ---------- framed band (as used on this template) ---------- */
+section.band {
+  padding: 0;
+}
+section.band > .container {
+  border-left: 1px solid var(--frame-line);
+  border-right: 1px solid var(--frame-line);
+  padding: 0; /* was 6rem 72px; build.py emits style="padding:0" here */
+}
+.band.light > .container {
+  background: var(--page-bg);
+}
+.band.row-line > .container {
+  border-top: 1px solid var(--frame-line);
+}
+
+/* ---------- two-column detail layout ---------- */
+.pd-wrap {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  background: var(--page-bg);
+  min-width: 0; /* v49 grid-overflow fix — KEEP */
+}
+.pd-panel {
+  background: #fff;
+  border-right: 1px solid var(--frame-line);
+  padding: 3rem;
+  min-height: 480px;
+  min-width: 0; /* v49 grid-overflow fix — KEEP */
+}
+.pd-side {
+  padding: 3rem 0 3rem 2.4rem;
+}
+
+/* ---------- panel content ---------- */
+/* Rendered values: legacy `.band h2` outweighed `.pd-title`, see header note. */
+.pd-title {
+  font-family: var(--font-tagline);
+  font-size: clamp(2rem, 4vw, 3.125rem);
+  font-weight: 600;
+  line-height: 1.12;
+  color: var(--heading);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.8rem;
+  margin-bottom: 1.6rem;
+}
+.pd-img {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 18px;
+  margin-bottom: 1.8rem; /* was inline style= in build.py l.776 */
+}
+.pd-img img {
+  width: 100%;
+  border-radius: 18px;
+}
+.benefits {
+  list-style: none;
+  margin-top: 1.2rem;
+  display: grid;
+  gap: 0.7rem;
+}
+.benefits li {
+  position: relative;
+  padding-left: 1.7rem;
+  color: var(--mvx-graphite);
+  font-size: 0.96rem;
+}
+.benefits li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.42em;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--mvx-sky);
+}
+.video-embed {
+  aspect-ratio: 16/9;
+  width: 100%;
+  border: none;
+  margin: 0.6rem 0 1.4rem;
+}
+p.mfg-note {
+  margin-top: 1.6rem;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--note-gray);
+}
+
+/* ---------- spec tables ---------- */
+.spec {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.2rem;
+  background: #fff;
+  overflow: hidden;
+  font-size: 0.92rem;
+}
+.spec th {
+  background: var(--header-dark);
+  color: #fff;
+  text-align: left;
+  padding: 0.7rem 1rem;
+  font-weight: 600;
+}
+.spec td {
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--mvx-graphite);
+}
+/* key/value layout: pinned bold first column */
+.spec tr td:first-child {
+  font-weight: 600;
+  color: var(--mvx-ink);
+  width: 24%;
+}
+/* v49 — column-labelled SKU grids: every column sizes to content,
+   except the Description column (2nd) which absorbs the slack */
+.spec.cols th,
+.spec.cols td {
+  width: 1%;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+}
+.spec.cols td {
+  white-space: nowrap;
+}
+.spec.cols tr td:first-child {
+  width: 1%;
+}
+.spec.cols th:nth-child(2),
+.spec.cols tr td:nth-child(2) {
+  white-space: normal;
+  width: auto;
+}
+.spec-head {
+  font-family: var(--font-tagline);
+  color: var(--mvx-blue);
+  font-size: 1.5rem;
+  margin-top: 2.4rem;
+}
+/* v51 — the wrapper owns overflow + the four-layer scroll shadow (≤920 only) */
+.spec-scroll {
+  margin-top: 1.2rem;
+}
+.spec-scroll .spec {
+  margin-top: 0;
+}
+p.spec-hint {
+  display: none; /* desktop: hidden; shown ≤920 */
+}
+
+/* ---------- right rail ---------- */
+.pd-side .pd-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.55rem;
+}
+/* manufacturer lockup variant (v51) */
+.pd-side .pd-brand.pd-mfg {
+  margin-top: 2rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--frame-line);
+}
+/* base .seclabel (v3) — kept for template parity; on this page it only
+   occurs inside .pd-side .pd-brand, where the variant below applies */
+.seclabel {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  font-family: var(--font-tagline);
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--heading);
+  margin: 3.4rem 0 1.6rem;
+}
+.seclabel::after {
+  content: "";
+  flex: 1;
+  max-width: 560px;
+  height: 1px;
+  background: var(--mvx-graphite);
+}
+/* rail variant: small slate caption, no rule — flattened, ::after cancelled */
+.pd-side .pd-brand .seclabel {
+  margin: 0;
+  gap: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.26em;
+  color: var(--mvx-slate);
+}
+.pd-side .pd-brand .seclabel::after {
+  content: none;
+}
+/* rail logos: `.pd-side img` (v4) + transparent-logo pass (v8) + `.pd-side
+   .pd-brand img` (v31) collapsed into one rule — every rail image on this
+   template sits inside .pd-brand */
+.pd-side .pd-brand img {
+  max-width: 210px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  mix-blend-mode: multiply;
+  margin-bottom: 1.8rem;
+}
+
+/* ---------- contact block ---------- */
+/* ================= responsive ================= */
+
+@media (max-width: 1080px) {
+  /* v9 breathing room */
+  section.band > .container {
+    margin-left: 28px;
+    margin-right: 28px;
+  }
+  .pd-hero .container {
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+}
+
+@media (max-width: 920px) {
+  .pd-wrap {
+    grid-template-columns: 1fr;
+  }
+  .pd-panel {
+    border-right: none;
+  }
+  .pd-side {
+    padding: 2rem 24px;
+  }
+  .tabbar-in {
+    flex-wrap: wrap;
+  }
+  /* v13: comfortable column widths once the table can scroll */
+  .spec th,
+  .spec td {
+    min-width: 150px;
+  }
+  /* v51 four-layer scroll shadow — all pieces move together:
+     two white "cover" layers (background-attachment:local, pinned to the
+     content) slide over two dark "shadow" layers (scroll, pinned to the box);
+     the wrapper carries #fff so the table can go transparent */
+  .spec-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    background-color: #fff;
+    background-image: linear-gradient(to right, #fff 40%, rgba(255, 255, 255, 0)),
+      linear-gradient(to left, #fff 40%, rgba(255, 255, 255, 0)),
+      linear-gradient(to right, rgba(13, 20, 24, 0.34), rgba(13, 20, 24, 0)),
+      linear-gradient(to left, rgba(13, 20, 24, 0.34), rgba(13, 20, 24, 0));
+    background-position: left center, right center, left center, right center;
+    background-repeat: no-repeat;
+    background-size: 44px 100%, 44px 100%, 26px 100%, 26px 100%;
+    background-attachment: local, local, scroll, scroll;
+  }
+  /* the wrapper scrolls, so the table itself must not */
+  .spec-scroll .spec {
+    display: table;
+    overflow: visible;
+    background-color: transparent;
+  }
+  p.spec-hint {
+    display: block;
+    margin-top: 0.7rem;
+    font-size: 0.8rem;
+    color: var(--mvx-slate);
+    font-style: italic;
+  }
+}
+
+@media (max-width: 560px) {
+  /* v9 narrow-frame margins (the legacy 560px band paddings are dead on this
+     template — the container padding is flattened to 0 above) */
+  section.band > .container {
+    margin-left: 14px;
+    margin-right: 14px;
+  }
+}
+
+/* ================= was inline style= in build.py ================= */
+
+/* build.py l.781: <h3 style="font-family:var(--font-tagline);color:var(--heading);
+   font-size:1.5rem;margin-top:1.2rem;"> inside the video pane */
+.video-pane-title {
+  font-family: var(--font-tagline);
+  color: var(--heading);
+  font-size: 1.5rem;
+  margin-top: 1.2rem;
+}
+/* build.py l.808 container style="padding:0" — folded into
+   section.band>.container above.
+   build.py l.776 pd-img style="margin-bottom:1.8rem" — folded into .pd-img. */

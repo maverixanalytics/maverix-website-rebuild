@@ -1,0 +1,95 @@
+/*
+ * team.css — team-page leadership grid, advisor cards, and bio modal,
+ * flattened winner-per-property from /home/claude/maverix-legacy/theme.css.
+ *
+ * Provenance: base l.148-165, grid responsive l.235/243, hover/motion
+ * l.317-318/322-324/343-344/354-355, v8 l.385-394 (li-badge, 1/1 aspect,
+ * min-height 118, align-items:start), v11 modal redesign l.443-452
+ * (+920 l.461-462), v13 ≤760 modal l.515-522 + ≤560 h2 l.530,
+ * v27 ≤760 close/mphoto l.790-800 + desktop object-position l.803,
+ * v28 l.818-823 (#A3A3A3 photo panel; .close-b killed — NOT ported,
+ * the Astro modal never renders that node).
+ *
+ * Flatten notes:
+ *  - .member img: v8 aspect-ratio 1/1 + center top + #E7ECEF wins over the
+ *    base 1/1.08 rule.
+ *  - .modal .modal-box: v11 padding:0/overflow:hidden/grid/#F4F5F7 wins;
+ *    base position:relative/width/max-height:86vh survive.
+ *  - .modal .close: v11 pill wins every contested property; base
+ *    border/cursor/line-height/position:absolute survive.
+ *  - .modal .mphoto img desktop object-position: v27 `center 18%` wins over
+ *    v11 `center top`.
+ *  - ≤760 .mphoto max-height: v27 38vh wins over v13 34vh; background:
+ *    v28 #A3A3A3 wins over v27 #E9ECEF (the img keeps #E9ECEF letterbox).
+ *  - BREAKPOINT 760 KEPT (not folded to 920): folding would give the
+ *    761-920px range the fixed 54px close button, 38vh photo cap, and
+ *    single-scroll modal-box — a real rendering change.
+ *  - .modal .bio-text p color: l.449 #39434B wins over base
+ *    var(--mvx-graphite); first-paragraph bold = p:first-child (l.450).
+ * Tokens from ../tokens.css; no selector here is owned by another ported file
+ * (.modal .overlay is scoped — .hero-thin .overlay stays in hero-thin.css).
+ */
+
+/* ================= leadership grid ================= */
+.teamgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2.6rem 3rem;margin-top:2.6rem;align-items:start;}
+.member{cursor:pointer;background:transparent;border:none;overflow:hidden;text-align:left;padding:0;font:inherit;}
+.member img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:center top;background:#E7ECEF;transition:transform .6s cubic-bezier(.22,.61,.36,1);}
+.member:hover img{transform:scale(1.06);}
+.member .member-info{padding:1.1rem 0 1.2rem;border-bottom:1px solid var(--border-strong);min-height:118px;}
+.member .member-name{font-family:var(--font-tagline);font-weight:700;font-size:1.25rem;color:var(--mvx-blue);position:relative;display:inline-block;transition:color .2s ease;}
+.member .member-name::after{content:"";position:absolute;left:0;bottom:-3px;width:0;height:2px;background:var(--mvx-sky);transition:width .3s ease;}
+.member:hover .member-name{color:var(--mvx-teal);}
+.member:hover .member-name::after{width:100%;}
+.member .member-role{color:var(--mvx-slate);font-size:.92rem;margin-top:.2rem;}
+
+/* ================= advisory board ================= */
+.advgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.8rem 3rem;margin-top:2.4rem;align-items:start;}
+.advcard{border-bottom:1px solid var(--border-strong);padding-bottom:1rem;}
+.advcard .member-name{font-family:var(--font-tagline);font-weight:700;font-size:1.15rem;color:var(--mvx-blue);}
+
+/* ================= bio modal (v11 split card) ================= */
+.modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:24px;}
+.modal.open{display:flex;}
+.modal .overlay{position:absolute;inset:0;background:rgba(13,20,24,.8);}
+.modal .modal-box{position:relative;width:100%;max-width:940px;max-height:86vh;padding:0;overflow:hidden;border-radius:var(--radius-lg);display:grid;grid-template-columns:1fr 1.15fr;background:#F4F5F7;animation:mdl .28s ease;}
+@keyframes mdl{from{opacity:0;transform:translateY(14px) scale(.98);}to{opacity:1;transform:none;}}
+.modal .close{position:absolute;top:16px;right:16px;border:none;cursor:pointer;line-height:1;background:var(--mvx-sky);color:var(--header-dark);width:40px;height:40px;border-radius:50%;font-size:1.25rem;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(13,20,24,.25);transition:transform .2s ease;}
+.modal .close:hover{transform:scale(1.08);}
+.modal .mphoto{min-height:460px;height:100%;background:#A3A3A3;}
+.modal .mphoto img{width:100%;height:100%;object-fit:cover;object-position:center 18%;filter:grayscale(100%);display:block;}
+.modal .mbody{padding:3rem 3rem 2.6rem 2.6rem;overflow:auto;max-height:86vh;}
+.modal .mbody h2{font-family:var(--font-tagline);font-size:2.1rem;font-weight:600;color:var(--heading);border-bottom:1px solid #9AA3A9;padding-bottom:.7rem;margin-bottom:.7rem;line-height:1.1;}
+.modal .mbody .member-role{color:var(--copy-dropdown);font-size:1.1rem;font-weight:400;margin-bottom:1.8rem;}
+.modal .bio-text p{margin-bottom:1rem;font-size:.97rem;color:var(--copy-dropdown);}
+.modal .bio-text p:first-child{font-weight:600;color:var(--heading);}
+.modal .profile-link{display:inline-flex;align-items:center;gap:.5rem;margin-top:.4rem;font-weight:600;}
+.li-badge{display:inline-flex;width:26px;height:26px;border-radius:var(--radius-sm);background:#0A66C2;color:#fff;align-items:center;justify-content:center;}
+.li-badge svg{width:15px;height:15px;}
+
+/* ================= motion preferences ================= */
+@media (prefers-reduced-motion: reduce){
+ .member img{transition:none;}
+ .modal .modal-box{animation:none;}
+}
+
+/* ================= responsive ================= */
+@media(max-width:920px){
+ .teamgrid,.advgrid{grid-template-columns:repeat(2,1fr);}
+ .modal .modal-box{grid-template-columns:1fr;}
+ .modal .mphoto{min-height:280px;max-height:320px;}
+}
+@media(max-width:760px){
+ /* stacked card scrolls as one unit; x stays put while the bio scrolls */
+ .modal{padding:14px;}
+ .modal .modal-box{overflow-y:auto;max-height:90vh;}
+ .modal .mphoto{min-height:0;max-height:38vh;background:#A3A3A3;}
+ .modal .mphoto img{object-fit:contain;object-position:center;background:#E9ECEF;}
+ .modal .mbody{max-height:none;overflow:visible;padding:1.6rem 1.5rem 2rem;}
+ .modal .mbody h2{font-size:1.55rem;padding-right:2.4rem;}
+ .modal .mbody .member-role{margin-bottom:1.1rem;}
+ .modal .close{position:fixed;top:12px;right:12px;width:54px;height:54px;font-size:1.7rem;background:var(--mvx-sky);color:var(--header-dark);box-shadow:0 6px 20px rgba(8,13,17,.45);z-index:6;}
+}
+@media(max-width:560px){
+ .teamgrid,.advgrid{grid-template-columns:1fr;}
+ .modal .mbody h2{font-size:1.4rem;}
+}

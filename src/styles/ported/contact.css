@@ -1,0 +1,63 @@
+/* contact.css — contact-us-page styles, flattened winner-per-property from
+ * legacy theme.css.
+ *
+ * Scope: contact-us.html — everything its markup uses OUTSIDE the chrome
+ * (chrome-*.css), .btn atom incl. .on-dark (btn.css), .hero-thin base
+ * (hero-thin.css) and the shared form-message cluster (.form-msg /
+ * .form-success / .form-error + button[type=submit][disabled]), which lives
+ * in careers.css and is ALSO imported by contact-us.astro — do not
+ * redeclare it here. global.css supplies .container/.honeypot.
+ *
+ * Provenance (theme.css lines): v4 contact gradient form L274-285 + 920px
+ * query L302 (only the .cform member of that group belongs to this page);
+ * v9 L404 (.contact-dark .container extracted from the shared 1080px hero/
+ * container padding group — the .hero-thin members live in hero-thin.css).
+ *
+ * Flattening notes:
+ *  - No later theme.css version touches .contact-dark or .cform — the v4
+ *    block is already the winner for every property.
+ *  - --mvx-ink token for the .send color; gradient stops (#9AA4AB #2A353D
+ *    #13202A #3E7FA6), rgba(255,255,255,.1), rgba(160,215,232,.55), #CBD6DC
+ *    placeholder, #E4EAEE lede, #B9E3EF mail link kept literal (no token
+ *    exact-match).
+ *
+ * Breakpoints: 1080/920 standard.
+ */
+
+/* ================= gradient section ================= */
+.contact-dark{position:relative;background:linear-gradient(115deg,#9AA4AB 0%,#2A353D 28%,#13202A 52%,#3E7FA6 100%);color:#fff;padding:5rem 0 6rem;}
+.contact-dark h2{color:#fff;font-family:var(--font-tagline);font-size:clamp(1.8rem,3.4vw,2.6rem);line-height:1.2;}
+
+/* ================= cform (rendered by the MvxForm island) ================= */
+.cform{display:grid;grid-template-columns:1fr 1.15fr;gap:1.2rem;margin-top:2.6rem;max-width:860px;}
+.cform .colL{display:grid;gap:1.2rem;align-content:start;}
+.cform .colR{display:grid;gap:1.2rem;grid-template-rows:auto 1fr;}
+.cform input,.cform textarea{background:rgba(255,255,255,.1);border:1px solid rgba(160,215,232,.55);color:#fff;padding:.95rem 1rem;font:inherit;font-style:italic;font-size:.95rem;}
+.cform input::placeholder,.cform textarea::placeholder{color:#CBD6DC;font-style:italic;}
+.cform input:focus,.cform textarea:focus{outline:2px solid var(--mvx-sky);}
+.cform textarea{min-height:240px;resize:vertical;}
+.cform .send{grid-column:1/-1;background:#fff;color:var(--mvx-ink);font-family:var(--font-tagline);font-weight:700;letter-spacing:.28em;text-transform:uppercase;font-size:.95rem;padding:1.05rem;border:none;cursor:pointer;}
+.cform .send:hover{background:var(--mvx-sky);}
+
+/* ================= responsive ================= */
+
+@media(max-width:1080px){
+ .contact-dark .container{padding-left:28px;padding-right:28px;}
+}
+
+@media(max-width:920px){
+ .cform{grid-template-columns:1fr;}
+}
+
+/* ================= was inline style= in build.py ================= */
+
+/* <div class="container" style="border:none;background:transparent;"> */
+.container-plain-inline{border:none;background:transparent;}
+/* <p style="margin-top:1.2rem;max-width:620px;color:#E4EAEE;"> */
+.contact-lede-inline{margin-top:1.2rem;max-width:620px;color:#E4EAEE;}
+/* <div class="form-msg …" style="margin-top:1.4rem;"> (both message divs) */
+.form-msg-gap-inline{margin-top:1.4rem;}
+/* <div style="margin-top:2.6rem;"> (LinkedIn button + mail link row) */
+.contact-links-inline{margin-top:2.6rem;}
+/* <a style="color:#B9E3EF;font-style:italic;"> (build.py ~1291 mail link) */
+.contact-mail-inline{color:#B9E3EF;font-style:italic;}

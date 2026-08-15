@@ -1,0 +1,146 @@
+/* careers.css — careers-page styles, flattened winner-per-property from
+ * legacy theme.css.
+ *
+ * Scope: careers.html — everything its markup uses OUTSIDE the chrome
+ * (chrome-*.css), .btn atom (btn.css), .hero-thin base (hero-thin.css) and
+ * the band/section/typography module (category-shared.css: section.band,
+ * .band.dark + bgimg/scrim, .band h2, .section-title, .lede, .fullrule,
+ * .stackcol). global.css supplies .container/.allcaps/.honeypot.
+ *
+ * ALSO LOADED BY contact-us.astro: the form-message cluster at the bottom
+ * (.form-msg / .form-success / .form-error + button[type=submit][disabled])
+ * is rendered by the MvxForm island on BOTH pages — edits there change the
+ * contact page too (CONVENTIONS: never redeclare a selector another ported
+ * file owns).
+ *
+ * Provenance (theme.css lines; later position wins at equal specificity,
+ * winner-per-property): base L82,88,189-199,233; v3 why-row L264-272; v5
+ * motion L329-334; v25 L711-713; v34 jobs feeds L913-927.
+ *
+ * Flattening notes:
+ *  - .band.dark .kicker: legacy computed style also drew
+ *    font-family:var(--font-tagline) from theme.css .allcaps (L28); the
+ *    repo's global.css .allcaps is slimmer (uppercase + .14em only), so the
+ *    tagline face is folded in HERE. letter-spacing/font-size/font-weight
+ *    already won at (0,2,0) over .allcaps in legacy — values unchanged.
+ *  - .jobs-empty: L199 {color:var(--muted);font-style:italic} superseded
+ *    per-property by L918 {font-size;.95rem;color:#5B6670;margin:0} — final
+ *    color #5B6670 = var(--note-gray) token (exact match).
+ *  - .form-msg: L195 base + v25 L712 border-left merged into one rule.
+ *  - .form input/textarea :focus: --cyan/--teal aliases → --mvx-sky/--mvx-teal
+ *    canonicals (tokens.css collapsed the aliases).
+ *  - .split collapse: legacy L233 lists ".split,.challenge,.pd-grid" in the
+ *    920px query — only .split is in careers markup, others stay with their
+ *    own pages.
+ *  - .why-cell transitions: legacy L329/330 group ".statgrid .cell,.why-cell,
+ *    .benefit-cell" — only the .why-cell members are extracted here; the
+ *    #F5FAFC hover literal kept verbatim.
+ *  - button[type=submit][disabled] (v25 L713): element-scoped in legacy
+ *    (applied to every form incl. .cform .send) — kept verbatim; the MvxForm
+ *    island toggles the disabled attribute while sending.
+ *
+ * Breakpoints: 920/560 standard. KEPT non-standard: legacy 820px
+ * (.jobs-split gap 3.5rem → 2.6rem) — folding to 920 would visibly widen the
+ * stacked-column gap at 821-920px where .split is already 1-column.
+ *
+ * State: none beyond the island's inline display toggles (legacy contract:
+ * the script sets el.style.display, no state classes).
+ */
+
+/* ================= dark-band kicker (About you / Join us) ================= */
+/* + font-family from legacy .allcaps — see flattening notes */
+.band.dark .kicker{font-family:var(--font-tagline);color:#fff;font-size:1.5rem;font-weight:600;letter-spacing:.2em;margin-bottom:1.6rem;}
+
+/* ================= two-up split (jobs columns) ================= */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:center;}
+
+/* ================= v34: careers job feeds ================= */
+.jobs-split{gap:3.5rem;}
+.jobs-col{display:flex;flex-direction:column;}
+.jobs-embed{min-height:120px;margin-bottom:1.6rem;}
+/* Loading-placeholder hide: DEPENDS on the THIRD-PARTY widget class
+   (.sk-ww-linkedin-page-jobs — SociableKit populates that exact div in
+   place) AND on .jobs-empty being its IMMEDIATE NEXT SIBLING. Do not wrap
+   the widget div in an island/extra element and do not reorder. */
+.jobs-embed .sk-ww-linkedin-page-jobs:not(:empty) + .jobs-empty{display:none;}
+.jobs-empty{font-size:.95rem;color:var(--note-gray);font-style:italic;margin:0;}
+.btn.joblink{margin-top:auto;font-style:italic;font-weight:400;align-self:flex-start;}
+.btn.joblink .circ{width:38px;height:38px;flex:0 0 38px;background:var(--mvx-teal);}
+.btn.joblink .circ svg{stroke:#fff;}
+/* v34 animated underline — joblink context (btn.css holds the dropdown one) */
+.btn.joblink .btn-label::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1.5px;background:currentColor;transform:scaleX(0);transform-origin:left center;transition:transform .38s cubic-bezier(.22,.61,.36,1);}
+.btn.joblink:hover .btn-label::after{transform:scaleX(1);}
+
+/* ================= why work at Maverix (v3 + v5 hover) ================= */
+.why-row{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--frame-line);background:#fff;margin-top:2.4rem;}
+.why-cell{padding:1.8rem 1.4rem 2.2rem;border-right:1px solid var(--frame-line);transition:background .25s ease;}
+.why-cell:last-child{border-right:none;}
+.why-cell:hover{background:#F5FAFC;}
+.why-cell h3{font-family:var(--font-tagline);color:var(--mvx-blue);font-size:1.35rem;line-height:1.2;margin:.8rem 0 .9rem;}
+.why-cell p{color:var(--mvx-slate);font-size:.86rem;}
+.why-cell svg{width:44px;height:44px;stroke:var(--mvx-graphite);fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s ease,stroke .3s ease;}
+.why-cell:hover svg{transform:translateY(-4px);stroke:var(--mvx-blue);}
+
+/* ================= join-us form (island renders form + messages) ================= */
+.form{display:grid;gap:1.1rem;max-width:560px;}
+.form label{font-weight:600;font-size:.9rem;}
+.form input,.form textarea{width:100%;padding:.75rem .9rem;border:1px solid var(--border-strong);font:inherit;font-size:.95rem;background:#fff;}
+.form input:focus,.form textarea:focus{outline:2px solid var(--mvx-sky);border-color:var(--mvx-sky);}
+.form button{background:var(--header-dark);color:#fff;border:none;padding:.85rem 1.6rem;font-weight:700;font-size:.95rem;cursor:pointer;justify-self:start;}
+.form button:hover{background:var(--mvx-teal);}
+.band.dark .form label{color:#fff;}
+
+/* --- shared with contact-us (see file header) --- */
+.form-msg{display:none;padding:1rem 1.2rem;font-weight:600;border-left:4px solid currentColor;}
+.form-msg.form-success{background:#E6F4EE;color:var(--success);}
+.form-msg.form-error{background:#F7E7E6;color:var(--danger);}
+/* v25: "Sending…" state — the island toggles [disabled] while a send runs */
+button[type=submit][disabled]{opacity:.6;cursor:progress;}
+
+/* ================= responsive ================= */
+
+@media(max-width:920px){
+ .split{grid-template-columns:1fr;}
+ .why-row{grid-template-columns:1fr 1fr;}
+ .why-cell{border-bottom:1px solid var(--frame-line);}
+}
+
+/* KEPT non-standard: legacy 820px — see header */
+@media(max-width:820px){
+ .jobs-split{gap:2.6rem;}
+}
+
+@media(max-width:560px){
+ .why-row{grid-template-columns:1fr;}
+}
+
+/* legacy explicit motion cancel kept for parity (global.css also gates all motion) */
+@media(prefers-reduced-motion:reduce){
+ .btn.joblink .btn-label::after{transition:none;}
+}
+
+/* ================= was inline style= in build.py ================= */
+
+/* <div class="split jobs-split" style="align-items:start;"> */
+.split-start-inline{align-items:start;}
+/* <h2 class="section-title" style="color:var(--mvx-blue);"> (both jobs cols)
+   h2-qualified: must match h2.section-title / .band h2 specificity (0,1,1)
+   so this file's later source position wins, like the inline style did */
+h2.section-title-blue-inline{color:var(--mvx-blue);}
+/* join-us band: <h2 style="margin:.6rem 0 1rem;"> */
+.join-heading-inline{margin:.6rem 0 1rem;}
+/* form wrapper: <div style="margin-top:2rem;max-width:560px;"> (island root) */
+.form-wrap-inline{margin-top:2rem;max-width:560px;}
+/* submit: <button type="submit" style="background:var(--mvx-sky);color:#12333D;">
+   .form button-qualified: the legacy inline style also suppressed the
+   .form button:hover teal — matching (0,2,1) specificity later in source
+   keeps the button sky on hover exactly like legacy */
+.form button.form-send-inline,
+.form button.form-send-inline:hover{background:var(--mvx-sky);color:#12333D;}
+
+/* v16 mobile override of category-shared's base .band.dark .fullrule margin
+   (theme.css L629) — careers.html renders one .fullrule in its dark band;
+   home.css carries the same rule for the homepage (the two never co-load). */
+@media (max-width: 920px) {
+  .band.dark .fullrule { margin: 1rem 0 1.6rem; }
+}

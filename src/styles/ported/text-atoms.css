@@ -1,0 +1,46 @@
+/* Shared text/contact atoms extracted from product-detail.css so category
+   pages can use them without loading the pd-specific band overrides. */
+.bodytext {
+  color: var(--mvx-graphite);
+  font-size: 1rem;
+  max-width: 680px;
+  margin-bottom: 0.9rem;
+}
+.contact-block {
+  text-align: left;
+  min-width: 230px;
+}
+.contact-block .cb-label {
+  font-family: var(--font-tagline);
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-size: 0.78rem;
+  color: var(--mvx-slate);
+}
+.contact-block .cb-title {
+  font-family: var(--font-tagline);
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--heading);
+  line-height: 1.2;
+  border-bottom: 1px solid var(--border-strong);
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.contact-block a {
+  font-style: italic;
+  color: var(--mvx-blue);
+  text-decoration: underline;
+  font-size: 0.95rem;
+  display: block;
+  transition: color 0.2s ease;
+}
+.contact-block a:hover {
+  color: var(--mvx-teal);
+}
+.contact-block .cb-phone {
+  font-size: 0.95rem;
+  color: var(--mvx-graphite);
+  margin-top: 0.2rem;
+}
+

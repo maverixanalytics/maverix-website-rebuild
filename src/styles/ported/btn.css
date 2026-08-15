@@ -1,0 +1,35 @@
+/* btn.css — shared button atom, flattened from legacy theme.css.
+ *
+ * Provenance (theme.css lines):
+ *   base L29-35    .btn / .circ / .on-dark / .readmore
+ *   v5   L309-316  motion pass: final transitions, hover translateX(5px) + blue circ
+ *   v33  L900-911  .btn-label + the animated underline (dropdown context) + reduced-motion
+ *
+ * The ::after underline was defined 4x with different colors (v33 currentColor for
+ * .dropdown/.famrow, v34 .joblink currentColor, v40 .nw-cta #fff, v42 .pcta rgba white).
+ * Chrome only ever renders the v33 DROPDOWN version, kept below scoped exactly as legacy
+ * (.famrow / .joblink / .nw-cta / .pcta are page-level, not chrome — port with their pages).
+ * NOTE: base .btn has NO underline; the underline exists only in those scoped contexts.
+ * #231F20 = legacy var(--ink); not in the mandated token set, kept literal.
+ * Tokens from src/styles/tokens.css. */
+
+.btn{display:inline-flex;align-items:center;gap:.6rem;font-weight:600;font-size:.95rem;color:#231F20;transition:color .2s ease;}
+.btn:hover{color:var(--mvx-teal);}
+.btn.on-dark{color:#fff;}
+.btn.on-dark:hover{color:var(--mvx-sky);}
+.btn .circ{width:30px;height:30px;border-radius:50%;background:var(--mvx-sky);display:inline-flex;align-items:center;justify-content:center;flex:0 0 30px;transition:transform .25s ease,background .25s ease;}
+.btn .circ svg{width:14px;height:14px;transition:stroke .25s ease;}
+.btn:hover .circ{transform:translateX(5px);background:var(--mvx-blue);}
+.btn:hover .circ svg{stroke:#fff;}
+
+.btn .btn-label{position:relative;display:inline-block;}
+/* v33 animated underline — dropdown links only (column hover OR link hover draws it) */
+.dropdown .mcol .btn .btn-label::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1.5px;background:currentColor;transform:scaleX(0);transform-origin:left center;transition:transform .38s cubic-bezier(.22,.61,.36,1);}
+.dropdown .mcol .btn:hover .btn-label::after,
+.dropdown .mcol:hover .btn .btn-label::after{transform:scaleX(1);}
+@media(prefers-reduced-motion:reduce){
+ .dropdown .mcol .btn .btn-label::after{transition:none;}
+}
+
+.readmore{display:inline-block;border:1px solid var(--mvx-graphite);padding:.55rem 1.5rem;font-style:italic;font-size:.95rem;color:#231F20;transition:background .2s ease,color .2s ease,letter-spacing .2s ease;}
+.readmore:hover{background:#231F20;color:#fff;}

@@ -1,0 +1,359 @@
+/* category-shared.css — shared band/category/legal-page styles, flattened from legacy theme.css.
+ *
+ * Scope: products.html, thoracent.html, serpex.html, diagnostics.html,
+ * terms-of-use.html, privacy-policy.html, regulatory-information.html, 404.html
+ * — everything those pages use OUTSIDE the chrome (chrome-*.css), .btn atom
+ * (btn.css) and .hero-thin base (hero-thin.css). The .hero-thin.zoomout variant
+ * is ported HERE (hero-thin.css explicitly skipped it; thoracent + diagnostics
+ * use it). MUST NOT co-load with product-detail.css: that file flattens
+ * section.band>.container to padding:0 for its own template, this one carries
+ * the real 6rem/4.2rem/3.2rem ladder.
+ *
+ * Provenance (theme.css blocks; later source position wins at equal specificity,
+ * winner-per-property): base L74-102,166-172,200-205; v3 L248-263; v5 motion
+ * L317-330; v6 L359-363; v8 L388; v9 L402-408; v10 L411-416; v11 L421-426;
+ * v12 L468-481; v13 L493-530; v16 L607-609; v18 L638; v22 L687-704; v25
+ * L714-717; v27 L724-727,770-789,806-808; v29 L826-838; v31 L864-886; v32
+ * L889-896; v33 L901-911; v35 L930-933; v37 L940-945; v38/v39 zoomout
+ * L948-969; v40/v40a/v40b/v41 Narwhal L972-1050; v44 sup.cite L1083-1086;
+ * v52 references L1200-1210; v53 L1220-1223.
+ *
+ * Flattening notes:
+ *  - .band.dark/.white/.row-line + .fullrule/.stackcol: NOT used by these eight
+ *    pages' markup (all bands are .band.light) — ported anyway as instructed,
+ *    as the shared band module.
+ *  - .band.dark .bgimg opacity: .32 → .55 (v16) → .7 (v18) → .88 (v37 winner).
+ *    ::after scrim: v37 gradient wins over v27. .goal variant = homepage, skipped.
+ *  - .pcard: v6 dark-tile pass (bg #16212A, radius 16px, border none) + v32
+ *    whole-card overlay. All three overlay rules move together:
+ *    .pcard{position:relative} + .btn{position:static} + .btn::after inset 0.
+ *  - .legal h2 / .references h2 / h2.section-title share specificity (0,1,1)
+ *    with .band h2 — source order below mirrors legacy so the same properties
+ *    win (.legal h2 and .references h2 keep .band h2's tagline face / 600 /
+ *    1.12 for the properties they don't set; .references h2 resets the face).
+ *  - .sechead img = v3 sizing + v8 transparent-logo pass merged.
+ *  - mobile expand-card reveal: v27 .photo-cards.expand .photo-card .reveal
+ *    {opacity:0;pointer-events:none} out-specifies v12's opacity:1; v12 still
+ *    wins background (30%/70% gradient). v27 .photo-title{opacity:1} beats
+ *    v12's opacity:0 by source order. --pcta-clearance (v42/v48) is .pathcard
+ *    (homepage) only — no photo-card rule uses it.
+ *  - sup{font-size:.6em;color:var(--mvx-blue)} (base L102) ported here: it is
+ *    what colors the sup.ref/sup.cite markers (their anchors color:inherit);
+ *    not in global.css.
+ *  - .not-found .famrow{background:#fff} (v25) dropped: identical to .famrow base.
+ *  - .abbr: does not exist in theme.css or any markup — nothing to port.
+ *  - .nw-badge: no markup uses it on serpex.html — skipped.
+ *  - Breakpoints: 900px folded into 920px (pgrid 2-col, zoomout hero-img —
+ *    identical rendering at 620/600px). 640px KEPT (pgrid 1-col + zoomout
+ *    padding differ at 620px if folded to 560). 600px KEPT (zoomout full-bleed
+ *    differs at 561-600 if folded). Narwhal 1000px KEPT: at 1024px the legacy
+ *    two-column masthead + 3-col cards render comfortably (content ≈888px);
+ *    folding to 1080 would stack them — visibly different, not folded.
+ *
+ * Tokens from ../tokens.css; --gutter matches the legacy 72/40/20px side-padding
+ * ladder exactly. Non-token literals kept verbatim: #16212A (pcard tile),
+ * #12333D (+ affordance), #0F3D50, #FCFDFD, #EAF4F8/#DCEBF2/#CBDEE7/#B4C9D4
+ * (nw-stat), #E6EDF1, #AEB4BA, rgba(18,26,32,*), rgba(13,21,27,.94).
+ * State classes preserved: .open (expand cards), .has-reveal.
+ */
+
+/* ================= framed bands + section container ladder ================= */
+section.band{padding:0;}
+section.band>.container{border-left:1px solid var(--frame-line);border-right:1px solid var(--frame-line);padding:6rem var(--gutter);}
+.band.light>.container{background:var(--page-bg);}
+.band.white>.container{background:#fff;}
+.band.row-line>.container{border-top:1px solid var(--frame-line);}
+
+/* dark band + bgimg + ::after scrim + z-index stack (unused on these 8 pages — see header) */
+.band.dark{position:relative;background:var(--header-dark);color:#fff;overflow:hidden;padding:5.5rem 0;}
+.band.dark .bgimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.88;z-index:0;}
+.band.dark::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(8,13,17,.66) 0%,rgba(8,13,17,.42) 50%,rgba(8,13,17,.20) 100%);}
+.band.dark>.container{position:relative;z-index:2;border:none;background:transparent;padding:0 24px;}
+.band.dark .fullrule{height:1px;background:rgba(255,255,255,.65);margin:1.5rem calc(50% - 50vw) 2.4rem;}
+.band.dark .stackcol h2{max-width:640px;}
+.band.dark .stackcol .lede{max-width:620px;margin-top:1.5rem;}
+
+/* ================= section typography ================= */
+.band h2{font-family:var(--font-tagline);font-size:clamp(2rem,4vw,3.125rem);font-weight:600;line-height:1.12;color:var(--heading);}
+.band.dark h2{font-size:clamp(1.5rem,2.4vw,1.875rem);font-weight:600;letter-spacing:.5px;max-width:590px;line-height:1.35;font-family:var(--font-tagline);color:#fff;}
+h2.section-title{color:var(--heading);margin-bottom:1rem;}
+.lede{font-size:1.1rem;color:var(--mvx-slate);max-width:760px;}
+.band.dark .lede{font-size:1.25rem;font-weight:400;color:#fff;line-height:1.6;}
+.biglead{font-family:var(--font-tagline);color:var(--mvx-blue);font-weight:700;font-size:clamp(1.4rem,2.5vw,1.9rem);line-height:1.3;max-width:680px;margin-bottom:1.4rem;}
+/* base sup — supplies the marker color that sup.ref/sup.cite anchors inherit */
+sup{font-size:.6em;color:var(--mvx-blue);}
+
+/* ================= section head: family lockup + distby + contact ================= */
+.sechead{display:flex;justify-content:flex-start;align-items:flex-start;gap:3.2rem;flex-wrap:wrap;margin-bottom:2.6rem;}
+.sechead img{height:64px;width:auto;object-fit:contain;background:transparent;padding:0;border-radius:0;mix-blend-mode:multiply;}
+.sechead .famlogo{height:74px;width:auto;object-fit:contain;background:transparent;padding:0;align-self:flex-start;}
+.sechead .famlogo,.sechead .distby.inline,.sechead .contact-block{margin-top:0;}
+.sechead .contact-block{margin-left:auto;}
+
+.seclabel{display:flex;align-items:center;gap:1.4rem;font-family:var(--font-tagline);text-transform:uppercase;letter-spacing:.28em;font-size:1.05rem;font-weight:600;color:var(--heading);margin:3.4rem 0 1.6rem;}
+.seclabel::after{content:"";flex:1;max-width:560px;height:1px;background:var(--mvx-graphite);}
+
+.distby{margin-top:3.6rem;}
+.distby img{height:58px;width:auto;mix-blend-mode:multiply;margin-top:1.2rem;}
+.distby.inline{margin-top:0;display:flex;flex-direction:column;align-items:flex-start;gap:.65rem;}
+.distby.inline .seclabel{margin:0;gap:0;font-size:.78rem;letter-spacing:.28em;color:var(--mvx-slate);}
+.distby.inline .seclabel::after{content:none;}
+.distby.inline img{height:46px;width:auto;margin-top:0;object-fit:contain;background:transparent;padding:0;}
+
+/* ================= product-family row (products.html, 404.html) ================= */
+.famrow{display:grid;grid-template-columns:repeat(3,1fr);background:#fff;margin-top:1.5rem;}
+.famrow .family-cell{padding:2.6rem 2.2rem 2.8rem;border-right:1px solid var(--frame-line);display:flex;flex-direction:column;align-items:flex-start;min-height:300px;}
+.famrow .family-cell:first-child{border-left:1px solid var(--frame-line);}
+.famrow h4{font-family:var(--font-tagline);font-weight:600;font-size:1.9rem;letter-spacing:-.01em;margin-bottom:.8rem;}
+.famrow p{font-size:1.02rem;line-height:1.65;color:var(--copy-dropdown);margin-bottom:2rem;}
+.famrow .btn{margin-top:auto;font-style:italic;font-weight:400;font-size:1.02rem;}
+.famrow .btn .circ{width:42px;height:42px;flex:0 0 42px;}
+.famrow .btn .circ svg{stroke:#fff;width:17px;height:17px;}
+.famrow .family-cell.cat-risk h4{color:var(--heading);}
+.famrow .family-cell.cat-risk .btn .circ{background:var(--heading);}
+.famrow .family-cell.cat-diagnosis h4{color:var(--mvx-teal);}
+.famrow .family-cell.cat-diagnosis .btn .circ{background:var(--mvx-teal);}
+.famrow .family-cell.cat-intervention h4{color:var(--cat-intervention);}
+.famrow .family-cell.cat-intervention .btn .circ{background:var(--cat-intervention);}
+/* v33 animated underline — famrow context (dropdown context lives in btn.css) */
+.famrow .btn .btn-label::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1.5px;background:currentColor;transform:scaleX(0);transform-origin:left center;transition:transform .38s cubic-bezier(.22,.61,.36,1);}
+.famrow .btn:hover .btn-label::after,
+.famrow .family-cell:hover .btn .btn-label::after{transform:scaleX(1);}
+
+/* ================= product sections / groups / grid ================= */
+.prod-section{scroll-margin-top:calc(var(--header-h) + 18px);} /* was 80px = 62+18 */
+.pgroup{margin-top:2.4rem;}
+.pgroup:first-of-type{margin-top:1.6rem;}
+.pgroup .pglabel{font-family:var(--font-tagline);font-weight:600;font-size:.9rem;letter-spacing:.26em;text-transform:uppercase;color:var(--mvx-teal);padding-bottom:.7rem;margin-bottom:1.3rem;border-bottom:1px solid var(--frame-line);}
+.pgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.3rem;align-items:stretch;}
+.pgrid .pcard{scroll-snap-align:none;}
+.seclabel + .pgrid{margin-top:1.5rem;}
+
+/* ---- product card (v6 dark tile + v32 whole-card click overlay) ---- */
+.pcard{position:relative;scroll-snap-align:start;background:#16212A;border:none;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:box-shadow .3s ease,transform .3s ease;}
+.pcard:hover{box-shadow:0 14px 32px rgba(26,74,93,.16);transform:translateY(-3px);}
+.pcard .card-photo{aspect-ratio:4/3;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:16px 16px 0 0;cursor:pointer;}
+.pcard .card-photo img{width:100%;height:100%;object-fit:contain;background:#fff;cursor:pointer;transition:transform .6s cubic-bezier(.22,.61,.36,1);}
+.pcard:hover .card-photo img{transform:scale(1.06);}
+.pcard .card-info{padding:1.2rem;display:flex;flex-direction:column;gap:.7rem;flex:1;}
+.pcard h3{font-size:1.05rem;line-height:1.3;flex:1;color:#fff;}
+.pcard .card-info .btn{color:#fff;position:static;}
+.pcard .card-info .btn:hover{color:var(--mvx-sky);}
+/* overlay pattern rule 3/3: the stretched pseudo-link */
+.pcard .card-info .btn::after{content:"";position:absolute;inset:0;z-index:1;}
+.pcard:focus-within{outline:2px solid var(--mvx-blue);outline-offset:3px;}
+
+/* ================= photo cards (diagnostics) ================= */
+.photo-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:2.2rem;margin-top:2.8rem;}
+/* .photo-cards.g4/.g5 skipped — no markup on these pages uses them */
+.photo-card{position:relative;border-radius:var(--radius-lg);overflow:hidden;min-height:340px;display:flex;align-items:flex-end;background:linear-gradient(160deg,#7F8A92,#3A444C);transition:box-shadow .3s ease,transform .3s ease;}
+.photo-card:hover{box-shadow:0 20px 44px rgba(var(--scrim-rgb),.28);}
+.photo-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.22,.61,.36,1);}
+.photo-card:hover img{transform:scale(1.06);}
+.photo-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,26,32,0) 35%,rgba(18,26,32,.68));}
+.photo-card .photo-title{position:relative;z-index:2;color:#fff;font-family:var(--font-tagline);font-weight:700;font-size:1.35rem;line-height:1.25;padding:1.4rem;}
+.photo-card > .photo-title{transition:opacity .3s ease;}
+
+/* hover reveal (v11 base; the expand variant overrides below) */
+.photo-card .reveal{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;justify-content:flex-end;gap:.5rem;padding:1.6rem;background:linear-gradient(180deg,rgba(var(--scrim-card-rgb),.05) 0%,rgba(var(--scrim-card-rgb),.92) 62%);opacity:0;transition:opacity .35s ease;}
+.photo-card .reveal .photo-title-reveal{color:#fff;font-family:var(--font-tagline);font-weight:600;font-size:1.3rem;line-height:1.25;}
+.photo-card .reveal p{color:#E6EDF1;font-size:.95rem;line-height:1.55;}
+.photo-card:hover .reveal,.photo-card:focus-within .reveal{opacity:1;}
+.photo-card.has-reveal:hover > .photo-title{opacity:0;}
+.photo-card .reveal p.lead{color:var(--mvx-sky);font-style:italic;font-size:1.02rem;line-height:1.5;}
+.photo-card .reveal p.photo-subtitle{color:var(--menu-link);font-style:italic;font-size:.85rem;line-height:1.55;}
+
+/* expand-on-hover variant (v12) */
+.photo-cards.expand{display:flex;gap:1.8rem;margin-top:2.8rem;}
+.photo-cards.expand .photo-card{flex:1;min-width:0;min-height:410px;transition:flex .55s cubic-bezier(.25,.8,.25,1),box-shadow .3s ease;}
+.photo-cards.expand .photo-card:hover,.photo-cards.expand .photo-card:focus-within{flex:2.1;}
+.photo-cards.expand .reveal{opacity:0;background:linear-gradient(180deg,rgba(var(--scrim-card-rgb),0) 0%,rgba(var(--scrim-card-rgb),.94) 52%);justify-content:flex-end;padding-bottom:2rem;transition:opacity .4s ease .12s;}
+.photo-cards.expand .photo-card:hover .reveal,.photo-cards.expand .photo-card:focus-within .reveal{opacity:1;}
+
+/* ================= Narwhal Cryo System feature (serpex) ================= */
+.nwfeature{margin:3.2rem 0 3.6rem;border:1px solid var(--frame-line);background:#fff;overflow:hidden;}
+.nw-top{display:grid;grid-template-columns:1.15fr .85fr;gap:3rem;align-items:center;padding:3.2rem 3rem;color:#fff;background:linear-gradient(115deg,#0F3D50 0%,var(--mvx-deep) 30%,var(--mvx-teal) 68%,var(--mvx-blue) 100%);}
+/* .nw-badge skipped — not in serpex markup */
+.nw-kicker{font-family:var(--font-tagline);font-weight:600;font-size:.8rem;letter-spacing:.26em;text-transform:uppercase;color:var(--mvx-sky);margin-bottom:1rem;display:flex;align-items:center;gap:.9rem;}
+.nw-kicker::before{content:"";width:26px;height:1px;background:var(--mvx-sky);flex:0 0 26px;}
+/* NOTE: .nw-title sits on an <h2>, and .band h2 (0,1,1) out-specifies .nw-title
+   (0,1,0) — in legacy AND here the rendered size/weight/line-height are .band
+   h2's clamp(2rem,4vw,3.125rem)/600/1.12; only letter-spacing + margin below
+   apply (plus the v40a color pin). Kept verbatim so the cascade math matches. */
+.nw-title{font-family:var(--font-tagline);font-weight:700;font-size:clamp(2.4rem,4vw,3.5rem);line-height:1.04;letter-spacing:-.015em;color:#fff;margin:0 0 1.2rem;}
+.nw-dot{color:var(--narwhal-dot);}
+/* v40a: masthead type must win over the generic .band h2 heading color */
+.nwfeature .nw-top .nw-title,.nwfeature .nw-top h2{color:#fff;}
+.nwfeature .nw-top .nw-title .nw-dot{color:var(--narwhal-dot);}
+.nw-lede{font-size:1.05rem;line-height:1.65;color:rgba(255,255,255,.9);max-width:34rem;margin-bottom:1.9rem;}
+.nw-cta{color:#fff;font-weight:600;}
+.nw-cta .circ{background:#fff;}
+.nw-cta .circ svg{stroke:var(--mvx-deep);}
+.nw-cta .btn-label::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1.5px;background:#fff;transform:scaleX(0);transform-origin:left center;transition:transform .38s cubic-bezier(.22,.61,.36,1);}
+.nw-cta:hover{color:#fff;}
+.nw-cta:hover .btn-label::after{transform:scaleX(1);}
+.nw-shot{aspect-ratio:4/5;border-radius:14px;overflow:hidden;}
+.nw-shot img{width:100%;height:100%;object-fit:cover;display:block;border-radius:14px;}
+.nw-body{padding:2.8rem 3rem 3rem;}
+.nw-seclabel{font-family:var(--font-tagline);font-weight:600;font-size:.78rem;letter-spacing:.26em;text-transform:uppercase;color:var(--mvx-teal);padding-bottom:.7rem;margin-bottom:1.6rem;border-bottom:1px solid var(--frame-line);}
+.nw-seclabel.evidence{color:var(--evidence-orange);margin-top:3rem;}
+.nw-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;}
+.nw-card{border:1px solid var(--frame-line);border-radius:var(--radius-md);padding:1.5rem;background:#FCFDFD;display:flex;flex-direction:column;}
+.nw-card h3{font-family:var(--font-tagline);font-weight:700;font-size:1.08rem;color:var(--heading);margin:0 0 1rem;line-height:1.3;min-height:2.6em;}
+.nw-cardimg{aspect-ratio:16/10;border-radius:8px;overflow:hidden;margin-bottom:1.1rem;background:#fff;border:1px solid var(--frame-line);}
+.nw-cardimg img{width:100%;height:100%;object-fit:contain;display:block;background:#fff;}
+.nw-why{font-family:var(--font-tagline);font-weight:600;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--evidence-orange);padding-bottom:.5rem;margin-bottom:.7rem;border-bottom:1px solid var(--frame-line);}
+.nw-card p{font-size:.9rem;line-height:1.6;color:var(--copy-dropdown);margin:0;}
+.nw-evtitle{font-family:var(--font-tagline);font-weight:700;font-size:1.9rem;color:var(--heading);margin:0 0 1rem;line-height:1.2;}
+.nw-evlede{font-size:1rem;line-height:1.68;color:var(--copy-dropdown);max-width:56rem;margin-bottom:1.8rem;}
+.nw-n{display:block;margin-top:.5rem;font-size:.9rem;color:var(--note-gray);}
+.nw-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-bottom:1.4rem;}
+.nw-stat{border-radius:var(--radius-md);padding:1.6rem 1.4rem;text-align:center;background:linear-gradient(160deg,#EAF4F8 0%,#DCEBF2 100%);border:1px solid #CBDEE7;}
+.nw-fig{font-family:var(--font-tagline);font-weight:300;font-size:3rem;line-height:1;color:var(--mvx-teal);margin-bottom:.8rem;}
+/* v40a margin-bottom 1.9rem wins over the v40 shorthand's .8rem for split figures */
+.nw-fig.split-figure{display:flex;align-items:center;justify-content:center;gap:1.1rem;font-size:2.2rem;margin-bottom:1.9rem;}
+.nw-fig.split-figure span{display:inline-flex;align-items:baseline;gap:.2rem;position:relative;}
+.nw-fig.split-figure em{font-style:normal;font-size:.9rem;color:var(--mvx-slate);}
+.nw-fig.split-figure small{position:absolute;left:0;top:100%;margin-top:.3rem;font-size:.68rem;letter-spacing:.1em;color:var(--evidence-orange);white-space:nowrap;}
+.nw-fig.split-figure i{width:1px;height:38px;background:#B4C9D4;display:inline-block;}
+/* v40 margin:.9rem 0 0 + v40a margin-top:.6rem → final .6rem */
+.nw-stat p{font-size:.86rem;line-height:1.5;color:var(--copy-dropdown);margin:.6rem 0 0;}
+.nw-foot{font-size:.72rem;line-height:1.55;color:#6B747C;margin:0 0 .9rem;}
+
+/* Narwhal breakpoint KEPT at 1000px — folding to 1080 stacks a masthead that
+   renders comfortably two-column at 1024px (see header note) */
+@media(max-width:1000px){
+ .nw-top{grid-template-columns:1fr;gap:2rem;padding:2.4rem 1.8rem;}
+ .nw-shot{aspect-ratio:16/9;}
+ .nw-body{padding:2rem 1.8rem 2.4rem;}
+ .nw-cards,.nw-stats{grid-template-columns:1fr;}
+ .nw-evtitle{font-size:1.5rem;}
+ .nw-card h3{min-height:0;}
+}
+
+/* ================= reference markers + list (v52/v53) ================= */
+sup.ref{font-size:.62em;line-height:0;vertical-align:super;}
+sup.ref a{text-decoration:none;color:inherit;opacity:.65;}
+sup.ref a:hover,sup.ref a:focus-visible{opacity:1;text-decoration:underline;}
+.biglead sup.ref{font-size:.42em;}
+.photo-card .reveal sup.ref a{color:var(--mvx-sky);opacity:1;}
+.photo-card .reveal sup.ref a:hover,
+.photo-card .reveal sup.ref a:focus-visible{color:#fff;text-decoration:underline;}
+.references{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--frame-line);}
+.references h2{font-family:var(--font-sans);font-size:.95rem;letter-spacing:.04em;text-transform:uppercase;color:var(--note-gray);margin-bottom:.75rem;}
+.references ol{font-size:.78rem;line-height:1.55;color:var(--note-gray);padding-left:1.25rem;}
+.references li{margin-bottom:.5rem;scroll-margin-top:calc(var(--header-h) + 28px);} /* was 90px = 62+28 */
+.references a{color:var(--mvx-teal);text-decoration:none;overflow-wrap:anywhere;}
+.references a:hover{text-decoration:underline;}
+
+/* homepage-scheme stat citations (v44) — shared scope, kept distinct from sup.ref */
+sup.cite{font-size:.62em;line-height:0;vertical-align:super;margin-left:.12em;}
+sup.cite a{color:inherit;text-decoration:none;opacity:.72;border-bottom:1px dotted currentColor;}
+sup.cite a:hover,sup.cite a:focus-visible{opacity:1;}
+sup.cite .csep{opacity:.72;}
+
+/* ================= notes / links ================= */
+p.rxnote{margin-top:2.6rem;font-size:.86rem;line-height:1.6;color:var(--note-gray);max-width:920px;border-top:1px solid var(--frame-line);padding-top:1.2rem;}
+a.reglink{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;color:var(--mvx-teal);}
+
+/* ================= legal pages ================= */
+.legal h1{font-family:var(--font-tagline);font-size:2.4rem;margin-bottom:.4rem;color:var(--heading);}
+.legal .effective-date{color:var(--mvx-slate);margin-bottom:2.2rem;}
+/* face/weight/line-height come from .band h2 above, as in legacy */
+.legal h2{color:var(--mvx-blue);font-size:1.35rem;margin:2rem 0 .7rem;}
+.legal p,.legal li{color:var(--mvx-graphite);margin-bottom:.9rem;font-size:.98rem;}
+.legal ol{padding-left:1.4rem;}
+
+/* ================= 404 ================= */
+.not-found .not-found-code{font-family:var(--font-tagline);font-weight:600;font-size:clamp(5rem,14vw,10rem);line-height:.9;color:var(--mvx-cloud);letter-spacing:-.02em;margin-bottom:.6rem;}
+.not-found .section-title{margin-bottom:1rem;}
+.not-found .lede{max-width:640px;}
+
+/* ================= hero-thin zoomout variant (thoracent, diagnostics) ================= */
+/* base .hero-thin/.overlay live in hero-thin.css; only the variant is here */
+.hero-thin.zoomout{background:#AEB4BA;}
+.hero-thin.zoomout .inner{padding-top:16.5rem;padding-bottom:3rem;}
+/* v38 geometry superseded by v39 (wider to offset the edge fade) */
+.hero-thin.zoomout .hero-img{left:12.9%;right:auto;width:74.2%;
+ -webkit-mask-image:linear-gradient(90deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.55) 5%,#000 14%,#000 86%,rgba(0,0,0,.55) 95%,rgba(0,0,0,0) 100%);
+ mask-image:linear-gradient(90deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.55) 5%,#000 14%,#000 86%,rgba(0,0,0,.55) 95%,rgba(0,0,0,0) 100%);
+ -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+ -webkit-mask-size:100% 100%;mask-size:100% 100%;}
+
+/* ================= responsive ================= */
+
+@media(max-width:1080px){
+ /* v9 side margins + v13 vertical padding; --gutter is already 40px here */
+ section.band>.container{margin-left:28px;margin-right:28px;padding:4.2rem var(--gutter);}
+}
+
+@media(max-width:920px){
+ /* section head */
+ .sechead{gap:2rem;}
+ .sechead .contact-block{margin-left:0;}
+ .sechead .famlogo{height:58px;}
+ .distby.inline img{height:38px;}
+ /* family row stacks */
+ .famrow{grid-template-columns:1fr;}
+ .famrow .family-cell{border:none;border-bottom:1px solid var(--frame-line);min-height:0;}
+ .famrow .family-cell:first-child{border-left:none;}
+ /* product grid — legacy 900px folded into 920 (identical at 620/600px) */
+ .pgrid{grid-template-columns:repeat(2,minmax(0,1fr));}
+ /* zoomout hero — legacy 900px folded into 920 (v39 winner over v38) */
+ .hero-thin.zoomout .hero-img{left:5.5%;width:89%;}
+ /* photo cards */
+ .photo-cards{grid-template-columns:1fr 1fr;}
+ .photo-cards.expand{flex-direction:column;}
+ .photo-cards.expand .photo-card{min-height:340px;cursor:pointer;}
+ .photo-cards.expand .photo-card:hover,.photo-cards.expand .photo-card:focus-within{flex:1;}
+ /* tap-to-expand (v27): collapsed = image + title only; v12's mobile gradient
+    survives as the background of the (hidden) hover reveal */
+ .photo-cards.expand .photo-card .reveal{opacity:0;pointer-events:none;background:linear-gradient(180deg,rgba(var(--scrim-card-rgb),0) 30%,rgba(var(--scrim-card-rgb),.94) 70%);}
+ .photo-cards.expand .photo-card .photo-title{opacity:1;}
+ /* "+" affordance */
+ .photo-cards.expand .photo-card::before{content:"+";position:absolute;top:14px;right:14px;z-index:4;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.92);color:#12333D;font-family:var(--font-tagline);font-weight:600;font-size:1.35rem;line-height:34px;text-align:center;transition:transform .25s ease;}
+ .photo-cards.expand .photo-card.open::before{transform:rotate(45deg);}
+ /* expanded: reveal flows inline so the card grows */
+ .photo-cards.expand .photo-card.open{min-height:0;}
+ .photo-cards.expand .photo-card.open .reveal{position:relative;opacity:1;pointer-events:auto;background:rgba(13,21,27,.94);padding:1.5rem 1.4rem 1.8rem;}
+ .photo-cards.expand .photo-card.open .photo-title{display:none;}
+ .photo-cards.expand .photo-card.open .reveal p{font-size:.92rem;line-height:1.6;}
+ .photo-cards.expand .photo-card.open .reveal p.photo-subtitle{font-size:.86rem;}
+}
+
+/* KEPT non-standard: legacy 640px — folding to 560 changes 561-640px rendering
+   (pgrid would show 2 cols and the zoomout hero would keep 16.5rem headroom) */
+@media(max-width:640px){
+ .pgrid{grid-template-columns:1fr;}
+ .hero-thin.zoomout .inner{padding-top:10rem;}
+}
+
+/* KEPT non-standard: legacy 600px — zoomout hero goes full-bleed, fade off */
+@media(max-width:600px){
+ .hero-thin.zoomout .hero-img{left:0;width:100%;-webkit-mask-image:none;mask-image:none;}
+}
+
+@media(max-width:560px){
+ section.band>.container{margin-left:14px;margin-right:14px;padding:3.2rem var(--gutter);}
+ h2.section-title{font-size:2rem;}
+ .sechead .famlogo{height:48px;}
+ .photo-cards{grid-template-columns:1fr;}
+ .references ol{padding-left:1.1rem;}
+}
+
+/* legacy explicit motion cancels kept for parity (global.css also gates all motion) */
+@media(prefers-reduced-motion:reduce){
+ .famrow .btn .btn-label::after{transition:none;}
+ .nw-cta .btn-label::after{transition:none;}
+ .photo-card img,.pcard .card-photo img{transition:none;}
+}
+
+/* ================= was inline style= in build.py ================= */
+
+/* terms-of-use / privacy-policy / regulatory-information:
+   <div class="container legal" style="max-width:860px;"> */
+.legal-narrow-inline{max-width:860px;}
+/* 404.html: <div class="famrow" style="margin-top:2.4rem;"> */
+.famrow-gap-inline{margin-top:2.4rem;}
+/* 404.html: <p class="bodytext" style="margin-top:2.6rem;"> (home-page link) */
+.bodytext-gap-inline{margin-top:2.6rem;}

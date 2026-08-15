@@ -1,0 +1,242 @@
+/* home.css — homepage-only styles, flattened winner-per-property from legacy
+ * theme.css.
+ *
+ * Scope: index.html — everything its markup uses OUTSIDE the chrome
+ * (chrome-*.css), .btn atom (btn.css) and the shared band/typography module
+ * (category-shared.css: section.band + container ladder, .band.dark + bgimg
+ * .88 + scrim + .fullrule/.stackcol, .band h2 / .band.dark h2,
+ * h2.section-title, .lede, base sup, sup.cite/.csep). global.css supplies
+ * .container/.allcaps/reveal. text-atoms.css loaded per page plan.
+ * index.astro does NOT load hero-thin.css (homepage uses the tall .hero, not
+ * .hero-thin) — hence @keyframes heroin is declared HERE (see note below).
+ *
+ * Provenance (theme.css lines; later source position wins at equal
+ * specificity, winner-per-property): base hero L63-69; stats L93-101; journey
+ * L104-119; pathways L121-131; base media L233-244; v5 motion L317-347 +
+ * reduce L353-356; v7/v9/v13 gutters (in category-shared); v10 type L411-417;
+ * v11 journey-expand L428-436,456-460; v13 L513; v16 homepage refinements
+ * L604-631; v17 goal L634-635; v18 L638-643; v27 scrims L722, journey mobile
+ * L754-767, tap-cards L770-788, v27b L806-808; v28 statgrid 560 L812-817;
+ * v37 hero/goal opacities L937-941; v42 pcta L1053-1070; v45 tail/truncated
+ * L1094-1095; v46 --journey-gap L1102-1104; v47 journey rules L1111-1117;
+ * v48 --pcta-clearance L1125-1129.
+ *
+ * Flattening notes:
+ *  - .hero video/.hero-img opacity: .55 (base) → .74 (v37 winner).
+ *    .hero .shade: base → v27 darker → v37 winner (.72/.44/.20 gradient).
+ *  - .hero .kicker: base 1.35rem → v16 2rem (winner); mobile 1.4rem (v16
+ *    media). font-family:var(--font-tagline) folded in from legacy .allcaps
+ *    (L28) — the repo's global.css .allcaps is slimmer (same treatment as
+ *    careers.css gave .band.dark .kicker).
+ *  - .band.dark .kicker: declared here for the mission/goal bands, identical
+ *    to careers.css's copy (the two files are page-scoped and never co-load;
+ *    category-shared.css deliberately does not own this selector).
+ *  - .band.dark .fullrule mobile margin (v16 media L629): category-shared
+ *    owns the BASE .fullrule rule; this 920px margin override is
+ *    homepage-scope in legacy (v16 block) and only complements it.
+ *  - .band.dark.goal: opacity .75 (v17) → .92 (v37 winner);
+ *    object-position center 22% (v16) → center 32% (v17 winner);
+ *    padding 5.5rem (shared base) → 7.5rem (v17).
+ *  - @keyframes heroin: hero-thin.css declares an identical copy, but that
+ *    file is NOT loaded by index.astro, so the keyframes are declared here
+ *    too (identical definition — harmless if both ever co-load).
+ *  - .challenge .headline p / .bigstat+.statgrid .stat-label color:
+ *    var(--muted) (base) → #213340 (v10 winner) = var(--heading).
+ *  - .bigstat: base block → v16 grid minmax(96px,auto) → v18 132px 1fr
+ *    (winner). stat-number #8BBAE4 → #4FC4E8 (v16) = var(--stat-cyan).
+ *  - .pathcard transition: v5 gave box-shadow/transform, v11 REPLACED the
+ *    whole transition with flex-only — so the hover shadow snaps with no
+ *    transition. Legacy live behavior, kept.
+ *  - .pathcard .reveal / .pathcard-caption padding-bottom: 2rem (v11) →
+ *    5.4rem literal (v42) → var(--pcta-clearance) (v48 winner).
+ *  - .pathcard.open .reveal padding: v27 shorthand 1.5rem 1.4rem 1.8rem +
+ *    v48 padding-bottom:var(--pcta-clearance) → flattened
+ *    padding:1.5rem 1.4rem var(--pcta-clearance).
+ *  - KNOWN CASCADE QUIRK (replicating CURRENT LIVE rendering): v27's mobile
+ *    caps `.journey .jnote::before/::after,.jarrow::before{max-width:36px}`
+ *    and base 560px `.jbar{flex-wrap:wrap}` are DEAD in legacy — v47's
+ *    unconditional `max-width:none` and v27's 920px `flex-wrap:nowrap` sit
+ *    later in source at equal specificity and win inside the media ranges
+ *    too. Neither dead declaration is ported: rules span their whole bar and
+ *    the bar never wraps, at every width, exactly as it renders today.
+ *  - .jbar gap: base 8px → v46 --journey-gap var (winner); mobile 5px comes
+ *    from the 920px --journey-gap value (v27's literal gap:5px superseded).
+ *  - .jpanel negative margins: v18 -72/-40/-20px ladder = the --gutter
+ *    ladder exactly (tokens.css documents this pairing) → calc(-1 * gutter).
+ *  - .jseg radius 4px → var(--radius-sm); .pathcard 22px → var(--radius-xl);
+ *    end-marker 2px kept literal (no token). Scrims: rgba(17,29,36,*) →
+ *    var(--scrim-card-rgb); rgba(13,20,24,.28) → var(--scrim-rgb);
+ *    rgba(20,28,34,*) (pathcard ::after) has no token — kept literal, as are
+ *    #1B242B/#2E6E8E/#7BC4D8/#C9E8F2/#D5EDF6/#2A3A42/#12333D (journey),
+ *    #8E979E, #D6DDE1, #E8ECEF, #B9C0C6, #F5FAFC, rgba(13,21,27,.94),
+ *    rgba(9,15,19,*).
+ *  - Breakpoints: 1080/920/560 standard, no non-standard ones needed.
+ * State classes preserved: .open (pathcard tap-expand), .is-in-view.
+ */
+
+/* ================= tall hero (video) ================= */
+.hero{position:relative;background:var(--header-dark);color:#fff;overflow:hidden;}
+.hero video,.hero .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.74;}
+/* v37 winner over v27/base */
+.hero .shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,15,19,.72) 0%,rgba(9,15,19,.44) 45%,rgba(9,15,19,.20) 100%);}
+.hero .inner{position:relative;padding:8.5rem 0 7.5rem;}
+/* + font-family from legacy .allcaps — see flattening notes */
+.hero .kicker{font-family:var(--font-tagline);color:var(--mvx-sky);font-size:2rem;font-weight:600;letter-spacing:.28em;margin-bottom:1.2rem;}
+.hero h1{font-family:var(--font-tagline);font-size:clamp(3rem,7.2vw,6.125rem);font-weight:600;line-height:1;max-width:900px;text-transform:uppercase;letter-spacing:0;}
+.hero .hero-tagline{margin-top:1.8rem;font-size:clamp(1.15rem,2.2vw,1.5rem);font-style:italic;color:#E8ECEF;line-height:1.9;font-weight:300;}
+/* v5 hero entrance (keyframes declared below — hero-thin.css not loaded here) */
+.hero .inner>*{animation:heroin .8s ease backwards;}
+.hero .inner>*:nth-child(2){animation-delay:.12s;}
+.hero .inner>*:nth-child(3){animation-delay:.24s;}
+@keyframes heroin{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+
+/* ================= dark bands (mission / goal) ================= */
+/* + font-family from legacy .allcaps — identical to careers.css's copy */
+.band.dark .kicker{font-family:var(--font-tagline);color:#fff;font-size:1.5rem;font-weight:600;letter-spacing:.2em;margin-bottom:1.6rem;}
+.band.dark.goal{padding:7.5rem 0;}
+/* opacity v37 winner; object-position v17 winner */
+.band.dark.goal .bgimg{opacity:.92;object-position:center 32%;}
+
+/* ================= the Challenge: headline + stats ================= */
+.challenge{display:grid;grid-template-columns:1.05fr 2fr;gap:3.6rem;margin-top:3.2rem;}
+.challenge .headline p{font-size:1.15rem;font-weight:600;line-height:1.5;color:var(--heading);}
+
+/* big stats — v18 132px column winner over v16 minmax(96px,auto) */
+.bigstat{display:grid;grid-template-columns:132px 1fr;gap:0 1.5rem;align-items:center;margin-top:2rem;}
+.bigstat .stat-number{font-family:var(--font-tagline);font-size:2.7rem;font-weight:700;color:var(--stat-cyan);line-height:1.1;}
+.bigstat .stat-label{color:var(--heading);font-style:italic;border-left:1px solid #B9C0C6;padding:.7rem 0 .7rem 1.5rem;font-size:1rem;max-width:240px;}
+
+/* stat grid — hairline cells on white */
+.statgrid{display:grid;grid-template-columns:repeat(3,1fr);background:#fff;border:1px solid var(--frame-line);}
+.statgrid .cell{padding:1.9rem 1.5rem 2.6rem;border-right:1px solid var(--frame-line);border-bottom:1px solid var(--frame-line);transition:background .25s ease;}
+.statgrid .cell:hover{background:#F5FAFC;}
+.statgrid .stat-number{font-family:var(--font-tagline);font-size:2rem;font-weight:700;color:var(--stat-cyan);white-space:nowrap;transition:color .25s ease;}
+.statgrid .cell:hover .stat-number{color:var(--mvx-blue);}
+.statgrid .stat-label{font-size:.88rem;color:var(--heading);margin-top:.3rem;}
+/* base sup (marker color) lives in category-shared.css — not redeclared */
+
+/* ================= patient journey panel ================= */
+/* negative side margins = the --gutter ladder (v18 -72/-40/-20px exactly) */
+.jpanel{background:#fff;border:1px solid var(--frame-line);padding:3.2rem 2.6rem 14rem;margin:3.4rem calc(-1 * var(--gutter)) 0;}
+.jpanel .journey:first-child{margin-top:0;}
+.jpanel .journey{margin-top:3rem;}
+
+.journey{margin:3.8rem 0 0;}
+.journey .jtitle{font-family:var(--font-tagline);text-align:center;text-transform:uppercase;letter-spacing:.3em;font-size:1rem;color:var(--mvx-graphite);font-weight:500;}
+/* width/auto margins = v47 (rule spans the inset traditional bar) */
+.journey .jnote{display:flex;align-items:center;gap:.8rem;justify-content:center;color:var(--mvx-graphite);font-style:italic;font-size:.95rem;margin:.7rem auto 1.1rem;width:81.5%;}
+/* v47 removed the base 150px max-width caps — none here */
+.journey .jnote::before,.journey .jnote::after{content:"";flex:1;height:7px;background:linear-gradient(var(--mvx-graphite),var(--mvx-graphite)) left 50%/100% 1px no-repeat;}
+.journey .jnote::before{background:radial-gradient(circle 3.2px at 3.2px 50%,var(--mvx-graphite) 3px,transparent 3.4px),linear-gradient(var(--mvx-graphite),var(--mvx-graphite)) left 50%/100% 1px no-repeat;}
+.journey .jnote::after{background:radial-gradient(circle 3.2px at calc(100% - 3.2px) 50%,var(--mvx-graphite) 3px,transparent 3.4px),linear-gradient(var(--mvx-graphite),var(--mvx-graphite)) left 50%/100% 1px no-repeat;}
+
+/* v46: gap as a custom property so the end-marker cancels exactly one gap */
+.jbar{--journey-gap:8px;display:flex;gap:var(--journey-gap);justify-content:center;}
+.jseg{padding:.9rem .9rem;border-radius:var(--radius-sm);font-size:.9rem;font-style:italic;white-space:nowrap;text-align:center;transition:filter .2s ease;}
+.jbar:hover .jseg{filter:brightness(1.06);}
+.jseg.dark{background:#1B242B;color:#fff;}
+.jseg.steel{background:#2E6E8E;color:#fff;}
+.jseg.light{background:#7BC4D8;color:#12333D;}
+.jseg.fade{background:linear-gradient(90deg,#C9E8F2,rgba(233,247,251,0));color:#2A3A42;}
+/* v45: truncated fade cuts while still visibly blue; .tail is an invisible spacer */
+.jseg.fade.truncated{background:linear-gradient(90deg,#C9E8F2,#D5EDF6);}
+.jseg.tail{background:none;padding:0;pointer-events:none;}
+.jseg.end-marker{background:var(--danger);padding:.9rem .25rem;border-radius:2px;margin-left:calc(var(--journey-gap) * -1);}
+
+.jarrow{display:flex;align-items:center;gap:.8rem;justify-content:center;color:var(--mvx-graphite);font-style:italic;font-size:.95rem;margin:1.1rem 0 .5rem;}
+/* v47: no max-width — the rule spans the full Maverix bar */
+.jarrow::before{content:"";flex:1;height:7px;background:radial-gradient(circle 3.2px at 3.2px 50%,var(--mvx-graphite) 3px,transparent 3.4px),linear-gradient(var(--mvx-graphite),var(--mvx-graphite)) left 50%/100% 1px no-repeat;}
+/* v47 winner over the base "\2192" glyph: 1px run ending in an SVG arrowhead */
+.jarrow::after{content:"";flex:1;height:9px;font-size:0;
+ background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9'%3E%3Cpath d='M0 0l9 4.5L0 9z' fill='%233A3A3B'/%3E%3C/svg%3E") right 50%/9px 9px no-repeat,
+            linear-gradient(var(--mvx-graphite),var(--mvx-graphite)) left 50%/100% 1px no-repeat;}
+
+/* ================= pathways (journey cards) ================= */
+/* v11 flex layout + v16 overlap onto the jpanel's 14rem bottom padding */
+.pathways{display:flex;gap:1.8rem;margin-top:-11.5rem;position:relative;z-index:2;padding:0 2.6rem;}
+/* transition is flex-only (v11 replaced v5's box-shadow/transform — see notes) */
+.pathcard{--pcta-clearance:5.4rem;position:relative;flex:1;min-width:0;border-radius:var(--radius-xl);overflow:hidden;min-height:410px;display:flex;align-items:flex-end;justify-content:center;background:#8E979E;transition:flex .55s cubic-bezier(.25,.8,.25,1);}
+.pathcard:hover,.pathcard:focus-within{flex:2.1;}
+.pathcard:hover{box-shadow:0 20px 44px rgba(var(--scrim-rgb),.28);}
+.pathcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(35%);transition:transform .6s cubic-bezier(.22,.61,.36,1);}
+.pathcard:hover img{transform:scale(1.06);}
+.pathcard::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,28,34,0) 40%,rgba(20,28,34,.72));}
+.pathcard .pathcard-caption{position:relative;z-index:2;padding:1.6rem;padding-bottom:var(--pcta-clearance);color:#fff;text-align:center;transition:opacity .3s ease;}
+.pathcard .pathcard-caption .card-kicker{font-size:.95rem;opacity:.9;}
+.pathcard .pathcard-caption .card-title{font-family:var(--font-tagline);font-size:1.5rem;font-weight:700;}
+.pathcard .reveal{position:absolute;inset:0;z-index:3;background:linear-gradient(180deg,rgba(var(--scrim-card-rgb),0) 0%,rgba(var(--scrim-card-rgb),.94) 52%);color:#fff;padding:1.6rem;padding-bottom:var(--pcta-clearance);display:flex;flex-direction:column;justify-content:flex-end;gap:1rem;opacity:0;transition:opacity .4s ease .12s;}
+.pathcard .reveal h3{font-family:var(--font-tagline);color:var(--mvx-sky);font-size:1.1rem;}
+.pathcard .reveal p{font-size:.9rem;line-height:1.55;color:#D6DDE1;}
+.pathcard:hover .reveal,.pathcard:focus-within .reveal{opacity:1;}
+.pathcard:hover .pathcard-caption,.pathcard:focus-within .pathcard-caption{opacity:0;}
+
+/* v42: CTA pinned to the card bottom, always on top */
+.pathcard .pcta{position:absolute;left:0;right:0;bottom:0;z-index:4;padding:0 1.5rem 1.4rem;display:flex;justify-content:center;pointer-events:auto;}
+.pathcard .pcta .btn{color:#fff;font-style:italic;font-weight:400;font-size:.8rem;line-height:1.3;text-align:left;gap:.5rem;align-items:center;}
+.pathcard .pcta .btn .circ{width:30px;height:30px;flex:0 0 30px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.55);backdrop-filter:blur(2px);}
+.pathcard .pcta .btn .circ svg{stroke:#fff;width:13px;height:13px;}
+.pathcard .pcta .btn .btn-label{position:relative;}
+.pathcard .pcta .btn .btn-label::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:1px;background:rgba(255,255,255,.55);transform:scaleX(0);transform-origin:left center;transition:transform .38s cubic-bezier(.22,.61,.36,1);}
+.pathcard:hover .pcta .btn .btn-label::after,.pathcard:focus-within .pcta .btn .btn-label::after{transform:scaleX(1);}
+.pathcard:hover .pcta .btn .circ,.pathcard:focus-within .pcta .btn .circ{background:var(--mvx-blue);border-color:var(--mvx-blue);}
+
+/* ================= responsive ================= */
+
+@media(max-width:1080px){
+ /* v9 side padding (hero has no framed container) */
+ .hero .inner{padding-left:28px;padding-right:28px;}
+}
+
+@media(max-width:920px){
+ .hero .kicker{font-size:1.4rem;}
+ /* v16 mobile override of category-shared's base .fullrule — see notes */
+ .band.dark .fullrule{margin:1rem 0 1.6rem;}
+ .challenge{grid-template-columns:1fr;}
+ .statgrid{grid-template-columns:1fr 1fr;}
+ .jpanel{padding:2rem 1.4rem 2.4rem;}
+ /* journey bars stay on one line (v27); gap 5px via the v46 var */
+ .jbar{--journey-gap:5px;flex-wrap:nowrap;align-items:stretch;}
+ /* v27 + v27b merged */
+ .jseg{min-width:0;white-space:normal;font-size:.66rem;padding:.55rem .35rem;line-height:1.2;display:flex;align-items:center;justify-content:center;hyphens:auto;overflow-wrap:anywhere;word-break:break-word;overflow:hidden;}
+ .jseg.end-marker{flex:0 0 5px;padding:0;}
+ .journey .jtitle{font-size:.72rem;letter-spacing:.16em;}
+ .journey .jnote,.jarrow{font-size:.78rem;}
+ /* v27's 36px rule caps are NOT ported — dead in legacy (v47 wins; see notes) */
+
+ /* pathways stack; cards overlap panel no more */
+ .pathways{flex-direction:column;margin-top:2rem;padding:0;}
+ .pathcard{min-height:360px;cursor:pointer;}
+ .pathcard:hover,.pathcard:focus-within{flex:1;}
+ /* tap-to-expand (v27): collapsed = image + caption only; v11's mobile
+    gradient survives as the background of the (hidden) hover reveal */
+ .pathcard .reveal{opacity:0;pointer-events:none;background:linear-gradient(180deg,rgba(var(--scrim-card-rgb),0) 30%,rgba(var(--scrim-card-rgb),.94) 70%);}
+ .pathcard .pathcard-caption{opacity:1;}
+ /* "+" affordance */
+ .pathcard::before{content:"+";position:absolute;top:14px;right:14px;z-index:4;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.92);color:#12333D;font-family:var(--font-tagline);font-weight:600;font-size:1.35rem;line-height:34px;text-align:center;transition:transform .25s ease;}
+ .pathcard.open::before{transform:rotate(45deg);}
+ /* expanded: reveal flows inline so the card grows */
+ .pathcard.open{min-height:0;}
+ /* v27 shorthand + v48 clearance flattened — see notes */
+ .pathcard.open .reveal{position:relative;opacity:1;pointer-events:auto;background:rgba(13,21,27,.94);padding:1.5rem 1.4rem var(--pcta-clearance);}
+ .pathcard.open .pathcard-caption{display:none;}
+ .pathcard.open .reveal p{font-size:.92rem;line-height:1.6;}
+}
+
+@media(max-width:560px){
+ /* v28 winner over base 1fr: stays two-up so the block is compact */
+ .statgrid{grid-template-columns:1fr 1fr;}
+ .statgrid .cell{padding:1.1rem .9rem 1.5rem;}
+ .statgrid .stat-number{font-size:1.5rem;}
+ .statgrid .stat-label{font-size:.78rem;line-height:1.45;}
+ .jseg{font-size:.55rem;padding:.5rem .2rem;letter-spacing:-.01em;}
+ .journey .jtitle{font-size:.62rem;letter-spacing:.1em;}
+ .journey .jnote,.jarrow{font-size:.7rem;}
+ /* base 560 .jbar{flex-wrap:wrap} NOT ported — dead in legacy (see notes) */
+}
+
+/* legacy explicit motion cancels kept for parity (global.css also gates all motion) */
+@media(prefers-reduced-motion:reduce){
+ .pathcard img{transition:none;}
+ .hero .inner>*{animation:none;}
+ .pathcard .pcta .btn .btn-label::after{transition:none;}
+}

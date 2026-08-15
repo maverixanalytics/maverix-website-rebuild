@@ -1,0 +1,141 @@
+/* news.css — flattened port of the news-page cluster from legacy theme.css:
+ * .newshero (hero-img crop), .featured, .newsgrid/.ncell.
+ *
+ * Provenance (theme.css; later source position wins at equal specificity,
+ * winner-per-property): base L133-146 ("news — featured + grid"); mobile
+ * column collapses from the shared 920px list L234 and 560px list L243
+ * (.newsgrid only — the other selectors in those lists belong to other
+ * pages' files); v5 motion L325-328 (ncell hover, headline-link color
+ * transitions); v23 L707-708 (.newshero .hero-img object-position, smaller
+ * grid Read More); v27 L730 (srclogo mix-blend-mode, merged into the two
+ * .srclogo rules).
+ *
+ * Ownership notes:
+ *  - .readmore base + hover (L34-35, v5 L316) is owned by btn.css — NOT
+ *    redeclared here; only the .newsgrid .readmore size override (v23 L708).
+ *  - .hero-thin base is owned by hero-thin.css; only the .newshero
+ *    object-position override lives here.
+ *  - .newsitem is DEAD on news.html: no .newsitem element in the rendered
+ *    markup (it appears only in the reveal script's selector list and in
+ *    theme.css L238/L327-328). Not ported; dropped from the shared
+ *    transition/hover selector lists.
+ *  - .featured h2 color var(--mvx-blue) beats category-shared's .band h2
+ *    color at equal specificity because this file imports after it — same
+ *    outcome as legacy source order (L83 vs L136).
+ * Tokens from ../tokens.css; reset/base from global.css.
+ */
+
+/* v23 hero crop — .newshero rides on .hero-thin (hero-thin.css) */
+.newshero .hero-img {
+  object-position: center 65%;
+}
+
+/* featured article (base L133-138 + v5 L327-328 + v27 L730) */
+.featured {
+  padding-bottom: 2.6rem;
+  border-bottom: 1px solid var(--frame-line);
+}
+.featured .date {
+  font-family: var(--font-tagline);
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-size: 0.85rem;
+  color: var(--mvx-slate);
+  margin-bottom: 1rem;
+}
+.featured .srclogo {
+  max-height: 48px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 1.4rem;
+  mix-blend-mode: multiply;
+}
+.featured h2 {
+  color: var(--mvx-blue);
+  max-width: 640px;
+  margin-bottom: 1.1rem;
+}
+.featured h2 a {
+  color: var(--mvx-blue);
+  transition: color 0.2s ease;
+}
+.featured h2 a:hover {
+  color: var(--mvx-teal);
+}
+.featured p {
+  color: var(--mvx-graphite);
+  max-width: 640px;
+  margin-bottom: 1.8rem;
+}
+
+/* news grid (base L139-146 + v5 L325-328 + v23 L708 + v27 L730) */
+.newsgrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.newsgrid .ncell {
+  padding: 2.2rem 1.8rem 2.6rem;
+  border-right: 1px solid var(--frame-line);
+  border-bottom: 1px solid var(--frame-line);
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  transition: background 0.25s ease;
+}
+.newsgrid .ncell:hover {
+  background: #fff;
+}
+/* STRUCTURE-KEYED: :nth-child(3n) assumes the grid's 3-column desktop layout
+   AND that .ncell elements are the ONLY children of .newsgrid — every third
+   cell ends a visual row, so its right border is dropped. Inserting any
+   non-.ncell child (or reordering) shifts which cells lose the border. */
+.newsgrid .ncell:nth-child(3n) {
+  border-right: none;
+}
+.newsgrid .srclogo {
+  max-height: 44px;
+  max-width: 160px;
+  width: auto;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+.newsgrid .date {
+  font-family: var(--font-tagline);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.8rem;
+  color: var(--mvx-slate);
+}
+.newsgrid h3 {
+  font-family: var(--font-tagline);
+  font-size: 1.25rem;
+  line-height: 1.3;
+  color: var(--mvx-blue);
+}
+.newsgrid h3 a {
+  color: var(--mvx-blue);
+  transition: color 0.2s ease;
+}
+.newsgrid h3 a:hover {
+  color: var(--mvx-teal);
+}
+.newsgrid p {
+  color: var(--mvx-graphite);
+  font-size: 0.9rem;
+  flex: 1;
+}
+.newsgrid .readmore {
+  padding: 0.4rem 1.1rem;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 920px) {
+  .newsgrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 560px) {
+  .newsgrid {
+    grid-template-columns: 1fr;
+  }
+}

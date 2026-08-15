@@ -1,0 +1,95 @@
+/*
+ * hero-thin.css — flattened port of the .hero-thin cluster.
+ *
+ * Provenance: /home/claude/maverix-legacy/theme.css (base l.70-72 + v4 l.300-301,
+ * v5 animation l.345-356, v7/v13 mobile h1 sizes, v9 l.402-408, v27 overlay
+ * re-tint l.723), winner-per-property flattening.
+ *
+ * Notes:
+ *  - background url("images/hero-bg.jpg") rewritten root-absolute to
+ *    url("/images/hero-bg.jpg") per migration rules.
+ *  - Neither representative product-detail page uses .hero-thin (they use
+ *    .pd-hero); ported for the other templates that share this partial.
+ *  - .zoomout variant (v31/v38/v39, incl. its 900/600/640px queries) SKIPPED:
+ *    no product page uses it.
+ *  - ≤560 h1 size: v7 set 3.2rem, v13 re-set 2.9rem at equal specificity —
+ *    2.9rem wins.
+ *  - @keyframes name `heroin` kept from legacy (shared with the .hero cluster;
+ *    identical definition, safe to double-declare if both files load).
+ * Tokens from ../tokens.css; reset/base from global.css.
+ */
+
+.hero-thin {
+  position: relative;
+  background: linear-gradient(
+      105deg,
+      rgba(21, 28, 34, 0.96) 0%,
+      rgba(59, 69, 77, 0.82) 34%,
+      rgba(140, 150, 158, 0.55) 68%,
+      rgba(233, 235, 239, 0.4) 100%
+    ),
+    url("/images/hero-bg.jpg") center/cover no-repeat, #3b454d;
+  color: #fff;
+  overflow: hidden;
+}
+.hero-thin .inner {
+  position: relative;
+  padding: 11rem 0 2.6rem;
+}
+.hero-thin h1 {
+  font-family: var(--font-tagline);
+  font-weight: 200;
+  font-size: clamp(4rem, 10vw, 8.2rem);
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  animation: heroin 0.8s ease backwards;
+}
+.hero-thin .hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* v27 winner over the v4 two-stop gradient */
+.hero-thin .overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(11, 17, 22, 0.86) 0%,
+    rgba(11, 17, 22, 0.6) 48%,
+    rgba(11, 17, 22, 0.34) 100%
+  );
+}
+
+@keyframes heroin {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 1080px) {
+  .hero-thin .inner {
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero-thin h1 {
+    font-size: 2.9rem;
+  }
+}
+
+/* legacy explicit cancel kept for parity (global.css also gates all motion) */
+@media (prefers-reduced-motion: reduce) {
+  .hero-thin h1 {
+    animation: none;
+  }
+}
