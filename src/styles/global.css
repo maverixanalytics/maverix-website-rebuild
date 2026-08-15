@@ -1,0 +1,104 @@
+/*
+ * Global layer: reset, base typography, fonts, focus ring, shared utilities.
+ * Everything component-shaped lives in scoped styles / CSS modules instead.
+ */
+@import "./tokens.css";
+
+/* Clashdisplay — self-hosted (legacy assets/fonts, now served root-absolute) */
+@font-face {
+  font-family: "Clashdisplay";
+  src: url("/assets/fonts/clashdisplay-semibold.otf") format("opentype");
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Clashdisplay";
+  src: url("/assets/fonts/clashdisplay-light.otf") format("opentype");
+  font-weight: 300;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Clashdisplay";
+  src: url("/assets/fonts/clashdisplay-extralight.otf") format("opentype");
+  font-weight: 200;
+  font-display: swap;
+}
+
+/* Reset (verbatim from legacy base layer) */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: var(--font-sans);
+  color: var(--body-color);
+  background: var(--page-bg);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+a {
+  color: var(--mvx-teal);
+  text-decoration: none;
+}
+
+/* Global focus ring — an intentional a11y upgrade over legacy (plan §3.4;
+   logged in PARITY-EXCEPTIONS.md). Legacy only styled form/pcard focus. */
+:focus-visible {
+  outline: 2px solid var(--mvx-blue);
+  outline-offset: 2px;
+}
+
+/* Shared utilities (legacy base layer) */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.allcaps {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Scroll-reveal (paired with scripts/reveal.ts; legacy lines 349-352) */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.7s ease,
+      transform 0.7s ease;
+  }
+  .reveal-on-scroll.is-in-view {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Centralized motion gate — covers ALL transitions/animations, closing the
+   legacy gap where the largest motions were un-gated (plan §3.4). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

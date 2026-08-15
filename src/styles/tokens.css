@@ -1,0 +1,76 @@
+/*
+ * Design tokens — the single place colors/fonts/geometry live (plan §3.1).
+ * Ported from theme.css.tpl :root: the 24 LIVE tokens kept under canonical
+ * names; the 12 dead tokens and 7 unused legacy aliases dropped; the 4 used
+ * aliases (--teal/--cyan/--ink/--muted) collapsed into their --mvx-* canonicals.
+ * Literals that recurred often enough to be de-facto tokens are promoted below.
+ *
+ * MUST stay in :root un-hashed: --font-tagline, --heading, --mvx-blue, --mvx-sky
+ * are referenced from inline style="" attributes in content (plan §3.1).
+ */
+:root {
+  /* Brand palette (live legacy tokens) */
+  --mvx-deep: #1a4a5d;
+  --mvx-teal: #276f8b;
+  --mvx-blue: #3494ba;
+  --mvx-sky: #79d5e2;
+  --mvx-cloud: #8bbae4;
+  --mvx-ink: #231f20;
+  --mvx-graphite: #3a3a3b;
+  --mvx-slate: #595959;
+  --mvx-mist: #f2f2f2;
+  --mvx-white: #ffffff;
+
+  /* Surfaces & lines */
+  --border: #e3e6e8;
+  --border-strong: #c8cdd0;
+  --frame-line: #dadde2;
+  --header-dark: #0d1418;
+  --page-bg: #f2f2f6;
+  --heading: #213340;
+
+  /* Feedback */
+  --success: #2e8f6b;
+  --danger: #c0352b;
+
+  /* Promoted literals (recurring hard-coded values in the legacy sheet) */
+  --body-color: #333;
+  --copy-dropdown: #39434b; /* dropdown / famrow body copy */
+  --note-gray: #5b6670; /* notes, references, mfg-note */
+  --menu-link: #c9d2d8; /* mobile menu links */
+  --cat-intervention: #2ba9d4; /* third product-family blue */
+  --stat-cyan: #4fc4e8; /* homepage stat numbers */
+  --narwhal-dot: #f26a3d;
+  --evidence-orange: #c2632f;
+  --news-blue: #1e9cd0;
+
+  /* Type */
+  --font-sans: "Poppins", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, sans-serif;
+  --font-tagline: "Clashdisplay", "Clash Display", "Futura", "Futura PT", "Jost",
+    "Poppins", sans-serif;
+
+  /* Geometry — --header-h replaces the 7+ hard-coded 62px couplings */
+  --header-h: 62px;
+  --gutter: 72px; /* .container side padding; .jpanel negative margins mirror it */
+  --radius-sm: 4px;
+  --radius-md: 10px;
+  --radius-lg: 18px;
+  --radius-xl: 22px;
+  --radius-pill: 999px;
+
+  /* Scrims — one family replacing 9 near-identical rgba() near-blacks */
+  --scrim-rgb: 13, 20, 24; /* rgba(var(--scrim-rgb), .x) */
+  --scrim-card-rgb: 17, 29, 36;
+}
+
+@media (max-width: 1080px) {
+  :root {
+    --gutter: 40px;
+  }
+}
+@media (max-width: 560px) {
+  :root {
+    --gutter: 20px;
+  }
+}
