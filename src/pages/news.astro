@@ -1,0 +1,102 @@
+---
+import { getCollection } from "astro:content";
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import "@/styles/ported/category-shared.css";
+import "@/styles/ported/hero-thin.css";
+import "@/styles/ported/text-atoms.css";
+import "@/styles/ported/news.css";
+
+/**
+ * News page — replaces build_news(). 8 records, NOT 7 (plan §2.3): the
+ * featured article never appears in the grid; the grid has its own 7 cells
+ * (MassDevice first, then the 6 legacy NEWS entries), ordered by gridOrder.
+ */
+const news = await getCollection("news");
+
+const featured = news.find((n) => n.data.placement === "featured");
+if (!featured) {
+  throw new Error("news collection: no record with placement 'featured'");
+}
+
+const grid = news
+  .filter((n) => n.data.placement === "grid")
+  .sort((a, b) => (a.data.gridOrder ?? 0) - (b.data.gridOrder ?? 0));
+---
+
+<SiteLayout
+  path="news"
+  title="Maverix News"
+  description="Recent coverage of the pursuit of new lung cancer solutions at Maverix."
+  dsSubtitle="Press coverage and journal publications"
+>
+  <div class="hero-thin newshero">
+    <img class="hero-img" src="/assets/250128-maverix-medical-042.jpg" alt="" />
+    <div class="overlay"></div>
+    <div class="container inner">
+      <h1>news</h1>
+    </div>
+  </div>
+  <section class="band light">
+    <div class="container">
+      <div class="featured">
+        <div class="date">{featured.data.date}</div>
+        {
+          featured.data.logo ? (
+            <img
+              class="srclogo"
+              src={featured.data.logo}
+              alt={featured.data.source}
+            />
+          ) : (
+            <div class="srctext">{featured.data.source}</div>
+          )
+        }
+        <h2>
+          <a href={featured.data.url} target="_blank" rel="noopener">
+            {featured.data.headline}
+          </a>
+        </h2>
+        <p>{featured.data.summary}</p>
+        <a
+          class="readmore"
+          href={featured.data.url}
+          target="_blank"
+          rel="noopener">Read More</a
+        >
+      </div>
+      <div class="newsgrid">
+        {
+          grid.map((item) => (
+            <div class="ncell">
+              {item.data.logo ? (
+                <img
+                  class="srclogo"
+                  src={item.data.logo}
+                  alt={item.data.source}
+                  loading="lazy"
+                />
+              ) : (
+                <div class="srctext">{item.data.source}</div>
+              )}
+              <div class="date">{item.data.date}</div>
+              <h3>
+                <a href={item.data.url} target="_blank" rel="noopener">
+                  {item.data.headline}
+                </a>
+              </h3>
+              <p>{item.data.summary}</p>
+              <a
+                class="readmore"
+                href={item.data.url}
+                target="_blank"
+                rel="noopener"
+              >
+                Read More
+              </a>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</SiteLayout>

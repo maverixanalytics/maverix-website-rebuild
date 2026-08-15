@@ -1,0 +1,135 @@
+---
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import ContactBlock from "@/components/ContactBlock.astro";
+import Ref from "@/components/Ref.astro";
+import RefsSection from "@/components/RefsSection.astro";
+import { ExpandCard } from "@/islands/ExpandCard";
+import { MVX_EMAIL } from "@/config/site.config";
+import "@/styles/ported/category-shared.css";
+import "@/styles/ported/hero-thin.css";
+import "@/styles/ported/text-atoms.css";
+
+/**
+ * Risk Assessment category page — legacy build_products() diagnostics_body.
+ * Filename ≠ title is deliberate: the frozen URL is /diagnostics.html but the
+ * page is titled "Risk Assessment" (CONVENTIONS §2). Hero carries the
+ * .zoomout variant (ported in category-shared.css).
+ *
+ * Footnotes are the `sup.ref` scheme (in-page markers 1–12 → #ref-N →
+ * RefsSection). Independent of homepage sup.cite and Narwhal `*` — never
+ * merge (CONVENTIONS §3). Marker placement is regulated copy: keep each
+ * <Ref> tight against the preceding text (no whitespace before it).
+ * All copy verbatim from legacy diagnostics.html (entities → UTF-8).
+ */
+---
+
+<SiteLayout
+  path="diagnostics"
+  title="Risk Assessment – Maverix Medical"
+  description="Developing a diagnostic test that aims to better clarify which patients are most likely to benefit from either tissue sampling or continued monitoring."
+  dsGroup="Pages"
+  dsSubtitle="Maverix Diagnostics — screening"
+>
+  <div class="hero-thin zoomout">
+    <img class="hero-img" src="/assets/lung-cancer-x-ray.png" alt="" />
+    <div class="overlay"></div>
+    <div class="container inner">
+      <h1>risk assessment</h1>
+    </div>
+  </div>
+
+  <section class="band light prod-section" id="maverix-diagnostics">
+    <div class="container">
+      <div class="sechead">
+        <img
+          class="famlogo"
+          src="/assets/maverix-diagnostics-logo-color.png"
+          alt="Maverix Diagnostics"
+        />
+        <ContactBlock email={MVX_EMAIL} showPhone={false} />
+      </div>
+      <div class="seclabel">About</div>
+      <p class="biglead">
+        Early cancer detection lowers treatment costs<Ref n={[1, 2]} /> and saves lives<Ref n={[3, 4]} />
+        … but most lung nodules discovered in radiology studies lack clear
+        indicators of malignancy,<Ref n={[5]} /> leaving uncertainty about which
+        patients need intervention.
+      </p>
+      <p class="bodytext">
+        We are developing a diagnostic test that aims to better clarify which
+        patients are most likely to benefit from either tissue sampling or
+        continued monitoring. This helps focus physician efforts on patients
+        that require more active intervention.
+      </p>
+      <div class="photo-cards expand">
+        <ExpandCard
+          client:media="(max-width: 920px)"
+          cardClass="photo-card has-reveal"
+        >
+          <img src="/assets/doctor-detection-image.jpg" alt="" loading="lazy" />
+          <div class="photo-title">Early detection and resection is crucial…</div>
+          <div class="reveal">
+            <div class="photo-title-reveal">
+              Early detection and resection is crucial…
+            </div>
+            <p class="lead">
+              82% of stage I patients remain recurrence-free five years after
+              surgery.<Ref n={[6]} />
+            </p>
+            <p class="photo-subtitle">
+              Lung nodules are detected in 1/4 of CT scans<Ref n={[7]} /> with few
+              ultimately identified as cancer.<Ref n={[8]} />
+            </p>
+          </div>
+        </ExpandCard>
+        <ExpandCard
+          client:media="(max-width: 920px)"
+          cardClass="photo-card has-reveal"
+        >
+          <img src="/assets/holding-hands.jpg" alt="" loading="lazy" />
+          <div class="photo-title">because time is the enemy…</div>
+          <div class="reveal">
+            <div class="photo-title-reveal">because time is the enemy…</div>
+            <p class="lead">
+              Nearly a third of patients wait three months or more to begin
+              treatment.<Ref n={[9]} />
+            </p>
+            <p class="photo-subtitle">
+              Current practice for indeterminate nodules is to diagnose over
+              time, so doctors must wait for the next CT scan to see if a nodule
+              grows.<Ref n={[8, 10]} />
+            </p>
+          </div>
+        </ExpandCard>
+        <ExpandCard
+          client:media="(max-width: 920px)"
+          cardClass="photo-card has-reveal"
+        >
+          <img
+            src="/assets/jenny-hill-mqvwb7kuooe-unsplash.jpg"
+            alt=""
+            loading="lazy"
+          />
+          <div class="photo-title">…and a diagnostic could change everything.</div>
+          <div class="reveal">
+            <div class="photo-title-reveal">
+              …and a diagnostic could change everything.
+            </div>
+            <p class="lead">
+              A diagnostic tool that identifies high-risk patients could move
+              them to the front of the line for a biopsy.
+            </p>
+            <p class="photo-subtitle">
+              Their treatment regime could start earlier, which has been
+              associated with better outcomes in early-stage lung cancer.<Ref n={[11, 12]} />
+            </p>
+          </div>
+        </ExpandCard>
+      </div>
+      <RefsSection />
+      <p class="rxnote">
+        Currently under development, product not cleared or available in the US.
+      </p>
+    </div>
+  </section>
+</SiteLayout>

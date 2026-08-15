@@ -1,0 +1,28 @@
+---
+import { getEntry, render } from "astro:content";
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import "@/styles/ported/category-shared.css";
+import "@/styles/ported/text-atoms.css";
+
+/** Legal prose lives in src/content/pages/terms-of-use.mdx (plan §2.5). */
+const entry = await getEntry("pages", "terms-of-use");
+if (!entry) throw new Error("Missing content entry: pages/terms-of-use");
+const { Content } = await render(entry);
+const { title, metaDescription, lastUpdated } = entry.data;
+---
+
+<SiteLayout
+  path="terms-of-use"
+  title={title}
+  description={metaDescription}
+  dsGroup="Legal"
+  dsSubtitle="Shipping, payment, and return policies"
+>
+  <section class="band light">
+    <div class="container legal legal-narrow-inline">
+      <h1>Terms of Use</h1>
+      {lastUpdated && <div class="effective-date">Last updated: {lastUpdated}</div>}
+      <Content />
+    </div>
+  </section>
+</SiteLayout>

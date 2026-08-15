@@ -1,0 +1,71 @@
+---
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import Btn from "@/components/Btn.astro";
+import "@/styles/ported/category-shared.css";
+import "@/styles/ported/hero-thin.css";
+import "@/styles/ported/text-atoms.css";
+
+/**
+ * Products overview — legacy build_products() overview_body.
+ * Hero uses the base .hero-thin (NO .zoomout — only thoracent/diagnostics
+ * carry the variant). All copy verbatim from legacy products.html.
+ */
+---
+
+<SiteLayout
+  path="products"
+  title="Products – Maverix Medical"
+  description="Three product families across the lung cancer pathway: molecular risk assessment, endobronchial tissue sampling, and minimally invasive intervention."
+  dsGroup="Pages"
+  dsSubtitle="Products overview — Risk Assessment, Diagnosis, Intervention"
+>
+  <div class="hero-thin">
+    <img class="hero-img" src="/images/diagnosis.jpg" alt="" />
+    <div class="overlay"></div>
+    <div class="container inner">
+      <h1>products</h1>
+    </div>
+  </div>
+
+  <section class="band light prod-section">
+    <div class="container">
+      <div class="famrow">
+        <div class="family-cell cat-risk">
+          <h4>Risk Assessment</h4>
+          <p>
+            Developing molecular diagnostic tools that aim to triage lung
+            cancer in patients to identify those in need of immediate care.
+          </p>
+          <Btn href="/diagnostics.html" label="Explore Maverix Diagnostics" />
+        </div>
+        <div class="family-cell cat-diagnosis">
+          <h4>Diagnosis</h4>
+          <p>
+            Endobronchial tissue-sampling instruments designed to help
+            physicians obtain the tissue needed for an accurate diagnosis.
+          </p>
+          <Btn href="/serpex.html" label="Explore Biopsy Tools" />
+        </div>
+        <div class="family-cell cat-intervention">
+          <h4>Intervention</h4>
+          <p>
+            Minimally invasive devices for managing pleural effusions,
+            restoring airway patency, and improving quality of life, along
+            with an expanded suite of GI tools.
+          </p>
+          <Btn
+            href="/thoracent.html"
+            label="Explore the interventional portfolio"
+          />
+        </div>
+      </div>
+      <div class="distby">
+        <div class="seclabel">Distributed by</div>
+        <img
+          src="/assets/thoracent-by-maverix-logo.png"
+          alt="Thoracent, a Maverix company"
+        />
+      </div>
+    </div>
+  </section>
+</SiteLayout>

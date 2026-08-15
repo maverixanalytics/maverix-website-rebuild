@@ -1,0 +1,261 @@
+---
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import Btn from "@/components/Btn.astro";
+import Cite from "@/components/Cite.astro";
+import { ExpandCard } from "@/islands/ExpandCard";
+import { StatCountUp } from "@/islands/StatCountUp";
+import { JOURNEY_BARS } from "@/content/journey";
+import "@/styles/ported/category-shared.css";
+import "@/styles/ported/text-atoms.css";
+import "@/styles/ported/home.css";
+
+/**
+ * Homepage — legacy build_home(). Hero is the TALL .hero with the b-roll
+ * video (kept exactly as legacy: autoplay muted loop playsinline + poster,
+ * no gating or compression; legacy has no hero CTA). hero-thin.css is NOT
+ * loaded — this page never uses .hero-thin (home.css carries the tall-hero
+ * cluster incl. @keyframes heroin).
+ *
+ * Footnotes are the `sup.cite` scheme (external-link citations 1–6 →
+ * Cite.astro → HOME_CITES). Independent of Risk Assessment sup.ref and
+ * Narwhal `*` — never merge (CONVENTIONS §3). Marker placement is regulated
+ * copy: keep each <Cite> tight against the preceding text (no whitespace).
+ *
+ * Every .stat-number renders through the StatCountUp island (replaces the
+ * legacy inline count-up observer); tag is <span> vs legacy <div> — styling
+ * and behavior are class-driven, layout unchanged (astro-island wrappers are
+ * display:contents).
+ *
+ * Journey diagram data (segments incl. flex proportions) lives in
+ * src/content/journey.ts; this page maps seg.flex → style="flex:…" so the
+ * rendered markup matches legacy.
+ *
+ * All copy verbatim from legacy index.html (entities → UTF-8).
+ */
+---
+
+<SiteLayout
+  path="index"
+  title="Maverix Medical – Revolutionizing Lung Cancer Care"
+  description="Advancing detection. Improving care. We bring cutting-edge techs to lung cancer care, empowering clinicians with accurate tools and personalized treatments."
+  dsGroup="Pages"
+  dsSubtitle="Home — hero video, mission, challenge, goal, solution"
+>
+  <div class="hero">
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
+      poster="/images/hero-poster.jpg"
+      src="/assets/maverix-medical-b-roll-edit1-transcode.mp4"></video>
+    <div class="shade"></div>
+    <div class="container inner">
+      <div class="kicker allcaps">Revolutionizing</div>
+      <h1>Lung Cancer<br />Care</h1>
+      <div class="hero-tagline">Advancing detection. Improving care.</div>
+    </div>
+  </div>
+
+  <section class="band dark">
+    <img class="bgimg" src="/assets/our-mission.jpg" alt="" />
+    <div class="container">
+      <div class="kicker allcaps">Our mission</div>
+      <div class="fullrule"></div>
+      <div class="stackcol">
+        <h2>
+          To improve and save lives by revolutionizing the diagnosis and
+          treatment of lung cancer.
+        </h2>
+        <p class="lede">
+          We seek to bring cutting-edge technologies to lung cancer care,
+          empowering clinicians to diagnose lung cancer earlier and treat
+          patients more effectively.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band light">
+    <div class="container">
+      <h2 class="section-title">The Challenge</h2>
+      <div class="challenge">
+        <div class="headline">
+          <p>
+            Lung cancer is the <b>deadliest cancer in the U.S.</b>—more than
+            colon, breast, and prostate cancer combined<Cite n={[1]} />
+          </p>
+          <div class="bigstat">
+            <StatCountUp client:visible text="19%" />
+            <div class="stat-label">of all cancer deaths worldwide<Cite n={[2]} /></div>
+          </div>
+          <div class="bigstat">
+            <StatCountUp client:visible text="2.5M" />
+            <div class="stat-label">
+              new patients diagnosed globally every year<Cite n={[3]} />
+            </div>
+          </div>
+        </div>
+        <div class="statgrid">
+          <div class="cell">
+            <StatCountUp client:visible text="18.2%" />
+            <div class="stat-label">
+              of eligible U.S. individuals are up to date with lung cancer
+              screening<Cite n={[4]} />
+            </div>
+          </div>
+          <div class="cell">
+            <StatCountUp client:visible text="28.1%" />
+            <div class="stat-label">
+              of U.S. cases are diagnosed at an early stage, when survival
+              rates are higher<Cite n={[4]} />
+            </div>
+          </div>
+          <div class="cell">
+            <StatCountUp client:visible text="21%" />
+            <div class="stat-label">
+              of U.S. cases did not receive any treatment after diagnosis<Cite n={[4]} />
+            </div>
+          </div>
+          <div class="cell">
+            <StatCountUp client:visible text=">63%" />
+            <div class="stat-label">
+              of eligible individuals are up to date with colorectal, breast,
+              and cervical cancer screenings<Cite n={[5]} />
+            </div>
+          </div>
+          <div class="cell">
+            <StatCountUp client:visible text="29.7%" />
+            <div class="stat-label">
+              of U.S. patients are alive five years after diagnosis<Cite n={[4]} />
+            </div>
+          </div>
+          <div class="cell">
+            <StatCountUp client:visible text="10–20%" />
+            <div class="stat-label">
+              of lung cancers occur in people who never smoked<Cite n={[6]} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band dark goal">
+    <img class="bgimg" src="/assets/our-goal.jpg" alt="" />
+    <div class="container">
+      <div class="kicker allcaps">Our goal</div>
+      <div class="fullrule"></div>
+      <div class="stackcol">
+        <h2>Improve lung cancer survival rates</h2>
+        <p class="lede">
+          by enabling earlier detection and management—when treatment outcomes
+          are most favorable—and enhancing patient care throughout every stage
+          of their cancer journey, from screening to palliative care.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band light row-line">
+    <div class="container">
+      <h2 class="section-title">The Maverix Solution</h2>
+      <p class="lede">
+        A portfolio focused on lung cancer diagnostics and devices to address
+        the full spectrum of care.
+      </p>
+
+      <div class="jpanel">
+        {
+          JOURNEY_BARS.map((j) => (
+            <div class="journey">
+              {!j.titleAfterBar && <div class="jtitle">{j.title}</div>}
+              {j.note && <div class="jnote">{j.note}</div>}
+              <div class="jbar">
+                {j.segments.map((seg) =>
+                  seg.flex !== null ? (
+                    <span class={seg.classes} style={`flex:${seg.flex}`}>
+                      {seg.label}
+                    </span>
+                  ) : (
+                    <span class={seg.classes}>{seg.label}</span>
+                  ),
+                )}
+              </div>
+              {j.arrow && <div class="jarrow">{j.arrow}</div>}
+              {j.titleAfterBar && <div class="jtitle">{j.title}</div>}
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="pathways">
+        <ExpandCard client:media="(max-width: 920px)" cardClass="pathcard">
+          <img src="/assets/lung-cancer-x-ray.png" alt="Risk Assessment" />
+          <div class="pathcard-caption">
+            <div class="card-kicker">Maverix</div>
+            <div class="card-title">Risk Assessment</div>
+          </div>
+          <div class="reveal">
+            <h3>More Effective Screening</h3>
+            <p>
+              Lung cancer is a heterogeneous disease that can be challenging to
+              diagnose. We are developing a blood-based diagnostic tool with
+              the aim to enable early and accurate diagnosis and stratification
+              of patients to treat those who are at high cancer risk,
+              complementing low-dose computed tomography (CT).
+            </p>
+          </div>
+          <div class="pcta">
+            <Btn href="/diagnostics.html" label="Explore Maverix Diagnostics" dark />
+          </div>
+        </ExpandCard>
+        <ExpandCard client:media="(max-width: 920px)" cardClass="pathcard">
+          <img src="/images/diagnosis.jpg" alt="Diagnosis" />
+          <div class="pathcard-caption">
+            <div class="card-kicker">Maverix</div>
+            <div class="card-title">Diagnosis</div>
+          </div>
+          <div class="reveal">
+            <h3>A Tool for Every Target</h3>
+            <p>
+              Expanded CT screening is putting more patients into the
+              diagnostic pathway, and a single bronchoscopy may need to sample
+              more than one kind of target. Maverix builds an instrument for
+              each — forceps at the airway wall, ultrasound-guided needles
+              beyond it, and a console-free cryoprobe for cryoadhesion biopsy.
+            </p>
+          </div>
+          <div class="pcta">
+            <Btn href="/serpex.html" label="Explore Biopsy Tools" dark />
+          </div>
+        </ExpandCard>
+        <ExpandCard client:media="(max-width: 920px)" cardClass="pathcard">
+          <img src="/images/intervention.jpg" alt="Intervention" />
+          <div class="pathcard-caption">
+            <div class="card-kicker">Maverix</div>
+            <div class="card-title">Intervention</div>
+          </div>
+          <div class="reveal">
+            <h3>Superior Treatment &amp; Palliative Care</h3>
+            <p>
+              Lung cancer and its treatment can significantly impact physical
+              function, impeding a patient's ability to perform daily
+              activities. By effectively managing the range of symptoms, our
+              minimally invasive palliative care devices enhance well-being and
+              overall quality of care for the millions of patients diagnosed
+              after Stage I.
+            </p>
+          </div>
+          <div class="pcta">
+            <Btn
+              href="/thoracent.html"
+              label="Explore the interventional portfolio"
+              dark
+            />
+          </div>
+        </ExpandCard>
+      </div>
+    </div>
+  </section>
+</SiteLayout>

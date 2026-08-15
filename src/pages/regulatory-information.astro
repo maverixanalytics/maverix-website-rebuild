@@ -1,0 +1,32 @@
+---
+import { getEntry, render } from "astro:content";
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import "@/styles/ported/category-shared.css";
+import "@/styles/ported/text-atoms.css";
+
+/**
+ * Legal prose lives in src/content/pages/regulatory-information.mdx (plan §2.5).
+ * NOTE: this page has NO lastUpdated in the legacy source — rendering one here
+ * would be new visible content on a regulatory page (schema keeps it optional).
+ */
+const entry = await getEntry("pages", "regulatory-information");
+if (!entry) throw new Error("Missing content entry: pages/regulatory-information");
+const { Content } = await render(entry);
+const { title, metaDescription, lastUpdated } = entry.data;
+---
+
+<SiteLayout
+  path="regulatory-information"
+  title={title}
+  description={metaDescription}
+  dsGroup="Legal"
+  dsSubtitle="eIFU and regulatory information"
+>
+  <section class="band light">
+    <div class="container legal legal-narrow-inline">
+      <h1>Regulatory Information</h1>
+      {lastUpdated && <div class="effective-date">Last updated: {lastUpdated}</div>}
+      <Content />
+    </div>
+  </section>
+</SiteLayout>

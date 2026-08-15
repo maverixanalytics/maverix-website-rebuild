@@ -1,0 +1,151 @@
+---
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import { MvxForm, type MvxField } from "@/islands/MvxForm";
+import { CONTACT_EMAIL, FORM_ENDPOINT } from "@/config/site.config";
+import "@/styles/ported/category-shared.css";
+import "@/styles/ported/hero-thin.css";
+import "@/styles/ported/text-atoms.css";
+/* careers.css owns the shared MvxForm message cluster (.form-msg /
+   .form-success / .form-error + button[type=submit][disabled]) — loaded here
+   so the island's messages render identically on both pages (CONVENTIONS:
+   never redeclare a selector another ported file owns). */
+import "@/styles/ported/careers.css";
+import "@/styles/ported/contact.css";
+
+/**
+ * Contact page — port of build_contact() (legacy build.py ~1261-1296).
+ * Body copy verbatim from legacy contact-us.html; legacy inline style=""
+ * attributes became the *-inline classes in contact.css.
+ */
+
+const contactFields: MvxField[] = [
+  {
+    col: "L",
+    name: "First Name",
+    type: "text",
+    required: true,
+    placeholder: "First Name*",
+    ariaLabel: "First Name",
+    autocomplete: "given-name",
+  },
+  {
+    col: "L",
+    name: "Last Name",
+    type: "text",
+    required: true,
+    placeholder: "Last Name*",
+    ariaLabel: "Last Name",
+    autocomplete: "family-name",
+  },
+  {
+    col: "L",
+    name: "Phone",
+    type: "tel",
+    placeholder: "Phone Number",
+    ariaLabel: "Phone Number",
+    autocomplete: "tel",
+  },
+  {
+    col: "L",
+    name: "Email",
+    type: "email",
+    required: true,
+    placeholder: "Email Address*",
+    ariaLabel: "Email Address",
+    autocomplete: "email",
+  },
+  {
+    col: "L",
+    name: "Company",
+    type: "text",
+    placeholder: "Company",
+    ariaLabel: "Company",
+    autocomplete: "organization",
+  },
+  {
+    col: "L",
+    name: "Title",
+    type: "text",
+    placeholder: "Position / Title",
+    ariaLabel: "Position / Title",
+    autocomplete: "organization-title",
+  },
+  {
+    col: "R",
+    name: "Subject",
+    type: "text",
+    required: true,
+    placeholder: "Subject Line*",
+    ariaLabel: "Subject Line",
+  },
+  {
+    col: "R",
+    name: "Message",
+    type: "textarea",
+    required: true,
+    placeholder: "Message*",
+    ariaLabel: "Message",
+  },
+];
+---
+
+<SiteLayout
+  path="contact-us"
+  title="Contact Us – Maverix Medical"
+  description="Whether you're interested in investment, partnerships, sales inquiries, or a career at Maverix, feel free to reach out."
+  dsSubtitle="Get in touch — form and contact details"
+>
+  <div class="hero-thin">
+    <img class="hero-img" src="/assets/contact-hero.jpeg" alt="" />
+    <div class="overlay"></div>
+    <div class="container inner">
+      <h1>contact us</h1>
+    </div>
+  </div>
+
+  <section class="contact-dark">
+    <div class="container container-plain-inline">
+      <h2>Let's change the future<br />of lung cancer healthcare</h2>
+      <p class="contact-lede-inline">
+        Whether you're interested in investment, partnerships, sales inquiries,
+        or a career at Maverix, feel free to reach out.
+      </p>
+      <MvxForm
+        client:visible
+        variant="contact"
+        name="contact"
+        endpoint={FORM_ENDPOINT}
+        mailto={CONTACT_EMAIL}
+        fields={contactFields}
+        submitLabel="Send Message"
+        submitClass="send"
+        msgClass="form-msg-gap-inline"
+      />
+      <div class="contact-links-inline">
+        <a
+          class="btn on-dark"
+          href="https://www.linkedin.com/company/maverix-medical/"
+          target="_blank"
+          rel="noopener"
+          ><span class="circ"
+            ><svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#1A4A5D"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><path d="M6 5l7 7-7 7"></path><path d="M12.5 5l7 7-7 7"
+              ></path></svg
+            ></span
+          >Follow us on LinkedIn</a
+        >
+        &nbsp;&nbsp;&nbsp;<a
+          class="contact-mail-inline"
+          href="mailto:contact@maverixmedical.com"
+          >contact@maverixmedical.com</a
+        >
+      </div>
+    </div>
+  </section>
+</SiteLayout>

@@ -1,0 +1,51 @@
+---
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import Btn from "@/components/Btn.astro";
+import "@/styles/ported/category-shared.css";
+import "@/styles/ported/text-atoms.css";
+
+/** 404 page — replaces legacy build_404(). noindex, exactly like legacy. */
+---
+
+<SiteLayout
+  path="404"
+  title="Page not found – Maverix Medical"
+  description="The page you are looking for could not be found."
+  dsGroup="Utility"
+  dsSubtitle="404 error page"
+  noindex
+>
+  <section class="band light not-found">
+    <div class="container">
+      <div class="not-found-code">404</div>
+      <h1 class="section-title">This page could not be found</h1>
+      <p class="lede">
+        The page you're looking for may have moved, or the address may be
+        mistyped. Here are some good places to pick things back up:
+      </p>
+      <div class="famrow famrow-gap-inline">
+        <div class="family-cell cat-risk">
+          <h4>Products</h4>
+          <p>
+            Risk assessment, diagnosis, and intervention — the full Maverix
+            portfolio.
+          </p>
+          <Btn href="/products.html" label="Browse our products" />
+        </div>
+        <div class="family-cell cat-diagnosis">
+          <h4>Team</h4>
+          <p>Our leadership and medical advisory board.</p>
+          <Btn href="/team.html" label="Meet the team" />
+        </div>
+        <div class="family-cell cat-intervention">
+          <h4>Contact</h4>
+          <p>Investment, partnerships, sales inquiries, or careers.</p>
+          <Btn href="/contact-us.html" label="Get in touch" />
+        </div>
+      </div>
+      <p class="bodytext bodytext-gap-inline">
+        Or return to the <a href="/">home page</a>.
+      </p>
+    </div>
+  </section>
+</SiteLayout>

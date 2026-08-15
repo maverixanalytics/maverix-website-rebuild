@@ -1,0 +1,79 @@
+---
+import { getCollection } from "astro:content";
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import { BioModal } from "@/islands/BioModal";
+import { ADVISORS } from "@/data/advisors";
+import "@/styles/ported/category-shared.css";
+import "@/styles/ported/hero-thin.css";
+import "@/styles/ported/text-atoms.css";
+import "@/styles/ported/team.css";
+
+/**
+ * Team page — replaces build_team() (maverix-legacy/src/build.py ~1062).
+ * Leaders come from the `leaders` collection; draft entries (DRAFT_LEADERS
+ * parity — basile) stay in the repo but never render. Each BioModal island
+ * owns its .member trigger card AND its modal; client:idle because the modal
+ * is display:none and would never intersect for client:visible (plan §4).
+ */
+const leaders = (await getCollection("leaders", ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+/** Markdown body → bio paragraphs (blank-line separated, verbatim copy). */
+const toParagraphs = (body: string | undefined): string[] =>
+  (body ?? "")
+    .trim()
+    .split(/\n\s*\n/)
+    .map((p) => p.replace(/\s+/g, " ").trim())
+    .filter(Boolean);
+---
+
+<SiteLayout
+  path="team"
+  title="Team – Maverix Medical"
+  description="Maverix leadership combines decades of clinical, technical, and operating experience."
+  dsSubtitle="Leadership bios and advisory board"
+>
+  <div class="hero-thin">
+    <img class="hero-img" src="/images/hero-team.jpg" alt="" />
+    <div class="overlay"></div>
+    <div class="container inner">
+      <h1>team</h1>
+    </div>
+  </div>
+
+  <section class="band white prod-section" id="leadership">
+    <div class="container">
+      <h2 class="section-title">Maverix Leadership</h2>
+      <div class="teamgrid">
+        {
+          leaders.map((leader) => (
+            <BioModal
+              client:idle
+              name={leader.data.name}
+              title={leader.data.title}
+              photo={leader.data.photo}
+              linkedin={leader.data.linkedin}
+              bioParagraphs={toParagraphs(leader.body)}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="band white prod-section row-line" id="advisors">
+    <div class="container">
+      <h2 class="section-title">Medical Advisory Board</h2>
+      <div class="advgrid">
+        {
+          ADVISORS.map((advisor) => (
+            <div class="advcard">
+              <div class="member-name">{advisor}</div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</SiteLayout>

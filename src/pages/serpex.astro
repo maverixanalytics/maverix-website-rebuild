@@ -1,0 +1,221 @@
+---
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import ContactBlock from "@/components/ContactBlock.astro";
+import PCard from "@/components/PCard.astro";
+import { diagnosisTools } from "@/data/productGroups";
+import "@/styles/ported/category-shared.css";
+import "@/styles/ported/hero-thin.css";
+import "@/styles/ported/text-atoms.css";
+
+/**
+ * Diagnosis category page — legacy URL serpex.html (filename ≠ title is
+ * deliberate; URLs are frozen). Body ported verbatim from
+ * maverix-legacy/src/build.py serpex_body (~L581+), entities → UTF-8.
+ * Legacy renders the biopsy tools as a BARE .pgrid (pcards(DIAGNOSIS_TOOLS),
+ * no .pgroup/.pglabel wrapper) — mirrored here with PCard, not PGroups.
+ * The .nw-cta anchor is hand-rolled (legacy markup verbatim) because it
+ * carries the extra `nw-cta` class Btn.astro doesn't accept.
+ */
+---
+
+<SiteLayout
+  path="serpex"
+  title="Diagnosis – Maverix Medical"
+  description="Endobronchial tissue-sampling instruments designed to help physicians obtain the tissue needed for an accurate diagnosis."
+  dsGroup="Pages"
+  dsSubtitle="Maverix Biopsy Tools — forceps, EBUS needles, cryobiopsy"
+>
+  <div class="hero-thin">
+    <img class="hero-img" src="/images/diagnosis.jpg" alt="" />
+    <div class="overlay"></div>
+    <div class="container inner">
+      <h1>diagnosis</h1>
+    </div>
+  </div>
+
+  <section class="band light prod-section" id="maverix-biopsy-tools">
+    <div class="container">
+      <div class="sechead">
+        <img
+          class="famlogo"
+          src="/assets/maverix-biopsy-tools-logo-color.png"
+          alt="Maverix Biopsy Tools"
+        />
+        <div class="distby inline">
+          <div class="seclabel">Distributed by</div>
+          <img
+            src="/assets/thoracent-by-maverix-logo.png"
+            alt="Thoracent, a Maverix company"
+          />
+        </div>
+        <ContactBlock showPhone={false} />
+      </div>
+      <div class="seclabel">About</div>
+      <p class="biglead">An accurate diagnosis starts with adequate tissue.</p>
+      <p class="bodytext">
+        Maverix offers a suite of endobronchial instruments for interventional
+        pulmonologists — from forceps for histological sampling of the airway
+        wall, to ultrasound-guided needles for submucosal and extramural
+        targets, to a cryoprobe that takes tissue biopsies by cryoadhesion and
+        removes foreign bodies, mucus plugs, clots, and necrotic tissue.
+      </p>
+
+      <div class="seclabel">Products</div>
+      <div class="pgrid">
+        {
+          diagnosisTools.map((item) => (
+            <PCard
+              slug={item.slug}
+              name={item.name}
+              image={item.image}
+              abbr={item.abbr}
+            />
+          ))
+        }
+      </div>
+
+      <div class="seclabel">Featured</div>
+      <section class="nwfeature">
+        <div class="nw-top">
+          <div class="nw-copy">
+            <div class="nw-kicker">Maverix Narwhal Cryo System</div>
+            <h2 class="nw-title">
+              The Future<br />of Cryobiopsy<span class="nw-dot">.</span>
+            </h2>
+            <p class="nw-lede">
+              A single-use, completely disposable, console-free cryobiopsy probe
+              — handheld and self-contained, with selectable sampling lengths
+              and no cryo console to purchase or service.
+            </p>
+            <a class="btn nw-cta" href="/products/narwhal-cryo-system.html">
+              <span class="circ"
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#1A4A5D"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path d="M6 5l7 7-7 7"></path><path d="M12.5 5l7 7-7 7"
+                  ></path></svg
+                ></span
+              ><span class="btn-label">Explore the Narwhal Cryo System</span>
+            </a>
+          </div>
+          <div class="nw-shot">
+            <img
+              src="/images/narwhal/hero.jpg"
+              alt="Narwhal cryoprobe tip"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        <div class="nw-body">
+          <div class="nw-seclabel">
+            Design innovations for efficiency and control
+          </div>
+          <div class="nw-cards">
+            <div class="nw-card">
+              <h3>No capital equipment.</h3>
+              <div class="nw-cardimg">
+                <img
+                  src="/images/narwhal/no-console.jpg"
+                  alt="Narwhal probe with its single-use Cryo cartridge"
+                  loading="lazy"
+                />
+              </div>
+              <div class="nw-why">Why it matters</div>
+              <p>
+                Handheld and self-contained. Each probe is powered by a
+                single-use Cryo cartridge, freeing cryobiopsy from a fixed
+                console — simplifying setup and use.
+              </p>
+            </div>
+            <div class="nw-card">
+              <h3>Pointed tip.</h3>
+              <div class="nw-cardimg">
+                <img
+                  src="/images/narwhal/pointed-tip.jpg"
+                  alt="Pointed, radiopaque cryoprobe tip"
+                  loading="lazy"
+                />
+              </div>
+              <div class="nw-why">Why it matters</div>
+              <p>
+                A pointed, radiopaque cryoprobe tip facilitates direct access
+                for efficient biopsy sampling.
+              </p>
+            </div>
+            <div class="nw-card">
+              <h3>All-in-one adjustable tip length.</h3>
+              <div class="nw-cardimg">
+                <img
+                  src="/images/narwhal/tip-length.jpg"
+                  alt="Integrated tip-length adjustment dial, 3 mm or 6 mm"
+                  loading="lazy"
+                />
+              </div>
+              <div class="nw-why">Why it matters</div>
+              <p>
+                Selectable tip length puts the physician in control. An
+                integrated adjustment dial offers short (~3&nbsp;mm) or long
+                (~6&nbsp;mm) options, allowing sample size matching to the
+                target.
+              </p>
+            </div>
+          </div>
+
+          {/* Narwhal preclinical evidence: * marker binds stat to .nw-foot disclaimer by adjacency — do not separate (plan §2.4 scheme #3) */}
+          <div class="nw-seclabel evidence">Backed by preclinical testing</div>
+          <h3 class="nw-evtitle">Building a strong clinical foundation.</h3>
+          <p class="nw-evlede">
+            In our preclinical animal studies, the Maverix Narwhal cryobiopsy
+            probe met every predefined endpoint for performance and safety,
+            capturing high-quality samples with no clinically significant
+            bleeding or pneumothorax observed.
+            <span class="nw-n"
+              >(37 biopsy samples across 3-, 5-, and 7-second freeze times)</span
+            >
+          </p>
+          <div class="nw-stats">
+            <div class="nw-stat">
+              <div class="nw-fig">100%</div>
+              <p>All predefined performance endpoints met.</p>
+            </div>
+            <div class="nw-stat">
+              <div class="nw-fig">0</div>
+              <p>Pneumothorax observed or major bleeding events.*</p>
+            </div>
+            <div class="nw-stat">
+              <div class="nw-fig split-figure">
+                <span>7.3<em>mg</em><small>3 mm</small></span><i></i><span
+                  >12.4<em>mg</em><small>6 mm</small></span
+                >
+              </div>
+              <p>Average biopsy sample weight by sampling length.</p>
+            </div>
+          </div>
+          <p class="nw-foot">
+            Data on file at Maverix. Predefined performance endpoints: avulsion
+            success rate, biopsy weight, usability, bleeding, pneumothorax,
+            gross necropsy, histological accessibility, and percent
+            artifact-free biopsy samples. Fluoroscopy time and radiation dose
+            were also characterized in this analysis. *Minor bleeding was
+            observed in some samplings; it was not clinically significant, met
+            the pre-determined acceptance criteria, and was statistically the
+            same as the comparison device. As with any cryosurgical procedure,
+            bleeding and pneumothorax are potential risks — refer to the
+            Instructions for Use. Preclinical results may not be representative
+            of clinical performance.
+          </p>
+        </div>
+      </section>
+      <p class="rxnote">
+        All devices are prescription-only, for use by trained physicians. See
+        each product’s Instructions for Use for complete indications,
+        contraindications, warnings, and precautions.
+      </p>
+    </div>
+  </section>
+</SiteLayout>
