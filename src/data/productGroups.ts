@@ -73,12 +73,17 @@ export const interventionGroups: ProductGroup[] = [
   },
 ];
 
-/** Diagnosis (biopsy / tissue-sampling) tools. */
+/**
+ * Diagnosis (biopsy / tissue-sampling) tools.
+ * Array order IS display order on serpex.html (= the Diagnosis page).
+ * Reordered 2026-08-16 at the user's request; legacy order was
+ * Biopsy Forceps → EBUS Needles → Narwhal.
+ */
 export const diagnosisTools: ProductGroupItem[] = [
   {
-    slug: "biopsy-forceps",
-    name: "Biopsy Forceps",
-    image: "/images/forceps.jpg",
+    slug: "narwhal-cryo-system",
+    name: "Narwhal Cryo System",
+    image: "/images/narwhal-cryo.jpg",
   },
   {
     slug: "ebus-needles",
@@ -86,8 +91,8 @@ export const diagnosisTools: ProductGroupItem[] = [
     image: "/images/ebus.jpg",
   },
   {
-    slug: "narwhal-cryo-system",
-    name: "Narwhal Cryo System",
-    image: "/images/narwhal-cryo.jpg",
+    slug: "biopsy-forceps",
+    name: "Biopsy Forceps",
+    image: "/images/forceps.jpg",
   },
 ];
