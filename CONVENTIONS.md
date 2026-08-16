@@ -52,6 +52,19 @@ og:url + og:image map. `noindex` prop only for 404.
 
 ## CSS rules
 
+> **This project uses GLOBAL flattened CSS, not CSS Modules.** That is a
+> deliberate deviation — do not "fix" it by converting to `.module.css`
+> without reading this. The legacy global class names (`.dropdown`, `.mcol`,
+> `.pcard`, `.is-active`, `.open`) are a live contract shared by three things:
+> the flattened CSS, the island state classes toggled in JS, and third-party
+> scripts (CookieYes binds to `.cky-banner-element`; the SociableKit widget
+> injects `.sk-ww-linkedin-page-jobs`, which `.jobs-empty` keys off). Scoping
+> them means renaming them, which breaks that contract and the byte-parity
+> guarantee against the legacy site. The specificity problem was solved by
+> *flattening* the cascade (winner-per-property, dead overrides dropped)
+> rather than by scoping it. Converting to Modules is a legitimate future
+> project — it just has to be done deliberately, with the harnesses green.
+
 - Ported flattened CSS lives in `src/styles/ported/*.css`, imported per page.
   Files: chrome-header, chrome-footer, btn (all three loaded by the chrome on
   every page), hero-thin, product-detail (+ text-atoms), category-shared.

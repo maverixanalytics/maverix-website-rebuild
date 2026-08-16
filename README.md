@@ -14,9 +14,19 @@ every known difference from the legacy site.
 ```bash
 npm ci               # Node >= 22.12
 npm run build        # → dist/ (23 pages + sitemap.xml/robots.txt/webmanifest)
-npm run check        # astro check + tsc --noEmit
+npm run lint         # ESLint (flat config, react-hooks compiler rules)
+npm run test         # Vitest unit tests
+npm run format       # Prettier
+npm run check        # everything: astro check + tsc --noEmit + eslint + vitest
 node scripts/verify/interact.mjs   # interaction harness (needs a prior build)
 ```
+
+CI (`.github/workflows/ci.yml`) runs types, lint, tests and a full build on
+every push and PR. It deploys nothing — Netlify owns publishing.
+
+**Styling note:** this project uses global flattened CSS, *not* CSS Modules.
+That's deliberate; see the boxed explanation in `CONVENTIONS.md` before
+changing it.
 
 ## Layout
 

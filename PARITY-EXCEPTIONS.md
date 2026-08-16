@@ -67,6 +67,31 @@ text and pixel-identical in the visual harness. Verified 2026-08-15.
     /404.html from the domain root; plain root-absolute paths replace the
     legacy `BASE_PATH` regex.
 
+## Architecture deviations from the migration plan
+
+18. **Global flattened CSS instead of CSS Modules.** The plan specified CSS
+    Modules; the build ships 14 plain global stylesheets in
+    `src/styles/ported/`. The legacy global class names are a contract shared
+    by the CSS, the islands' JS state classes, and third-party scripts
+    (CookieYes, SociableKit), so scoping them would have meant renaming them
+    and forfeiting byte-parity. The cascade was *flattened* (winner-per-property,
+    dead overrides dropped) rather than scoped. One styling approach is used
+    consistently throughout and tokens are centralized in `:root`, so the
+    "pick one and stay consistent" rule holds. See `CONVENTIONS.md`.
+19. **Media lives at the repo root** (`assets/`, `images/`) and is copied into
+    `dist/` by the Netlify build command, rather than sitting in `public/` per
+    Astro convention. This avoided re-uploading 38 MB through the browser
+    during migration and preserves the media's git history. `npm run predev`
+    mirrors them into `public/` for local dev.
+
+## Deferred to post-cutover
+
+20. React Compiler is not yet enabled; `MvxForm` still uses manual `useState`
+    rather than React 19 `useActionState`; the 2.83 MB hero video still
+    autoplays; images lack explicit `width`/`height`. All four are tracked
+    against the current React standards and deliberately held until after the
+    domain cutover, since each touches runtime behavior.
+
 ## Dead code intentionally not ported
 
 17. Carousel JS + `.on` dots (no markup, no CSS in legacy); orphan CSS
