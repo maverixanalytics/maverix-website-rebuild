@@ -30,6 +30,12 @@ jobs:
       - name: Install (lockfile-exact)
         run: npm ci
 
+      # Generates .astro/types.d.ts (gitignored, so absent on a fresh
+      # checkout). Without it `astro:content` has no type declarations and
+      # tsc fails — must run before any type check.
+      - name: Generate Astro types
+        run: npx astro sync
+
       # Both are needed: `tsc` covers .ts/.tsx, `astro check` additionally
       # type-checks .astro templates (it catches prop mismatches tsc cannot see).
       - name: Type check
