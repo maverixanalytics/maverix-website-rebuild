@@ -10,8 +10,8 @@ import { fileURLToPath } from "node:url";
  * <loc> + <priority> only, no changefreq/lastmod). 404 excluded.
  */
 
-/** Legacy emission order (build-call order in build.py). */
-const SITEMAP_ORDER = [
+/** Legacy emission order (build-call order in the retired generator). Exported for tests. */
+export const SITEMAP_ORDER = [
   ["", "1.0"],
   ["products.html", "0.9"],
   ["thoracent.html", "0.9"],
