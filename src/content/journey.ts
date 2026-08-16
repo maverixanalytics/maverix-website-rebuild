@@ -50,7 +50,7 @@ export const JOURNEY_BARS: JourneyBlock[] = [
     ],
   },
   {
-    title: "Maverix lung cancer patient journey",
+    title: "Ideal Maverix lung cancer patient journey",
     titleAfterBar: true,
     arrow: "Earlier diagnosis, shorter time to treatment, improved outcomes.",
     segments: [
