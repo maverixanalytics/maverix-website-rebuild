@@ -72,11 +72,16 @@ export function BioModal({
     };
     document.addEventListener("keydown", onKeyDown);
 
+    // Capture the trigger node now: reading triggerRef.current inside cleanup
+    // would read whatever it points at then, not the element that opened this
+    // modal (react-hooks/exhaustive-deps flags exactly this).
+    const trigger = triggerRef.current;
+
     return () => {
       document.removeEventListener("keydown", onKeyDown);
       document.body.style.overflow = "";
       // Every close path (Escape included — logged a11y fix) returns focus.
-      triggerRef.current?.focus();
+      trigger?.focus();
     };
   }, [isOpen]);
 

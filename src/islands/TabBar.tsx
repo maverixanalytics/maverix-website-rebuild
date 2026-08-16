@@ -17,12 +17,19 @@ import { useState, type ReactNode } from "react";
 export type TabDef = { id: "pane-features" | "pane-videos"; label: string };
 export type ExternalLink = { label: string; url: string };
 
+/**
+ * Note on the optional slot props: `paneFeatures`, `paneVideos` and `side` are
+ * always supplied in practice — but via Astro *named slots*
+ * (`<Fragment slot="side">`), which Astro maps onto React props at runtime.
+ * TypeScript cannot see that mapping, so declaring them required makes
+ * `astro check` reject every real call site. Optional is the honest type here.
+ */
 type TabBarProps = {
   tabs: TabDef[];
   links: ExternalLink[];
-  paneFeatures: ReactNode;
+  paneFeatures?: ReactNode;
   paneVideos?: ReactNode;
-  side: ReactNode;
+  side?: ReactNode;
 };
 
 export function TabBar({
