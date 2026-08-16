@@ -45,6 +45,19 @@ changing it.
 - `public/` — legacy `assets/` + `images/` verbatim (not in the source zip if
   you received one — copy from the legacy repo).
 
+## ⚠️ Production publishing is LOCKED
+
+Netlify auto-publishing is **locked** (Deploys → "Auto Publishing Locked").
+Pushes to `main` still **build**, but they do **not go live** until a human
+clicks **Publish deploy** on that build in the Netlify Deploys page.
+
+This is deliberate: the site is under MLR/regulatory review, and no copy or
+layout change should reach the public domain without an explicit approval
+step. Do not unlock it to "make deploys easier."
+
+To ship a change: push → wait for the build → open the deploy in Netlify →
+review the deploy preview link → **Publish deploy**.
+
 ## Review workflow
 
 Netlify site: `inspiring-salamander-23b62b`
@@ -53,8 +66,10 @@ Primary domain: `maverixmedical.com` (DNS + HTTPS cut over Tuesday).
 
 - **Before Tuesday:** the `.netlify.app` subdomain IS the review URL. Every push
   to `main` builds there for review; nothing is user-facing until DNS flips.
-- **After Tuesday:** `main` builds publish to `maverixmedical.com`. To preview
-  a change before it goes public, either:
+- **After Tuesday:** `main` builds are held unpublished by the lock above, so
+  production never changes without a click. For an isolated preview URL per
+  change (recommended for anything a reviewer needs to see in context), use
+  either:
   - **Push a branch** — Netlify builds it at
     `<branch>--inspiring-salamander-23b62b.netlify.app` (Branch Deploys), OR
   - **Open a pull request** — Netlify builds a unique Deploy Preview URL, adds
