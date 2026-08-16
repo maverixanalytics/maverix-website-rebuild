@@ -1,0 +1,51 @@
+# Checks only — this workflow deploys NOTHING.
+# Netlify owns publishing (see netlify.toml); GitHub Actions just gates quality
+# so a broken commit is visible before Netlify builds it.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: types, lint, tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.12.0'
+          cache: npm
+
+      - name: Install (lockfile-exact)
+        run: npm ci
+
+      # Both are needed: `tsc` covers .ts/.tsx, `astro check` additionally
+      # type-checks .astro templates (it catches prop mismatches tsc cannot see).
+      - name: Type check
+        run: npx tsc --noEmit
+
+      - name: Astro check
+        run: npx astro check
+
+      - name: Lint
+        run: npx eslint .
+
+      - name: Unit tests
+        run: npx vitest run
+
+      # Proves the site actually builds — catches content-schema violations
+      # (a malformed 510(k) number, a missing meta description) that types
+      # and lint cannot see.
+      - name: Build
+        run: npm run build
