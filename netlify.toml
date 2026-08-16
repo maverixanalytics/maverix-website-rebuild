@@ -42,6 +42,11 @@
 
 [build.environment]
   NODE_VERSION = "22.12.0"
+  # The verify harnesses depend on `playwright`, a devDependency that `npm ci`
+  # installs here too. Without this flag its postinstall downloads ~300 MB of
+  # browsers on any cache miss — pure waste, since the harnesses run locally
+  # and in CI, never during the Netlify build.
+  PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1"
 
 # Keep preview builds out of search results even if URLs leak.
 [[context.deploy-preview.headers]]
