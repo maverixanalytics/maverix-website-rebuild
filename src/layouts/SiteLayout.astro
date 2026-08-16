@@ -32,16 +32,18 @@ const {
 
 const canonical =
   path === "index" ? absoluteUrl("/") : absoluteUrl(`/${path}.html`);
-const stem = path.split("/").pop() ?? path;
 const ogImage =
   path in OG_IMAGES ? absoluteUrl(`/assets/${OG_IMAGES[path]}`) : undefined;
 const consentHead = buildConsentHead();
 const dsCard = `@dsCard group="${dsGroup}" name="${title}" subtitle="${dsSubtitle}"`;
 ---
 
-<Fragment set:html={`<!-- ${dsCard} -->\n`} /><!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
+    {/* Emitted here because Astro hoists it into <head> regardless of source
+        position; keeping it here makes source match output and parses cleanly. */}
+    <Fragment set:html={`<!-- ${dsCard} -->`} />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <Fragment set:html={consentHead} />
