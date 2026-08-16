@@ -10,8 +10,15 @@ import { useState, type ReactNode } from "react";
  * slot. Hydrated (client:visible) ONLY on pages with a videos tab; other
  * pages render it with no client directive — pure static HTML, zero JS.
  *
- * State classes .is-active are the legacy CSS contract. role=tablist/tab/
- * tabpanel + arrow keys are a logged a11y upgrade.
+ * State classes .is-active are the legacy CSS contract.
+ *
+ * A11y note: this deliberately does NOT use role=tablist/tab/tabpanel. The
+ * legacy tab bar also holds external resource links (Size Chart, IFU) as
+ * siblings of the buttons, and ARIA forbids non-tab children inside a
+ * tablist — axe flags it as a CRITICAL aria-required-children violation.
+ * Real <button>s with aria-expanded + aria-controls are valid, keyboard
+ * accessible, and announce correctly. Arrow-key navigation is kept as a
+ * convenience.
  */
 
 export type TabDef = { id: "pane-features" | "pane-videos"; label: string };
@@ -57,13 +64,12 @@ export function TabBar({
   return (
     <>
       <div className="tabbar">
-        <div className="container tabbar-in" role="tablist">
+        <div className="container tabbar-in">
           {tabs.map((tab, index) => (
             <button
               key={tab.id}
               type="button"
-              role="tab"
-              aria-selected={activeId === tab.id}
+              aria-expanded={activeId === tab.id}
               aria-controls={tab.id}
               className={activeId === tab.id ? "is-active" : undefined}
               onClick={() => setActiveId(tab.id)}
@@ -87,7 +93,6 @@ export function TabBar({
                 <div
                   key={tab.id}
                   id={tab.id}
-                  role="tabpanel"
                   className={`tabpane${activeId === tab.id ? " is-active" : ""}`}
                 >
                   {paneFor(tab.id)}
