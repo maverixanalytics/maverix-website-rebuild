@@ -1,0 +1,79 @@
+---
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import ContactBlock from "@/components/ContactBlock.astro";
+import PGroups from "@/components/PGroups.astro";
+import { interventionGroups } from "@/data/productGroups";
+import "@/styles/ported/category-shared.css";
+import "@/styles/ported/hero-thin.css";
+import "@/styles/ported/text-atoms.css";
+
+/**
+ * Intervention category page — legacy build_products() thoracent_body.
+ * Served at /intervention, matching the page title. Was thoracent.html until
+ * the 2026-08-18 route rename; that legacy URL 301s here (netlify.toml).
+ * Hero carries the .zoomout variant (ported in category-shared.css). All
+ * copy verbatim from legacy thoracent.html (entities → UTF-8).
+ */
+---
+
+<SiteLayout
+  path="intervention"
+  title="Intervention – Maverix Medical"
+  description="Self-expanding Nitinol stents and accessories that reopen the airway and esophagus to relieve obstructive symptoms from thoracic tumors."
+  dsGroup="Pages"
+  dsSubtitle="Maverix Interventional Portfolio — stents and accessories"
+>
+  <div class="hero-thin zoomout">
+    <img class="hero-img" src="/images/intervention.jpg" alt="" />
+    <div class="overlay"></div>
+    <div class="container inner">
+      <h1>intervention</h1>
+    </div>
+  </div>
+
+  <section class="band light prod-section" id="thoracent">
+    <div class="container">
+      <div class="sechead">
+        <img
+          class="famlogo"
+          src="/assets/maverix-interventional-portfolio-logo-color.png"
+          alt="Maverix Interventional Portfolio"
+        />
+        <div class="distby inline">
+          <div class="seclabel">Distributed by</div>
+          <img
+            src="/assets/thoracent-by-maverix-logo.png"
+            alt="Thoracent, a Maverix company"
+          />
+        </div>
+        <ContactBlock />
+      </div>
+      <div class="seclabel">About</div>
+      <p class="biglead">
+        When a malignant tumor narrows the airway or esophagus, every breath
+        and every swallow becomes a struggle. The Thoracent stent portfolio
+        gives interventional pulmonologists and gastroenterologists minimally
+        invasive tools to reopen the lumen and relieve obstructive symptoms.
+      </p>
+      <p class="bodytext">
+        Malignant central airway obstruction and dysphagia from esophageal
+        tumors are among the most distressing complications of thoracic
+        cancers, and stenting offers mechanical relief as part of a
+        multidisciplinary palliative care plan. Built on established
+        self-expanding Nitinol platforms, each stent is engineered for
+        controlled endoscopic deployment, conformability to patient anatomy,
+        and radial support where it’s needed most — with sizes and delivery
+        options spanning straight tracheobronchial segments, the carina, and
+        the esophagus, so physicians can match the device to the patient.
+        Every device is supplied sterile, for single use.
+      </p>
+      <div class="seclabel">Products</div>
+      <PGroups groups={interventionGroups} />
+      <p class="rxnote">
+        All devices are prescription-only, for use by trained physicians. See
+        each product’s Instructions for Use for complete indications,
+        contraindications, warnings, and precautions.
+      </p>
+    </div>
+  </section>
+</SiteLayout>
