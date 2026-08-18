@@ -52,3 +52,29 @@ describe("consent head block", () => {
     expect(html).toMatch(/wait_for_update:\s*500/);
   });
 });
+
+describe("_gl stripping", () => {
+  const head = buildConsentHead();
+
+  it("strips the _gl linker parameter", () => {
+    expect(head).toContain("searchParams.delete('_gl')");
+    expect(head).toContain("history.replaceState");
+  });
+
+  /**
+   * Stripping before gtag.js has read _gl would silently break cross-page
+   * session stitching for every visitor who has not accepted cookies — the
+   * exact group url_passthrough exists to serve. Bind to `load`, never earlier.
+   */
+  it("defers stripping until after gtag.js has loaded", () => {
+    expect(head).toContain("window.addEventListener('load'");
+    const gtagConfig = head.indexOf("gtag('config'");
+    const strip = head.indexOf("searchParams.delete('_gl')");
+    expect(gtagConfig).toBeGreaterThan(-1);
+    expect(strip).toBeGreaterThan(gtagConfig);
+  });
+
+  it("keeps url_passthrough on (stripping is cosmetic, not a consent change)", () => {
+    expect(head).toContain("gtag('set', 'url_passthrough', true)");
+  });
+});
