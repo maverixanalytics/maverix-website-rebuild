@@ -3,23 +3,25 @@ import { SITE_URL, absoluteUrl, OG_IMAGES, FORM_ENDPOINT } from "./site.config";
 
 describe("site config", () => {
   it("builds absolute canonical URLs on the production origin", () => {
+    // Routes are extensionless as of 2026-08-18 (build.format 'directory').
+    // A canonical that still ends in .html means SiteLayout regressed.
     expect(absoluteUrl("/")).toBe(`${SITE_URL}/`);
-    expect(absoluteUrl("/serpex.html")).toBe(`${SITE_URL}/serpex.html`);
-    expect(absoluteUrl("/products/ebus-needles.html")).toBe(
-      `${SITE_URL}/products/ebus-needles.html`,
+    expect(absoluteUrl("/diagnosis")).toBe(`${SITE_URL}/diagnosis`);
+    expect(absoluteUrl("/products/ebus-needles")).toBe(
+      `${SITE_URL}/products/ebus-needles`,
     );
   });
 
   it("has no trailing slash on SITE_URL (would produce // in canonicals)", () => {
     expect(SITE_URL.endsWith("/")).toBe(false);
-    expect(absoluteUrl("/serpex.html")).not.toContain(".app//");
-    expect(absoluteUrl("/serpex.html")).not.toContain(".com//");
+    expect(absoluteUrl("/diagnosis")).not.toContain(".app//");
+    expect(absoluteUrl("/diagnosis")).not.toContain(".com//");
   });
 
   it("maps og:image entries to plausible asset filenames", () => {
     for (const [page, file] of Object.entries(OG_IMAGES)) {
       expect(file).toMatch(/^og-[a-z-]+\.jpg$/);
-      expect(page).not.toMatch(/\.html$/); // keys are stems, not filenames
+      expect(page).not.toMatch(/\.html$/); // keys are route stems, not filenames
     }
   });
 
