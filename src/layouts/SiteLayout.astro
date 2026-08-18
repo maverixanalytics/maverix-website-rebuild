@@ -31,7 +31,7 @@ const {
 } = Astro.props;
 
 const canonical =
-  path === "index" ? absoluteUrl("/") : absoluteUrl(`/${path}.html`);
+  path === "index" ? absoluteUrl("/") : absoluteUrl(`/${path}`);
 const ogImage =
   path in OG_IMAGES ? absoluteUrl(`/assets/${OG_IMAGES[path]}`) : undefined;
 const consentHead = buildConsentHead();
