@@ -1,22 +1,28 @@
 # Maverix Astro — Repo Conventions (read before writing any page)
 
 Astro 6.4.8 + @astrojs/react + @astrojs/mdx. TypeScript strict. Node 22.
-Build: `npx astro build` → dist/ with EXACT legacy URLs (`build.format:'file'`,
-`trailingSlash:'never'`, no `base` — Netlify serves from root).
+Build: `npx astro build` → dist/ with extensionless URLs
+(`build.format:'directory'`, `trailingSlash:'never'`, no `base` — Netlify
+serves from root).
 
 ## Non-negotiables
 
 1. **Copy is regulated.** Body copy is extracted VERBATIM from legacy pages
    (entities → UTF-8). Never paraphrase, trim, or "fix" copy. New copy (only
    meta descriptions) is flagged `# DRAFT-MLR`.
-2. **URLs are frozen** — including `serpex.html` (=Diagnosis),
-   `diagnostics.html` (=Risk Assessment), `thoracent.html` (=Intervention),
-   and the typo slug `bonastent-esophogeal-stent`.
+2. **URLs changed once, on 2026-08-18, and are now frozen again.** Routes are
+   extensionless and named after the page title: `/diagnosis` (was
+   `serpex.html`), `/risk-assessment` (was `diagnostics.html`),
+   `/intervention` (was `thoracent.html`), and
+   `/products/bonastent-esophageal-stent` (typo `esophogeal` corrected).
+   EVERY legacy `.html` URL 301s to its new route in `netlify.toml`, and a
+   Vitest case fails if any rule goes missing. Adding or renaming a route means
+   adding a redirect in the same commit.
 3. **Three footnote schemes, never merged:** homepage `sup.cite` (external
    links, `Cite.astro` when built), Risk Assessment `sup.ref` (in-page
    `#ref-N`), Narwhal `*` (stat+disclaimer bound in one record).
-4. **Internal links are root-absolute** (`/serpex.html`, `/products/x.html`,
-   `/` for home). Assets: `/images/...`, `/assets/...`.
+4. **Internal links are root-absolute and extensionless** (`/diagnosis`,
+   `/products/x`, `/` for home). Assets: `/images/...`, `/assets/...`.
 5. Head/meta comes ONLY from `SiteLayout` props — never hand-roll head tags.
 
 ## Page pattern

@@ -6,6 +6,9 @@ React islands** app, per `REACT-MIGRATION-PLAN.md`. All 23 pages, byte-parity
 on visible text, pixel-parity in the visual harness, targeting **Netlify-only**
 hosting.
 
+URLs are extensionless as of 2026-08-18 (`/diagnosis`, not `/serpex.html`);
+every legacy URL 301s to its new route — see `netlify.toml`.
+
 Read `CONVENTIONS.md` before changing anything; `PARITY-EXCEPTIONS.md` lists
 every known difference from the legacy site.
 
@@ -33,9 +36,11 @@ changing it.
 - `src/content/` — ALL copy as schema-validated collections (products, news,
   leaders, legal pages) + citation/reference data. Editing copy = editing a
   content file; the build fails on schema violations.
-- `src/pages/` — one file per legacy URL (filenames frozen, including
-  `serpex.html`=Diagnosis, `diagnostics.html`=Risk Assessment,
-  `thoracent.html`=Intervention, and the `bonastent-esophogeal-stent` typo).
+- `src/pages/` — one file per route. Routes are extensionless and named after
+  the page title (`/diagnosis`, `/risk-assessment`, `/intervention`). The
+  legacy `serpex.html` / `diagnostics.html` / `thoracent.html` /
+  `bonastent-esophogeal-stent` URLs all 301 to them via `netlify.toml`;
+  changing a route means adding a redirect in the same commit.
 - `src/components/` — static Astro components; `src/islands/` — the seven
   React islands (nav, tabs, modals, cards, count-up, forms).
 - `src/styles/ported/` — the legacy stylesheet flattened (winner-per-property,

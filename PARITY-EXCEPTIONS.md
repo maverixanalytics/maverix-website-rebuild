@@ -27,9 +27,8 @@ text and pixel-identical in the visual harness. Verified 2026-08-15.
 5. **dsCard annotation comment** sits just inside `<head>` rather than
    before `<!doctype>` (Astro cannot emit pre-doctype content). The
    annotation text is unchanged.
-6. **Internal links are root-absolute** (`/serpex.html`) instead of
-   relative (`../serpex.html`). Resolved URLs identical; required by the
-   Netlify-only, no-base architecture.
+6. **Internal links are root-absolute** (`/diagnosis`) instead of relative
+   (`../serpex.html`). Required by the Netlify-only, no-base architecture.
 
 ## Behavior — a11y upgrades (the one sanctioned exception class)
 
@@ -83,6 +82,17 @@ text and pixel-identical in the visual harness. Verified 2026-08-15.
     Astro convention. This avoided re-uploading 38 MB through the browser
     during migration and preserves the media's git history. `npm run predev`
     mirrors them into `public/` for local dev.
+
+21. **URL scheme changed (2026-08-18).** The legacy `.html` extensions were
+    dropped (`build.format:'directory'`) and three pages were renamed to match
+    their titles — `serpex`→`diagnosis`, `diagnostics`→`risk-assessment`,
+    `thoracent`→`intervention` — plus the `esophogeal`→`esophageal` typo fix.
+    This is the ONE deliberate break from legacy URL parity. It was taken
+    before the Webflow→Netlify cutover, when the redirect cost is lowest: all
+    22 legacy URLs 301 to their new routes (`netlify.toml`), so indexed links
+    and printed collateral keep working. `OG_IMAGES` values still use the old
+    `og-serpex/og-diagnostics/og-thoracent` filenames on purpose — those
+    binaries are already published under those names.
 
 ## Deferred to post-cutover
 
