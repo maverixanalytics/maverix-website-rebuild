@@ -138,7 +138,7 @@ export function SiteNav({
         <div className={subClass(0)}>
           <a
             className="nav-top-link"
-            href="/products.html"
+            href="/products"
             onClick={handleTopLink(0)}
           >
             products <span className="plus">+</span>
@@ -155,7 +155,7 @@ export function SiteNav({
         <div className={subClass(1)}>
           <a
             className="nav-top-link"
-            href="/team.html"
+            href="/team"
             onClick={handleTopLink(1)}
           >
             team <span className="plus">+</span>
@@ -171,7 +171,7 @@ export function SiteNav({
         </div>
         <div>
           {/* Legacy parity: no accordion handler — news navigates on mobile */}
-          <a className="nav-top-link" href="/news.html">
+          <a className="nav-top-link" href="/news">
             news <span className="plus">+</span>
             <span className="arrow">→</span>
           </a>
@@ -214,7 +214,7 @@ export function SiteNav({
                   </a>
                 </div>
                 <div className="cell view-all">
-                  <a href="/news.html">
+                  <a href="/news">
                     <span className="circ">
                       <ArrowIcon />
                     </span>
@@ -226,8 +226,8 @@ export function SiteNav({
           </div>
         </div>
         <div className="mobile-extra">
-          <a href="/contact-us.html">Contact</a>
-          <a href="/careers.html">Careers</a>
+          <a href="/contact-us">Contact</a>
+          <a href="/careers">Careers</a>
         </div>
       </nav>
     </>
