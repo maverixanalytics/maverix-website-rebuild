@@ -10,30 +10,36 @@ import { fileURLToPath } from "node:url";
  * <loc> + <priority> only, no changefreq/lastmod). 404 excluded.
  */
 
-/** Legacy emission order (build-call order in the retired generator). Exported for tests. */
+/**
+ * Emission order (build-call order inherited from the retired generator) and the
+ * priority map. Paths were switched from legacy `*.html` to extensionless,
+ * meaningful routes on 2026-08-18 (serpex->diagnosis, diagnostics->
+ * risk-assessment, thoracent->intervention, esophogeal typo fixed); every old
+ * path 301s to its new one in netlify.toml. Exported for tests.
+ */
 export const SITEMAP_ORDER = [
   ["", "1.0"],
-  ["products.html", "0.9"],
-  ["thoracent.html", "0.9"],
-  ["diagnostics.html", "0.9"],
-  ["serpex.html", "0.9"],
-  ["products/y-shaped-tracheal-stent.html", "0.6"],
-  ["products/bonastent-tracheobronchial-stent.html", "0.6"],
-  ["products/ebus-needles.html", "0.6"],
-  ["products/biopsy-forceps.html", "0.6"],
-  ["products/hydro-slide-pulmonary-guidewire.html", "0.6"],
-  ["products/hilzo-tts-esophageal-stent.html", "0.6"],
-  ["products/hilzo-ues-esophageal-stent.html", "0.6"],
-  ["products/bonastent-esophogeal-stent.html", "0.6"],
-  ["products/netis-retrieval-net.html", "0.6"],
-  ["products/narwhal-cryo-system.html", "0.6"],
-  ["team.html", "0.8"],
-  ["news.html", "0.8"],
-  ["careers.html", "0.8"],
-  ["contact-us.html", "0.8"],
-  ["terms-of-use.html", "0.3"],
-  ["privacy-policy.html", "0.3"],
-  ["regulatory-information.html", "0.3"],
+  ["products", "0.9"],
+  ["intervention", "0.9"],
+  ["risk-assessment", "0.9"],
+  ["diagnosis", "0.9"],
+  ["products/y-shaped-tracheal-stent", "0.6"],
+  ["products/bonastent-tracheobronchial-stent", "0.6"],
+  ["products/ebus-needles", "0.6"],
+  ["products/biopsy-forceps", "0.6"],
+  ["products/hydro-slide-pulmonary-guidewire", "0.6"],
+  ["products/hilzo-tts-esophageal-stent", "0.6"],
+  ["products/hilzo-ues-esophageal-stent", "0.6"],
+  ["products/bonastent-esophageal-stent", "0.6"],
+  ["products/netis-retrieval-net", "0.6"],
+  ["products/narwhal-cryo-system", "0.6"],
+  ["team", "0.8"],
+  ["news", "0.8"],
+  ["careers", "0.8"],
+  ["contact-us", "0.8"],
+  ["terms-of-use", "0.3"],
+  ["privacy-policy", "0.3"],
+  ["regulatory-information", "0.3"],
 ];
 
 /**
