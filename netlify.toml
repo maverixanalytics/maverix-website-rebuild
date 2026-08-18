@@ -13,8 +13,10 @@
 #     header rules below, so they won't get crawled if someone finds the URL.
 #
 # DASHBOARD SETTINGS TO CONFIRM BEFORE TUESDAY:
-#   • Site settings → Build & deploy → Asset optimization → "Pretty URLs" OFF
-#     (would rewrite /foo.html → /foo and break the frozen URL scheme).
+#   • Site settings → Build & deploy → Asset optimization → "Pretty URLs" OFF.
+#     Routing is now handled by build.format 'directory' plus the explicit
+#     [[redirects]] below; letting Netlify also rewrite paths would stack a
+#     second, invisible rule set on top of them.
 #   • Site settings → Build & deploy → Deploy Previews: enabled for pull
 #     requests from same repository (leave as default; keep OFF for forks).
 #   • Domain management → Domains → set the canonical form (bare
@@ -47,6 +49,155 @@
   # browsers on any cache miss — pure waste, since the harnesses run locally
   # and in CI, never during the Netlify build.
   PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1"
+
+# ---------------------------------------------------------------------------
+# LEGACY URL REDIRECTS (added 2026-08-18)
+#
+# The site moved from legacy `*.html` paths to extensionless, meaningful routes
+# (build.format 'directory'). Every URL that was live on the Webflow site — and
+# therefore may be indexed, bookmarked, or printed on collateral — 301s to its
+# new home here. Deleting a rule silently breaks an inbound link; the Vitest
+# suite (integrations/seoFiles.test.mjs) fails if any legacy path loses its rule.
+#
+# Three paths changed name as well as extension:
+#   /serpex.html      -> /diagnosis        (page is titled "Diagnosis")
+#   /diagnostics.html -> /risk-assessment  (page is titled "Risk Assessment")
+#   /thoracent.html   -> /intervention     (page is titled "Intervention")
+# and one long-standing typo was corrected:
+#   /products/bonastent-esophogeal-stent(.html) -> .../bonastent-esophageal-stent
+# ---------------------------------------------------------------------------
+
+[[redirects]]
+  from = "/products.html"
+  to = "/products"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/team.html"
+  to = "/team"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/news.html"
+  to = "/news"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/careers.html"
+  to = "/careers"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/contact-us.html"
+  to = "/contact-us"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/terms-of-use.html"
+  to = "/terms-of-use"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/privacy-policy.html"
+  to = "/privacy-policy"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/regulatory-information.html"
+  to = "/regulatory-information"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/thoracent.html"
+  to = "/intervention"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/diagnostics.html"
+  to = "/risk-assessment"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/serpex.html"
+  to = "/diagnosis"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/y-shaped-tracheal-stent.html"
+  to = "/products/y-shaped-tracheal-stent"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/bonastent-tracheobronchial-stent.html"
+  to = "/products/bonastent-tracheobronchial-stent"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/ebus-needles.html"
+  to = "/products/ebus-needles"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/biopsy-forceps.html"
+  to = "/products/biopsy-forceps"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/hydro-slide-pulmonary-guidewire.html"
+  to = "/products/hydro-slide-pulmonary-guidewire"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/hilzo-tts-esophageal-stent.html"
+  to = "/products/hilzo-tts-esophageal-stent"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/hilzo-ues-esophageal-stent.html"
+  to = "/products/hilzo-ues-esophageal-stent"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/netis-retrieval-net.html"
+  to = "/products/netis-retrieval-net"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/narwhal-cryo-system.html"
+  to = "/products/narwhal-cryo-system"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/bonastent-esophogeal-stent.html"
+  to = "/products/bonastent-esophageal-stent"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/bonastent-esophogeal-stent"
+  to = "/products/bonastent-esophageal-stent"
+  status = 301
+  force = true
 
 # Keep preview builds out of search results even if URLs leak.
 [[context.deploy-preview.headers]]

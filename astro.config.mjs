@@ -7,12 +7,12 @@ import { maverixSeoFiles } from "./integrations/seoFiles.mjs";
 
 // Netlify-only hosting (plan §1.2 / §7):
 // - served from the domain root -> NO `base`
-// - build.format 'file' -> exact legacy URLs (serpex.html, products/foo.html)
-// - trailingSlash 'never' -> canonicals match served .html paths exactly
-//   (Netlify "Pretty URLs" asset optimization must stay OFF in the dashboard)
+// - build.format 'directory' -> extensionless URLs (/diagnosis, /products/foo)
+// - trailingSlash 'never' -> canonicals have no trailing slash
+//   Legacy .html URLs are 301'd in netlify.toml (see [[redirects]]).
 export default defineConfig({
   site: SITE_URL,
   trailingSlash: "never",
-  build: { format: "file" },
+  build: { format: "directory" },
   integrations: [react(), mdx(), maverixSeoFiles(SITE_URL)],
 });

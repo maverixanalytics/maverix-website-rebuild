@@ -12,6 +12,16 @@ import { CY_CLIENT, GA4_ID } from "@/config/site.config";
  * cannot reorder, bundle, or prepend to it (define:vars would).
  *
  * If a CSP is ever enabled, these inline scripts need hashes (plan §5.1 note).
+ *
+ * The 4th block strips GA4's `_gl` linker parameter from the address bar. It is
+ * NOT optional cosmetics: `url_passthrough` (set above) tells GA4 to carry the
+ * visitor identifier in the URL instead of a cookie whenever analytics consent
+ * is denied — which is the default state until the banner is accepted — so
+ * every internal click mints a URL like `/diagnosis?_gl=1*rvnzk7*...`. Those
+ * URLs get bookmarked, pasted into emails, and printed. Stripping runs on
+ * `load`, AFTER the async gtag.js has initialised and read the parameter, so
+ * cross-page session stitching is preserved; GA4 re-decorates outbound links
+ * from in-memory state, not from the current URL. Do not move it earlier.
  */
 export function buildConsentHead(): string {
   return `<script>
@@ -35,5 +45,20 @@ gtag('set', 'url_passthrough', true);
 <script>
 gtag('js', new Date());
 gtag('config', '${GA4_ID}', { anonymize_ip: true });
+</script>
+<script>
+window.addEventListener('load', function () {
+  try {
+    var url = new URL(window.location.href);
+    if (!url.searchParams.has('_gl')) return;
+    url.searchParams.delete('_gl');
+    var qs = url.searchParams.toString();
+    window.history.replaceState(
+      window.history.state,
+      '',
+      url.pathname + (qs ? '?' + qs : '') + url.hash
+    );
+  } catch (e) {}
+});
 </script>`;
 }

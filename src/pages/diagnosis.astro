@@ -8,9 +8,10 @@ import "@/styles/ported/hero-thin.css";
 import "@/styles/ported/text-atoms.css";
 
 /**
- * Diagnosis category page — legacy URL serpex.html (filename ≠ title is
- * deliberate; URLs are frozen). Body ported verbatim from
- * maverix-legacy/src/build.py serpex_body (~L581+), entities → UTF-8.
+ * Diagnosis category page — served at /diagnosis. Was serpex.html until the
+ * 2026-08-18 route rename; that legacy URL 301s here (netlify.toml).
+ * Body ported verbatim from maverix-legacy/src/build.py serpex_body
+ * (~L581+), entities → UTF-8.
  * Legacy renders the biopsy tools as a BARE .pgrid (pcards(DIAGNOSIS_TOOLS),
  * no .pgroup/.pglabel wrapper) — mirrored here with PCard, not PGroups.
  * The .nw-cta anchor is hand-rolled (legacy markup verbatim) because it
@@ -19,7 +20,7 @@ import "@/styles/ported/text-atoms.css";
 ---
 
 <SiteLayout
-  path="serpex"
+  path="diagnosis"
   title="Diagnosis – Maverix Medical"
   description="Endobronchial tissue-sampling instruments designed to help physicians obtain the tissue needed for an accurate diagnosis."
   dsGroup="Pages"
@@ -87,7 +88,7 @@ import "@/styles/ported/text-atoms.css";
               — handheld and self-contained, with selectable sampling lengths
               and no cryo console to purchase or service.
             </p>
-            <a class="btn nw-cta" href="/products/narwhal-cryo-system.html">
+            <a class="btn nw-cta" href="/products/narwhal-cryo-system">
               <span class="circ"
                 ><svg
                   viewBox="0 0 24 24"

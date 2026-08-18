@@ -40,7 +40,7 @@ export const interventionGroups: ProductGroup[] = [
     label: "Esophageal",
     items: [
       {
-        slug: "bonastent-esophogeal-stent",
+        slug: "bonastent-esophageal-stent",
         name: "Bonastent® Esophageal Stent",
         image: "/images/bonastent-esoph.jpg",
       },
@@ -75,7 +75,7 @@ export const interventionGroups: ProductGroup[] = [
 
 /**
  * Diagnosis (biopsy / tissue-sampling) tools.
- * Array order IS display order on serpex.html (= the Diagnosis page).
+ * Array order IS display order on /diagnosis (legacy serpex.html).
  * Reordered 2026-08-16 at the user's request; legacy order was
  * Biopsy Forceps → EBUS Needles → Narwhal.
  */

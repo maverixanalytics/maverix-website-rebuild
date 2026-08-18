@@ -11,9 +11,10 @@ import "@/styles/ported/text-atoms.css";
 
 /**
  * Risk Assessment category page — legacy build_products() diagnostics_body.
- * Filename ≠ title is deliberate: the frozen URL is /diagnostics.html but the
- * page is titled "Risk Assessment" (CONVENTIONS §2). Hero carries the
- * .zoomout variant (ported in category-shared.css).
+ * Served at /risk-assessment, matching the page title. Was diagnostics.html
+ * until the 2026-08-18 route rename; that legacy URL 301s here
+ * (netlify.toml). Hero carries the .zoomout variant (ported in
+ * category-shared.css).
  *
  * Footnotes are the `sup.ref` scheme (in-page markers 1–12 → #ref-N →
  * RefsSection). Independent of homepage sup.cite and Narwhal `*` — never
@@ -24,7 +25,7 @@ import "@/styles/ported/text-atoms.css";
 ---
 
 <SiteLayout
-  path="diagnostics"
+  path="risk-assessment"
   title="Risk Assessment – Maverix Medical"
   description="Developing a diagnostic test that aims to better clarify which patients are most likely to benefit from either tissue sampling or continued monitoring."
   dsGroup="Pages"

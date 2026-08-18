@@ -61,9 +61,13 @@ export const LI_THORACENT = "https://www.linkedin.com/company/thoracent/jobs/";
 export const OG_IMAGES: Record<string, string> = {
   index: "og-index.jpg",
   products: "og-products.jpg",
-  thoracent: "og-thoracent.jpg",
-  diagnostics: "og-diagnostics.jpg",
-  serpex: "og-serpex.jpg",
+  // Keys follow the 2026-08-18 route rename; the image FILENAMES still carry
+  // the legacy stems (og-thoracent/og-diagnostics/og-serpex) because those are
+  // binaries already published under those names. Renaming the files buys
+  // nothing and breaks any cached social-card scrape.
+  intervention: "og-thoracent.jpg",
+  "risk-assessment": "og-diagnostics.jpg",
+  diagnosis: "og-serpex.jpg",
   team: "og-team.jpg",
   news: "og-news.jpg",
   careers: "og-careers.jpg",
