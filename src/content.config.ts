@@ -10,7 +10,8 @@ import { z } from "astro/zod";
 /**
  * Products — one MDX file per product page (plan §2.1).
  * Slug = filename, which preserves legacy URLs verbatim, INCLUDING the
- * historical typo `bonastent-esophogeal-stent` (do not "fix" it — plan §1.2).
+ * corrected slug `bonastent-esophageal-stent` (the historical typo
+ * `bonastent-esophogeal-stent` 301s to it — see netlify.toml).
  */
 const products = defineCollection({
   loader: glob({ pattern: "**/*.mdx", base: "./src/content/products" }),
