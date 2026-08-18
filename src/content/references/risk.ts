@@ -5,7 +5,7 @@
  * INDEPENDENT of the homepage `sup.cite` scheme (external-link stat citations)
  * and of the Narwhal `*` scheme — three schemes, three pages, three markups.
  * NEVER merge, cross-number, or renumber casually: the numbers below are
- * baked into regulated body copy on /diagnostics.html.
+ * baked into regulated body copy on /risk-assessment.
  *
  * Source: legacy src/build.py REFS_ABOUT, verbatim (entities → UTF-8).
  */
