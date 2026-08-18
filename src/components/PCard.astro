@@ -17,6 +17,6 @@ const { slug, name, image, abbr } = Astro.props;
   </div>
   <div class="card-info">
     <h3 set:html={name} />
-    <Btn href={`/products/${slug}.html`} label="Learn more" />
+    <Btn href={`/products/${slug}`} label="Learn more" />
   </div>
 </div>
