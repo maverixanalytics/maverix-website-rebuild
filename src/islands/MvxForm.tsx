@@ -12,12 +12,17 @@ import {type FormEvent, useRef, useState} from "react";
  *  - honeypot `_gotcha` filled → hide the form, show the (fake) success msg;
  *  - empty endpoint → POST to "/" as application/x-www-form-urlencoded
  *    (Netlify's own submission capture path — see commit 4436726
- *    "fix/netlify-forms"); ok → hide form + success; not ok or network
- *    error → fall back to mailto: URL (subject from the "Subject" field,
- *    else "Website enquiry from {First Name|Name|a visitor}"; body from all
- *    fields except keys starting "_" and "form-name" and blank values),
- *    navigate to it, then after 600ms restore the button and show
+ *    "fix/netlify-forms"); ok → hide form + success; HTTP error → default
+ *    error text; network error → fall back to mailto: URL (subject from the
+ *    "Subject" field, else "Website enquiry from {First Name|Name|a visitor}";
+ *    body from all fields except keys starting "_" and "form-name" and blank
+ *    values), navigate to it, then after 600ms restore the button and show
  *    "Thanks — your email app should be opening…";
+ *
+ *    NOTE: this fetch must NOT set `redirect: "error"`. A successful Netlify
+ *    form submission answers with a 302 to the success page, which that mode
+ *    turns into a rejected promise — sending every successful send down the
+ *    mailto path and making the form look broken.
  *  - non-empty endpoint → fetch POST FormData with Accept: application/json;
  *    ok → hide form + success; HTTP error → default error text; network
  *    error → "Network error — please try again, or email {data-mailto}.";
@@ -135,7 +140,6 @@ export function MvxForm({
         if (!endpoint) {
             fetch("/", {
                 method: "POST",
-                redirect: "error",
                 headers: {"Content-Type": "application/x-www-form-urlencoded"},
                 body: new URLSearchParams(
                     Array.from(data.entries()).map(([k, v]) => [k, String(v)]),
@@ -146,9 +150,15 @@ export function MvxForm({
                         setFormHidden(true);
                         setShown("ok");
                     } else {
-                        sendMailto();
+                        // Server rejected the submission (e.g. the form name is
+                        // not registered). Surface the error rather than opening
+                        // the user's mail app — the site is reachable.
+                        setSending(false);
+                        setShown("err");
                     }
                 })
+                // Network-level failure only: the POST never reached Netlify,
+                // so mailto is the sole remaining way to get the message out.
                 .catch(() => {
                     sendMailto();
                 });
