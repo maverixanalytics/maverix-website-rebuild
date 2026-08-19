@@ -235,7 +235,7 @@ export function MvxForm({
                 data-endpoint={endpoint}
                 data-mailto={mailto}
                 style={formHidden ? {display: "none"} : undefined}
-                // onSubmit={handleSubmit}
+                onSubmit={handleSubmit}
             >
                 <input type="hidden" name="form-name" defaultValue={name}/>
                 <p className="honeypot">
