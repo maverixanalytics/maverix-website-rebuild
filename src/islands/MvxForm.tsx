@@ -23,6 +23,14 @@ import {type FormEvent, useRef, useState} from "react";
  *    form submission answers with a 302 to the success page, which that mode
  *    turns into a rejected promise — sending every successful send down the
  *    mailto path and making the form look broken.
+ *
+ *    Netlify wiring (docs.netlify.com/manage/forms/setup, "JavaScript-rendered
+ *    forms"): detection happens at deploy time against the built HTML, so the
+ *    form must be server-rendered — `client:visible` only hydrates markup Astro
+ *    already emitted, so the bot sees it. Required pieces, all below: the
+ *    `data-netlify="true"` flag, the `<input type="hidden" name="form-name">`
+ *    carrying the same value as the form's `name`, and a submission body that
+ *    is URL-encoded (Netlify does not accept JSON).
  *  - non-empty endpoint → fetch POST FormData with Accept: application/json;
  *    ok → hide form + success; HTTP error → default error text; network
  *    error → "Network error — please try again, or email {data-mailto}.";
@@ -222,13 +230,12 @@ export function MvxForm({
                 name={name}
                 method="POST"
                 data-netlify="true"
-                netlify-form=""
                 netlify-honeypot="_gotcha"
-                action={endpoint}
+                action={endpoint || undefined}
                 data-endpoint={endpoint}
                 data-mailto={mailto}
                 style={formHidden ? {display: "none"} : undefined}
-                onSubmit={handleSubmit}
+                // onSubmit={handleSubmit}
             >
                 <input type="hidden" name="form-name" defaultValue={name}/>
                 <p className="honeypot">
