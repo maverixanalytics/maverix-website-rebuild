@@ -39,16 +39,16 @@
 # build-generated one. For local dev, run `npm run predev` once to mirror
 # them into public/ (gitignored).
 [build]
-  command = "npm ci && npm run build && cp -r assets images favicon.ico dist/"
-  publish = "dist"
+command = "npm ci && npm run build && cp -r assets images favicon.ico dist/"
+publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "22.12.0"
-  # The verify harnesses depend on `playwright`, a devDependency that `npm ci`
-  # installs here too. Without this flag its postinstall downloads ~300 MB of
-  # browsers on any cache miss — pure waste, since the harnesses run locally
-  # and in CI, never during the Netlify build.
-  PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1"
+NODE_VERSION = "22.12.0"
+# The verify harnesses depend on `playwright`, a devDependency that `npm ci`
+# installs here too. Without this flag its postinstall downloads ~300 MB of
+# browsers on any cache miss — pure waste, since the harnesses run locally
+# and in CI, never during the Netlify build.
+PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1"
 
 # ---------------------------------------------------------------------------
 # LEGACY URL REDIRECTS (added 2026-08-18)
@@ -59,153 +59,172 @@
 # new home here. Deleting a rule silently breaks an inbound link; the Vitest
 # suite (integrations/seoFiles.test.mjs) fails if any legacy path loses its rule.
 #
-# Three paths changed name as well as extension:
-#   /serpex.html      -> /diagnosis        (page is titled "Diagnosis")
-#   /diagnostics.html -> /risk-assessment  (page is titled "Risk Assessment")
-#   /thoracent.html   -> /intervention     (page is titled "Intervention")
+# Three paths changed name as well as extension. Both the .html and the
+# extensionless form redirect, since the old site served both:
+#   /serpex(.html)      -> /diagnosis        (page is titled "Diagnosis")
+#   /diagnostics(.html) -> /risk-assessment  (page is titled "Risk Assessment")
+#   /thoracent(.html)   -> /intervention     (page is titled "Intervention")
 # and one long-standing typo was corrected:
 #   /products/bonastent-esophogeal-stent(.html) -> .../bonastent-esophageal-stent
 # ---------------------------------------------------------------------------
 
 [[redirects]]
-  from = "/products.html"
-  to = "/products"
-  status = 301
-  force = true
+from = "/products.html"
+to = "/products"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/team.html"
-  to = "/team"
-  status = 301
-  force = true
+from = "/team.html"
+to = "/team"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/news.html"
-  to = "/news"
-  status = 301
-  force = true
+from = "/news.html"
+to = "/news"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/careers.html"
-  to = "/careers"
-  status = 301
-  force = true
+from = "/careers.html"
+to = "/careers"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/contact-us.html"
-  to = "/contact-us"
-  status = 301
-  force = true
+from = "/contact-us.html"
+to = "/contact-us"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/terms-of-use.html"
-  to = "/terms-of-use"
-  status = 301
-  force = true
+from = "/terms-of-use.html"
+to = "/terms-of-use"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/privacy-policy.html"
-  to = "/privacy-policy"
-  status = 301
-  force = true
+from = "/privacy-policy.html"
+to = "/privacy-policy"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/regulatory-information.html"
-  to = "/regulatory-information"
-  status = 301
-  force = true
+from = "/regulatory-information.html"
+to = "/regulatory-information"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/thoracent.html"
-  to = "/intervention"
-  status = 301
-  force = true
+from = "/thoracent.html"
+to = "/intervention"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/diagnostics.html"
-  to = "/risk-assessment"
-  status = 301
-  force = true
+from = "/thoracent"
+to = "/intervention"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/serpex.html"
-  to = "/diagnosis"
-  status = 301
-  force = true
+from = "/diagnostics.html"
+to = "/risk-assessment"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/products/y-shaped-tracheal-stent.html"
-  to = "/products/y-shaped-tracheal-stent"
-  status = 301
-  force = true
+from = "/diagnostics"
+to = "/risk-assessment"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/products/bonastent-tracheobronchial-stent.html"
-  to = "/products/bonastent-tracheobronchial-stent"
-  status = 301
-  force = true
+from = "/serpex.html"
+to = "/diagnosis"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/products/ebus-needles.html"
-  to = "/products/ebus-needles"
-  status = 301
-  force = true
+from = "/serpex"
+to = "/diagnosis"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/products/biopsy-forceps.html"
-  to = "/products/biopsy-forceps"
-  status = 301
-  force = true
+from = "/products/y-shaped-tracheal-stent.html"
+to = "/products/y-shaped-tracheal-stent"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/products/hydro-slide-pulmonary-guidewire.html"
-  to = "/products/hydro-slide-pulmonary-guidewire"
-  status = 301
-  force = true
+from = "/products/bonastent-tracheobronchial-stent.html"
+to = "/products/bonastent-tracheobronchial-stent"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/products/hilzo-tts-esophageal-stent.html"
-  to = "/products/hilzo-tts-esophageal-stent"
-  status = 301
-  force = true
+from = "/products/ebus-needles.html"
+to = "/products/ebus-needles"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/products/hilzo-ues-esophageal-stent.html"
-  to = "/products/hilzo-ues-esophageal-stent"
-  status = 301
-  force = true
+from = "/products/biopsy-forceps.html"
+to = "/products/biopsy-forceps"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/products/netis-retrieval-net.html"
-  to = "/products/netis-retrieval-net"
-  status = 301
-  force = true
+from = "/products/hydro-slide-pulmonary-guidewire.html"
+to = "/products/hydro-slide-pulmonary-guidewire"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/products/narwhal-cryo-system.html"
-  to = "/products/narwhal-cryo-system"
-  status = 301
-  force = true
+from = "/products/hilzo-tts-esophageal-stent.html"
+to = "/products/hilzo-tts-esophageal-stent"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/products/bonastent-esophogeal-stent.html"
-  to = "/products/bonastent-esophageal-stent"
-  status = 301
-  force = true
+from = "/products/hilzo-ues-esophageal-stent.html"
+to = "/products/hilzo-ues-esophageal-stent"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/products/bonastent-esophogeal-stent"
-  to = "/products/bonastent-esophageal-stent"
-  status = 301
-  force = true
+from = "/products/netis-retrieval-net.html"
+to = "/products/netis-retrieval-net"
+status = 301
+force = true
+
+[[redirects]]
+from = "/products/narwhal-cryo-system.html"
+to = "/products/narwhal-cryo-system"
+status = 301
+force = true
+
+[[redirects]]
+from = "/products/bonastent-esophogeal-stent.html"
+to = "/products/bonastent-esophageal-stent"
+status = 301
+force = true
+
+[[redirects]]
+from = "/products/bonastent-esophogeal-stent"
+to = "/products/bonastent-esophageal-stent"
+status = 301
+force = true
 
 # Keep preview builds out of search results even if URLs leak.
 [[context.deploy-preview.headers]]
-  for = "/*"
-  [context.deploy-preview.headers.values]
-    X-Robots-Tag = "noindex, nofollow"
+for = "/*"
+[context.deploy-preview.headers.values]
+X-Robots-Tag = "noindex, nofollow"
 
 [[context.branch-deploy.headers]]
-  for = "/*"
-  [context.branch-deploy.headers.values]
-    X-Robots-Tag = "noindex, nofollow"
+for = "/*"
+[context.branch-deploy.headers.values]
+X-Robots-Tag = "noindex, nofollow"
