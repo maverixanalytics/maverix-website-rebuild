@@ -218,6 +218,33 @@ to = "/products/bonastent-esophageal-stent"
 status = 301
 force = true
 
+
+# Page URL Changes From Webflow
+[[redirects]]
+from = "/legal/terms-of-use"
+to = "/terms-of-use/"
+status = 301
+
+[[redirects]]
+from = "/legal/privacy-policy"
+to = "/privacy-policy/"
+status = 301
+
+[[redirects]]
+from = "/products#thoracent"
+to = "/intervention/"
+status = 301
+
+[[redirects]]
+from = "/products#maverix-diagnostics"
+to = "/risk-assessment/"
+status = 301
+
+[[redirects]]
+from = "/products#maverix-biopsy-tools"
+to = "/diagnosis/"
+status = 301
+
 # Keep preview builds out of search results even if URLs leak.
 [[context.deploy-preview.headers]]
 for = "/*"
