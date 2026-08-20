@@ -7,16 +7,28 @@ import "@/styles/ported/text-atoms.css";
 import "@/styles/ported/news.css";
 
 /**
- * News page — replaces build_news(). 8 records, NOT 7 (plan §2.3): the
- * featured article never appears in the grid; the grid has its own 7 cells
- * (MassDevice first, then the 6 legacy NEWS entries), ordered by gridOrder.
+ * News page — replaces build_news(). The featured article never appears in
+ * the grid; the grid has its own cells, ordered by gridOrder (plan §2.3).
+ * Legacy shipped 8 records (1 featured + 7 grid); the Narwhal 510(k)
+ * clearance added on 2026-08-20 took the featured slot and pushed the CEO
+ * announcement into the grid at gridOrder 0, so it now sits immediately
+ * above MassDevice's coverage of the same appointment.
  */
 const news = await getCollection("news");
 
-const featured = news.find((n) => n.data.placement === "featured");
-if (!featured) {
-  throw new Error("news collection: no record with placement 'featured'");
+// Exactly one featured record. `.find()` would silently pick whichever
+// file sorted first if a second one were ever added, quietly demoting the
+// intended headline — so fail the build instead of guessing.
+const featuredAll = news.filter((n) => n.data.placement === "featured");
+if (featuredAll.length !== 1) {
+  throw new Error(
+    `news collection: expected exactly 1 record with placement 'featured', found ${featuredAll.length}` +
+      (featuredAll.length > 1
+        ? ` (${featuredAll.map((n) => n.id).join(", ")})`
+        : ""),
+  );
 }
+const featured = featuredAll[0]!;
 
 const grid = news
   .filter((n) => n.data.placement === "grid")
