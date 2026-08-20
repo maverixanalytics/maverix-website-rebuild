@@ -19,6 +19,14 @@ type Props = {
   dsGroup?: string;
   dsSubtitle?: string;
   noindex?: boolean;
+  /**
+   * Raw markup injected as the FIRST thing in <head>, before the consent
+   * block. Reserved for scripts that must execute before anything else
+   * renders — currently only the legacy fragment redirect on /products.
+   * Head order below is load-bearing; this slot sits ahead of it deliberately
+   * so a redirect can fire before any other head work begins.
+   */
+  headPrelude?: string;
 };
 
 const {
@@ -28,6 +36,7 @@ const {
   dsGroup = "Pages",
   dsSubtitle = "",
   noindex = false,
+  headPrelude = "",
 } = Astro.props;
 
 const canonical =
@@ -44,6 +53,7 @@ const dsCard = `@dsCard group="${dsGroup}" name="${title}" subtitle="${dsSubtitl
     {/* Emitted here because Astro hoists it into <head> regardless of source
         position; keeping it here makes source match output and parses cleanly. */}
     <Fragment set:html={`<!-- ${dsCard} -->`} />
+    {headPrelude && <Fragment set:html={headPrelude} />}
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <Fragment set:html={consentHead} />

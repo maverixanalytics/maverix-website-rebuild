@@ -230,20 +230,17 @@ from = "/legal/privacy-policy"
 to = "/privacy-policy/"
 status = 301
 
-[[redirects]]
-from = "/products#thoracent"
-to = "/intervention/"
-status = 301
-
-[[redirects]]
-from = "/products#maverix-diagnostics"
-to = "/risk-assessment/"
-status = 301
-
-[[redirects]]
-from = "/products#maverix-biopsy-tools"
-to = "/diagnosis/"
-status = 301
+# The legacy fragment deep links —
+#   /products#thoracent            -> /intervention/
+#   /products#maverix-diagnostics  -> /risk-assessment/
+#   /products#maverix-biopsy-tools -> /diagnosis/
+# — CANNOT be handled here, so don't re-add them. A URL fragment is never
+# transmitted: the browser strips everything from the `#` onward before the
+# request is sent, so all three arrive as a bare `GET /products` and no
+# [[redirects]] rule can tell them apart. Same for GoDaddy forwarding and
+# Cloudflare rules — nothing server-side ever receives the fragment. The
+# redirect runs client-side instead: src/scripts/legacyHashRedirects.ts,
+# rendered into <head> by src/pages/products.astro.
 
 # Keep preview builds out of search results even if URLs leak.
 [[context.deploy-preview.headers]]

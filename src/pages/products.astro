@@ -1,6 +1,7 @@
 ---
 import SiteLayout from "@/layouts/SiteLayout.astro";
 import Btn from "@/components/Btn.astro";
+import { buildLegacyHashRedirectScript } from "@/scripts/legacyHashRedirects";
 import "@/styles/ported/category-shared.css";
 import "@/styles/ported/hero-thin.css";
 import "@/styles/ported/text-atoms.css";
@@ -10,9 +11,16 @@ import "@/styles/ported/text-atoms.css";
  * Hero uses the base .hero-thin (NO .zoomout — only thoracent/diagnostics
  * carry the variant). All copy verbatim from legacy products.html.
  */
+
+// Legacy Webflow deep links (/products#thoracent) → the new per-family pages.
+// Passed as headPrelude so it lands FIRST in <head> and runs before paint —
+// the visitor never sees this page flash before the redirect. See the module
+// for why this can't live in netlify.toml.
+const legacyHashRedirect = buildLegacyHashRedirectScript();
 ---
 
 <SiteLayout
+  headPrelude={legacyHashRedirect}
   path="products"
   title="Products – Maverix Medical"
   description="Three product families across the lung cancer pathway: molecular risk assessment, endobronchial tissue sampling, and minimally invasive intervention."
