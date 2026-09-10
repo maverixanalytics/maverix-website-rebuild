@@ -1,7 +1,7 @@
 ---
 import SiteLayout from "@/layouts/SiteLayout.astro";
 import { MvxForm, type MvxField } from "@/islands/MvxForm";
-import { CONTACT_EMAIL, FORM_ENDPOINT } from "@/config/site.config";
+import { MVX_EMAIL, FORM_ENDPOINT } from "@/config/site.config";
 import "@/styles/ported/category-shared.css";
 import "@/styles/ported/hero-thin.css";
 import "@/styles/ported/text-atoms.css";
@@ -115,7 +115,7 @@ const contactFields: MvxField[] = [
         variant="contact"
         name="contact"
         endpoint={FORM_ENDPOINT}
-        mailto={CONTACT_EMAIL}
+        mailto={MVX_EMAIL}
         fields={contactFields}
         submitLabel="Send Message"
         submitClass="send"
@@ -142,8 +142,8 @@ const contactFields: MvxField[] = [
         >
         &nbsp;&nbsp;&nbsp;<a
           class="contact-mail-inline"
-          href="mailto:contact@maverixmedical.com"
-          >contact@maverixmedical.com</a
+          href={`mailto:${MVX_EMAIL}`}
+          >{MVX_EMAIL}</a
         >
       </div>
     </div>

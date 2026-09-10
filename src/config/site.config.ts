@@ -30,10 +30,25 @@ export const SITE_URL = "https://maverixmedical.com";
  */
 export const FORM_ENDPOINT = "";
 
-export const CONTACT_EMAIL = "contact@maverixmedical.com";
+/**
+ * Maverix-facing contact address — footer, Contact Us, Careers, and the
+ * ContactBlock on product / risk-assessment pages all use this ONE constant.
+ *
+ * Was split across CONTACT_EMAIL (contact@maverixmedical.com) and MVX_EMAIL
+ * until 2026-09-10, when the user moved everything to customer care. The two
+ * constants were merged rather than both set to the same string: two names for
+ * one address is how they drift apart again.
+ */
+export const MVX_EMAIL = "customercare@maverixmedical.com";
+
+/**
+ * Thoracent's own customer-care address. Deliberately SEPARATE from MVX_EMAIL
+ * and NOT changed with it: different domain, different inbox, and the
+ * Regulatory Information page routes device complaints and adverse-event
+ * reports here. Changing this is a regulatory decision, not a branding one.
+ */
 export const THOR_EMAIL = "customercare@thoracent.com";
 export const THOR_PHONE = "(888) 978-0232";
-export const MVX_EMAIL = "customercare@maverixmedical.com";
 
 /** Thoracent "Distributed by" lockup shown on every product page right rail. */
 export const THOR_LOGO = "/assets/thoracent-by-maverix-logo.png";

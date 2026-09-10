@@ -72,7 +72,7 @@ type MvxFormProps = {
     name: string;
     /** FORM_ENDPOINT — empty string means the mailto fallback path. */
     endpoint: string;
-    /** CONTACT_EMAIL — mailto target + the "or email …" error string. */
+    /** MVX_EMAIL — mailto target + the "or email …" error string. */
     mailto: string;
     fields: MvxField[];
     /** "Send message" (careers) / "Send Message" (contact). */

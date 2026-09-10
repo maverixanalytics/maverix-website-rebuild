@@ -2,7 +2,7 @@
 import SiteLayout from "@/layouts/SiteLayout.astro";
 import { MvxForm, type MvxField } from "@/islands/MvxForm";
 import {
-  CONTACT_EMAIL,
+  MVX_EMAIL,
   FORM_ENDPOINT,
   LI_MAVERIX,
   LI_THORACENT,
@@ -258,7 +258,7 @@ const careersFields: MvxField[] = [
         variant="careers"
         name="careers"
         endpoint={FORM_ENDPOINT}
-        mailto={CONTACT_EMAIL}
+        mailto={MVX_EMAIL}
         fields={careersFields}
         submitLabel="Send message"
         submitClass="form-send-inline"
