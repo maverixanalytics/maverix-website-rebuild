@@ -6,11 +6,14 @@
 type Props = {
   title: string;
   youtubeId: string;
+  /** Visible <h3> above the embed. Off when the pane holds a single video;
+   *  the iframe keeps `title` for screen readers either way. */
+  showTitle?: boolean;
 };
-const { title, youtubeId } = Astro.props;
+const { title, youtubeId, showTitle = true } = Astro.props;
 ---
 
-<h3 class="video-pane-title">{title}</h3>
+{showTitle && <h3 class="video-pane-title">{title}</h3>}
 <iframe
   class="video-embed"
   src={`https://www.youtube-nocookie.com/embed/${youtubeId}`}
