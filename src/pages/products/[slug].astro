@@ -36,11 +36,16 @@ const crumb =
     ? { href: "/diagnosis", label: "← All Diagnosis products" }
     : { href: "/intervention", label: "← All Intervention products" };
 
+const videos = data.videos ?? [];
+const hasVideos = videos.length > 0;
+/** One video: singular heading, and its own title is not repeated above it. */
+const singleVideo = videos.length === 1;
+const videosLabel = singleVideo ? "Demonstration Video" : "Demonstration Videos";
+
 const tabs: TabDef[] = [{ id: "pane-features", label: "Features" }];
-if (data.videos?.length) {
-  tabs.push({ id: "pane-videos", label: "Demonstration Videos" });
+if (hasVideos) {
+  tabs.push({ id: "pane-videos", label: videosLabel });
 }
-const hasVideos = Boolean(data.videos?.length);
 
 const MFG_LOGOS = {
   hilzo: "/assets/hilzo-stents-logo.png",
@@ -95,9 +100,13 @@ const foot = footParts.join(" ");
     {
       hasVideos && (
         <Fragment slot="paneVideos">
-          <h2 class="pd-title">Demonstration Videos</h2>
-          {(data.videos ?? []).map((video) => (
-            <VideoEmbed title={video.title} youtubeId={video.youtubeId} />
+          <h2 class="pd-title">{videosLabel}</h2>
+          {videos.map((video) => (
+            <VideoEmbed
+              title={video.title}
+              youtubeId={video.youtubeId}
+              showTitle={!singleVideo}
+            />
           ))}
         </Fragment>
       )
