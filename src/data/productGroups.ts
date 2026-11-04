@@ -86,8 +86,8 @@ export const diagnosisTools: ProductGroupItem[] = [
     image: "/images/narwhal-cryo.jpg",
   },
   {
-    slug: "narwhal-pro-cryobiopsy-probe",
-    name: "Narwhal Pro Cryobiopsy Probe",
+    slug: "narwhal-pro-cryo-system",
+    name: "Narwhal Pro Cryo System",
     image: "/images/narwhal-pro.jpg",
   },
   {

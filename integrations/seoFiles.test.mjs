@@ -87,7 +87,7 @@ describe("sitemap order", () => {
     );
 
     /** Pages created after the migration never had a legacy .html URL. */
-    const POST_MIGRATION = new Set(["products/narwhal-pro-cryobiopsy-probe"]);
+    const POST_MIGRATION = new Set(["products/narwhal-pro-cryo-system"]);
 
     // Every sitemap route, expressed as the legacy URL that must redirect to it.
     const expected = paths

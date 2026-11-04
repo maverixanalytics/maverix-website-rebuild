@@ -94,6 +94,7 @@ const foot = footParts.join(" ");
         {data.features.map((feature) => <li set:html={feature} />)}
       </ul>
       {data.specs && <SpecTable specs={data.specs} />}
+      {data.accessorySpecs && <SpecTable specs={data.accessorySpecs} />}
       {data.rxNote && <p class="rxnote">{data.rxNote}</p>}
       {foot && <p class="mfg-note">{foot}</p>}
     </Fragment>

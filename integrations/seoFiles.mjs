@@ -34,7 +34,7 @@ export const SITEMAP_ORDER = [
   ["products/netis-retrieval-net", "0.6"],
   ["products/narwhal-cryo-system", "0.6"],
   // Added 2026-11 (post-migration page — no legacy .html URL exists for it).
-  ["products/narwhal-pro-cryobiopsy-probe", "0.6"],
+  ["products/narwhal-pro-cryo-system", "0.6"],
   ["team", "0.8"],
   ["news", "0.8"],
   ["careers", "0.8"],
