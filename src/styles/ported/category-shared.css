@@ -357,3 +357,34 @@ a.reglink{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;colo
 .famrow-gap-inline{margin-top:2.4rem;}
 /* 404.html: <p class="bodytext" style="margin-top:2.6rem;"> (home-page link) */
 .bodytext-gap-inline{margin-top:2.6rem;}
+
+/* ---- Narwhal Cryo Portfolio refresh (brochure LB361.B, 2026-11) ---- */
+.nw-ctas{display:flex;flex-wrap:wrap;gap:.9rem 2.2rem;}
+.nw-lineup{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-bottom:3rem;}
+.nw-lineitem{display:block;text-align:center;border:1px solid var(--frame-line);border-radius:var(--radius-md);padding:1.2rem 1.2rem 1.4rem;background:#fff;color:inherit;text-decoration:none;transition:box-shadow .25s ease,transform .25s ease;}
+a.nw-lineitem:hover{box-shadow:0 10px 28px rgba(18,26,32,.10);transform:translateY(-2px);}
+.nw-lineitem img{width:100%;aspect-ratio:1/1;object-fit:contain;display:block;margin-bottom:.9rem;}
+.nw-lineitem h3{font-family:var(--font-tagline);font-weight:700;font-size:1.05rem;color:var(--heading);margin:0 0 .4rem;}
+.nw-lineitem p{font-size:.86rem;line-height:1.5;color:var(--copy-dropdown);margin:0;}
+.nw-card p.nw-what{margin-bottom:1rem;}
+.nw-probe{border:1px solid var(--frame-line);border-radius:var(--radius-md);padding:1.6rem 1.6rem 1.2rem;margin-bottom:1.4rem;background:#FCFDFD;}
+.nw-probename{font-family:var(--font-tagline);font-weight:700;font-size:1.2rem;color:var(--heading);margin:0 0 1.1rem;}
+.nw-tablewrap{overflow-x:auto;margin-bottom:1.1rem;}
+.nw-table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:520px;}
+.nw-table thead th{background:var(--mvx-deep);color:#fff;font-family:var(--font-tagline);font-weight:600;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;text-align:left;padding:.7rem .9rem;}
+.nw-table thead th:first-child{border-top-left-radius:8px;}
+.nw-table thead th:last-child{border-top-right-radius:8px;}
+.nw-table tbody th,.nw-table td{padding:.7rem .9rem;border-bottom:1px solid var(--frame-line);text-align:left;color:var(--copy-dropdown);background:#fff;}
+.nw-table tbody th{font-weight:700;color:var(--heading);}
+.nw-table tbody th span{font-weight:400;color:var(--note-gray);}
+.nw-table td.avg{color:var(--evidence-orange);font-weight:700;}
+.nw-bullets{display:grid;grid-template-columns:1fr 1fr;gap:.35rem 2rem;margin:0 0 .4rem;padding-left:1.1rem;font-size:.88rem;line-height:1.55;color:var(--copy-dropdown);}
+@media (max-width:900px){
+  .nw-lineup{grid-template-columns:1fr;}
+  .nw-lineitem img{aspect-ratio:4/3;}
+  .nw-bullets{grid-template-columns:1fr;}
+  .nw-probe{padding:1.2rem;}
+}
+/* btn.css loads after this file, so .btn{color:#231F20} beat .nw-cta{color:#fff}
+   at equal specificity and the CTA label rendered dark-on-teal. Scope it up. */
+.nwfeature .nw-cta,.nwfeature .nw-cta:hover{color:#fff;}

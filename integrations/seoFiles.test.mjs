@@ -11,8 +11,8 @@ import { SITEMAP_ORDER } from "./seoFiles.mjs";
 describe("sitemap order", () => {
   const paths = SITEMAP_ORDER.map(([p]) => p);
 
-  it("covers all 22 indexable pages (404 excluded)", () => {
-    expect(SITEMAP_ORDER).toHaveLength(22);
+  it("covers all 23 indexable pages (404 excluded)", () => {
+    expect(SITEMAP_ORDER).toHaveLength(23);
   });
 
   it("contains no duplicate paths", () => {
@@ -34,7 +34,7 @@ describe("sitemap order", () => {
       expect(priorityOf(p)).toBe("0.9");
     }
     // Product detail pages
-    expect(paths.filter((p) => p.startsWith("products/"))).toHaveLength(10);
+    expect(paths.filter((p) => p.startsWith("products/"))).toHaveLength(11);
     for (const p of paths.filter((x) => x.startsWith("products/"))) {
       expect(priorityOf(p)).toBe("0.6");
     }
@@ -86,9 +86,12 @@ describe("sitemap order", () => {
       Object.entries(RENAMED).map(([legacy, current]) => [current, legacy]),
     );
 
+    /** Pages created after the migration never had a legacy .html URL. */
+    const POST_MIGRATION = new Set(["products/narwhal-pro-cryobiopsy-probe"]);
+
     // Every sitemap route, expressed as the legacy URL that must redirect to it.
     const expected = paths
-      .filter((p) => p !== "")
+      .filter((p) => p !== "" && !POST_MIGRATION.has(p))
       .map((p) => [`/${currentToLegacy[p] ?? p}.html`, `/${p}`]);
     expect(expected).toHaveLength(21);
 
