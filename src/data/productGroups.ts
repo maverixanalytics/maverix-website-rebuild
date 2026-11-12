@@ -86,6 +86,11 @@ export const diagnosisTools: ProductGroupItem[] = [
     image: "/images/narwhal-cryo.jpg",
   },
   {
+    slug: "narwhal-pro-cryo-system",
+    name: "Narwhal Pro Cryo System",
+    image: "/images/narwhal-pro.jpg",
+  },
+  {
     slug: "ebus-needles",
     name: "EBUS Needles",
     image: "/images/ebus.jpg",

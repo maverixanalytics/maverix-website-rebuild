@@ -7,11 +7,11 @@ export const ADVISORS: string[] = [
   "George Cheng, M.D.",
   "Michael Pritchett, M.D.",
   "Kyle Hogarth, M.D.",
-  "Momen Wahidi, M.D.",
   "Javier Longoria, M.D.",
   "Eric Seeley, M.D.",
   "Ali Saeed, M.D.",
   "Mike Machuzak, M.D.",
   "Abid Khokar, M.D.",
   "Krish Bhadra, M.D.",
+  "Nathaniel Ivanick, M.D.",
 ];

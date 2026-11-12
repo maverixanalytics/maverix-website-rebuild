@@ -7,6 +7,18 @@ import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 import { z } from "astro/zod";
 
+/** Spec table shape, shared by `specs` and `accessorySpecs`. */
+const specSchema = z
+  .object({
+        /** 'columns' = spec_block(cols=True); 'keyvalue' = Hydro-Slide's raw 2-col table. */
+        variant: z.enum(["columns", "keyvalue"]),
+        head: z.string().default("Specifications"),
+        showHead: z.boolean().default(true),
+        showHint: z.boolean().default(true),
+        columns: z.array(z.string()).optional(),
+        rows: z.array(z.array(z.string())).min(1),
+      });
+
 /**
  * Products — one MDX file per product page (plan §2.1).
  * Slug = filename, which preserves legacy URLs verbatim, INCLUDING the
@@ -52,17 +64,12 @@ const products = defineCollection({
     videos: z
       .array(z.object({ title: z.string(), youtubeId: z.string() }))
       .optional(),
-    specs: z
-      .object({
-        /** 'columns' = spec_block(cols=True); 'keyvalue' = Hydro-Slide's raw 2-col table. */
-        variant: z.enum(["columns", "keyvalue"]),
-        head: z.string().default("Specifications"),
-        showHead: z.boolean().default(true),
-        showHint: z.boolean().default(true),
-        columns: z.array(z.string()).optional(),
-        rows: z.array(z.array(z.string())).min(1),
-      })
-      .optional(),
+    specs: specSchema.optional(),
+    /**
+     * Second table rendered directly under `specs`, no heading — used for the
+     * shared Cryo Cartridge pack on the Narwhal pages.
+     */
+    accessorySpecs: specSchema.optional(),
     contactThoracent: z.boolean().default(true),
     /** Order within the parent category listing. */
     order: z.number().int().default(0),
